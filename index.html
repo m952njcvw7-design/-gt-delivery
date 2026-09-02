@@ -1,183 +1,261 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>GT Delivery</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GT Delivery</title>
 
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: Arial, sans-serif;
-    }
-
-    body {
-      background: #f5f6f8;
-      color: #172033;
-    }
-
-    header {
-      background: #062b63;
-      color: white;
-      padding: 22px 18px;
-      border-radius: 0 0 22px 22px;
-    }
-
-    header h1 {
-      font-size: 28px;
-      font-weight: 800;
-    }
-
-    header p {
-      margin-top: 5px;
-      opacity: .9;
-    }
-
-    .container {
-      padding: 18px;
-    }
-
-    .search {
-      background: white;
-      padding: 15px;
-      border-radius: 14px;
-      margin-bottom: 18px;
-      color: #777;
-      box-shadow: 0 2px 8px rgba(0,0,0,.06);
-    }
-
-    .banner {
-      background: #ffd21c;
-      padding: 20px;
-      border-radius: 18px;
-      margin-bottom: 22px;
-    }
-
-    .banner h2 {
-      font-size: 22px;
-      margin-bottom: 5px;
-    }
-
-    .categories {
-      display: flex;
-      gap: 10px;
-      overflow-x: auto;
-      margin-bottom: 24px;
-    }
-
-    .category {
-      background: white;
-      padding: 12px 16px;
-      border-radius: 14px;
-      white-space: nowrap;
-      box-shadow: 0 2px 8px rgba(0,0,0,.06);
-    }
-
-    h2 {
-      margin-bottom: 14px;
-    }
-
-    .store {
-      background: white;
-      padding: 18px;
-      border-radius: 18px;
-      margin-bottom: 14px;
-      box-shadow: 0 2px 8px rgba(0,0,0,.06);
-    }
-
-    .store h3 {
-      color: #062b63;
-      margin-bottom: 5px;
-    }
-
-    .store p {
-      color: #777;
-    }
-
-    .bottom {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background: white;
-      display: flex;
-      justify-content: space-around;
-      padding: 14px 5px;
-      border-top: 1px solid #ddd;
-    }
-
-    .bottom div {
-      font-size: 13px;
-      text-align: center;
-      color: #555;
-    }
-
-    .bottom .active {
-      color: #062b63;
-      font-weight: bold;
-    }
-
-    main {
-      padding-bottom: 80px;
-    }
-  </style>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:Arial,sans-serif}
+body{background:#f5f6f8;color:#172033}
+header{background:#062b63;color:white;padding:22px 18px;border-radius:0 0 22px 22px}
+header h1{font-size:28px}
+header p{margin-top:5px}
+.container{padding:18px;padding-bottom:90px}
+.search{background:white;padding:15px;border-radius:14px;margin-bottom:18px}
+.banner{background:#ffd21c;padding:20px;border-radius:18px;margin-bottom:22px}
+.categories{display:flex;gap:10px;overflow-x:auto;margin-bottom:24px}
+.category{background:white;padding:12px 16px;border-radius:14px;white-space:nowrap}
+h2{margin:18px 0 14px}
+.store,.product,.cart-box{background:white;padding:18px;border-radius:18px;margin-bottom:14px;box-shadow:0 2px 8px #00000012}
+.store{cursor:pointer}
+.store h3{color:#062b63;margin-bottom:6px}
+.store p{color:#777}
+button{border:0;border-radius:12px;padding:12px 18px;background:#062b63;color:white;font-weight:bold;cursor:pointer}
+.price{font-size:18px;font-weight:bold;margin:10px 0;color:#062b63}
+.product{display:flex;justify-content:space-between;align-items:center}
+.hidden{display:none}
+.back{background:#ddd;color:#172033;margin-bottom:15px}
+.cart-item{display:flex;justify-content:space-between;align-items:center;margin:12px 0}
+.qty button{padding:6px 10px;margin:0 3px}
+.total{font-size:22px;font-weight:bold;margin:18px 0}
+.bottom{position:fixed;bottom:0;left:0;right:0;background:white;display:flex;justify-content:space-around;padding:13px 5px;border-top:1px solid #ddd;z-index:10}
+.bottom div{text-align:center;font-size:13px;cursor:pointer}
+.active{color:#062b63;font-weight:bold}
+input{width:100%;padding:14px;border:1px solid #ddd;border-radius:12px;margin-bottom:15px}
+</style>
 </head>
 
 <body>
 
-<main>
+<header>
+<h1>GT DELIVERY</h1>
+<p>Seu pedido, do seu jeito.</p>
+</header>
 
-  <header>
-    <h1>GT DELIVERY</h1>
-    <p>Seu pedido, do seu jeito.</p>
-  </header>
+<div class="container">
 
-  <div class="container">
+<!-- INÍCIO -->
+<section id="home">
+<div class="search">
+🔎 <input id="searchInput" placeholder="Procurar lojas ou produtos" oninput="buscar()">
+</div>
 
-    <div class="search">
-      🔎 Procurar lojas, produtos ou categorias
-    </div>
+<div class="banner">
+<h2>🔥 Ofertas de hoje</h2>
+<p>Confira as melhores ofertas perto de você.</p>
+</div>
 
-    <div class="banner">
-      <h2>🔥 Ofertas de hoje</h2>
-      <p>Confira as melhores ofertas perto de você.</p>
-    </div>
+<h2>Categorias</h2>
+<div class="categories">
+<div class="category">🍔 Lanches</div>
+<div class="category">🍕 Pizza</div>
+<div class="category">🛒 Mercado</div>
+<div class="category">🍗 Frango</div>
+<div class="category">🥤 Bebidas</div>
+</div>
 
-    <h2>Categorias</h2>
+<h2>Lojas</h2>
 
-    <div class="categories">
-      <div class="category">🍔 Lanches</div>
-      <div class="category">🍕 Pizza</div>
-      <div class="category">🛒 Mercado</div>
-      <div class="category">🍗 Frango</div>
-      <div class="category">🥤 Bebidas</div>
-    </div>
+<div class="store" onclick="abrirLoja('Mercado GT')">
+<h3>🛒 Mercado GT</h3>
+<p>Mercado • Entrega rápida</p>
+</div>
 
-    <h2>Lojas próximas</h2>
+<div class="store" onclick="abrirLoja('Lanchonete GT')">
+<h3>🍔 Lanchonete GT</h3>
+<p>Lanches • Entrega rápida</p>
+</div>
+</section>
 
-    <div class="store">
-      <h3>🛒 Mercado GT</h3>
-      <p>Mercado • Entrega rápida</p>
-    </div>
+<!-- LOJA -->
+<section id="loja" class="hidden">
+<button class="back" onclick="inicio()">← Voltar</button>
+<h2 id="nomeLoja"></h2>
+<div id="produtos"></div>
+</section>
 
-    <div class="store">
-      <h3>🍔 Lanchonete GT</h3>
-      <p>Lanches • Entrega rápida</p>
-    </div>
+<!-- CARRINHO -->
+<section id="carrinho" class="hidden">
+<h2>🛒 Meu Carrinho</h2>
+<div id="itensCarrinho"></div>
+<div class="total" id="total"></div>
+<button onclick="finalizar()">📦 Fazer pedido</button>
+</section>
 
-  </div>
+<!-- PEDIDO -->
+<section id="pedido" class="hidden">
+<div class="cart-box">
+<h2>✅ Pedido recebido!</h2>
+<p>Seu pedido foi registrado com sucesso.</p>
+<p style="margin-top:12px">Em breve a loja começará a preparar seu pedido.</p>
+<br>
+<button onclick="inicio()">Voltar para o início</button>
+</div>
+</section>
 
-</main>
+</div>
 
 <div class="bottom">
-  <div class="active">🏠<br>Início</div>
-  <div>🔎<br>Buscar</div>
-  <div>🛒<br>Carrinho</div>
-  <div>👤<br>Conta</div>
+<div class="active" onclick="inicio()">🏠<br>Início</div>
+<div onclick="buscarPagina()">🔎<br>Buscar</div>
+<div onclick="mostrarCarrinho()">🛒<br>Carrinho <span id="contador"></span></div>
+<div onclick="alert('Área da conta em breve!')">👤<br>Conta</div>
 </div>
+
+<script>
+
+let carrinho=[];
+
+const lojas={
+"Mercado GT":[
+{name:"Arroz 5kg",price:25},
+{name:"Feijão 1kg",price:8},
+{name:"Refrigerante 2L",price:9}
+],
+"Lanchonete GT":[
+{name:"Hambúrguer",price:18},
+{name:"X-Burger",price:22},
+{name:"Batata frita",price:12}
+]
+};
+
+function esconderTudo(){
+document.getElementById("home").classList.add("hidden");
+document.getElementById("loja").classList.add("hidden");
+document.getElementById("carrinho").classList.add("hidden");
+document.getElementById("pedido").classList.add("hidden");
+}
+
+function inicio(){
+esconderTudo();
+document.getElementById("home").classList.remove("hidden");
+}
+
+function abrirLoja(nome){
+esconderTudo();
+document.getElementById("loja").classList.remove("hidden");
+document.getElementById("nomeLoja").innerText=nome;
+
+let html="";
+lojas[nome].forEach((produto,index)=>{
+html+=`
+<div class="product">
+<div>
+<strong>${produto.name}</strong>
+<div class="price">R$ ${produto.price.toFixed(2)}</div>
+</div>
+<button onclick="adicionar('${nome}',${index})">Adicionar</button>
+</div>`;
+});
+
+document.getElementById("produtos").innerHTML=html;
+}
+
+function adicionar(loja,index){
+let produto=lojas[loja][index];
+let existente=carrinho.find(p=>p.name===produto.name);
+
+if(existente){
+existente.qty++;
+}else{
+carrinho.push({
+name:produto.name,
+price:produto.price,
+qty:1
+});
+}
+
+atualizarContador();
+alert(produto.name+" foi adicionado ao carrinho!");
+}
+
+function atualizarContador(){
+let total=carrinho.reduce((s,p)=>s+p.qty,0);
+document.getElementById("contador").innerText=total>0?"("+total+")":"";
+}
+
+function mostrarCarrinho(){
+esconderTudo();
+document.getElementById("carrinho").classList.remove("hidden");
+
+let html="";
+
+if(carrinho.length===0){
+html="<p>Seu carrinho está vazio.</p>";
+}else{
+carrinho.forEach((p,i)=>{
+html+=`
+<div class="cart-box cart-item">
+<div>
+<strong>${p.name}</strong><br>
+R$ ${(p.price*p.qty).toFixed(2)}
+</div>
+<div class="qty">
+<button onclick="alterar(${i},-1)">−</button>
+${p.qty}
+<button onclick="alterar(${i},1)">+</button>
+</div>
+</div>`;
+});
+}
+
+document.getElementById("itensCarrinho").innerHTML=html;
+
+let total=carrinho.reduce((s,p)=>s+p.price*p.qty,0);
+document.getElementById("total").innerText="Total: R$ "+total.toFixed(2);
+}
+
+function alterar(i,valor){
+carrinho[i].qty+=valor;
+
+if(carrinho[i].qty<=0){
+carrinho.splice(i,1);
+}
+
+atualizarContador();
+mostrarCarrinho();
+}
+
+function finalizar(){
+if(carrinho.length===0){
+alert("Seu carrinho está vazio.");
+return;
+}
+
+esconderTudo();
+document.getElementById("pedido").classList.remove("hidden");
+carrinho=[];
+atualizarContador();
+}
+
+function buscar(){
+let texto=document.getElementById("searchInput").value.toLowerCase();
+let lojasDiv=document.querySelectorAll(".store");
+
+lojasDiv.forEach(div=>{
+div.style.display=div.innerText.toLowerCase().includes(texto)?"block":"none";
+});
+}
+
+function buscarPagina(){
+inicio();
+document.getElementById("searchInput").focus();
+}
+
+atualizarContador();
+
+</script>
 
 </body>
 </html>
