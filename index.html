@@ -1,1 +1,183 @@
 
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GT Delivery</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: #f5f6f8;
+      color: #172033;
+    }
+
+    header {
+      background: #062b63;
+      color: white;
+      padding: 22px 18px;
+      border-radius: 0 0 22px 22px;
+    }
+
+    header h1 {
+      font-size: 28px;
+      font-weight: 800;
+    }
+
+    header p {
+      margin-top: 5px;
+      opacity: .9;
+    }
+
+    .container {
+      padding: 18px;
+    }
+
+    .search {
+      background: white;
+      padding: 15px;
+      border-radius: 14px;
+      margin-bottom: 18px;
+      color: #777;
+      box-shadow: 0 2px 8px rgba(0,0,0,.06);
+    }
+
+    .banner {
+      background: #ffd21c;
+      padding: 20px;
+      border-radius: 18px;
+      margin-bottom: 22px;
+    }
+
+    .banner h2 {
+      font-size: 22px;
+      margin-bottom: 5px;
+    }
+
+    .categories {
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+      margin-bottom: 24px;
+    }
+
+    .category {
+      background: white;
+      padding: 12px 16px;
+      border-radius: 14px;
+      white-space: nowrap;
+      box-shadow: 0 2px 8px rgba(0,0,0,.06);
+    }
+
+    h2 {
+      margin-bottom: 14px;
+    }
+
+    .store {
+      background: white;
+      padding: 18px;
+      border-radius: 18px;
+      margin-bottom: 14px;
+      box-shadow: 0 2px 8px rgba(0,0,0,.06);
+    }
+
+    .store h3 {
+      color: #062b63;
+      margin-bottom: 5px;
+    }
+
+    .store p {
+      color: #777;
+    }
+
+    .bottom {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: white;
+      display: flex;
+      justify-content: space-around;
+      padding: 14px 5px;
+      border-top: 1px solid #ddd;
+    }
+
+    .bottom div {
+      font-size: 13px;
+      text-align: center;
+      color: #555;
+    }
+
+    .bottom .active {
+      color: #062b63;
+      font-weight: bold;
+    }
+
+    main {
+      padding-bottom: 80px;
+    }
+  </style>
+</head>
+
+<body>
+
+<main>
+
+  <header>
+    <h1>GT DELIVERY</h1>
+    <p>Seu pedido, do seu jeito.</p>
+  </header>
+
+  <div class="container">
+
+    <div class="search">
+      🔎 Procurar lojas, produtos ou categorias
+    </div>
+
+    <div class="banner">
+      <h2>🔥 Ofertas de hoje</h2>
+      <p>Confira as melhores ofertas perto de você.</p>
+    </div>
+
+    <h2>Categorias</h2>
+
+    <div class="categories">
+      <div class="category">🍔 Lanches</div>
+      <div class="category">🍕 Pizza</div>
+      <div class="category">🛒 Mercado</div>
+      <div class="category">🍗 Frango</div>
+      <div class="category">🥤 Bebidas</div>
+    </div>
+
+    <h2>Lojas próximas</h2>
+
+    <div class="store">
+      <h3>🛒 Mercado GT</h3>
+      <p>Mercado • Entrega rápida</p>
+    </div>
+
+    <div class="store">
+      <h3>🍔 Lanchonete GT</h3>
+      <p>Lanches • Entrega rápida</p>
+    </div>
+
+  </div>
+
+</main>
+
+<div class="bottom">
+  <div class="active">🏠<br>Início</div>
+  <div>🔎<br>Buscar</div>
+  <div>🛒<br>Carrinho</div>
+  <div>👤<br>Conta</div>
+</div>
+
+</body>
+</html>
