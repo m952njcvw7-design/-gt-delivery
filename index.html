@@ -950,7 +950,7 @@ document.getElementById("enderecoLoja").value.trim();
 const categoria=
 document.getElementById("categoriaLoja").value;
 
-(!if(!nome || !telefone || !endereco){
+if(!nome || !telefone || !endereco){
 alert("Preencha todos os campos.");
 return;
 }
