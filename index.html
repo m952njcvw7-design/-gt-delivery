@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
@@ -6,338 +7,890 @@
 <title>GT Delivery</title>
 
 <style>
-*{box-sizing:border-box;margin:0;padding:0;font-family:Arial,sans-serif}
-body{background:#f5f6f8;color:#172033}
-header{background:#062b63;color:white;padding:22px 18px;border-radius:0 0 22px 22px}
-header h1{font-size:28px}
-header p{margin-top:5px}
-.container{padding:18px;padding-bottom:90px}
-.search{background:white;padding:15px;border-radius:14px;margin-bottom:18px}
-.banner{background:#ffd21c;padding:20px;border-radius:18px;margin-bottom:22px}
-.categories{display:flex;gap:10px;overflow-x:auto;margin-bottom:24px}
-.category{background:white;padding:12px 16px;border-radius:14px;white-space:nowrap}
-h2{margin:18px 0 14px}
-.store,.product,.cart-box{background:white;padding:18px;border-radius:18px;margin-bottom:14px;box-shadow:0 2px 8px #00000012}
-.store{cursor:pointer}
-.store h3{color:#062b63;margin-bottom:6px}
-.store p{color:#777}
-button{border:0;border-radius:12px;padding:12px 18px;background:#062b63;color:white;font-weight:bold;cursor:pointer}
-.price{font-size:18px;font-weight:bold;margin:10px 0;color:#062b63}
-.product{display:flex;justify-content:space-between;align-items:center}
-.hidden{display:none}
-.back{background:#ddd;color:#172033;margin-bottom:15px}
-.cart-item{display:flex;justify-content:space-between;align-items:center;margin:12px 0}
-.qty button{padding:6px 10px;margin:0 3px}
-.total{font-size:22px;font-weight:bold;margin:18px 0}
-.bottom{position:fixed;bottom:0;left:0;right:0;background:white;display:flex;justify-content:space-around;padding:13px 5px;border-top:1px solid #ddd;z-index:10}
-.bottom div{text-align:center;font-size:13px;cursor:pointer}
-.active{color:#062b63;font-weight:bold}
-input{width:100%;padding:14px;border:1px solid #ddd;border-radius:12px;margin-bottom:15px}
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+  font-family:Arial,sans-serif;
+}
+
+body{
+  background:#f5f6f8;
+  color:#172033;
+}
+
+header{
+  background:#062b63;
+  color:white;
+  padding:22px 18px;
+  border-radius:0 0 22px 22px;
+}
+
+header h1{
+  font-size:28px;
+}
+
+header p{
+  margin-top:5px;
+}
+
+.container{
+  padding:18px;
+  padding-bottom:90px;
+}
+
+.search{
+  background:white;
+  padding:15px;
+  border-radius:14px;
+  margin-bottom:18px;
+}
+
+.banner{
+  background:#ffd21c;
+  padding:20px;
+  border-radius:18px;
+  margin-bottom:22px;
+}
+
+.categories{
+  display:flex;
+  gap:10px;
+  overflow-x:auto;
+  margin-bottom:24px;
+}
+
+.category{
+  background:white;
+  padding:12px 16px;
+  border-radius:14px;
+  white-space:nowrap;
+  cursor:pointer;
+}
+
+h2{
+  margin:18px 0 14px;
+}
+
+.store,
+.product,
+.cart-box{
+  background:white;
+  padding:18px;
+  border-radius:18px;
+  margin-bottom:14px;
+  box-shadow:0 2px 8px #00000012;
+}
+
+.store{
+  cursor:pointer;
+}
+
+.store h3{
+  color:#062b63;
+  margin-bottom:6px;
+}
+
+.store p{
+  color:#777;
+}
+
+button{
+  border:0;
+  border-radius:12px;
+  padding:12px 18px;
+  background:#062b63;
+  color:white;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+.price{
+  font-size:18px;
+  font-weight:bold;
+  margin:10px 0;
+  color:#062b63;
+}
+
+.product{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+}
+
+.hidden{
+  display:none;
+}
+
+.back{
+  background:#ddd;
+  color:#172033;
+  margin-bottom:15px;
+}
+
+.cart-item{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin:12px 0;
+}
+
+.qty button{
+  padding:6px 10px;
+  margin:0 3px;
+}
+
+.total{
+  font-size:22px;
+  font-weight:bold;
+  margin:18px 0;
+}
+
+.bottom{
+  position:fixed;
+  bottom:0;
+  left:0;
+  right:0;
+  background:white;
+  display:flex;
+  justify-content:space-around;
+  padding:13px 5px;
+  border-top:1px solid #ddd;
+  z-index:10;
+}
+
+.bottom div{
+  text-align:center;
+  font-size:13px;
+  cursor:pointer;
+}
+
+.active{
+  color:#062b63;
+  font-weight:bold;
+}
+
+input{
+  width:100%;
+  padding:14px;
+  border:1px solid #ddd;
+  border-radius:12px;
+  margin-bottom:15px;
+}
+
+.cadastro-box{
+  background:white;
+  padding:18px;
+  border-radius:18px;
+  margin-top:20px;
+  box-shadow:0 2px 8px #00000012;
+}
+
+.cadastro-box input{
+  margin-top:6px;
+}
+
+.lista-lojas{
+  margin-top:20px;
+}
+
+.loja-cadastrada{
+  padding:14px;
+  margin:10px 0;
+  border:1px solid #ddd;
+  border-radius:12px;
+  background:#fafafa;
+}
+
+.loja-cadastrada strong{
+  color:#062b63;
+}
 </style>
+
 </head>
 
 <body>
 
 <header>
-<h1>GT DELIVERY</h1>
-<p>Seu pedido, do seu jeito.</p>
+  <h1>GT DELIVERY</h1>
+  <p>Seu pedido, do seu jeito.</p>
 </header>
 
 <div class="container">
 
 <!-- INÍCIO -->
+
 <section id="home">
-<div class="search">
-🔎 <input id="searchInput" placeholder="Procurar lojas ou produtos" oninput="buscar()">
-</div>
 
-<div class="banner">
-<h2>🔥 Ofertas de hoje</h2>
-<p>Confira as melhores ofertas perto de você.</p>
-</div>
-<div class="categories">
-<div class="category" onclick="abrirLoja('Lanchonete GT')">🍔 Lanches</div>
-<div class="category" onclick="abrirLoja('Lanchonete GT')">🍕 Pizza</div>
-<div class="category" onclick="abrirLoja('Mercado GT')">🛒 Mercado</div>
-<div class="category" onclick="abrirLoja('Mercado GT')">🍗 Frango</div>
-<div class="category" onclick="abrirLoja('Mercado GT')">🥤 Bebidas</div>
-</div>
-<h2>C
+  <div class="search">
+    🔎
+    <input
+      id="searchInput"
+      placeholder="Procurar lojas ou produtos"
+      oninput="buscar()">
+  </div>
 
-<h2>Lojas</h2>
+  <div class="banner">
+    <h2>🔥 Ofertas de hoje</h2>
+    <p>Confira as melhores ofertas perto de você.</p>
+  </div>
 
+  <div class="categories">
+    <div class="category" onclick="abrirLoja('Lanchonete GT')">🍔 Lanches</div>
+    <div class="category" onclick="abrirLoja('Lanchonete GT')">🍕 Pizza</div>
+    <div class="category" onclick="abrirLoja('Mercado GT')">🛒 Mercado</div>
+    <div class="category" onclick="abrirLoja('Mercado GT')">🍗 Frango</div>
+    <div class="category" onclick="abrirLoja('Mercado GT')">🥤 Bebidas</div>
+  </div>
+
+  <h2>Lojas</h2>
+
+  <div id="lojasPrincipais">
+
+```
 <div class="store" onclick="abrirLoja('Mercado GT')">
-<h3>🛒 Mercado GT</h3>
-<p>Mercado • Entrega rápida</p>
+  <h3>🛒 Mercado GT</h3>
+  <p>Mercado • Entrega rápida</p>
 </div>
 
 <div class="store" onclick="abrirLoja('Lanchonete GT')">
-<h3>🍔 Lanchonete GT</h3>
-<p>Lanches • Entrega rápida</p>
+  <h3>🍔 Lanchonete GT</h3>
+  <p>Lanches • Entrega rápida</p>
 </div>
+```
+
+  </div>
+
+  <div id="lojasCadastradasHome"></div>
+
 </section>
 
 <!-- LOJA -->
+
 <section id="loja" class="hidden">
+
 <button class="back" onclick="inicio()">← Voltar</button>
-<h2 id="nomeLoja"></h2>
-<div id="produtos"></div>
+
+  <h2 id="tituloLoja"></h2>
+
+  <div id="produtos"></div>
+
 </section>
 
 <!-- CARRINHO -->
+
 <section id="carrinho" class="hidden">
-<h2>🛒 Meu Carrinho</h2>
-<div id="itensCarrinho"></div>
-<div class="total" id="total"></div>
+
+  <h2>🛒 Meu Carrinho</h2>
+
+  <div id="itensCarrinho"></div>
+
+  <div class="total" id="total"></div>
+
 <button onclick="finalizar()">📦 Fazer pedido</button>
+
 </section>
 
 <!-- PEDIDO -->
+
 <section id="pedido" class="hidden">
-<div class="cart-box">
+
+  <div class="cart-box">
+
+```
 <h2>✅ Pedido recebido!</h2>
+
 <p>Seu pedido foi registrado com sucesso.</p>
-<p style="margin-top:12px">Em breve a loja começará a preparar seu pedido.</p>
+
+<p style="margin-top:12px">
+  Em breve a loja começará a preparar seu pedido.
+</p>
+
 <br>
+
 <button onclick="inicio()">Voltar para o início</button>
+```
+
+  </div>
+
+</section>
+
+<!-- CADASTRO DE LOJAS -->
+
+<section id="cadastro-lojas" class="hidden">
+
+  <div class="cadastro-box">
+
+```
+<h2>🏪 Cadastrar loja</h2>
+
+<input
+  id="cadastroNomeLoja"
+  type="text"
+  placeholder="Nome da loja">
+
+<input
+  id="cadastroCategoriaLoja"
+  type="text"
+  placeholder="Categoria">
+
+<input
+  id="cadastroEnderecoLoja"
+  type="text"
+  placeholder="Endereço">
+
+<input
+  id="cadastroWhatsappLoja"
+  type="tel"
+  placeholder="WhatsApp">
+
+<button
+  type="button"
+  onclick="cadastrarLoja()"
+  style="width:100%;padding:14px;margin-top:5px;">
+
+  ➕ Cadastrar loja
+
+</button>
+
+<div
+  id="listaLojas"
+  class="lista-lojas">
 </div>
+```
+
+  </div>
+
 </section>
 
 </div>
 
+<!-- MENU INFERIOR -->
+
 <div class="bottom">
-<div class="active" onclick="inicio()">🏠<br>Início</div>
-<div onclick="buscarPagina()">🔎<br>Buscar</div>
-<div onclick="mostrarCarrinho()">🛒<br>Carrinho <span id="contador"></span></div>
-<div onclick="alert('Área da conta em breve!')">👤<br>Conta</div>
+
+  <div class="active" onclick="inicio()">
+    🏠<br>Início
+  </div>
+
+  <div onclick="buscarPagina()">
+    🔎<br>Buscar
+  </div>
+
+  <div onclick="mostrarCarrinho()">
+    🛒<br>Carrinho
+    <span id="contador"></span>
+  </div>
+
+  <div onclick="mostrarCadastro()">
+    🏪<br>Loja
+  </div>
+
 </div>
 
 <script>
 
-let carrinho=[];
+let carrinho = [];
 
-const lojas={
-"Mercado GT":[
-{name:"Arroz 5kg",price:25},
-{name:"Feijão 1kg",price:8},
-{name:"Refrigerante 2L",price:9}
-],
-"Lanchonete GT":[
-{name:"Hambúrguer",price:18},
-{name:"X-Burger",price:22},
-{name:"Batata frita",price:12}
-]
+
+// PRODUTOS DAS LOJAS PRINCIPAIS
+const lojas = {
+
+  "Mercado GT": [
+    {
+      name:"Arroz 5kg",
+      price:25
+    },
+    {
+      name:"Feijão 1kg",
+      price:8
+    },
+    {
+      name:"Refrigerante 2L",
+      price:9
+    }
+  ],
+
+  "Lanchonete GT": [
+    {
+      name:"Hambúrguer",
+      price:18
+    },
+    {
+      name:"X-Burger",
+      price:22
+    },
+    {
+      name:"Batata frita",
+      price:12
+    }
+  ]
+
 };
 
+
+// ESCONDER TODAS AS TELAS
 function esconderTudo(){
-document.getElementById("home").classList.add("hidden");
-document.getElementById("loja").classList.add("hidden");
-document.getElementById("carrinho").classList.add("hidden");
-document.getElementById("pedido").classList.add("hidden");
+
+  document.getElementById("home").classList.add("hidden");
+
+  document.getElementById("loja").classList.add("hidden");
+
+  document.getElementById("carrinho").classList.add("hidden");
+
+  document.getElementById("pedido").classList.add("hidden");
+
+  document.getElementById("cadastro-lojas").classList.add("hidden");
+
 }
 
+
+// INÍCIO
 function inicio(){
-esconderTudo();
-document.getElementById("home").classList.remove("hidden");
+
+  esconderTudo();
+
+  document.getElementById("home").classList.remove("hidden");
+
+  mostrarLojasCadastradas();
+
 }
 
+
+// ABRIR LOJA
 function abrirLoja(nome){
-esconderTudo();
-document.getElementById("loja").classList.remove("hidden");
-document.getElementById("nomeLoja").innerText=nome;
 
-let html="";
-lojas[nome].forEach((produto,index)=>{
-html+=`
-<div class="product">
-<div>
-<strong>${produto.name}</strong>
-<div class="price">R$ ${produto.price.toFixed(2)}</div>
-</div>
-<button onclick="adicionar('${nome}',${index})">Adicionar</button>
-</div>`;
-});
-
-document.getElementById("produtos").innerHTML=html;
-}
-
-function adicionar(loja,index){
-let produto=lojas[loja][index];
-let existente=carrinho.find(p=>p.name===produto.name);
-
-if(existente){
-existente.qty++;
-}else{
-carrinho.push({
-name:produto.name,
-price:produto.price,
-qty:1
-});
-}
-
-atualizarContador();
-alert(produto.name+" foi adicionado ao carrinho!");
-}
-
-function atualizarContador(){
-let total=carrinho.reduce((s,p)=>s+p.qty,0);
-document.getElementById("contador").innerText=total>0?"("+total+")":"";
-}
-
-function mostrarCarrinho(){
-esconderTudo();
-document.getElementById("carrinho").classList.remove("hidden");
-
-let html="";
-
-if(carrinho.length===0){
-html="<p>Seu carrinho está vazio.</p>";
-}else{
-carrinho.forEach((p,i)=>{
-html+=`
-<div class="cart-box cart-item">
-<div>
-<strong>${p.name}</strong><br>
-R$ ${(p.price*p.qty).toFixed(2)}
-</div>
-<div class="qty">
-<button onclick="alterar(${i},-1)">−</button>
-${p.qty}
-<button onclick="alterar(${i},1)">+</button>
-</div>
-</div>`;
-});
-}
-
-document.getElementById("itensCarrinho").innerHTML=html;
-
-let total=carrinho.reduce((s,p)=>s+p.price*p.qty,0);
-document.getElementById("total").innerText="Total: R$ "+total.toFixed(2);
-}
-
-function alterar(i,valor){
-carrinho[i].qty+=valor;
-
-if(carrinho[i].qty<=0){
-carrinho.splice(i,1);
-}
-
-atualizarContador();
-mostrarCarrinho();
-}
-
-function finalizar(){
-if(carrinho.length===0){
-alert("Seu carrinho está vazio.");
-return;
-}
-
-esconderTudo();
-document.getElementById("pedido").classList.remove("hidden");
-carrinho=[];
-atualizarContador();
-}
-
-function buscar(){
-let texto=document.getElementById("searchInput").value.toLowerCase();
-let lojasDiv=document.querySelectorAll(".store");
-
-lojasDiv.forEach(div=>{
-div.style.display=div.innerText.toLowerCase().includes(texto)?"block":"none";
-});
-}
-
-function buscarPagina(){
-inicio();
-document.getElementById("searchInput").focus();
-}
-
-atualizarContador();
-
-</script>
-<!-- ÁREA DE CADASTRO DE LOJAS -->
-<section id="cadastro-lojas" style="padding:20px;">
-  <h2>🏪 Cadastrar loja</h2>
-
-  <input id="nomeLoja" type="text" placeholder="Nome da loja"
-    style="width:100%;padding:12px;margin:6px 0;">
-
-  <input id="categoriaLoja" type="text" placeholder="Categoria"
-    style="width:100%;padding:12px;margin:6px 0;">
-
-  <input id="enderecoLoja" type="text" placeholder="Endereço"
-    style="width:100%;padding:12px;margin:6px 0;">
-
-  <input id="whatsappLoja" type="tel" placeholder="WhatsApp"
-    style="width:100%;padding:12px;margin:6px 0;">
-
-  <button onclick="cadastrarLoja()"
-    style="width:100%;padding:14px;margin-top:10px;">
-    ➕ Cadastrar loja
-  </button>
-
-  <div id="listaLojas" style="margin-top:20px;"></div>
-</section>
-
-<script ></
-</b<script>
-function cadastrarLoja() {
-  const nome = document.getElementById("nomeLoja").value.trim();
-  const categoria = document.getElementById("categoriaLoja").value.trim();
-  const endereco = document.getElementById("enderecoLoja").value.trim();
-  const whatsapp = document.getElementById("whatsappLoja").value.trim();
-
-  if (!nome) {
-    alert("Digite o nome da loja.");
+  if(!lojas[nome]){
+    alert("Loja não encontrada.");
     return;
   }
 
-  let lojas = JSON.parse(
-    localStorage.getItem("gt_delivery_lojas") || "[]"
-  );
+  esconderTudo();
 
-  lojas.push({
-    nome: nome,
-    categoria: categoria,
-    endereco: endereco,
-    whatsapp: whatsapp
+  document.getElementById("loja").classList.remove("hidden");
+
+  document.getElementById("tituloLoja").innerText = nome;
+
+  let html = "";
+
+  lojas[nome].forEach(function(produto,index){
+
+    html += `
+      <div class="product">
+
+        <div>
+
+          <strong>${produto.name}</strong>
+
+          <div class="price">
+            R$ ${produto.price.toFixed(2)}
+          </div>
+
+        </div>
+
+        <button onclick="adicionar('${nome}',${index})">
+          Adicionar
+        </button>
+
+      </div>
+    `;
+
   });
+
+  document.getElementById("produtos").innerHTML = html;
+
+}
+
+
+// ADICIONAR PRODUTO
+function adicionar(loja,index){
+
+  let produto = lojas[loja][index];
+
+  let existente = carrinho.find(function(p){
+    return p.name === produto.name;
+  });
+
+  if(existente){
+
+    existente.qty++;
+
+  }else{
+
+    carrinho.push({
+      name:produto.name,
+      price:produto.price,
+      qty:1
+    });
+
+  }
+
+  atualizarContador();
+
+  alert(produto.name + " foi adicionado ao carrinho!");
+
+}
+
+
+// CONTADOR DO CARRINHO
+function atualizarContador(){
+
+  let total = carrinho.reduce(function(s,p){
+    return s + p.qty;
+  },0);
+
+  document.getElementById("contador").innerText =
+    total > 0 ? "(" + total + ")" : "";
+
+}
+
+
+// MOSTRAR CARRINHO
+function mostrarCarrinho(){
+
+  esconderTudo();
+
+  document.getElementById("carrinho").classList.remove("hidden");
+
+  let html = "";
+
+  if(carrinho.length === 0){
+
+    html = "<p>Seu carrinho está vazio.</p>";
+
+  }else{
+
+    carrinho.forEach(function(p,i){
+
+      html += `
+        <div class="cart-box cart-item">
+
+          <div>
+
+            <strong>${p.name}</strong><br>
+
+            R$ ${(p.price * p.qty).toFixed(2)}
+
+          </div>
+
+          <div class="qty">
+
+            <button onclick="alterar(${i},-1)">
+              −
+            </button>
+
+            ${p.qty}
+
+            <button onclick="alterar(${i},1)">
+              +
+            </button>
+
+          </div>
+
+        </div>
+      `;
+
+    });
+
+  }
+
+  document.getElementById("itensCarrinho").innerHTML = html;
+
+  let total = carrinho.reduce(function(s,p){
+    return s + p.price * p.qty;
+  },0);
+
+  document.getElementById("total").innerText =
+    "Total: R$ " + total.toFixed(2);
+
+}
+
+
+// ALTERAR QUANTIDADE
+function alterar(i,valor){
+
+  if(!carrinho[i]){
+    return;
+  }
+
+  carrinho[i].qty += valor;
+
+  if(carrinho[i].qty <= 0){
+
+    carrinho.splice(i,1);
+
+  }
+
+  atualizarContador();
+
+  mostrarCarrinho();
+
+}
+
+
+// FINALIZAR PEDIDO
+function finalizar(){
+
+  if(carrinho.length === 0){
+
+    alert("Seu carrinho está vazio.");
+
+    return;
+  }
+
+  esconderTudo();
+
+  document.getElementById("pedido").classList.remove("hidden");
+
+  carrinho = [];
+
+  atualizarContador();
+
+}
+
+
+// BUSCAR
+function buscar(){
+
+  let texto =
+    document.getElementById("searchInput").value.toLowerCase();
+
+  let lojasDiv =
+    document.querySelectorAll(".store");
+
+  lojasDiv.forEach(function(div){
+
+    div.style.display =
+      div.innerText.toLowerCase().includes(texto)
+      ? "block"
+      : "none";
+
+  });
+
+}
+
+
+// PÁGINA DE BUSCA
+function buscarPagina(){
+
+  inicio();
+
+  setTimeout(function(){
+
+    document.getElementById("searchInput").focus();
+
+  },100);
+
+}
+
+
+// MOSTRAR CADASTRO
+function mostrarCadastro(){
+
+  esconderTudo();
+
+  document.getElementById("cadastro-lojas").classList.remove("hidden");
+
+  mostrarLojas();
+
+}
+
+
+// CADASTRAR LOJA
+function cadastrarLoja(){
+
+  const nome =
+    document.getElementById("cadastroNomeLoja").value.trim();
+
+  const categoria =
+    document.getElementById("cadastroCategoriaLoja").value.trim();
+
+  const endereco =
+    document.getElementById("cadastroEnderecoLoja").value.trim();
+
+  const whatsapp =
+    document.getElementById("cadastroWhatsappLoja").value.trim();
+
+
+  if(!nome){
+
+    alert("Digite o nome da loja.");
+
+    return;
+  }
+
+
+  let lojasCadastradas =
+    JSON.parse(
+      localStorage.getItem("gt_delivery_lojas") || "[]"
+    );
+
+
+  lojasCadastradas.push({
+
+    nome:nome,
+
+    categoria:categoria,
+
+    endereco:endereco,
+
+    whatsapp:whatsapp
+
+  });
+
 
   localStorage.setItem(
     "gt_delivery_lojas",
-    JSON.stringify(lojas)
+    JSON.stringify(lojasCadastradas)
   );
+
 
   alert("Loja cadastrada com sucesso!");
 
-  document.getElementById("nomeLoja").value = "";
-  document.getElementById("categoriaLoja").value = "";
-  document.getElementById("enderecoLoja").value = "";
-  document.getElementById("whatsappLoja").value = "";
+
+  document.getElementById("cadastroNomeLoja").value = "";
+
+  document.getElementById("cadastroCategoriaLoja").value = "";
+
+  document.getElementById("cadastroEnderecoLoja").value = "";
+
+  document.getElementById("cadastroWhatsappLoja").value = "";
+
 
   mostrarLojas();
+
+  mostrarLojasCadastradas();
+
 }
 
-function mostrarLojas() {
-  const lojas = JSON.parse(
-    localStorage.getItem("gt_delivery_lojas") || "[]"
-  );
 
-  const lista = document.getElementById("listaLojas");
+// MOSTRAR LOJAS CADASTRADAS
+function mostrarLojas(){
 
-  if (!lista) return;
+  let lojasCadastradas =
+    JSON.parse(
+      localStorage.getItem("gt_delivery_lojas") || "[]"
+    );
 
-  lista.innerHTML = lojas.map((loja) => `
-    <div style="padding:12px;margin:8px 0;border:1px solid #ddd;border-radius:8px;">
-      <strong>🏪 ${loja.nome}</strong><br>
-      Categoria: ${loja.categoria || "Não informada"}<br>
-      Endereço: ${loja.endereco || "Não informado"}<br>
-      WhatsApp: ${loja.whatsapp || "Não informado"}
-    </div>
-  `).join("");
+
+  let lista =
+    document.getElementById("listaLojas");
+
+
+  if(!lista){
+    return;
+  }
+
+
+  if(lojasCadastradas.length === 0){
+
+    lista.innerHTML =
+      "<p>Nenhuma loja cadastrada ainda.</p>";
+
+    return;
+  }
+
+
+  lista.innerHTML =
+    lojasCadastradas.map(function(loja){
+
+      return `
+        <div class="loja-cadastrada">
+
+          <strong>
+            🏪 ${loja.nome}
+          </strong>
+
+          <br>
+
+          Categoria:
+          ${loja.categoria || "Não informada"}
+
+          <br>
+
+          Endereço:
+          ${loja.endereco || "Não informado"}
+
+          <br>
+
+          WhatsApp:
+          ${loja.whatsapp || "Não informado"}
+
+        </div>
+      `;
+
+    }).join("");
+
 }
 
-document.addEventListener("DOMContentLoaded", mostrarLojas);
+
+// MOSTRAR LOJAS CADASTRADAS NA PÁGINA INICIAL
+function mostrarLojasCadastradas(){
+
+  let lojasCadastradas =
+    JSON.parse(
+      localStorage.getItem("gt_delivery_lojas") || "[]"
+    );
+
+
+  let area =
+    document.getElementById("lojasCadastradasHome");
+
+
+  if(!area){
+    return;
+  }
+
+
+  if(lojasCadastradas.length === 0){
+
+    area.innerHTML = "";
+
+    return;
+  }
+
+
+  let html = "<h2>🏪 Lojas cadastradas</h2>";
+
+
+  lojasCadastradas.forEach(function(loja){
+
+    html += `
+      <div class="store">
+
+        <h3>🏪 ${loja.nome}</h3>
+
+        <p>
+          ${loja.categoria || "Loja"} •
+          ${loja.endereco || "Endereço não informado"}
+        </p>
+
+        ${
+          loja.whatsapp
+          ? `<p style="margin-top:6px;">
+              📱 ${loja.whatsapp}
+             </p>`
+          : ""
+        }
+
+      </div>
+    `;
+
+  });
+
+
+  area.innerHTML = html;
+
+}
+
+
+// INICIAR
+atualizarContador();
+
+mostrarLojasCadastradas();
+
 </script>
 
+</body>
 </html>
