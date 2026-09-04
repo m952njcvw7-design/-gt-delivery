@@ -950,4 +950,14 @@ document.getElementById("enderecoLoja").value.trim();
 const categoria=
 document.getElementById("categoriaLoja").value;
 
-if(!nome || !telefone || !end
+if(!if(!nome || !telefone || !endereco){
+alert("Preencha todos os campos.");
+return;
+}
+
+document.getElementById("resultadoCadastro").innerHTML =
+"✅ Loja cadastrada com sucesso!";
+
+document.getElementById("nomeLoja").value = "";
+document.getElementById("telefoneLoja").value = "";
+document.getElementById("enderecoLoja").value = "";
