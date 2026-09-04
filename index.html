@@ -279,32 +279,8 @@ atualizarContador();
   <div id="listaLojas" style="margin-top:20px;"></div>
 </section>
 
-<script ></script>
-</body><!-- ÁREA DE CADASTRO DE LOJAS -->
-<section id="cadastro-lojas" style="padding:20px;">
-  <h2>🏪 Cadastrar loja</h2>
-
-  <input id="nomeLoja" type="text" placeholder="Nome da loja"
-    style="width:100%;padding:12px;margin:6px 0;">
-
-  <input id="categoriaLoja" type="text" placeholder="Categoria"
-    style="width:100%;padding:12px;margin:6px 0;">
-
-  <input id="enderecoLoja" type="text" placeholder="Endereço"
-    style="width:100%;padding:12px;margin:6px 0;">
-
-  <input id="whatsappLoja" type="tel" placeholder="WhatsApp"
-    style="width:100%;padding:12px;margin:6px 0;">
-
-  <button onclick="cadastrarLoja()"
-    style="width:100%;padding:14px;margin-top:10px;">
-    ➕ Cadastrar loja
-  </button>
-
-  <div id="listaLojas" style="margin-top:20px;"></div>
-</section>
-
-<script>
+<script ></
+</b<script>
 function cadastrarLoja() {
   const nome = document.getElementById("nomeLoja").value.trim();
   const categoria = document.getElementById("categoriaLoja").value.trim();
@@ -316,7 +292,7 @@ function cadastrarLoja() {
     return;
   }
 
-  const lojas = JSON.parse(
+  let lojas = JSON.parse(
     localStorage.getItem("gt_delivery_lojas") || "[]"
   );
 
@@ -349,6 +325,8 @@ function mostrarLojas() {
 
   const lista = document.getElementById("listaLojas");
 
+  if (!lista) return;
+
   lista.innerHTML = lojas.map((loja) => `
     <div style="padding:12px;margin:8px 0;border:1px solid #ddd;border-radius:8px;">
       <strong>🏪 ${loja.nome}</strong><br>
@@ -361,4 +339,5 @@ function mostrarLojas() {
 
 document.addEventListener("DOMContentLoaded", mostrarLojas);
 </script>
+
 </html>
