@@ -1,1 +1,953 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GT Delivery</title>
 
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  font-family:Arial,sans-serif;
+  background:#f5f5f5;
+  color:#222;
+}
+header{
+  background:#ff6b00;
+  color:white;
+  padding:18px;
+  text-align:center;
+  position:sticky;
+  top:0;
+  z-index:10;
+}
+header h1{font-size:25px}
+.container{
+  max-width:600px;
+  margin:auto;
+  padding:15px;
+}
+.card{
+  background:white;
+  border-radius:15px;
+  padding:16px;
+  margin-bottom:15px;
+  box-shadow:0 2px 8px #0001;
+}
+h2{margin-bottom:15px}
+h3{margin-bottom:8px}
+button{
+  border:0;
+  border-radius:10px;
+  padding:11px 15px;
+  cursor:pointer;
+  font-weight:bold;
+}
+.btn{
+  background:#ff6b00;
+  color:white;
+  width:100%;
+  margin-top:10px;
+}
+.btn-green{
+  background:#19a463;
+  color:white;
+}
+.btn-red{
+  background:#e53935;
+  color:white;
+}
+input,select,textarea{
+  width:100%;
+  padding:13px;
+  margin:7px 0;
+  border:1px solid #ddd;
+  border-radius:10px;
+  font-size:15px;
+}
+.categories{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:8px;
+}
+.category{
+  background:#fff3e8;
+  padding:13px 5px;
+  border-radius:12px;
+  text-align:center;
+  font-size:13px;
+  cursor:pointer;
+}
+.store{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:13px 0;
+  border-bottom:1px solid #eee;
+}
+.store:last-child{border-bottom:0}
+.product{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:14px 0;
+  border-bottom:1px solid #eee;
+}
+.product-info{flex:1}
+.price{
+  color:#19a463;
+  font-weight:bold;
+  margin-top:5px;
+}
+.plus{
+  background:#ff6b00;
+  color:white;
+  border-radius:50%;
+  width:40px;
+  height:40px;
+  padding:0;
+  font-size:22px;
+}
+.qty{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+.qty button{
+  width:32px;
+  height:32px;
+  padding:0;
+  background:#ff6b00;
+  color:white;
+}
+.total{
+  font-size:20px;
+  font-weight:bold;
+  color:#19a463;
+  margin-top:15px;
+}
+.hidden{display:none}
+.nav{
+  position:sticky;
+  bottom:0;
+  background:white;
+  display:flex;
+  justify-content:space-around;
+  padding:12px 5px;
+  box-shadow:0 -2px 8px #0002;
+  margin-top:20px;
+}
+.nav button{
+  background:white;
+  color:#555;
+  padding:8px;
+}
+.status{
+  padding:12px;
+  border-radius:10px;
+  background:#e9f8ef;
+  color:#16834e;
+  margin:8px 0;
+}
+.dashboard{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+}
+.stat{
+  background:white;
+  padding:18px;
+  border-radius:14px;
+  box-shadow:0 2px 8px #0001;
+}
+.stat strong{
+  display:block;
+  font-size:24px;
+  color:#ff6b00;
+  margin-top:5px;
+}
+.star{
+  color:#ff9800;
+  font-size:22px;
+  cursor:pointer;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>🛍️ GT DELIVERY</h1>
+  <p>Tudo que você precisa, na palma da mão.</p>
+</header>
+
+<div class="container">
+
+<!-- INÍCIO -->
+<section id="inicio">
+
+<div class="card">
+  <h2>Olá! 👋</h2>
+  <p>O que você deseja hoje?</p>
+
+  <input id="busca" type="text"
+  placeholder="🔎 O que você está procurando?"
+  oninput="buscarProduto()">
+</div>
+
+<div class="card">
+<h2>Categorias</h2>
+
+<div class="categories">
+  <div class="category" onclick="filtrar('Mercado')">🛒<br>Mercado</div>
+  <div class="category" onclick="filtrar('Lanches')">🍔<br>Lanches</div>
+  <div class="category" onclick="filtrar('Pizza')">🍕<br>Pizza</div>
+  <div class="category" onclick="filtrar('Bebidas')">🥤<br>Bebidas</div>
+  <div class="category" onclick="filtrar('Farmácia')">💊<br>Farmácia</div>
+  <div class="category" onclick="filtrar('Açougue')">🥩<br>Açougue</div>
+  <div class="category" onclick="filtrar('Doces')">🍰<br>Doces</div>
+  <div class="category" onclick="filtrar('Outros')">📦<br>Outros</div>
+</div>
+</div>
+
+<div class="card">
+<h2>Lojas perto de você</h2>
+
+<div class="store">
+<div>
+<strong>Mercearia GT</strong>
+<p>🛒 Mercado</p>
+<small>30–45 min • R$ 5,00 ⭐ 4,8</small>
+</div>
+<button onclick="abrirLoja()">Ver</button>
+</div>
+
+<div class="store">
+<div>
+<strong>Lanchonete Sabor</strong>
+<p>🍔 Lanches</p>
+<small>25–35 min • R$ 4,00 ⭐ 4,6</small>
+</div>
+<button onclick="abrirLoja()">Ver</button>
+</div>
+
+<div class="store">
+<div>
+<strong>Pizzaria Forno a Lenha</strong>
+<p>🍕 Pizza</p>
+<small>35–50 min • R$ 6,00 ⭐ 4,7</small>
+</div>
+<button onclick="abrirLoja()">Ver</button>
+</div>
+
+<div class="store">
+<div>
+<strong>Farmácia Bem Estar</strong>
+<p>💊 Farmácia</p>
+<small>20–30 min • R$ 3,00 ⭐ 4,9</small>
+</div>
+<button onclick="abrirLoja()">Ver</button>
+</div>
+
+</div>
+</section>
+
+
+<!-- LOJA -->
+<section id="loja" class="hidden">
+
+<div class="card">
+<button onclick="mostrar('inicio')">← Voltar</button>
+
+<h2 style="margin-top:15px">🛒 Mercearia GT</h2>
+<p>Mercado</p>
+<p>⭐ 4,8 • 125 avaliações</p>
+<p>30–45 min • R$ 5,00</p>
+<p>Pedido mínimo: R$ 20,00</p>
+
+<div class="status">
+🎉 FRETE GRÁTIS acima de R$ 100,00
+</div>
+</div>
+
+<div class="card">
+<h2>Produtos</h2>
+
+<div id="produtos"></div>
+
+</div>
+
+<div class="card">
+<button class="btn" onclick="mostrarCarrinho()">
+🛒 Ver carrinho
+</button>
+</div>
+
+</section>
+
+
+<!-- CARRINHO -->
+<section id="carrinho" class="hidden">
+
+<div class="card">
+<button onclick="mostrar('loja')">← Voltar</button>
+
+<h2 style="margin-top:15px">🛒 Meu carrinho</h2>
+
+<div id="listaCarrinho"></div>
+
+<div class="total">
+Total: R$ <span id="total">0,00</span>
+</div>
+
+<button class="btn" onclick="mostrar('pagamento')">
+Continuar
+</button>
+
+<button class="btn-red" style="width:100%;margin-top:8px"
+onclick="limparCarrinho()">
+Limpar carrinho
+</button>
+</div>
+
+</section>
+
+
+<!-- PAGAMENTO -->
+<section id="pagamento" class="hidden">
+
+<div class="card">
+<button onclick="mostrarCarrinho()">← Voltar</button>
+
+<h2 style="margin-top:15px">💳 Pagamento</h2>
+
+<h3>Endereço de entrega</h3>
+
+<input id="endereco"
+placeholder="Rua, número, bairro">
+
+<select id="formaPagamento">
+<option value="">Escolha a forma de pagamento</option>
+<option>Pix</option>
+<option>Cartão de crédito</option>
+<option>Cartão de débito</option>
+<option>Dinheiro</option>
+</select>
+
+<h3 style="margin-top:15px">Resumo do pedido</h3>
+
+<p>Produtos: R$ <span id="resumoProdutos">0,00</span></p>
+<p>Taxa de entrega: R$ 5,00</p>
+
+<div class="total">
+Total: R$ <span id="resumoTotal">0,00</span>
+</div>
+
+<button class="btn" onclick="finalizarPedido()">
+✅ Finalizar pedido
+</button>
+
+<p style="text-align:center;margin-top:12px">
+🔒 Ambiente 100% seguro
+</p>
+
+</div>
+
+</section>
+
+
+<!-- PEDIDO -->
+<section id="pedido" class="hidden">
+
+<div class="card">
+
+<h2>📦 Acompanhar pedido</h2>
+
+<p>Pedido <strong id="numeroPedido"></strong></p>
+
+<div class="status">
+✅ Pedido recebido
+</div>
+
+<div class="status">
+✅ Em preparo
+</div>
+
+<div class="status">
+🚴 Saiu para entrega
+</div>
+
+<div class="status">
+🏠 Entregue
+</div>
+
+<h3 style="margin-top:15px">Entregador</h3>
+<p>🚴 Carlos Silva</p>
+
+<button class="btn" onclick="mostrar('avaliar')">
+⭐ Avaliar pedido
+</button>
+
+</div>
+
+</section>
+
+
+<!-- AVALIAÇÃO -->
+<section id="avaliar" class="hidden">
+
+<div class="card">
+
+<h2>⭐ Avaliar pedido</h2>
+
+<p>Como foi sua experiência?</p>
+
+<h3>Mercearia GT</h3>
+
+<div>
+<span class="star" onclick="avaliar(1)">★</span>
+<span class="star" onclick="avaliar(2)">★</span>
+<span class="star" onclick="avaliar(3)">★</span>
+<span class="star" onclick="avaliar(4)">★</span>
+<span class="star" onclick="avaliar(5)">★</span>
+</div>
+
+<h3 style="margin-top:15px">Avalie seu entregador</h3>
+
+<div>
+<span class="star">★</span>
+<span class="star">★</span>
+<span class="star">★</span>
+<span class="star">★</span>
+<span class="star">★</span>
+</div>
+
+<textarea placeholder="Deixe um comentário (opcional)"></textarea>
+
+<button class="btn" onclick="enviarAvaliacao()">
+Enviar avaliação
+</button>
+
+</div>
+
+</section>
+
+
+<!-- CADASTRO DA LOJA -->
+<section id="cadastro" class="hidden">
+
+<div class="card">
+
+<h2>🏪 Cadastrar loja</h2>
+
+<input id="nomeLoja"
+placeholder="Nome da loja">
+
+<input id="telefoneLoja"
+placeholder="Número de celular">
+
+<input id="enderecoLoja"
+placeholder="Endereço da loja">
+
+<select id="categoriaLoja">
+<option>Mercado</option>
+<option>Lanches</option>
+<option>Restaurante</option>
+<option>Pizza</option>
+<option>Bebidas</option>
+<option>Farmácia</option>
+<option>Açougue</option>
+<option>Doces</option>
+<option>Outros</option>
+</select>
+
+<button class="btn" onclick="cadastrarLoja()">
+Cadastrar loja
+</button>
+
+<div id="resultadoCadastro"></div>
+
+</div>
+
+</section>
+
+
+<!-- ENTREGADOR -->
+<section id="entregador" class="hidden">
+
+<div class="card">
+
+<h2>🚴 Olá, Carlos!</h2>
+<p>Fique disponível para receber entregas.</p>
+
+<div class="status">
+🟢 Disponível
+</div>
+
+<h3>Nova entrega</h3>
+
+<div class="card">
+<strong>Mercearia GT</strong>
+<p>Pedido #1258</p>
+<p>Distância: 2,4 km</p>
+<p>Valor da entrega: <strong>R$ 8,00</strong></p>
+
+<button class="btn-red"
+onclick="alert('Entrega recusada')">
+Recusar
+</button>
+
+<button class="btn-green"
+style="width:100%;margin-top:8px"
+onclick="aceitarEntrega()">
+Aceitar
+</button>
+</div>
+
+<h3>Próximas entregas</h3>
+<p>🍔 Lanchonete Sabor — Pedido #1259</p>
+
+</div>
+
+</section>
+
+
+<!-- PAINEL LOJA -->
+<section id="painelLoja" class="hidden">
+
+<div class="card">
+
+<h2>🏪 Painel da Loja</h2>
+<p>Mercearia GT — 🟢 Loja aberta</p>
+
+</div>
+
+<div class="dashboard">
+
+<div class="stat">
+Pedidos hoje
+<strong>12</strong>
+</div>
+
+<div class="stat">
+Faturamento
+<strong>R$ 860</strong>
+</div>
+
+<div class="stat">
+Avaliação
+<strong>4,8 ⭐</strong>
+</div>
+
+<div class="stat">
+Tempo médio
+<strong>32 min</strong>
+</div>
+
+</div>
+
+<div class="card" style="margin-top:15px">
+<h3>Pedidos recentes</h3>
+
+<p>#1258 — João — R$ 54,49 — <strong>Preparando</strong></p>
+<hr><br>
+<p>#1257 — Maria — R$ 32,10 — <strong>Saiu para entrega</strong></p>
+<hr><br>
+<p>#1256 — Pedro — R$ 76,90 — <strong>Entregue</strong></p>
+
+</div>
+
+</section>
+
+
+<!-- ADMIN -->
+<section id="admin" class="hidden">
+
+<div class="card">
+<h2>⚙️ GT DELIVERY</h2>
+<p>Administrador</p>
+</div>
+
+<div class="dashboard">
+
+<div class="stat">
+Pedidos hoje
+<strong>127</strong>
+</div>
+
+<div class="stat">
+Faturamento
+<strong>R$ 8.540</strong>
+</div>
+
+<div class="stat">
+Lojas cadastradas
+<strong>48</strong>
+</div>
+
+<div class="stat">
+Entregadores ativos
+<strong>17</strong>
+</div>
+
+</div>
+
+<div class="card" style="margin-top:15px">
+
+<h3>💰 Comissão hoje</h3>
+
+<p style="font-size:25px;color:#19a463;font-weight:bold">
+R$ 1.025,00
+</p>
+
+<h3 style="margin-top:20px">Como você ganha dinheiro</h3>
+
+<p>
+Você recebe uma comissão sobre cada pedido realizado.
+</p>
+
+<p style="margin-top:10px">
+Exemplo:<br>
+Pedido: R$ 100,00<br>
+Comissão: 12%<br>
+Você ganha: R$ 12,00
+</p>
+
+</div>
+
+</section>
+
+
+<!-- NAVEGAÇÃO -->
+<div class="nav">
+
+<button onclick="mostrar('inicio')">🏠<br>Início</button>
+
+<button onclick="mostrar('loja')">🛍️<br>Loja</button>
+
+<button onclick="mostrarCarrinho()">🛒<br>Carrinho</button>
+
+<button onclick="mostrar('pedido')">📦<br>Pedidos</button>
+
+<button onclick="mostrar('cadastro')">🏪<br>Loja</button>
+
+</div>
+
+</div>
+
+
+<script>
+
+const produtos = [
+
+{
+id:1,
+nome:"Arroz Branco 5kg",
+marca:"Tio João",
+preco:25.00,
+categoria:"Mercado"
+},
+
+{
+id:2,
+nome:"Feijão Carioca 1kg",
+marca:"Dona Mira",
+preco:7.50,
+categoria:"Mercado"
+},
+
+{
+id:3,
+nome:"Óleo de Soja 900ml",
+marca:"Liza",
+preco:6.99,
+categoria:"Mercado"
+},
+
+{
+id:4,
+nome:"Coca-Cola 2L",
+marca:"Coca-Cola",
+preco:10.00,
+categoria:"Bebidas"
+},
+
+{
+id:5,
+nome:"Hambúrguer",
+marca:"Lanchonete GT",
+preco:18.00,
+categoria:"Lanches"
+},
+
+{
+id:6,
+nome:"Pizza Calabresa",
+marca:"Forno a Lenha",
+preco:35.00,
+categoria:"Pizza"
+}
+
+];
+
+let carrinho = [];
+
+
+function mostrar(id){
+
+document.querySelectorAll("section").forEach(sec=>{
+sec.classList.add("hidden");
+});
+
+document.getElementById(id).classList.remove("hidden");
+
+window.scrollTo(0,0);
+
+}
+
+
+function abrirLoja(){
+
+mostrar("loja");
+
+mostrarProdutos();
+
+}
+
+
+function mostrarProdutos(lista=produtos){
+
+const area=document.getElementById("produtos");
+
+area.innerHTML="";
+
+lista.forEach(p=>{
+
+area.innerHTML+=`
+
+<div class="product">
+
+<div class="product-info">
+
+<strong>${p.nome}</strong>
+
+<p>${p.marca}</p>
+
+<div class="price">
+R$ ${p.preco.toFixed(2).replace(".",",")}
+</div>
+
+</div>
+
+<button class="plus"
+onclick="adicionar(${p.id})">
++
+</button>
+
+</div>
+
+`;
+
+});
+
+}
+
+
+function adicionar(id){
+
+const produto=produtos.find(p=>p.id===id);
+
+const existente=carrinho.find(p=>p.id===id);
+
+if(existente){
+
+existente.qty++;
+
+}else{
+
+carrinho.push({
+...produto,
+qty:1
+});
+
+}
+
+alert(produto.nome+" adicionado ao carrinho!");
+
+}
+
+
+function mostrarCarrinho(){
+
+mostrar("carrinho");
+
+renderCarrinho();
+
+}
+
+
+function renderCarrinho(){
+
+const area=document.getElementById("listaCarrinho");
+
+area.innerHTML="";
+
+if(carrinho.length===0){
+
+area.innerHTML="<p>Seu carrinho está vazio.</p>";
+
+document.getElementById("total").innerText="0,00";
+
+return;
+
+}
+
+let total=0;
+
+carrinho.forEach((p,i)=>{
+
+total+=p.preco*p.qty;
+
+area.innerHTML+=`
+
+<div class="product">
+
+<div class="product-info">
+
+<strong>${p.nome}</strong>
+
+<p>R$ ${(p.preco*p.qty).toFixed(2).replace(".",",")}</p>
+
+</div>
+
+<div class="qty">
+
+<button onclick="alterar(${i},-1)">−</button>
+
+<strong>${p.qty}</strong>
+
+<button onclick="alterar(${i},1)">+</button>
+
+</div>
+
+</div>
+
+`;
+
+});
+
+document.getElementById("total").innerText=
+total.toFixed(2).replace(".",",");
+
+}
+
+
+function alterar(i,valor){
+
+carrinho[i].qty+=valor;
+
+if(carrinho[i].qty<=0){
+
+carrinho.splice(i,1);
+
+}
+
+renderCarrinho();
+
+}
+
+
+function limparCarrinho(){
+
+carrinho=[];
+
+renderCarrinho();
+
+}
+
+
+function atualizarResumo(){
+
+let total=0;
+
+carrinho.forEach(p=>{
+total+=p.preco*p.qty;
+});
+
+document.getElementById("resumoProdutos").innerText=
+total.toFixed(2).replace(".",",");
+
+document.getElementById("resumoTotal").innerText=
+(total+5).toFixed(2).replace(".",",");
+
+}
+
+
+document.getElementById("pagamento")
+.addEventListener("click",function(){
+
+atualizarResumo();
+
+});
+
+
+function finalizarPedido(){
+
+if(carrinho.length===0){
+
+alert("Seu carrinho está vazio.");
+
+return;
+
+}
+
+const endereco=
+document.getElementById("endereco").value;
+
+const pagamento=
+document.getElementById("formaPagamento").value;
+
+if(!endereco){
+
+alert("Digite o endereço de entrega.");
+
+return;
+
+}
+
+if(!pagamento){
+
+alert("Escolha a forma de pagamento.");
+
+return;
+
+}
+
+const numero=
+Math.floor(1000+Math.random()*9000);
+
+document.getElementById("numeroPedido").innerText=
+"#"+numero;
+
+alert("Pedido realizado com sucesso! 🎉");
+
+mostrar("pedido");
+
+}
+
+
+function cadastrarLoja(){
+
+const nome=
+document.getElementById("nomeLoja").value.trim();
+
+const telefone=
+document.getElementById("telefoneLoja").value.trim();
+
+const endereco=
+document.getElementById("enderecoLoja").value.trim();
+
+const categoria=
+document.getElementById("categoriaLoja").value;
+
+if(!nome || !telefone || !end
