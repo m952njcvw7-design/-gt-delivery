@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+lá<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
@@ -894,10 +894,17 @@ document.getElementById("resumoTotal").innerText=
 }
 
 
-document.getElementById("pagamento")
-.addEventListener("click",function(){
+const pagamento = document.getElementById("pagamento");
+
+if (pagamento) {
+
+pagamento.addEventListener("click",function(){
 
 atualizarResumo();
+
+});
+
+}
 
 });
 
