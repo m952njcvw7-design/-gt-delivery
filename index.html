@@ -172,6 +172,68 @@ input,select,textarea{
   font-size:22px;
   cursor:pointer;
 }
+  /* ROLETA DE CASHBACK */
+
+.roleta-area{
+  position:relative;
+  width:280px;
+  height:280px;
+  margin:25px auto;
+}
+
+.roleta{
+  width:280px;
+  height:280px;
+  border-radius:50%;
+  position:relative;
+  overflow:hidden;
+  border:8px solid #ff6b00;
+  box-shadow:0 5px 18px rgba(0,0,0,.25);
+  background:conic-gradient(
+    #ff6b00 0deg 60deg,
+    #ffffff 60deg 120deg,
+    #ff9800 120deg 180deg,
+    #ffffff 180deg 240deg,
+    #ff6b00 240deg 300deg,
+    #ffffff 300deg 360deg
+  );
+  transition:transform 4s cubic-bezier(.17,.67,.12,.99);
+}
+
+.ponteiro{
+  position:absolute;
+  top:-8px;
+  left:50%;
+  transform:translateX(-50%);
+  z-index:5;
+  font-size:35px;
+  color:#111;
+  text-shadow:0 2px 4px rgba(0,0,0,.3);
+}
+
+.premio{
+  position:absolute;
+  left:50%;
+  top:50%;
+  font-weight:bold;
+  font-size:20px;
+  color:#111;
+  transform-origin:0 0;
+}
+
+.p1{transform:rotate(15deg) translate(75px);}
+.p2{transform:rotate(75deg) translate(75px);}
+.p3{transform:rotate(135deg) translate(75px);}
+.p4{transform:rotate(195deg) translate(75px);}
+.p5{transform:rotate(255deg) translate(75px);}
+.p6{transform:rotate(315deg) translate(75px);}
+
+#resultadoRoleta{
+  font-size:20px;
+  font-weight:bold;
+  color:#ff6b00;
+  margin-top:15px;
+}
 </style>
 </head>
 
@@ -256,7 +318,42 @@ input,select,textarea{
 
 </div>
 </section>
+</div>
+</section>
 
+<!-- ROLETA DE CASHBACK -->
+<section id="roleta" class="card">
+
+  <h2>🎡 Roleta de Cashback</h2>
+  <p>Gire a roleta e descubra seu prêmio!</p>
+
+  <div class="roleta-area">
+    <div class="ponteiro">▼</div>
+
+    <div id="roletaVisual" class="roleta">
+      <div class="premio p1">5%</div>
+      <div class="premio p2">10%</div>
+      <div class="premio p3">2%</div>
+      <div class="premio p4">20%</div>
+      <div class="premio p5">5%</div>
+      <div class="premio p6">15%</div>
+    </div>
+  </div>
+
+  <button onclick="girarRoleta()">🎡 GIRAR ROLETA</button>
+
+  <p id="resultadoRoleta"></p>
+
+</section>
+
+
+<!-- LOJA -->
+<section id="loja" class="hidden">
+
+<div class="card">
+<button onclick="mostrar('inicio')">← Voltar</button>
+
+<h2 style="marg
 
 <!-- LOJA -->
 <section id="loja" class="hidden">
@@ -642,7 +739,31 @@ Você ganha: R$ 12,00
 
 </div>
 
+let giroRoleta = 0;
 
+function girarRoleta(){
+
+  const roleta = document.getElementById("roletaVisual");
+  const resultado = document.getElementById("resultadoRoleta");
+
+  const premios = [5, 10, 2, 20, 5, 15];
+
+  const indice = Math.floor(Math.random() * premios.length);
+  const premio = premios[indice];
+
+  const giro = 1800 + Math.floor(Math.random() * 360);
+
+  giroRoleta += giro;
+
+  roleta.style.transform = `rotate(${giroRoleta}deg)`;
+
+  resultado.innerHTML = "🎡 Girando...";
+
+  setTimeout(() => {
+    resultado.innerHTML =
+      `🎉 Parabéns! Você ganhou <strong>${premio}% de cashback!</strong>`;
+  }, 4000);
+}
 <script>
 
 const produtos = [
