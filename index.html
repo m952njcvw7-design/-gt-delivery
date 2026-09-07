@@ -1,76 +1,167 @@
-lá<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#ff6b00">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+
 <title>GT Delivery</title>
-<link rel="icon" type="image/png" href="29EEE903-7A28-4C72-AC7C-91575E3FC770.png">
-<link rel="apple-touch-icon" href="29EEE903-7A28-4C72-AC7C-91575E3FC770.png">
+
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
 body{
-  font-family:Arial,sans-serif;
+  font-family:Arial,Helvetica,sans-serif;
   background:#f5f5f5;
   color:#222;
+  padding-bottom:80px;
 }
-header{
-  background:#ff6b00;
-  color:white;
-  padding:18px;
-  text-align:center;
-  position:sticky;
-  top:0;
-  z-index:10;
-}
-header h1{font-size:25px}
-.container{
-  max-width:600px;
-  margin:auto;
-  padding:15px;
-}
-.card{
-  background:white;
-  border-radius:15px;
-  padding:16px;
-  margin-bottom:15px;
-  box-shadow:0 2px 8px #0001;
-}
-h2{margin-bottom:15px}
-h3{margin-bottom:8px}
+
 button{
   border:0;
-  border-radius:10px;
-  padding:11px 15px;
   cursor:pointer;
-  font-weight:bold;
+  font-family:inherit;
 }
-.btn{
-  background:#ff6b00;
+
+header{
+  background:linear-gradient(135deg,#ff6b00,#ff9800);
   color:white;
-  width:100%;
-  margin-top:10px;
+  padding:18px 16px 22px;
+  position:sticky;
+  top:0;
+  z-index:20;
+  box-shadow:0 2px 8px rgba(0,0,0,.15);
 }
-.btn-green{
-  background:#19a463;
-  color:white;
+
+.header-top{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
 }
-.btn-red{
-  background:#e53935;
-  color:white;
+
+.logo{
+  width:48px;
+  height:48px;
+  border-radius:12px;
+  object-fit:cover;
+  background:white;
 }
-input,select,textarea{
-  width:100%;
+
+.logo-area{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.logo-text strong{
+  display:block;
+  font-size:21px;
+}
+
+.logo-text span{
+  font-size:12px;
+  opacity:.9;
+}
+
+.header-btn{
+  background:white;
+  color:#ff6b00;
+  width:42px;
+  height:42px;
+  border-radius:50%;
+  font-size:20px;
+}
+
+.search{
+  margin-top:16px;
+  display:flex;
+  background:white;
+  border-radius:13px;
+  overflow:hidden;
+}
+
+.search input{
+  flex:1;
+  border:0;
+  outline:0;
   padding:13px;
-  margin:7px 0;
-  border:1px solid #ddd;
-  border-radius:10px;
   font-size:15px;
 }
+
+.search button{
+  background:white;
+  color:#ff6b00;
+  width:50px;
+  font-size:20px;
+}
+
+main{
+  max-width:700px;
+  margin:auto;
+}
+
+.screen{
+  display:none;
+  padding:16px;
+}
+
+.screen.active{
+  display:block;
+}
+
+.section-title{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin:8px 0 14px;
+}
+
+.section-title h2{
+  font-size:19px;
+}
+
+.section-title button{
+  background:none;
+  color:#ff6b00;
+  font-weight:bold;
+}
+
+.banner{
+  background:linear-gradient(135deg,#111,#333);
+  color:white;
+  border-radius:18px;
+  padding:20px;
+  margin-bottom:20px;
+  overflow:hidden;
+}
+
+.banner h1{
+  font-size:24px;
+  margin-bottom:7px;
+}
+
+.banner p{
+  font-size:14px;
+  opacity:.9;
+}
+
+.orange{
+  color:#ff6b00;
+}
+
 .categories{
   display:grid;
   grid-template-columns:repeat(4,1fr);
-  gap:8px;
+  gap:10px;
 }
+
 .category{
   background:#fff3e8;
   padding:13px 5px;
@@ -78,161 +169,452 @@ input,select,textarea{
   text-align:center;
   font-size:13px;
   cursor:pointer;
+  border:1px solid #ffe0c5;
 }
+
+.category div{
+  font-size:24px;
+  margin-bottom:5px;
+}
+
 .store{
   display:flex;
   justify-content:space-between;
   align-items:center;
   padding:13px 0;
   border-bottom:1px solid #eee;
+  gap:10px;
 }
-.store:last-child{border-bottom:0}
+
+.store:last-child{
+  border-bottom:0;
+}
+
+.store-info{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.store-icon{
+  width:46px;
+  height:46px;
+  background:#fff3e8;
+  border-radius:12px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:24px;
+}
+
+.store h3{
+  font-size:15px;
+}
+
+.store p{
+  color:#777;
+  font-size:12px;
+  margin-top:3px;
+}
+
+.btn{
+  background:#ff6b00;
+  color:white;
+  padding:10px 14px;
+  border-radius:10px;
+  font-weight:bold;
+}
+
+.btn.black{
+  background:#111;
+}
+
+.btn.light{
+  background:#fff3e8;
+  color:#ff6b00;
+}
+
+.btn.full{
+  width:100%;
+  padding:14px;
+  font-size:16px;
+}
+
+.products{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:12px;
+}
+
 .product{
+  background:white;
+  border-radius:15px;
+  overflow:hidden;
+  box-shadow:0 2px 8px rgba(0,0,0,.07);
+}
+
+.product-image{
+  height:120px;
+  background:#fff3e8;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:52px;
+}
+
+.product-content{
+  padding:12px;
+}
+
+.product h3{
+  font-size:14px;
+  margin-bottom:5px;
+}
+
+.product p{
+  color:#777;
+  font-size:12px;
+  min-height:30px;
+}
+
+.price{
+  color:#111;
+  font-size:17px;
+  font-weight:bold;
+  margin:8px 0;
+}
+
+.add{
+  width:100%;
+  background:#ff6b00;
+  color:white;
+  padding:10px;
+  border-radius:9px;
+  font-weight:bold;
+}
+
+.roulette-card{
+  background:white;
+  border-radius:18px;
+  padding:18px;
+  margin:20px 0;
+  text-align:center;
+  box-shadow:0 2px 8px rgba(0,0,0,.08);
+}
+
+.roulette{
+  width:210px;
+  height:210px;
+  border-radius:50%;
+  margin:15px auto;
+  position:relative;
+  overflow:hidden;
+  border:7px solid #111;
+  transition:transform 4s cubic-bezier(.15,.85,.2,1);
+  background:conic-gradient(
+    #ff6b00 0deg 60deg,
+    #fff 60deg 120deg,
+    #ff6b00 120deg 180deg,
+    #fff 180deg 240deg,
+    #ff6b00 240deg 300deg,
+    #fff 300deg 360deg
+  );
+}
+
+.roulette-labels{
+  position:absolute;
+  inset:0;
+}
+
+.roulette-label{
+  position:absolute;
+  font-weight:bold;
+  font-size:15px;
+  color:#111;
+}
+
+.r1{top:20px;left:95px;}
+.r2{top:58px;right:20px;}
+.r3{bottom:55px;right:20px;}
+.r4{bottom:20px;left:92px;}
+.r5{bottom:55px;left:20px;}
+.r6{top:58px;left:20px;}
+
+.pointer{
+  width:0;
+  height:0;
+  border-left:12px solid transparent;
+  border-right:12px solid transparent;
+  border-top:25px solid #111;
+  margin:auto;
+  position:relative;
+  z-index:5;
+  transform:rotate(180deg);
+}
+
+.roulette-result{
+  min-height:25px;
+  margin:10px 0;
+  font-size:15px;
+}
+
+.balance{
+  background:#111;
+  color:white;
+  padding:16px;
+  border-radius:14px;
+  margin-bottom:15px;
+}
+
+.balance strong{
+  color:#ff9800;
+  font-size:22px;
+}
+
+.card{
+  background:white;
+  border-radius:16px;
+  padding:16px;
+  margin-bottom:14px;
+  box-shadow:0 2px 8px rgba(0,0,0,.06);
+}
+
+.card h3{
+  margin-bottom:10px;
+}
+
+.cart-item{
   display:flex;
   justify-content:space-between;
   align-items:center;
-  padding:14px 0;
+  gap:10px;
+  padding:13px 0;
   border-bottom:1px solid #eee;
 }
-.product-info{flex:1}
-.price{
-  color:#19a463;
-  font-weight:bold;
-  margin-top:5px;
+
+.cart-item:last-child{
+  border-bottom:0;
 }
-.plus{
-  background:#ff6b00;
-  color:white;
-  border-radius:50%;
-  width:40px;
-  height:40px;
-  padding:0;
-  font-size:22px;
-}
-.qty{
+
+.cart-left{
   display:flex;
   align-items:center;
   gap:10px;
 }
-.qty button{
-  width:32px;
-  height:32px;
-  padding:0;
+
+.cart-icon{
+  width:45px;
+  height:45px;
+  background:#fff3e8;
+  border-radius:10px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:23px;
+}
+
+.quantity{
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+
+.quantity button{
+  width:30px;
+  height:30px;
+  border-radius:8px;
+  background:#fff3e8;
+  color:#ff6b00;
+  font-weight:bold;
+}
+
+.total{
+  display:flex;
+  justify-content:space-between;
+  padding:16px 0;
+  font-size:18px;
+  font-weight:bold;
+}
+
+input,select{
+  width:100%;
+  border:1px solid #ddd;
+  border-radius:10px;
+  padding:13px;
+  margin-bottom:12px;
+  outline:none;
+  font-size:14px;
+  background:white;
+}
+
+label{
+  display:block;
+  font-size:13px;
+  font-weight:bold;
+  margin-bottom:5px;
+}
+
+.empty{
+  text-align:center;
+  padding:45px 15px;
+  color:#777;
+}
+
+.empty div{
+  font-size:50px;
+  margin-bottom:10px;
+}
+
+.order-status{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  margin:13px 0;
+}
+
+.status-icon{
+  width:42px;
+  height:42px;
+  background:#fff3e8;
+  color:#ff6b00;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.progress{
+  height:8px;
+  background:#eee;
+  border-radius:10px;
+  overflow:hidden;
+  margin:15px 0;
+}
+
+.progress-bar{
+  height:100%;
+  width:65%;
+  background:#ff6b00;
+}
+
+.profile-head{
+  text-align:center;
+  padding:20px 0;
+}
+
+.avatar{
+  width:80px;
+  height:80px;
+  border-radius:50%;
   background:#ff6b00;
   color:white;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin:auto auto 10px;
+  font-size:34px;
 }
-.total{
-  font-size:20px;
-  font-weight:bold;
-  color:#19a463;
-  margin-top:15px;
+
+.menu-button{
+  width:100%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  background:white;
+  padding:16px;
+  border-bottom:1px solid #eee;
+  text-align:left;
+  font-size:15px;
 }
-.hidden{display:none}
-.nav{
-  position:sticky;
+
+.menu-button:first-child{
+  border-radius:14px 14px 0 0;
+}
+
+.menu-button:last-child{
+  border-radius:0 0 14px 14px;
+}
+
+.bottom-nav{
+  position:fixed;
+  left:0;
+  right:0;
   bottom:0;
+  height:68px;
   background:white;
   display:flex;
   justify-content:space-around;
-  padding:12px 5px;
-  box-shadow:0 -2px 8px #0002;
-  margin-top:20px;
+  align-items:center;
+  box-shadow:0 -2px 10px rgba(0,0,0,.12);
+  z-index:30;
 }
-.nav button{
-  background:white;
-  color:#555;
-  padding:8px;
+
+.nav-btn{
+  background:none;
+  color:#777;
+  font-size:11px;
+  text-align:center;
+  min-width:60px;
 }
-.status{
-  padding:12px;
-  border-radius:10px;
-  background:#e9f8ef;
-  color:#16834e;
-  margin:8px 0;
+
+.nav-btn div{
+  font-size:21px;
+  margin-bottom:3px;
 }
-.dashboard{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:10px;
-}
-.stat{
-  background:white;
-  padding:18px;
-  border-radius:14px;
-  box-shadow:0 2px 8px #0001;
-}
-.stat strong{
-  display:block;
-  font-size:24px;
+
+.nav-btn.active{
   color:#ff6b00;
-  margin-top:5px;
-}
-.star{
-  color:#ff9800;
-  font-size:22px;
-  cursor:pointer;
-}
-  /* ROLETA DE CASHBACK */
-
-.roleta-area{
-  position:relative;
-  width:280px;
-  height:280px;
-  margin:25px auto;
+  font-weight:bold;
 }
 
-.roleta{
-  width:280px;
-  height:280px;
+.badge{
+  position:absolute;
+  background:#111;
+  color:white;
+  font-size:10px;
+  min-width:17px;
+  height:17px;
   border-radius:50%;
-  position:relative;
-  overflow:hidden;
-  border:8px solid #ff6b00;
-  box-shadow:0 5px 18px rgba(0,0,0,.25);
-  background:conic-gradient(
-    #ff6b00 0deg 60deg,
-    #ffffff 60deg 120deg,
-    #ff9800 120deg 180deg,
-    #ffffff 180deg 240deg,
-    #ff6b00 240deg 300deg,
-    #ffffff 300deg 360deg
-  );
-  transition:transform 4s cubic-bezier(.17,.67,.12,.99);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin:-28px 0 0 25px;
 }
 
-.ponteiro{
-  position:absolute;
-  top:-8px;
+.toast{
+  position:fixed;
   left:50%;
-  transform:translateX(-50%);
-  z-index:5;
-  font-size:35px;
-  color:#111;
-  text-shadow:0 2px 4px rgba(0,0,0,.3);
+  bottom:85px;
+  transform:translateX(-50%) translateY(20px);
+  background:#111;
+  color:white;
+  padding:12px 18px;
+  border-radius:12px;
+  opacity:0;
+  pointer-events:none;
+  transition:.3s;
+  z-index:50;
+  max-width:90%;
+  text-align:center;
 }
 
-.premio{
-  position:absolute;
-  left:50%;
-  top:50%;
-  font-weight:bold;
-  font-size:20px;
-  color:#111;
-  transform-origin:0 0;
+.toast.show{
+  opacity:1;
+  transform:translateX(-50%) translateY(0);
 }
 
-.p1{transform:rotate(15deg) translate(75px);}
-.p2{transform:rotate(75deg) translate(75px);}
-.p3{transform:rotate(135deg) translate(75px);}
-.p4{transform:rotate(195deg) translate(75px);}
-.p5{transform:rotate(255deg) translate(75px);}
-.p6{transform:rotate(315deg) translate(75px);}
+@media(max-width:400px){
+  .categories{
+    grid-template-columns:repeat(4,1fr);
+  }
 
-#resultadoRoleta{
-  font-size:20px;
-  font-weight:bold;
-  color:#ff6b00;
-  margin-top:15px;
+  .category{
+    font-size:11px;
+  }
+
+  .products{
+    gap:9px;
+  }
 }
 </style>
 </head>
@@ -240,867 +622,1657 @@ input,select,textarea{
 <body>
 
 <header>
-  <img src="29EEE903-7A28-4C72-AC7C-91575E3FC770.png"
-       alt="GT Delivery"
-       style="width:90px;height:90px;object-fit:contain;border-radius:15px;margin-bottom:8px;">
+  <div class="header-top">
+    <div class="logo-area">
+      <img
+        class="logo"
+        src="29EEE903-7A28-4C72-AC7C-91575E3FC770.png"
+        alt="GT Delivery"
+        onerror="this.style.display='none'"
+      >
 
-  <h1>🛍️ GT DELIVERY</h1>
-  <p>Tudo que você precisa, na palma da mão.</p>
-</header>
-
-<div class="container">
-
-<!-- INÍCIO -->
-<section id="inicio">
-
-<div class="card">
-  <h2>Olá! 👋</h2>
-  <p>O que você deseja hoje?</p>
-
-  <input id="busca" type="text"
-  placeholder="🔎 O que você está procurando?"
-  oninput="buscarProduto()">
-</div>
-
-<div class="card">
-<h2>Categorias</h2>
-
-<div class="categories">
-  <div class="category" onclick="filtrar('Mercado')">🛒<br>Mercado</div>
-  <div class="category" onclick="filtrar('Lanches')">🍔<br>Lanches</div>
-  <div class="category" onclick="filtrar('Pizza')">🍕<br>Pizza</div>
-  <div class="category" onclick="filtrar('Bebidas')">🥤<br>Bebidas</div>
-  <div class="category" onclick="filtrar('Farmácia')">💊<br>Farmácia</div>
-  <div class="category" onclick="filtrar('Açougue')">🥩<br>Açougue</div>
-  <div class="category" onclick="filtrar('Doces')">🍰<br>Doces</div>
-  <div class="category" onclick="filtrar('Outros')">📦<br>Outros</div>
-</div>
-</div>
-
-<div class="card">
-<h2>Lojas perto de você</h2>
-
-<div class="store">
-<div>
-<strong>Mercearia GT</strong>
-<p>🛒 Mercado</p>
-<small>30–45 min • R$ 5,00 ⭐ 4,8</small>
-</div>
-<button onclick="abrirLoja()">Ver</button>
-</div>
-
-<div class="store">
-<div>
-<strong>Lanchonete Sabor</strong>
-<p>🍔 Lanches</p>
-<small>25–35 min • R$ 4,00 ⭐ 4,6</small>
-</div>
-<button onclick="abrirLoja()">Ver</button>
-</div>
-
-<div class="store">
-<div>
-<strong>Pizzaria Forno a Lenha</strong>
-<p>🍕 Pizza</p>
-<small>35–50 min • R$ 6,00 ⭐ 4,7</small>
-</div>
-<button onclick="abrirLoja()">Ver</button>
-</div>
-
-<div class="store">
-<div>
-<strong>Farmácia Bem Estar</strong>
-<p>💊 Farmácia</p>
-<small>20–30 min • R$ 3,00 ⭐ 4,9</small>
-</div>
-<button onclick="abrirLoja()">Ver</button>
-</div>
-
-</div>
-</section>
-</div>
-</section>
-
-<!-- ROLETA DE CASHBACK -->
-<section id="roleta" class="card">
-
-  <h2>🎡 Roleta de Cashback</h2>
-  <p>Gire a roleta e descubra seu prêmio!</p>
-
-  <div class="roleta-area">
-    <div class="ponteiro">▼</div>
-
-    <div id="roletaVisual" class="roleta">
-      <div class="premio p1">5%</div>
-      <div class="premio p2">10%</div>
-      <div class="premio p3">2%</div>
-      <div class="premio p4">20%</div>
-      <div class="premio p5">5%</div>
-      <div class="premio p6">15%</div>
+      <div class="logo-text">
+        <strong>GT Delivery</strong>
+        <span>Seu pedido do seu jeito</span>
+      </div>
     </div>
+
+    <button class="header-btn" onclick="mostrar('perfil')">👤</button>
   </div>
 
-  <button onclick="girarRoleta()">🎡 GIRAR ROLETA</button>
+  <div class="search">
+    <input
+      id="searchInput"
+      type="text"
+      placeholder="Buscar produtos ou lojas..."
+      oninput="buscarProduto()"
+    >
+    <button onclick="buscarProduto()">🔎</button>
+  </div>
+</header>
 
-  <p id="resultadoRoleta"></p>
+<main>
+
+<!-- INÍCIO -->
+<section id="inicio" class="screen active">
+
+  <div class="banner">
+    <h1>Olá! 👋</h1>
+    <p>Encontre produtos, faça seu pedido e receba onde estiver.</p>
+  </div>
+
+  <div class="section-title">
+    <h2>Categorias</h2>
+    <button onclick="mostrar('loja')">Ver todas</button>
+  </div>
+
+  <div class="categories">
+    <button class="category" onclick="filtrarCategoria('Mercado')">
+      <div>🛒</div>Mercado
+    </button>
+
+    <button class="category" onclick="filtrarCategoria('Comida')">
+      <div>🍔</div>Comida
+    </button>
+
+    <button class="category" onclick="filtrarCategoria('Bebidas')">
+      <div>🥤</div>Bebidas
+    </button>
+
+    <button class="category" onclick="filtrarCategoria('Farmácia')">
+      <div>💊</div>Farmácia
+    </button>
+
+    <button class="category" onclick="filtrarCategoria('Padaria')">
+      <div>🥖</div>Padaria
+    </button>
+
+    <button class="category" onclick="filtrarCategoria('Açougue')">
+      <div>🥩</div>Açougue
+    </button>
+
+    <button class="category" onclick="filtrarCategoria('Hortifruti')">
+      <div>🥬</div>Hortifruti
+    </button>
+
+    <button class="category" onclick="filtrarCategoria('Outros')">
+      <div>📦</div>Outros
+    </button>
+  </div>
+
+  <!-- ROLETA -->
+  <div class="roulette-card">
+    <h2>🎰 Roleta GT Cashback</h2>
+    <p>Gire e concorra a cashback!</p>
+
+    <div class="pointer"></div>
+
+    <div id="roleta" class="roulette">
+      <div class="roulette-labels">
+        <span class="roulette-label r1">2%</span>
+        <span class="roulette-label r2">5%</span>
+        <span class="roulette-label r3">10%</span>
+        <span class="roulette-label r4">15%</span>
+        <span class="roulette-label r5">20%</span>
+        <span class="roulette-label r6">5%</span>
+      </div>
+    </div>
+
+    <div id="resultadoRoleta" class="roulette-result">
+      Boa sorte! 🍀
+    </div>
+
+    <button class="btn full" onclick="girarRoleta()">
+      🎰 GIRAR ROLETA
+    </button>
+  </div>
+
+  <div class="section-title">
+    <h2>Lojas próximas</h2>
+    <button onclick="mostrar('loja')">Ver todas</button>
+  </div>
+
+  <div class="card">
+
+    <div class="store">
+      <div class="store-info">
+        <div class="store-icon">🛒</div>
+        <div>
+          <h3>GT Supermercado</h3>
+          <p>Mercado • ⭐ 4.9 • 20-35 min</p>
+        </div>
+      </div>
+
+      <button class="btn" onclick="abrirLoja(1)">Ver</button>
+    </div>
+
+    <div class="store">
+      <div class="store-info">
+        <div class="store-icon">🍔</div>
+        <div>
+          <h3>GT Lanches</h3>
+          <p>Lanches • ⭐ 4.8 • 25-40 min</p>
+        </div>
+      </div>
+
+      <button class="btn" onclick="abrirLoja(2)">Ver</button>
+    </div>
+
+    <div class="store">
+      <div class="store-info">
+        <div class="store-icon">🥤</div>
+        <div>
+          <h3>GT Bebidas</h3>
+          <p>Bebidas • ⭐ 4.7 • 20-30 min</p>
+        </div>
+      </div>
+
+      <button class="btn" onclick="abrirLoja(3)">Ver</button>
+    </div>
+
+  </div>
 
 </section>
 
 
 <!-- LOJA -->
-<section id="loja" class="hidden">
+<section id="loja" class="screen">
 
-<div class="card">
-<button onclick="mostrar('inicio')">← Voltar</button>
+  <div class="section-title">
+    <h2 id="tituloLoja">Produtos</h2>
+    <button onclick="mostrar('inicio')">← Voltar</button>
+  </div>
 
-<h2 style="marg
-
-<!-- LOJA -->
-<section id="loja" class="hidden">
-
-<div class="card">
-<button onclick="mostrar('inicio')">← Voltar</button>
-
-<h2 style="margin-top:15px">🛒 Mercearia GT</h2>
-<p>Mercado</p>
-<p>⭐ 4,8 • 125 avaliações</p>
-<p>30–45 min • R$ 5,00</p>
-<p>Pedido mínimo: R$ 20,00</p>
-
-<div class="status">
-🎉 FRETE GRÁTIS acima de R$ 100,00
-</div>
-</div>
-
-<div class="card">
-<h2>Produtos</h2>
-
-<div id="produtos"></div>
-
-</div>
-
-<div class="card">
-<button class="btn" onclick="mostrarCarrinho()">
-🛒 Ver carrinho
-</button>
-</div>
+  <div id="produtosContainer" class="products"></div>
 
 </section>
 
 
 <!-- CARRINHO -->
-<section id="carrinho" class="hidden">
+<section id="carrinho" class="screen">
 
-<div class="card">
-<button onclick="mostrar('loja')">← Voltar</button>
+  <div class="section-title">
+    <h2>🛒 Meu Carrinho</h2>
+    <button onclick="mostrar('loja')">Continuar</button>
+  </div>
 
-<h2 style="margin-top:15px">🛒 Meu carrinho</h2>
-
-<div id="listaCarrinho"></div>
-
-<div class="total">
-Total: R$ <span id="total">0,00</span>
-</div>
-
-<button class="btn" onclick="mostrar('pagamento')">
-Continuar
-</button>
-
-<button class="btn-red" style="width:100%;margin-top:8px"
-onclick="limparCarrinho()">
-Limpar carrinho
-</button>
-</div>
+  <div id="carrinhoContainer"></div>
 
 </section>
 
 
-<!-- PAGAMENTO -->
-<section id="pagamento" class="hidden">
+<!-- CHECKOUT -->
+<section id="checkout" class="screen">
 
-<div class="card">
-<button onclick="mostrarCarrinho()">← Voltar</button>
+  <div class="section-title">
+    <h2>💳 Finalizar pedido</h2>
+    <button onclick="mostrar('carrinho')">← Voltar</button>
+  </div>
 
-<h2 style="margin-top:15px">💳 Pagamento</h2>
+  <div class="card">
 
-<h3>Endereço de entrega</h3>
+    <label>Nome</label>
+    <input id="nomeCliente" type="text" placeholder="Digite seu nome">
 
-<input id="endereco"
-placeholder="Rua, número, bairro">
+    <label>Telefone</label>
+    <input id="telefoneCliente" type="tel" placeholder="(00) 00000-0000">
 
-<select id="formaPagamento">
-<option value="">Escolha a forma de pagamento</option>
-<option>Pix</option>
-<option>Cartão de crédito</option>
-<option>Cartão de débito</option>
-<option>Dinheiro</option>
-</select>
+    <label>Endereço de entrega</label>
+    <input id="enderecoCliente" type="text" placeholder="Rua, número, bairro">
 
-<h3 style="margin-top:15px">Resumo do pedido</h3>
+    <label>Forma de pagamento</label>
+    <select id="pagamento">
+      <option value="Pix">Pix</option>
+      <option value="Cartão">Cartão</option>
+      <option value="Dinheiro">Dinheiro</option>
+    </select>
 
-<p>Produtos: R$ <span id="resumoProdutos">0,00</span></p>
-<p>Taxa de entrega: R$ 5,00</p>
+    <label>Observação</label>
+    <input id="observacao" type="text" placeholder="Ex.: deixar na portaria">
 
-<div class="total">
-Total: R$ <span id="resumoTotal">0,00</span>
-</div>
+  </div>
 
-<button class="btn" onclick="finalizarPedido()">
-✅ Finalizar pedido
-</button>
+  <div id="checkoutResumo" class="card"></div>
 
-<p style="text-align:center;margin-top:12px">
-🔒 Ambiente 100% seguro
-</p>
-
-</div>
+  <button class="btn full" onclick="confirmarPedido()">
+    ✅ CONFIRMAR PEDIDO
+  </button>
 
 </section>
 
 
-<!-- PEDIDO -->
-<section id="pedido" class="hidden">
+<!-- PEDIDOS -->
+<section id="pedidos" class="screen">
 
-<div class="card">
+  <div class="section-title">
+    <h2>📦 Meus pedidos</h2>
+    <button onclick="mostrar('inicio')">Início</button>
+  </div>
 
-<h2>📦 Acompanhar pedido</h2>
-
-<p>Pedido <strong id="numeroPedido"></strong></p>
-
-<div class="status">
-✅ Pedido recebido
-</div>
-
-<div class="status">
-✅ Em preparo
-</div>
-
-<div class="status">
-🚴 Saiu para entrega
-</div>
-
-<div class="status">
-🏠 Entregue
-</div>
-
-<h3 style="margin-top:15px">Entregador</h3>
-<p>🚴 Carlos Silva</p>
-
-<button class="btn" onclick="mostrar('avaliar')">
-⭐ Avaliar pedido
-</button>
-
-</div>
-
-</section>
-
-
-<!-- AVALIAÇÃO -->
-<section id="avaliar" class="hidden">
-
-<div class="card">
-
-<h2>⭐ Avaliar pedido</h2>
-
-<p>Como foi sua experiência?</p>
-
-<h3>Mercearia GT</h3>
-
-<div>
-<span class="star" onclick="avaliar(1)">★</span>
-<span class="star" onclick="avaliar(2)">★</span>
-<span class="star" onclick="avaliar(3)">★</span>
-<span class="star" onclick="avaliar(4)">★</span>
-<span class="star" onclick="avaliar(5)">★</span>
-</div>
-
-<h3 style="margin-top:15px">Avalie seu entregador</h3>
-
-<div>
-<span class="star">★</span>
-<span class="star">★</span>
-<span class="star">★</span>
-<span class="star">★</span>
-<span class="star">★</span>
-</div>
-
-<textarea placeholder="Deixe um comentário (opcional)"></textarea>
-
-<button class="btn" onclick="enviarAvaliacao()">
-Enviar avaliação
-</button>
-
-</div>
-
-</section>
-
-
-<!-- CADASTRO DA LOJA -->
-<section id="cadastro" class="hidden">
-
-<div class="card">
-
-<h2>🏪 Cadastrar loja</h2>
-
-<input id="nomeLoja"
-placeholder="Nome da loja">
-
-<input id="telefoneLoja"
-placeholder="Número de celular">
-
-<input id="enderecoLoja"
-placeholder="Endereço da loja">
-
-<select id="categoriaLoja">
-<option>Mercado</option>
-<option>Lanches</option>
-<option>Restaurante</option>
-<option>Pizza</option>
-<option>Bebidas</option>
-<option>Farmácia</option>
-<option>Açougue</option>
-<option>Doces</option>
-<option>Outros</option>
-</select>
-
-<button class="btn" onclick="cadastrarLoja()">
-Cadastrar loja
-</button>
-
-<div id="resultadoCadastro"></div>
-
-</div>
+  <div id="pedidosContainer"></div>
 
 </section>
 
 
 <!-- ENTREGADOR -->
-<section id="entregador" class="hidden">
+<section id="entregador" class="screen">
 
-<div class="card">
+  <div class="section-title">
+    <h2>🛵 Acompanhar entrega</h2>
+    <button onclick="mostrar('pedidos')">← Voltar</button>
+  </div>
 
-<h2>🚴 Olá, Carlos!</h2>
-<p>Fique disponível para receber entregas.</p>
-
-<div class="status">
-🟢 Disponível
-</div>
-
-<h3>Nova entrega</h3>
-
-<div class="card">
-<strong>Mercearia GT</strong>
-<p>Pedido #1258</p>
-<p>Distância: 2,4 km</p>
-<p>Valor da entrega: <strong>R$ 8,00</strong></p>
-
-<button class="btn-red"
-onclick="alert('Entrega recusada')">
-Recusar
-</button>
-
-<button class="btn-green"
-style="width:100%;margin-top:8px"
-onclick="aceitarEntrega()">
-Aceitar
-</button>
-</div>
-
-<h3>Próximas entregas</h3>
-<p>🍔 Lanchonete Sabor — Pedido #1259</p>
-
-</div>
+  <div id="entregaContainer"></div>
 
 </section>
 
 
-<!-- PAINEL LOJA -->
-<section id="painelLoja" class="hidden">
+<!-- PERFIL -->
+<section id="perfil" class="screen">
 
-<div class="card">
+  <div class="profile-head">
+    <div class="avatar">👤</div>
+    <h2 id="perfilNome">Meu perfil</h2>
+    <p>Cliente GT Delivery</p>
+  </div>
 
-<h2>🏪 Painel da Loja</h2>
-<p>Mercearia GT — 🟢 Loja aberta</p>
+  <div class="balance">
+    <div>💰 Seu cashback</div>
+    <strong id="saldoCashback">R$ 0,00</strong>
+  </div>
 
-</div>
+  <div class="card">
 
-<div class="dashboard">
+    <button class="menu-button" onclick="abrirCadastro()">
+      <span>👤 Cadastro</span>
+      <span>›</span>
+    </button>
 
-<div class="stat">
-Pedidos hoje
-<strong>12</strong>
-</div>
+    <button class="menu-button" onclick="mostrar('pedidos')">
+      <span>📦 Meus pedidos</span>
+      <span>›</span>
+    </button>
 
-<div class="stat">
-Faturamento
-<strong>R$ 860</strong>
-</div>
+    <button class="menu-button" onclick="mostrar('carrinho')">
+      <span>🛒 Meu carrinho</span>
+      <span>›</span>
+    </button>
 
-<div class="stat">
-Avaliação
-<strong>4,8 ⭐</strong>
-</div>
+    <button class="menu-button" onclick="mostrar('inicio')">
+      <span>🎰 Roleta de cashback</span>
+      <span>›</span>
+    </button>
 
-<div class="stat">
-Tempo médio
-<strong>32 min</strong>
-</div>
+  </div>
 
-</div>
-
-<div class="card" style="margin-top:15px">
-<h3>Pedidos recentes</h3>
-
-<p>#1258 — João — R$ 54,49 — <strong>Preparando</strong></p>
-<hr><br>
-<p>#1257 — Maria — R$ 32,10 — <strong>Saiu para entrega</strong></p>
-<hr><br>
-<p>#1256 — Pedro — R$ 76,90 — <strong>Entregue</strong></p>
-
-</div>
+  <div id="cadastroArea"></div>
 
 </section>
 
-
-<!-- ADMIN -->
-<section id="admin" class="hidden">
-
-<div class="card">
-<h2>⚙️ GT DELIVERY</h2>
-<p>Administrador</p>
-</div>
-
-<div class="dashboard">
-
-<div class="stat">
-Pedidos hoje
-<strong>127</strong>
-</div>
-
-<div class="stat">
-Faturamento
-<strong>R$ 8.540</strong>
-</div>
-
-<div class="stat">
-Lojas cadastradas
-<strong>48</strong>
-</div>
-
-<div class="stat">
-Entregadores ativos
-<strong>17</strong>
-</div>
-
-</div>
-
-<div class="card" style="margin-top:15px">
-
-<h3>💰 Comissão hoje</h3>
-
-<p style="font-size:25px;color:#19a463;font-weight:bold">
-R$ 1.025,00
-</p>
-
-<h3 style="margin-top:20px">Como você ganha dinheiro</h3>
-
-<p>
-Você recebe uma comissão sobre cada pedido realizado.
-</p>
-
-<p style="margin-top:10px">
-Exemplo:<br>
-Pedido: R$ 100,00<br>
-Comissão: 12%<br>
-Você ganha: R$ 12,00
-</p>
-
-</div>
-
-</section>
+</main>
 
 
-<!-- NAVEGAÇÃO -->
-<div class="nav">
+<!-- MENU INFERIOR -->
+<nav class="bottom-nav">
 
-<button onclick="mostrar('inicio')">🏠<br>Início</button>
+  <button id="nav-inicio" class="nav-btn active" onclick="mostrar('inicio')">
+    <div>🏠</div>
+    Início
+  </button>
 
-<button onclick="mostrar('loja')">🛍️<br>Loja</button>
+  <button id="nav-loja" class="nav-btn" onclick="mostrar('loja')">
+    <div>🏪</div>
+    Lojas
+  </button>
 
-<button onclick="mostrarCarrinho()">🛒<br>Carrinho</button>
+  <button id="nav-carrinho" class="nav-btn" onclick="mostrar('carrinho')">
+    <div>🛒</div>
+    <span id="cartBadge" class="badge" style="display:none">0</span>
+    Carrinho
+  </button>
 
-<button onclick="mostrar('pedido')">📦<br>Pedidos</button>
+  <button id="nav-pedidos" class="nav-btn" onclick="mostrar('pedidos')">
+    <div>📦</div>
+    Pedidos
+  </button>
 
-<button onclick="mostrar('cadastro')">🏪<br>Loja</button>
-<button onclick="document.getElementById('entregador').classList.remove('hidden'); window.scrollTo(0,0);">
-🚴<br>Entregador
-</button>
-</div>
+  <button id="nav-perfil" class="nav-btn" onclick="mostrar('perfil')">
+    <div>👤</div>
+    Perfil
+  </button>
 
-</div>
+</nav>
 
-let giroRoleta = 0;
 
-function girarRoleta(){
+<div id="toast" class="toast"></div>
 
-  const roleta = document.getElementById("roletaVisual");
-  const resultado = document.getElementById("resultadoRoleta");
 
-  const premios = [5, 10, 2, 20, 5, 15];
+<script>
 
-  const indice = Math.floor(Math.random() * premios.length);
-  const premio = premios[indice];
-
-  const giro = 1800 + Math.floor(Math.random() * 360);
-
-  giroRoleta += giro;
-
-  roleta.style.transform = `rotate(${giroRoleta}deg)`;
-
-  resultado.innerHTML = "🎡 Girando...";
-
-  setTimeout(() => {
-    resultado.innerHTML =
-      `🎉 Parabéns! Você ganhou <strong>${premio}% de cashback!</strong>`;
-  }, 4000);
-}
-
+/* =========================
+   DADOS DOS PRODUTOS
+========================= */
 
 const produtos = [
 
-{
-id:1,
-nome:"Arroz Branco 5kg",
-marca:"Tio João",
-preco:25.00,
-categoria:"Mercado"
-},
+  {
+    id:1,
+    nome:"Arroz 5kg",
+    preco:25.90,
+    categoria:"Mercado",
+    loja:1,
+    emoji:"🍚"
+  },
 
-{
-id:2,
-nome:"Feijão Carioca 1kg",
-marca:"Dona Mira",
-preco:7.50,
-categoria:"Mercado"
-},
+  {
+    id:2,
+    nome:"Feijão 1kg",
+    preco:8.90,
+    categoria:"Mercado",
+    loja:1,
+    emoji:"🫘"
+  },
 
-{
-id:3,
-nome:"Óleo de Soja 900ml",
-marca:"Liza",
-preco:6.99,
-categoria:"Mercado"
-},
+  {
+    id:3,
+    nome:"Óleo de soja",
+    preco:7.50,
+    categoria:"Mercado",
+    loja:1,
+    emoji:"🫗"
+  },
 
-{
-id:4,
-nome:"Coca-Cola 2L",
-marca:"Coca-Cola",
-preco:10.00,
-categoria:"Bebidas"
-},
+  {
+    id:4,
+    nome:"Açúcar 1kg",
+    preco:5.20,
+    categoria:"Mercado",
+    loja:1,
+    emoji:"🍬"
+  },
 
-{
-id:5,
-nome:"Hambúrguer",
-marca:"Lanchonete GT",
-preco:18.00,
-categoria:"Lanches"
-},
+  {
+    id:5,
+    nome:"Coca-Cola 2L",
+    preco:12.00,
+    categoria:"Bebidas",
+    loja:3,
+    emoji:"🥤"
+  },
 
-{
-id:6,
-nome:"Pizza Calabresa",
-marca:"Forno a Lenha",
-preco:35.00,
-categoria:"Pizza"
-}
+  {
+    id:6,
+    nome:"Guaraná 2L",
+    preco:9.50,
+    categoria:"Bebidas",
+    loja:3,
+    emoji:"🥤"
+  },
+
+  {
+    id:7,
+    nome:"Hambúrguer",
+    preco:16.90,
+    categoria:"Comida",
+    loja:2,
+    emoji:"🍔"
+  },
+
+  {
+    id:8,
+    nome:"X-Bacon",
+    preco:21.90,
+    categoria:"Comida",
+    loja:2,
+    emoji:"🍔"
+  },
+
+  {
+    id:9,
+    nome:"Pizza Calabresa",
+    preco:39.90,
+    categoria:"Comida",
+    loja:2,
+    emoji:"🍕"
+  },
+
+  {
+    id:10,
+    nome:"Batata Frita",
+    preco:14.90,
+    categoria:"Comida",
+    loja:2,
+    emoji:"🍟"
+  },
+
+  {
+    id:11,
+    nome:"Pão Francês",
+    preco:0.80,
+    categoria:"Padaria",
+    loja:1,
+    emoji:"🥖"
+  },
+
+  {
+    id:12,
+    nome:"Frango",
+    preco:14.90,
+    categoria:"Açougue",
+    loja:1,
+    emoji:"🍗"
+  },
+
+  {
+    id:13,
+    nome:"Banana",
+    preco:6.90,
+    categoria:"Hortifruti",
+    loja:1,
+    emoji:"🍌"
+  },
+
+  {
+    id:14,
+    nome:"Maçã",
+    preco:8.90,
+    categoria:"Hortifruti",
+    loja:1,
+    emoji:"🍎"
+  }
 
 ];
 
+
+/* =========================
+   VARIÁVEIS
+========================= */
+
 let carrinho = [];
 
+let pedidos = [];
 
-function mostrar(id){
+let lojaAtual = 1;
 
-document.querySelectorAll("section").forEach(sec=>{
-sec.classList.add("hidden");
-});
+let categoriaAtual = "";
 
-document.getElementById(id).classList.remove("hidden");
+let giroRoleta = 0;
 
-window.scrollTo(0,0);
+let roletaGirando = false;
 
-}
-
-
-function abrirLoja(){
-
-mostrar("loja");
-
-mostrarProdutos();
-
-}
-
-function aceitarEntrega(){
-
-alert("🚴 Entrega aceita com sucesso!");
-
-}
-function mostrarProdutos(lista=produtos){
-
-const area=document.getElementById("produtos");
-
-area.innerHTML="";
-
-lista.forEach(p=>{
-
-area.innerHTML+=`
-
-<div class="product">
-
-<div class="product-info">
-
-<strong>${p.nome}</strong>
-
-<p>${p.marca}</p>
-
-<div class="price">
-R$ ${p.preco.toFixed(2).replace(".",",")}
-</div>
-
-</div>
-
-<button class="plus"
-onclick="adicionar(${p.id})">
-+
-</button>
-
-</div>
-
-`;
-
-});
-
-}
+let saldoCashback = 0;
 
 
-function adicionar(id){
+/* =========================
+   NAVEGAÇÃO
+========================= */
 
-const produto=produtos.find(p=>p.id===id);
+function mostrar(tela){
 
-const existente=carrinho.find(p=>p.id===id);
+  document.querySelectorAll(".screen").forEach(function(el){
 
-if(existente){
+    el.classList.remove("active");
 
-existente.qty++;
+  });
 
-}else{
+  const elemento = document.getElementById(tela);
 
-carrinho.push({
-...produto,
-qty:1
-});
+  if(elemento){
 
-}
+    elemento.classList.add("active");
 
-alert(produto.nome+" adicionado ao carrinho!");
+  }
+
+  document.querySelectorAll(".nav-btn").forEach(function(btn){
+
+    btn.classList.remove("active");
+
+  });
+
+  const nav = document.getElementById("nav-" + tela);
+
+  if(nav){
+
+    nav.classList.add("active");
+
+  }
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+
+
+  if(tela === "loja"){
+
+    mostrarProdutos();
+
+  }
+
+  if(tela === "carrinho"){
+
+    atualizarCarrinho();
+
+  }
+
+  if(tela === "checkout"){
+
+    atualizarCheckout();
+
+  }
+
+  if(tela === "pedidos"){
+
+    atualizarPedidos();
+
+  }
+
+  if(tela === "perfil"){
+
+    atualizarPerfil();
+
+  }
 
 }
 
 
-function mostrarCarrinho(){
+/* =========================
+   LOJAS
+========================= */
 
-mostrar("carrinho");
+function abrirLoja(id){
 
-renderCarrinho();
+  lojaAtual = id;
 
-}
+  categoriaAtual = "";
 
+  document.getElementById("searchInput").value = "";
 
-function renderCarrinho(){
-
-const area=document.getElementById("listaCarrinho");
-
-area.innerHTML="";
-
-if(carrinho.length===0){
-
-area.innerHTML="<p>Seu carrinho está vazio.</p>";
-
-document.getElementById("total").innerText="0,00";
-
-return;
-
-}
-
-let total=0;
-
-carrinho.forEach((p,i)=>{
-
-total+=p.preco*p.qty;
-
-area.innerHTML+=`
-
-<div class="product">
-
-<div class="product-info">
-
-<strong>${p.nome}</strong>
-
-<p>R$ ${(p.preco*p.qty).toFixed(2).replace(".",",")}</p>
-
-</div>
-
-<div class="qty">
-
-<button onclick="alterar(${i},-1)">−</button>
-
-<strong>${p.qty}</strong>
-
-<button onclick="alterar(${i},1)">+</button>
-
-</div>
-
-</div>
-
-`;
-
-});
-
-document.getElementById("total").innerText=
-total.toFixed(2).replace(".",",");
+  mostrar("loja");
 
 }
 
 
-function alterar(i,valor){
+function filtrarCategoria(categoria){
 
-carrinho[i].qty+=valor;
+  categoriaAtual = categoria;
 
-if(carrinho[i].qty<=0){
+  lojaAtual = 0;
 
-carrinho.splice(i,1);
-
-}
-
-renderCarrinho();
+  mostrar("loja");
 
 }
 
 
-function limparCarrinho(){
+/* =========================
+   PRODUTOS
+========================= */
 
-carrinho=[];
+function mostrarProdutos(lista = null){
 
-renderCarrinho();
+  const container = document.getElementById("produtosContainer");
+
+  let dados = lista || produtos;
+
+  if(!lista){
+
+    if(lojaAtual){
+
+      dados = produtos.filter(function(p){
+
+        return p.loja === lojaAtual;
+
+      });
+
+    }
+
+    if(categoriaAtual){
+
+      dados = produtos.filter(function(p){
+
+        return p.categoria === categoriaAtual;
+
+      });
+
+    }
+
+  }
+
+
+  if(lojaAtual === 1){
+
+    document.getElementById("tituloLoja").innerText =
+      "🛒 GT Supermercado";
+
+  }
+
+  else if(lojaAtual === 2){
+
+    document.getElementById("tituloLoja").innerText =
+      "🍔 GT Lanches";
+
+  }
+
+  else if(lojaAtual === 3){
+
+    document.getElementById("tituloLoja").innerText =
+      "🥤 GT Bebidas";
+
+  }
+
+  else if(categoriaAtual){
+
+    document.getElementById("tituloLoja").innerText =
+      "Produtos: " + categoriaAtual;
+
+  }
+
+  else{
+
+    document.getElementById("tituloLoja").innerText =
+      "Produtos";
+
+  }
+
+
+  if(!dados.length){
+
+    container.innerHTML = `
+      <div class="card empty">
+        <div>🔎</div>
+        <p>Nenhum produto encontrado.</p>
+      </div>
+    `;
+
+    return;
+
+  }
+
+
+  container.innerHTML = dados.map(function(p){
+
+    return `
+
+      <div class="product">
+
+        <div class="product-image">
+          ${p.emoji}
+        </div>
+
+        <div class="product-content">
+
+          <h3>${p.nome}</h3>
+
+          <p>${p.categoria}</p>
+
+          <div class="price">
+            R$ ${p.preco.toFixed(2).replace(".",",")}
+          </div>
+
+          <button class="add"
+            onclick="adicionarCarrinho(${p.id})">
+
+            + Adicionar
+
+          </button>
+
+        </div>
+
+      </div>
+
+    `;
+
+  }).join("");
 
 }
 
 
-function atualizarResumo(){
+/* =========================
+   BUSCA
+========================= */
 
-let total=0;
+function buscarProduto(){
 
-carrinho.forEach(p=>{
-total+=p.preco*p.qty;
-});
-
-document.getElementById("resumoProdutos").innerText=
-total.toFixed(2).replace(".",",");
-
-document.getElementById("resumoTotal").innerText=
-(total+5).toFixed(2).replace(".",",");
-
-}
+  const texto =
+    document.getElementById("searchInput").value
+    .toLowerCase()
+    .trim();
 
 
-const pagamento = document.getElementById("pagamento");
+  if(texto === ""){
 
-if (pagamento) {
+    if(document.getElementById("loja").classList.contains("active")){
 
-pagamento.addEventListener("click",function(){
+      mostrarProdutos();
 
-atualizarResumo();
+    }
 
-});
+    return;
 
-}
-
-});
+  }
 
 
-function finalizarPedido(){
+  const resultado = produtos.filter(function(p){
 
-if(carrinho.length===0){
+    return (
+      p.nome.toLowerCase().includes(texto) ||
+      p.categoria.toLowerCase().includes(texto)
+    );
 
-alert("Seu carrinho está vazio.");
+  });
 
-return;
 
-}
+  mostrar("loja");
 
-const endereco=
-document.getElementById("endereco").value;
-
-const pagamento=
-document.getElementById("formaPagamento").value;
-
-if(!endereco){
-
-alert("Digite o endereço de entrega.");
-
-return;
-
-}
-
-if(!pagamento){
-
-alert("Escolha a forma de pagamento.");
-
-return;
-
-}
-
-const numero=
-Math.floor(1000+Math.random()*9000);
-
-document.getElementById("numeroPedido").innerText=
-"#"+numero;
-
-alert("Pedido realizado com sucesso! 🎉");
-
-mostrar("pedido");
-
-}
-  
-function cadastrarLoja(){
-
-const nome=
-document.getElementById("nomeLoja").value.trim();
-
-const telefone=
-document.getElementById("telefoneLoja").value.trim();
-
-const endereco=
-document.getElementById("enderecoLoja").value.trim();
-
-const categoria=
-document.getElementById("categoriaLoja").value;
-
-if(!nome || !telefone || !endereco){
-alert("Preencha todos os campos.");
-return;
-}
-
-document.getElementById("resultadoCadastro").innerHTML =
-"✅ Loja cadastrada com sucesso!";
-
-document.getElementById("nomeLoja").value = "";
-document.getElementById("telefoneLoja").value = "";
-document.getElementById("enderecoLoja").value = "";
+  mostrarProdutos(resultado);
 
 }
 
 
+/* =========================
+   CARRINHO
+========================= */
 
+function adicionarCarrinho(id){
+
+  const produto = produtos.find(function(p){
+
+    return p.id === id;
+
+  });
+
+
+  if(!produto){
+
+    return;
+
+  }
+
+
+  const existente = carrinho.find(function(item){
+
+    return item.id === id;
+
+  });
+
+
+  if(existente){
+
+    existente.quantidade++;
+
+  }
+
+  else{
+
+    carrinho.push({
+
+      ...produto,
+
+      quantidade:1
+
+    });
+
+  }
+
+
+  atualizarCarrinho();
+
+  atualizarBadge();
+
+  mostrarToast("✅ Produto adicionado ao carrinho!");
+
+}
+
+
+function alterarQuantidade(id, quantidade){
+
+  const item = carrinho.find(function(p){
+
+    return p.id === id;
+
+  });
+
+
+  if(!item){
+
+    return;
+
+  }
+
+
+  item.quantidade += quantidade;
+
+
+  if(item.quantidade <= 0){
+
+    carrinho = carrinho.filter(function(p){
+
+      return p.id !== id;
+
+    });
+
+  }
+
+
+  atualizarCarrinho();
+
+  atualizarBadge();
+
+}
+
+
+function calcularTotal(){
+
+  return carrinho.reduce(function(total,item){
+
+    return total + item.preco * item.quantidade;
+
+  },0);
+
+}
+
+
+function atualizarBadge(){
+
+  const quantidade = carrinho.reduce(function(total,item){
+
+    return total + item.quantidade;
+
+  },0);
+
+
+  const badge = document.getElementById("cartBadge");
+
+
+  if(quantidade > 0){
+
+    badge.style.display = "flex";
+
+    badge.innerText = quantidade;
+
+  }
+
+  else{
+
+    badge.style.display = "none";
+
+  }
+
+}
+
+
+function atualizarCarrinho(){
+
+  const container =
+    document.getElementById("carrinhoContainer");
+
+
+  if(carrinho.length === 0){
+
+    container.innerHTML = `
+
+      <div class="card empty">
+
+        <div>🛒</div>
+
+        <h3>Seu carrinho está vazio</h3>
+
+        <p>Adicione produtos para começar seu pedido.</p>
+
+        <br>
+
+        <button class="btn"
+          onclick="mostrar('loja')">
+
+          Ver produtos
+
+        </button>
+
+      </div>
+
+    `;
+
+    return;
+
+  }
+
+
+  let html = `<div class="card">`;
+
+
+  carrinho.forEach(function(item){
+
+    html += `
+
+      <div class="cart-item">
+
+        <div class="cart-left">
+
+          <div class="cart-icon">
+            ${item.emoji}
+          </div>
+
+          <div>
+
+            <strong>${item.nome}</strong>
+
+            <p>
+              R$ ${item.preco.toFixed(2).replace(".",",")}
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <div class="quantity">
+
+          <button onclick="alterarQuantidade(${item.id},-1)">
+            −
+          </button>
+
+          <strong>${item.quantidade}</strong>
+
+          <button onclick="alterarQuantidade(${item.id},1)">
+            +
+          </button>
+
+        </div>
+
+      </div>
+
+    `;
+
+  });
+
+
+  html += `
+
+    <div class="total">
+
+      <span>Total</span>
+
+      <span>
+        R$ ${calcularTotal().toFixed(2).replace(".",",")}
+      </span>
+
+    </div>
+
+  `;
+
+
+  html += `</div>`;
+
+
+  html += `
+
+    <button class="btn full"
+      onclick="mostrar('checkout')">
+
+      💳 IR PARA PAGAMENTO
+
+    </button>
+
+  `;
+
+
+  container.innerHTML = html;
+
+}
+
+
+/* =========================
+   CHECKOUT
+========================= */
+
+function atualizarCheckout(){
+
+  const total = calcularTotal();
+
+  document.getElementById("checkoutResumo").innerHTML = `
+
+    <h3>Resumo do pedido</h3>
+
+    <p>
+      ${carrinho.length} produto(s)
+    </p>
+
+    <div class="total">
+
+      <span>Total</span>
+
+      <span>
+        R$ ${total.toFixed(2).replace(".",",")}
+      </span>
+
+    </div>
+
+  `;
+
+}
+
+
+function confirmarPedido(){
+
+  if(carrinho.length === 0){
+
+    mostrarToast("🛒 Seu carrinho está vazio.");
+
+    mostrar("carrinho");
+
+    return;
+
+  }
+
+
+  const nome =
+    document.getElementById("nomeCliente").value.trim();
+
+  const telefone =
+    document.getElementById("telefoneCliente").value.trim();
+
+  const endereco =
+    document.getElementById("enderecoCliente").value.trim();
+
+  const pagamento =
+    document.getElementById("pagamento").value;
+
+  const observacao =
+    document.getElementById("observacao").value.trim();
+
+
+  if(!nome || !telefone || !endereco){
+
+    mostrarToast("⚠️ Preencha nome, telefone e endereço.");
+
+    return;
+
+  }
+
+
+  const pedido = {
+
+    id:Date.now(),
+
+    numero:Math.floor(1000 + Math.random() * 9000),
+
+    cliente:nome,
+
+    telefone:telefone,
+
+    endereco:endereco,
+
+    pagamento:pagamento,
+
+    observacao:observacao,
+
+    itens:[...carrinho],
+
+    total:calcularTotal(),
+
+    status:"Preparando",
+
+    data:new Date().toLocaleString("pt-BR")
+
+  };
+
+
+  pedidos.unshift(pedido);
+
+
+  localStorage.setItem(
+    "gtPedidos",
+    JSON.stringify(pedidos)
+  );
+
+
+  localStorage.setItem(
+    "gtNome",
+    nome
+  );
+
+
+  carrinho = [];
+
+
+  atualizarBadge();
+
+  atualizarPedidos();
+
+  atualizarPerfil();
+
+
+  mostrarToast("🎉 Pedido realizado com sucesso!");
+
+
+  setTimeout(function(){
+
+    mostrar("pedidos");
+
+  },800);
+
+}
+
+
+/* =========================
+   PEDIDOS
+========================= */
+
+function atualizarPedidos(){
+
+  const container =
+    document.getElementById("pedidosContainer");
+
+
+  if(pedidos.length === 0){
+
+    container.innerHTML = `
+
+      <div class="card empty">
+
+        <div>📦</div>
+
+        <h3>Nenhum pedido ainda</h3>
+
+        <p>Seus pedidos aparecerão aqui.</p>
+
+        <br>
+
+        <button class="btn"
+          onclick="mostrar('loja')">
+
+          Fazer pedido
+
+        </button>
+
+      </div>
+
+    `;
+
+    return;
+
+  }
+
+
+  container.innerHTML = pedidos.map(function(p){
+
+    return `
+
+      <div class="card">
+
+        <div style="
+          display:flex;
+          justify-content:space-between;
+          gap:10px;
+        ">
+
+          <div>
+
+            <strong>
+              Pedido #${p.numero}
+            </strong>
+
+            <p style="color:#777;font-size:12px;margin-top:4px;">
+              ${p.data}
+            </p>
+
+          </div>
+
+          <strong class="orange">
+            R$ ${p.total.toFixed(2).replace(".",",")}
+          </strong>
+
+        </div>
+
+
+        <div class="order-status">
+
+          <div class="status-icon">
+            🛵
+          </div>
+
+          <div>
+
+            <strong>${p.status}</strong>
+
+            <p style="color:#777;font-size:12px;">
+              Seu pedido está sendo preparado.
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <button class="btn full"
+          onclick="acompanharPedido(${p.id})">
+
+          🛵 Acompanhar pedido
+
+        </button>
+
+      </div>
+
+    `;
+
+  }).join("");
+
+}
+
+
+/* =========================
+   ACOMPANHAR ENTREGA
+========================= */
+
+function acompanharPedido(id){
+
+  const pedido = pedidos.find(function(p){
+
+    return p.id === id;
+
+  });
+
+
+  if(!pedido){
+
+    return;
+
+  }
+
+
+  const container =
+    document.getElementById("entregaContainer");
+
+
+  container.innerHTML = `
+
+    <div class="card">
+
+      <h3>
+        Pedido #${pedido.numero}
+      </h3>
+
+      <p style="color:#777;margin-top:5px;">
+        GT Delivery
+      </p>
+
+      <div class="progress">
+        <div class="progress-bar"></div>
+      </div>
+
+      <div class="order-status">
+
+        <div class="status-icon">
+          ✅
+        </div>
+
+        <div>
+          <strong>Pedido recebido</strong>
+          <p style="color:#777;font-size:12px;">
+            Seu pedido foi confirmado.
+          </p>
+        </div>
+
+      </div>
+
+
+      <div class="order-status">
+
+        <div class="status-icon">
+          👨‍🍳
+        </div>
+
+        <div>
+          <strong>Preparando</strong>
+          <p style="color:#777;font-size:12px;">
+            A loja está preparando seu pedido.
+          </p>
+        </div>
+
+      </div>
+
+
+      <div class="order-status">
+
+        <div class="status-icon">
+          🛵
+        </div>
+
+        <div>
+          <strong>Entregador a caminho</strong>
+          <p style="color:#777;font-size:12px;">
+            A próxima etapa será a entrega.
+          </p>
+        </div>
+
+      </div>
+
+
+      <div class="order-status">
+
+        <div class="status-icon">
+          🏠
+        </div>
+
+        <div>
+          <strong>Entrega</strong>
+          <p style="color:#777;font-size:12px;">
+            Endereço: ${pedido.endereco}
+          </p>
+        </div>
+
+      </div>
+
+
+      <button class="btn full"
+        onclick="mostrar('pedidos')">
+
+        ← Voltar aos pedidos
+
+      </button>
+
+    </div>
+
+  `;
+
+
+  mostrar("entregador");
+
+}
+
+
+/* =========================
+   PERFIL
+========================= */
+
+function abrirCadastro(){
+
+  const area =
+    document.getElementById("cadastroArea");
+
+
+  area.innerHTML = `
+
+    <div class="card">
+
+      <h3>👤 Cadastro</h3>
+
+      <label>Nome</label>
+
+      <input
+        id="cadNome"
+        type="text"
+        placeholder="Seu nome"
+        value="${localStorage.getItem("gtNome") || ""}"
+      >
+
+      <label>Telefone</label>
+
+      <input
+        id="cadTelefone"
+        type="tel"
+        placeholder="Seu telefone"
+      >
+
+      <label>Endereço</label>
+
+      <input
+        id="cadEndereco"
+        type="text"
+        placeholder="Seu endereço"
+      >
+
+      <button class="btn full"
+        onclick="salvarCadastro()">
+
+        💾 SALVAR CADASTRO
+
+      </button>
+
+    </div>
+
+  `;
+
+}
+
+
+function salvarCadastro(){
+
+  const nome =
+    document.getElementById("cadNome").value.trim();
+
+
+  if(!nome){
+
+    mostrarToast("⚠️ Digite seu nome.");
+
+    return;
+
+  }
+
+
+  localStorage.setItem(
+    "gtNome",
+    nome
+  );
+
+
+  const telefone =
+    document.getElementById("cadTelefone").value;
+
+  const endereco =
+    document.getElementById("cadEndereco").value;
+
+
+  localStorage.setItem(
+    "gtTelefone",
+    telefone
+  );
+
+  localStorage.setItem(
+    "gtEndereco",
+    endereco
+  );
+
+
+  atualizarPerfil();
+
+  mostrarToast("✅ Cadastro salvo!");
+
+}
+
+
+function atualizarPerfil(){
+
+  const nome =
+    localStorage.getItem("gtNome");
+
+
+  if(nome){
+
+    document.getElementById("perfilNome").innerText =
+      nome;
+
+  }
+
+  else{
+
+    document.getElementById("perfilNome").innerText =
+      "Meu perfil";
+
+  }
+
+
+  document.getElementById("saldoCashback").innerText =
+    "R$ " +
+    saldoCashback.toFixed(2).replace(".",",");
+
+}
+
+
+/* =========================
+   ROLETA
+========================= */
+
+function girarRoleta(){
+
+  if(roletaGirando){
+
+    return;
+
+  }
+
+
+  roletaGirando = true;
+
+
+  const roleta =
+    document.getElementById("roleta");
+
+  const resultado =
+    document.getElementById("resultadoRoleta");
+
+
+  resultado.innerHTML =
+    "🎰 Girando...";
+
+
+  const premios = [
+    2,
+    5,
+    10,
+    15,
+    20,
+    5
+  ];
+
+
+  const indice =
+    Math.floor(Math.random() * premios.length);
+
+
+  const premio =
+    premios[indice];
+
+
+  const grausPorPremio = 60;
+
+
+  const alvo =
+    360 * 5 +
+    (360 - indice * grausPorPremio - 30);
+
+
+  giroRoleta += alvo;
+
+
+  roleta.style.transform =
+    "rotate(" + giroRoleta + "deg)";
+
+
+  setTimeout(function(){
+
+    const cashback =
+      premio / 100 * 50;
+
+
+    saldoCashback += cashback;
+
+
+    resultado.innerHTML =
+      "🎉 Parabéns! Você ganhou " +
+      "<strong>" +
+      premio +
+      "% de cashback!</strong>";
+
+
+    atualizarPerfil();
+
+
+    roletaGirando = false;
+
+
+  },4000);
+
+}
+
+
+/* =========================
+   TOAST
+========================= */
+
+function mostrarToast(mensagem){
+
+  const toast =
+    document.getElementById("toast");
+
+
+  toast.innerText = mensagem;
+
+  toast.classList.add("show");
+
+
+  setTimeout(function(){
+
+    toast.classList.remove("show");
+
+  },2500);
+
+}
+
+
+/* =========================
+   CARREGAR DADOS
+========================= */
+
+function carregarDados(){
+
+  try{
+
+    const dados =
+      localStorage.getItem("gtPedidos");
+
+
+    if(dados){
+
+      pedidos = JSON.parse(dados);
+
+    }
+
+  }
+
+  catch(e){
+
+    pedidos = [];
+
+  }
+
+
+  atualizarBadge();
+
+  atualizarPedidos();
+
+  atualizarPerfil();
+
+}
+
+
+/* =========================
+   INICIALIZAÇÃO
+========================= */
+
+document.addEventListener(
+  "DOMContentLoaded",
+  function(){
+
+    carregarDados();
+
+    mostrarProdutos();
+
+  }
+);
+
+</script>
+
+</body>
+</html>
