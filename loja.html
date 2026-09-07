@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GT Delivery Loja</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:#f7f7f7;color:#171717;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px}.card{width:100%;max-width:420px;background:#fff;border-radius:22px;padding:30px 24px;box-shadow:0 12px 35px rgba(0,0,0,.12)}.brand{text-align:center;margin-bottom:26px}.logo{width:76px;height:76px;border-radius:20px;background:#ff7a00;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:27px;margin:0 auto 14px}.brand h1{margin:0;font-size:27px}.brand p{margin:7px 0 0;color:#777;font-size:14px}.title{font-size:20px;font-weight:800;margin:0 0 18px}label{display:block;font-size:14px;font-weight:700;margin:14px 0 7px}input{width:100%;padding:15px;border:1px solid #ddd;border-radius:12px;font-size:16px;outline:none}input:focus{border-color:#ff7a00;box-shadow:0 0 0 3px rgba(255,122,0,.12)}button{width:100%;border:0;border-radius:12px;padding:15px;margin-top:20px;background:#ff7a00;color:#fff;font-size:16px;font-weight:800;cursor:pointer}.secondary{background:#171717}.link{display:block;text-align:center;color:#ff7a00;font-weight:700;text-decoration:none;margin-top:17px;font-size:14px;cursor:pointer}.msg{display:none;margin-top:15px;padding:12px;border-radius:10px;font-size:14px;line-height:1.4}.ok{background:#eaf8ee;color:#176b35}.error{background:#fff0f0;color:#a71919}.hidden{display:none}.dash{text-align:center}.dash h2{margin-bottom:8px}.storebox{background:#fff3e8;border-radius:15px;padding:16px;margin-top:20px}.logout{margin-top:18px;background:#171717}.small{font-size:12px;color:#777;margin-top:20px;text-align:center;line-height:1.5}
+</style>
+</head>
+<body>
+<div class="card">
+  <div id="loginView">
+    <div class="brand"><div class="logo">GT</div><h1>GT Delivery</h1><p>Painel do Lojista</p></div>
+    <h2 class="title">Entrar na sua loja</h2>
+    <form id="loginForm">
+      <label for="email">E-mail</label>
+      <input id="email" type="email" autocomplete="email" placeholder="seuemail@exemplo.com" required>
+      <label for="password">Senha</label>
+      <input id="password" type="password" autocomplete="current-password" placeholder="Digite sua senha" required>
+      <button type="submit">Entrar</button>
+    </form>
+    <a class="link" id="forgot">Esqueci minha senha</a>
+    <div id="loginMsg" class="msg"></div>
+    <p class="small">Acesso exclusivo para lojas cadastradas no GT Delivery.</p>
+  </div>
+
+  <div id="forgotView" class="hidden">
+    <div class="brand"><div class="logo">GT</div><h1>Recuperar acesso</h1><p>GT Delivery Loja</p></div>
+    <h2 class="title">Redefinir senha</h2>
+    <label for="resetEmail">E-mail da loja</label>
+    <input id="resetEmail" type="email" autocomplete="email" placeholder="seuemail@exemplo.com">
+    <button id="sendReset">Enviar link de recuperação</button>
+    <a class="link" id="backLogin">Voltar para o login</a>
+    <div id="resetMsg" class="msg"></div>
+  </div>
+
+  <div id="dashboardView" class="hidden dash">
+    <div class="brand"><div class="logo">GT</div><h1>GT Delivery Loja</h1><p>Acesso realizado</p></div>
+    <div class="storebox"><strong id="storeName">Loja</strong><br><span id="userEmail"></span><br><small id="userRole"></small></div>
+    <button class="logout" id="logout">Sair da conta</button>
+    <p class="small">Próxima etapa: painel de pedidos da loja.</p>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+(function(){
+'use strict';
+const SUPABASE_URL='https://cgdvehummqfttsyfebfo.supabase.co';
+const SUPABASE_KEY='COLOQUE_AQUI_A_CHAVE_PUBLICAVEL_DO_SUPABASE';
+const sb=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
+const $=id=>document.getElementById(id);
+function msg(el,text,type){el.textContent=text;el.className='msg '+type;el.style.display='block'}
+function show(view){['loginView','forgotView','dashboardView'].forEach(id=>$(id).classList.add('hidden'));$(view).classList.remove('hidden')}
+async function loadSession(){
+ const {data:{session}}=await sb.auth.getSession();
+ if(session) await showDashboard(session.user); else show('loginView');
+}
+async function showDashboard(user){
+ const {data:membership,error}=await sb.from('store_users').select('store_id,role').eq('user_id',user.id).limit(1).maybeSingle();
+ if(error){show('loginView');msg($('loginMsg'),'Não foi possível verificar o acesso da loja.','error');return}
+ if(!membership){await sb.auth.signOut();show('loginView');msg($('loginMsg'),'Este e-mail ainda não está vinculado a uma loja.','error');return}
+ const {data:store}=await sb.from('stores').select('name').eq('id',membership.store_id).maybeSingle();
+ $('storeName').textContent=store?.name||'Loja GT Delivery';
+ $('userEmail').textContent=user.email||'';
+ $('userRole').textContent=membership.role==='owner'?'Administrador da loja':'Gerente da loja';
+ show('dashboardView');
+}
+$('loginForm').addEventListener('submit',async e=>{
+ e.preventDefault();$('loginMsg').style.display='none';
+ const email=$('email').value.trim(),password=$('password').value;
+ const {data,error}=await sb.auth.signInWithPassword({email,password});
+ if(error){msg($('loginMsg'),'E-mail ou senha incorretos.','error');return}
+ await showDashboard(data.user);
+});
+$('forgot').addEventListener('click',()=>{ $('resetEmail').value=$('email').value.trim();$('resetMsg').style.display='none';show('forgotView') });
+$('backLogin').addEventListener('click',()=>show('loginView'));
+$('sendReset').addEventListener('click',async()=>{
+ const email=$('resetEmail').value.trim();
+ if(!email){msg($('resetMsg'),'Digite o e-mail da loja.','error');return}
+ const {error}=await sb.auth.resetPasswordForEmail(email,{redirectTo:location.origin+location.pathname});
+ if(error){msg($('resetMsg'),'Não foi possível enviar a recuperação. Tente novamente.','error');return}
+ msg($('resetMsg'),'Link de recuperação enviado. Verifique seu e-mail.','ok');
+});
+$('logout').addEventListener('click',async()=>{await sb.auth.signOut();show('loginView');$('password').value='';msg($('loginMsg'),'Você saiu da conta.','ok')});
+loadSession();
+})();
+</script>
+</body>
+</html>
