@@ -4,9 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#ff6b00">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="default">
-
 <title>GT Delivery</title>
 
 <style>
@@ -20,71 +17,75 @@ body{
   font-family:Arial,Helvetica,sans-serif;
   background:#f5f5f5;
   color:#222;
-  padding-bottom:80px;
+  padding-bottom:75px;
 }
 
 button{
-  border:0;
-  cursor:pointer;
   font-family:inherit;
+  cursor:pointer;
+  border:0;
 }
 
 header{
   background:linear-gradient(135deg,#ff6b00,#ff9800);
   color:white;
-  padding:18px 16px 22px;
+  padding:16px;
   position:sticky;
   top:0;
-  z-index:20;
-  box-shadow:0 2px 8px rgba(0,0,0,.15);
+  z-index:100;
+  box-shadow:0 2px 8px #0002;
 }
 
-.header-top{
+.top{
   display:flex;
   align-items:center;
   justify-content:space-between;
-  gap:10px;
 }
 
-.logo{
-  width:48px;
-  height:48px;
-  border-radius:12px;
-  object-fit:cover;
-  background:white;
-}
-
-.logo-area{
+.brand{
   display:flex;
   align-items:center;
   gap:10px;
 }
 
-.logo-text strong{
-  display:block;
+.brand-icon{
+  width:48px;
+  height:48px;
+  background:white;
+  color:#ff6b00;
+  border-radius:13px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:27px;
+  font-weight:bold;
+}
+
+.brand h1{
   font-size:21px;
 }
 
-.logo-text span{
-  font-size:12px;
+.brand p{
+  font-size:11px;
   opacity:.9;
+  margin-top:3px;
 }
 
-.header-btn{
-  background:white;
-  color:#ff6b00;
+.user-button{
   width:42px;
   height:42px;
   border-radius:50%;
+  background:white;
+  color:#ff6b00;
   font-size:20px;
 }
 
 .search{
-  margin-top:16px;
   display:flex;
   background:white;
-  border-radius:13px;
+  border-radius:12px;
   overflow:hidden;
+  margin-top:14px;
 }
 
 .search input{
@@ -92,14 +93,14 @@ header{
   border:0;
   outline:0;
   padding:13px;
-  font-size:15px;
+  font-size:14px;
 }
 
 .search button{
+  width:48px;
   background:white;
   color:#ff6b00;
-  width:50px;
-  font-size:20px;
+  font-size:19px;
 }
 
 main{
@@ -107,184 +108,187 @@ main{
   margin:auto;
 }
 
-.screen{
+.tela{
   display:none;
   padding:16px;
 }
 
-.screen.active{
+.tela.ativa{
   display:block;
 }
 
-.section-title{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin:8px 0 14px;
+.banner{
+  background:#111;
+  color:white;
+  padding:20px;
+  border-radius:17px;
+  margin-bottom:20px;
 }
 
-.section-title h2{
+.banner h2{
+  color:#ff9800;
+  margin-bottom:7px;
+}
+
+.banner p{
+  font-size:13px;
+  line-height:1.5;
+}
+
+.titulo{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin:8px 0 13px;
+}
+
+.titulo h2{
   font-size:19px;
 }
 
-.section-title button{
+.link{
   background:none;
   color:#ff6b00;
   font-weight:bold;
 }
 
-.banner{
-  background:linear-gradient(135deg,#111,#333);
-  color:white;
-  border-radius:18px;
-  padding:20px;
-  margin-bottom:20px;
-  overflow:hidden;
-}
-
-.banner h1{
-  font-size:24px;
-  margin-bottom:7px;
-}
-
-.banner p{
-  font-size:14px;
-  opacity:.9;
-}
-
-.orange{
-  color:#ff6b00;
-}
-
-.categories{
+.categorias{
   display:grid;
   grid-template-columns:repeat(4,1fr);
-  gap:10px;
+  gap:9px;
+  margin-bottom:22px;
 }
 
-.category{
+.categoria{
   background:#fff3e8;
-  padding:13px 5px;
+  border:1px solid #ffd9bd;
   border-radius:12px;
-  text-align:center;
-  font-size:13px;
-  cursor:pointer;
-  border:1px solid #ffe0c5;
+  padding:12px 4px;
+  color:#222;
 }
 
-.category div{
+.categoria span{
+  display:block;
   font-size:24px;
   margin-bottom:5px;
 }
 
-.store{
+.categoria small{
+  font-size:11px;
+}
+
+.card{
+  background:white;
+  border-radius:15px;
+  padding:15px;
+  margin-bottom:14px;
+  box-shadow:0 2px 8px #0000000d;
+}
+
+.loja{
   display:flex;
   justify-content:space-between;
   align-items:center;
   padding:13px 0;
   border-bottom:1px solid #eee;
-  gap:10px;
+  gap:8px;
 }
 
-.store:last-child{
+.loja:last-child{
   border-bottom:0;
 }
 
-.store-info{
+.loja-info{
   display:flex;
   align-items:center;
   gap:10px;
 }
 
-.store-icon{
-  width:46px;
-  height:46px;
+.loja-icon{
+  width:45px;
+  height:45px;
   background:#fff3e8;
-  border-radius:12px;
+  border-radius:11px;
   display:flex;
   align-items:center;
   justify-content:center;
-  font-size:24px;
+  font-size:23px;
 }
 
-.store h3{
-  font-size:15px;
+.loja h3{
+  font-size:14px;
 }
 
-.store p{
+.loja p{
   color:#777;
-  font-size:12px;
-  margin-top:3px;
+  font-size:11px;
+  margin-top:4px;
 }
 
 .btn{
   background:#ff6b00;
   color:white;
-  padding:10px 14px;
+  padding:11px 15px;
   border-radius:10px;
   font-weight:bold;
 }
 
-.btn.black{
-  background:#111;
-}
-
-.btn.light{
-  background:#fff3e8;
-  color:#ff6b00;
+.btn:active{
+  transform:scale(.97);
 }
 
 .btn.full{
   width:100%;
   padding:14px;
-  font-size:16px;
+  font-size:15px;
 }
 
-.products{
+.btn.preto{
+  background:#111;
+}
+
+.produtos{
   display:grid;
   grid-template-columns:repeat(2,1fr);
   gap:12px;
 }
 
-.product{
+.produto{
   background:white;
   border-radius:15px;
   overflow:hidden;
-  box-shadow:0 2px 8px rgba(0,0,0,.07);
+  box-shadow:0 2px 8px #0001;
 }
 
-.product-image{
-  height:120px;
+.produto-img{
+  height:115px;
   background:#fff3e8;
   display:flex;
   align-items:center;
   justify-content:center;
-  font-size:52px;
+  font-size:50px;
 }
 
-.product-content{
-  padding:12px;
+.produto-body{
+  padding:11px;
 }
 
-.product h3{
+.produto h3{
   font-size:14px;
-  margin-bottom:5px;
+  margin-bottom:4px;
 }
 
-.product p{
+.produto small{
   color:#777;
-  font-size:12px;
-  min-height:30px;
 }
 
-.price{
-  color:#111;
+.preco{
   font-size:17px;
   font-weight:bold;
   margin:8px 0;
 }
 
-.add{
+.adicionar{
   width:100%;
   background:#ff6b00;
   color:white;
@@ -293,135 +297,127 @@ main{
   font-weight:bold;
 }
 
-.roulette-card{
+.roleta-card{
   background:white;
   border-radius:18px;
   padding:18px;
-  margin:20px 0;
   text-align:center;
-  box-shadow:0 2px 8px rgba(0,0,0,.08);
+  margin:20px 0;
+  box-shadow:0 2px 8px #0001;
 }
 
-.roulette{
-  width:210px;
-  height:210px;
-  border-radius:50%;
-  margin:15px auto;
-  position:relative;
-  overflow:hidden;
-  border:7px solid #111;
-  transition:transform 4s cubic-bezier(.15,.85,.2,1);
-  background:conic-gradient(
-    #ff6b00 0deg 60deg,
-    #fff 60deg 120deg,
-    #ff6b00 120deg 180deg,
-    #fff 180deg 240deg,
-    #ff6b00 240deg 300deg,
-    #fff 300deg 360deg
-  );
+.roleta-card h2{
+  margin-bottom:5px;
 }
 
-.roulette-labels{
-  position:absolute;
-  inset:0;
+.roleta-card p{
+  color:#777;
+  font-size:13px;
 }
 
-.roulette-label{
-  position:absolute;
-  font-weight:bold;
-  font-size:15px;
-  color:#111;
-}
-
-.r1{top:20px;left:95px;}
-.r2{top:58px;right:20px;}
-.r3{bottom:55px;right:20px;}
-.r4{bottom:20px;left:92px;}
-.r5{bottom:55px;left:20px;}
-.r6{top:58px;left:20px;}
-
-.pointer{
+.seta{
   width:0;
   height:0;
-  border-left:12px solid transparent;
-  border-right:12px solid transparent;
+  border-left:11px solid transparent;
+  border-right:11px solid transparent;
   border-top:25px solid #111;
-  margin:auto;
+  margin:12px auto -4px;
   position:relative;
-  z-index:5;
+  z-index:2;
   transform:rotate(180deg);
 }
 
-.roulette-result{
-  min-height:25px;
-  margin:10px 0;
+.roleta{
+  width:205px;
+  height:205px;
+  margin:auto;
+  border-radius:50%;
+  border:7px solid #111;
+  position:relative;
+  overflow:hidden;
+  background:conic-gradient(
+    #ff6b00 0deg 60deg,
+    white 60deg 120deg,
+    #ff6b00 120deg 180deg,
+    white 180deg 240deg,
+    #ff6b00 240deg 300deg,
+    white 300deg 360deg
+  );
+  transition:transform 4s cubic-bezier(.15,.85,.2,1);
+}
+
+.roleta span{
+  position:absolute;
+  font-weight:bold;
   font-size:15px;
 }
 
-.balance{
+.p1{top:20px;left:92px}
+.p2{top:58px;right:20px}
+.p3{bottom:55px;right:20px}
+.p4{bottom:20px;left:92px}
+.p5{bottom:55px;left:20px}
+.p6{top:58px;left:20px}
+
+.resultado{
+  min-height:28px;
+  margin:12px 0;
+}
+
+.saldo{
   background:#111;
   color:white;
-  padding:16px;
+  padding:17px;
   border-radius:14px;
   margin-bottom:15px;
 }
 
-.balance strong{
+.saldo strong{
+  display:block;
   color:#ff9800;
-  font-size:22px;
+  font-size:23px;
+  margin-top:5px;
 }
 
-.card{
-  background:white;
-  border-radius:16px;
-  padding:16px;
-  margin-bottom:14px;
-  box-shadow:0 2px 8px rgba(0,0,0,.06);
-}
-
-.card h3{
-  margin-bottom:10px;
-}
-
-.cart-item{
+.item-carrinho{
   display:flex;
-  justify-content:space-between;
   align-items:center;
+  justify-content:space-between;
   gap:10px;
   padding:13px 0;
   border-bottom:1px solid #eee;
 }
 
-.cart-item:last-child{
+.item-carrinho:last-child{
   border-bottom:0;
 }
 
-.cart-left{
+.item-esq{
   display:flex;
   align-items:center;
-  gap:10px;
+  gap:9px;
 }
 
-.cart-icon{
-  width:45px;
-  height:45px;
-  background:#fff3e8;
+.item-icon{
+  width:43px;
+  height:43px;
   border-radius:10px;
+  background:#fff3e8;
   display:flex;
   align-items:center;
   justify-content:center;
-  font-size:23px;
+  font-size:22px;
 }
 
-.quantity{
+.quantidade{
   display:flex;
   align-items:center;
-  gap:8px;
+  gap:7px;
 }
 
-.quantity button{
-  width:30px;
-  height:30px;
+.quantidade button{
+  width:29px;
+  height:29px;
   border-radius:8px;
   background:#fff3e8;
   color:#ff6b00;
@@ -431,190 +427,191 @@ main{
 .total{
   display:flex;
   justify-content:space-between;
-  padding:16px 0;
   font-size:18px;
   font-weight:bold;
-}
-
-input,select{
-  width:100%;
-  border:1px solid #ddd;
-  border-radius:10px;
-  padding:13px;
-  margin-bottom:12px;
-  outline:none;
-  font-size:14px;
-  background:white;
+  padding:16px 0;
 }
 
 label{
   display:block;
   font-size:13px;
   font-weight:bold;
-  margin-bottom:5px;
+  margin:9px 0 5px;
 }
 
-.empty{
+input,select{
+  width:100%;
+  border:1px solid #ddd;
+  border-radius:10px;
+  padding:12px;
+  font-size:14px;
+  outline:none;
+  background:white;
+}
+
+.vazio{
   text-align:center;
-  padding:45px 15px;
   color:#777;
+  padding:40px 15px;
 }
 
-.empty div{
-  font-size:50px;
+.vazio div{
+  font-size:48px;
   margin-bottom:10px;
 }
 
-.order-status{
+.status{
   display:flex;
   align-items:center;
-  gap:12px;
-  margin:13px 0;
+  gap:10px;
+  margin:15px 0;
 }
 
 .status-icon{
   width:42px;
   height:42px;
-  background:#fff3e8;
-  color:#ff6b00;
   border-radius:50%;
+  background:#fff3e8;
   display:flex;
   align-items:center;
   justify-content:center;
+  font-size:20px;
 }
 
-.progress{
+.barra{
   height:8px;
   background:#eee;
-  border-radius:10px;
+  border-radius:20px;
   overflow:hidden;
-  margin:15px 0;
+  margin:17px 0;
 }
 
-.progress-bar{
+.barra div{
   height:100%;
   width:65%;
   background:#ff6b00;
 }
 
-.profile-head{
-  text-align:center;
-  padding:20px 0;
+.menu{
+  width:100%;
+  background:white;
+  padding:16px;
+  border-bottom:1px solid #eee;
+  display:flex;
+  justify-content:space-between;
+  text-align:left;
+  font-size:15px;
+}
+
+.menu:first-child{
+  border-radius:14px 14px 0 0;
+}
+
+.menu:last-child{
+  border-radius:0 0 14px 14px;
 }
 
 .avatar{
-  width:80px;
-  height:80px;
+  width:78px;
+  height:78px;
   border-radius:50%;
   background:#ff6b00;
   color:white;
   display:flex;
   align-items:center;
   justify-content:center;
-  margin:auto auto 10px;
-  font-size:34px;
+  font-size:32px;
+  margin:5px auto 10px;
 }
 
-.menu-button{
-  width:100%;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  background:white;
-  padding:16px;
-  border-bottom:1px solid #eee;
-  text-align:left;
-  font-size:15px;
+.perfil-top{
+  text-align:center;
+  padding:15px 0;
 }
 
-.menu-button:first-child{
-  border-radius:14px 14px 0 0;
-}
-
-.menu-button:last-child{
-  border-radius:0 0 14px 14px;
-}
-
-.bottom-nav{
+.nav{
   position:fixed;
+  bottom:0;
   left:0;
   right:0;
-  bottom:0;
   height:68px;
   background:white;
+  box-shadow:0 -2px 10px #0002;
+  z-index:200;
   display:flex;
   justify-content:space-around;
-  align-items:center;
-  box-shadow:0 -2px 10px rgba(0,0,0,.12);
-  z-index:30;
 }
 
-.nav-btn{
-  background:none;
+.nav button{
+  background:white;
   color:#777;
+  width:20%;
   font-size:11px;
-  text-align:center;
-  min-width:60px;
+  position:relative;
 }
 
-.nav-btn div{
+.nav button div{
   font-size:21px;
   margin-bottom:3px;
 }
 
-.nav-btn.active{
+.nav button.ativo{
   color:#ff6b00;
   font-weight:bold;
 }
 
 .badge{
   position:absolute;
-  background:#111;
-  color:white;
-  font-size:10px;
+  top:5px;
+  right:19px;
   min-width:17px;
   height:17px;
   border-radius:50%;
-  display:flex;
+  background:#111;
+  color:white;
+  font-size:10px;
+  display:none;
   align-items:center;
   justify-content:center;
-  margin:-28px 0 0 25px;
 }
 
 .toast{
   position:fixed;
   left:50%;
-  bottom:85px;
-  transform:translateX(-50%) translateY(20px);
+  bottom:83px;
+  transform:translateX(-50%);
   background:#111;
   color:white;
-  padding:12px 18px;
-  border-radius:12px;
-  opacity:0;
-  pointer-events:none;
-  transition:.3s;
-  z-index:50;
+  padding:12px 17px;
+  border-radius:11px;
+  z-index:500;
+  display:none;
   max-width:90%;
   text-align:center;
 }
 
-.toast.show{
-  opacity:1;
-  transform:translateX(-50%) translateY(0);
+.toast.mostrar{
+  display:block;
 }
 
 @media(max-width:400px){
-  .categories{
-    grid-template-columns:repeat(4,1fr);
+
+  .categorias{
+    gap:6px;
   }
 
-  .category{
-    font-size:11px;
+  .categoria{
+    padding:10px 2px;
   }
 
-  .products{
-    gap:9px;
+  .categoria span{
+    font-size:21px;
   }
+
+  .categoria small{
+    font-size:10px;
+  }
+
 }
 </style>
 </head>
@@ -622,152 +619,207 @@ label{
 <body>
 
 <header>
-  <div class="header-top">
-    <div class="logo-area">
-      <img
-        class="logo"
-        src="29EEE903-7A28-4C72-AC7C-91575E3FC770.png"
-        alt="GT Delivery"
-        onerror="this.style.display='none'"
-      >
 
-      <div class="logo-text">
-        <strong>GT Delivery</strong>
-        <span>Seu pedido do seu jeito</span>
+  <div class="top">
+
+    <div class="brand">
+
+      <div class="brand-icon">GT</div>
+
+      <div>
+        <h1>GT Delivery</h1>
+        <p>Seu pedido do seu jeito</p>
       </div>
+
     </div>
 
-    <button class="header-btn" onclick="mostrar('perfil')">👤</button>
+    <button class="user-button" id="btnPerfil">👤</button>
+
   </div>
 
   <div class="search">
+
     <input
-      id="searchInput"
+      id="busca"
       type="text"
-      placeholder="Buscar produtos ou lojas..."
-      oninput="buscarProduto()"
+      placeholder="Buscar produtos..."
     >
-    <button onclick="buscarProduto()">🔎</button>
+
+    <button id="btnBusca">🔎</button>
+
   </div>
+
 </header>
+
 
 <main>
 
-<!-- INÍCIO -->
-<section id="inicio" class="screen active">
+<!-- ================= INÍCIO ================= -->
+
+<section id="inicio" class="tela ativa">
 
   <div class="banner">
-    <h1>Olá! 👋</h1>
-    <p>Encontre produtos, faça seu pedido e receba onde estiver.</p>
+
+    <h2>Olá! 👋</h2>
+
+    <p>
+      Encontre produtos, faça seu pedido e receba
+      onde estiver com o GT Delivery.
+    </p>
+
   </div>
 
-  <div class="section-title">
+
+  <div class="titulo">
     <h2>Categorias</h2>
-    <button onclick="mostrar('loja')">Ver todas</button>
   </div>
 
-  <div class="categories">
-    <button class="category" onclick="filtrarCategoria('Mercado')">
-      <div>🛒</div>Mercado
+
+  <div class="categorias">
+
+    <button class="categoria" data-cat="Mercado">
+      <span>🛒</span>
+      <small>Mercado</small>
     </button>
 
-    <button class="category" onclick="filtrarCategoria('Comida')">
-      <div>🍔</div>Comida
+    <button class="categoria" data-cat="Comida">
+      <span>🍔</span>
+      <small>Comida</small>
     </button>
 
-    <button class="category" onclick="filtrarCategoria('Bebidas')">
-      <div>🥤</div>Bebidas
+    <button class="categoria" data-cat="Bebidas">
+      <span>🥤</span>
+      <small>Bebidas</small>
     </button>
 
-    <button class="category" onclick="filtrarCategoria('Farmácia')">
-      <div>💊</div>Farmácia
+    <button class="categoria" data-cat="Farmácia">
+      <span>💊</span>
+      <small>Farmácia</small>
     </button>
 
-    <button class="category" onclick="filtrarCategoria('Padaria')">
-      <div>🥖</div>Padaria
+    <button class="categoria" data-cat="Padaria">
+      <span>🥖</span>
+      <small>Padaria</small>
     </button>
 
-    <button class="category" onclick="filtrarCategoria('Açougue')">
-      <div>🥩</div>Açougue
+    <button class="categoria" data-cat="Açougue">
+      <span>🥩</span>
+      <small>Açougue</small>
     </button>
 
-    <button class="category" onclick="filtrarCategoria('Hortifruti')">
-      <div>🥬</div>Hortifruti
+    <button class="categoria" data-cat="Hortifruti">
+      <span>🥬</span>
+      <small>Hortifruti</small>
     </button>
 
-    <button class="category" onclick="filtrarCategoria('Outros')">
-      <div>📦</div>Outros
+    <button class="categoria" data-cat="Outros">
+      <span>📦</span>
+      <small>Outros</small>
     </button>
+
   </div>
+
 
   <!-- ROLETA -->
-  <div class="roulette-card">
+
+  <div class="roleta-card">
+
     <h2>🎰 Roleta GT Cashback</h2>
-    <p>Gire e concorra a cashback!</p>
 
-    <div class="pointer"></div>
+    <p>Gire e ganhe cashback!</p>
 
-    <div id="roleta" class="roulette">
-      <div class="roulette-labels">
-        <span class="roulette-label r1">2%</span>
-        <span class="roulette-label r2">5%</span>
-        <span class="roulette-label r3">10%</span>
-        <span class="roulette-label r4">15%</span>
-        <span class="roulette-label r5">20%</span>
-        <span class="roulette-label r6">5%</span>
-      </div>
+    <div class="seta"></div>
+
+    <div class="roleta" id="roleta">
+
+      <span class="p1">2%</span>
+      <span class="p2">5%</span>
+      <span class="p3">10%</span>
+      <span class="p4">15%</span>
+      <span class="p5">20%</span>
+      <span class="p6">5%</span>
+
     </div>
 
-    <div id="resultadoRoleta" class="roulette-result">
+    <div class="resultado" id="resultado">
       Boa sorte! 🍀
     </div>
 
-    <button class="btn full" onclick="girarRoleta()">
+    <button class="btn full" id="btnRoleta">
       🎰 GIRAR ROLETA
+    </button>
+
+  </div>
+
+
+  <div class="titulo">
+    <h2>Lojas</h2>
+
+    <button class="link" id="verLojas">
+      Ver todas
     </button>
   </div>
 
-  <div class="section-title">
-    <h2>Lojas próximas</h2>
-    <button onclick="mostrar('loja')">Ver todas</button>
-  </div>
 
   <div class="card">
 
-    <div class="store">
-      <div class="store-info">
-        <div class="store-icon">🛒</div>
+    <div class="loja">
+
+      <div class="loja-info">
+
+        <div class="loja-icon">🛒</div>
+
         <div>
           <h3>GT Supermercado</h3>
           <p>Mercado • ⭐ 4.9 • 20-35 min</p>
         </div>
+
       </div>
 
-      <button class="btn" onclick="abrirLoja(1)">Ver</button>
+      <button class="btn" data-loja="1">
+        Ver
+      </button>
+
     </div>
 
-    <div class="store">
-      <div class="store-info">
-        <div class="store-icon">🍔</div>
+
+    <div class="loja">
+
+      <div class="loja-info">
+
+        <div class="loja-icon">🍔</div>
+
         <div>
           <h3>GT Lanches</h3>
           <p>Lanches • ⭐ 4.8 • 25-40 min</p>
         </div>
+
       </div>
 
-      <button class="btn" onclick="abrirLoja(2)">Ver</button>
+      <button class="btn" data-loja="2">
+        Ver
+      </button>
+
     </div>
 
-    <div class="store">
-      <div class="store-info">
-        <div class="store-icon">🥤</div>
+
+    <div class="loja">
+
+      <div class="loja-info">
+
+        <div class="loja-icon">🥤</div>
+
         <div>
           <h3>GT Bebidas</h3>
           <p>Bebidas • ⭐ 4.7 • 20-30 min</p>
         </div>
+
       </div>
 
-      <button class="btn" onclick="abrirLoja(3)">Ver</button>
+      <button class="btn" data-loja="3">
+        Ver
+      </button>
+
     </div>
 
   </div>
@@ -775,168 +827,225 @@ label{
 </section>
 
 
-<!-- LOJA -->
-<section id="loja" class="screen">
+<!-- ================= LOJA ================= -->
 
-  <div class="section-title">
-    <h2 id="tituloLoja">Produtos</h2>
-    <button onclick="mostrar('inicio')">← Voltar</button>
+<section id="loja" class="tela">
+
+  <div class="titulo">
+
+    <h2 id="tituloProdutos">
+      Produtos
+    </h2>
+
+    <button class="link" id="voltarInicio">
+      ← Voltar
+    </button>
+
   </div>
 
-  <div id="produtosContainer" class="products"></div>
+  <div class="produtos" id="listaProdutos"></div>
 
 </section>
 
 
-<!-- CARRINHO -->
-<section id="carrinho" class="screen">
+<!-- ================= CARRINHO ================= -->
 
-  <div class="section-title">
-    <h2>🛒 Meu Carrinho</h2>
-    <button onclick="mostrar('loja')">Continuar</button>
+<section id="carrinho" class="tela">
+
+  <div class="titulo">
+
+    <h2>🛒 Meu carrinho</h2>
+
+    <button class="link" id="continuarComprando">
+      Comprar
+    </button>
+
   </div>
 
-  <div id="carrinhoContainer"></div>
+  <div id="listaCarrinho"></div>
 
 </section>
 
 
-<!-- CHECKOUT -->
-<section id="checkout" class="screen">
+<!-- ================= CHECKOUT ================= -->
 
-  <div class="section-title">
+<section id="checkout" class="tela">
+
+  <div class="titulo">
+
     <h2>💳 Finalizar pedido</h2>
-    <button onclick="mostrar('carrinho')">← Voltar</button>
+
+    <button class="link" id="voltarCarrinho">
+      ← Voltar
+    </button>
+
   </div>
+
 
   <div class="card">
 
     <label>Nome</label>
-    <input id="nomeCliente" type="text" placeholder="Digite seu nome">
+    <input id="nome" type="text" placeholder="Seu nome">
 
     <label>Telefone</label>
-    <input id="telefoneCliente" type="tel" placeholder="(00) 00000-0000">
+    <input id="telefone" type="tel" placeholder="Seu telefone">
 
-    <label>Endereço de entrega</label>
-    <input id="enderecoCliente" type="text" placeholder="Rua, número, bairro">
+    <label>Endereço</label>
+    <input id="endereco" type="text" placeholder="Endereço de entrega">
 
-    <label>Forma de pagamento</label>
+    <label>Pagamento</label>
+
     <select id="pagamento">
+
       <option value="Pix">Pix</option>
       <option value="Cartão">Cartão</option>
       <option value="Dinheiro">Dinheiro</option>
+
     </select>
 
     <label>Observação</label>
-    <input id="observacao" type="text" placeholder="Ex.: deixar na portaria">
+
+    <input
+      id="observacao"
+      type="text"
+      placeholder="Alguma observação?"
+    >
 
   </div>
 
-  <div id="checkoutResumo" class="card"></div>
 
-  <button class="btn full" onclick="confirmarPedido()">
+  <div class="card" id="resumoCheckout"></div>
+
+
+  <button class="btn full" id="btnConfirmar">
     ✅ CONFIRMAR PEDIDO
   </button>
 
 </section>
 
 
-<!-- PEDIDOS -->
-<section id="pedidos" class="screen">
+<!-- ================= PEDIDOS ================= -->
 
-  <div class="section-title">
+<section id="pedidos" class="tela">
+
+  <div class="titulo">
+
     <h2>📦 Meus pedidos</h2>
-    <button onclick="mostrar('inicio')">Início</button>
+
   </div>
 
-  <div id="pedidosContainer"></div>
+  <div id="listaPedidos"></div>
 
 </section>
 
 
-<!-- ENTREGADOR -->
-<section id="entregador" class="screen">
+<!-- ================= ENTREGA ================= -->
 
-  <div class="section-title">
+<section id="entrega" class="tela">
+
+  <div class="titulo">
+
     <h2>🛵 Acompanhar entrega</h2>
-    <button onclick="mostrar('pedidos')">← Voltar</button>
+
+    <button class="link" id="voltarPedidos">
+      ← Voltar
+    </button>
+
   </div>
 
-  <div id="entregaContainer"></div>
+  <div id="detalheEntrega"></div>
 
 </section>
 
 
-<!-- PERFIL -->
-<section id="perfil" class="screen">
+<!-- ================= PERFIL ================= -->
 
-  <div class="profile-head">
-    <div class="avatar">👤</div>
-    <h2 id="perfilNome">Meu perfil</h2>
+<section id="perfil" class="tela">
+
+  <div class="perfil-top">
+
+    <div class="avatar">
+      👤
+    </div>
+
+    <h2 id="nomePerfil">
+      Meu perfil
+    </h2>
+
     <p>Cliente GT Delivery</p>
+
   </div>
 
-  <div class="balance">
-    <div>💰 Seu cashback</div>
-    <strong id="saldoCashback">R$ 0,00</strong>
+
+  <div class="saldo">
+
+    💰 Cashback disponível
+
+    <strong id="saldo">
+      R$ 0,00
+    </strong>
+
   </div>
+
 
   <div class="card">
 
-    <button class="menu-button" onclick="abrirCadastro()">
+    <button class="menu" id="btnCadastro">
       <span>👤 Cadastro</span>
       <span>›</span>
     </button>
 
-    <button class="menu-button" onclick="mostrar('pedidos')">
+    <button class="menu" id="btnMeusPedidos">
       <span>📦 Meus pedidos</span>
       <span>›</span>
     </button>
 
-    <button class="menu-button" onclick="mostrar('carrinho')">
+    <button class="menu" id="btnMeuCarrinho">
       <span>🛒 Meu carrinho</span>
       <span>›</span>
     </button>
 
-    <button class="menu-button" onclick="mostrar('inicio')">
+    <button class="menu" id="btnMinhaRoleta">
       <span>🎰 Roleta de cashback</span>
       <span>›</span>
     </button>
 
   </div>
 
-  <div id="cadastroArea"></div>
+
+  <div id="areaCadastro"></div>
 
 </section>
 
 </main>
 
 
-<!-- MENU INFERIOR -->
-<nav class="bottom-nav">
+<!-- ================= MENU INFERIOR ================= -->
 
-  <button id="nav-inicio" class="nav-btn active" onclick="mostrar('inicio')">
+<nav class="nav">
+
+  <button class="ativo" id="navInicio">
     <div>🏠</div>
     Início
   </button>
 
-  <button id="nav-loja" class="nav-btn" onclick="mostrar('loja')">
+  <button id="navLoja">
     <div>🏪</div>
     Lojas
   </button>
 
-  <button id="nav-carrinho" class="nav-btn" onclick="mostrar('carrinho')">
+  <button id="navCarrinho">
     <div>🛒</div>
-    <span id="cartBadge" class="badge" style="display:none">0</span>
     Carrinho
+    <span class="badge" id="badge">0</span>
   </button>
 
-  <button id="nav-pedidos" class="nav-btn" onclick="mostrar('pedidos')">
+  <button id="navPedidos">
     <div>📦</div>
     Pedidos
   </button>
 
-  <button id="nav-perfil" class="nav-btn" onclick="mostrar('perfil')">
+  <button id="navPerfil">
     <div>👤</div>
     Perfil
   </button>
@@ -944,14 +1053,21 @@ label{
 </nav>
 
 
-<div id="toast" class="toast"></div>
+<div class="toast" id="toast"></div>
 
 
 <script>
+/* =========================================================
+   GT DELIVERY
+   JAVASCRIPT PRINCIPAL
+========================================================= */
 
-/* =========================
-   DADOS DOS PRODUTOS
-========================= */
+(function(){
+
+"use strict";
+
+
+/* ================= DADOS ================= */
 
 const produtos = [
 
@@ -1084,153 +1200,210 @@ const produtos = [
 ];
 
 
-/* =========================
-   VARIÁVEIS
-========================= */
+const nomesLojas = {
+  1:"🛒 GT Supermercado",
+  2:"🍔 GT Lanches",
+  3:"🥤 GT Bebidas"
+};
+
+
+/* ================= ESTADO ================= */
 
 let carrinho = [];
 
 let pedidos = [];
 
-let lojaAtual = 1;
+let lojaSelecionada = null;
 
-let categoriaAtual = "";
+let categoriaSelecionada = "";
 
-let giroRoleta = 0;
+let cashback = Number(
+  localStorage.getItem("gt_cashback") || 0
+);
 
-let roletaGirando = false;
+let giro = 0;
 
-let saldoCashback = 0;
+let girando = false;
 
 
-/* =========================
-   NAVEGAÇÃO
-========================= */
+/* ================= ELEMENTOS ================= */
 
-function mostrar(tela){
+const telas =
+  document.querySelectorAll(".tela");
 
-  document.querySelectorAll(".screen").forEach(function(el){
+const listaProdutos =
+  document.getElementById("listaProdutos");
 
-    el.classList.remove("active");
+const listaCarrinho =
+  document.getElementById("listaCarrinho");
+
+const listaPedidos =
+  document.getElementById("listaPedidos");
+
+const roleta =
+  document.getElementById("roleta");
+
+const resultado =
+  document.getElementById("resultado");
+
+const badge =
+  document.getElementById("badge");
+
+const toast =
+  document.getElementById("toast");
+
+
+/* ================= FUNÇÕES ================= */
+
+function mostrarTela(id){
+
+  telas.forEach(function(tela){
+
+    tela.classList.remove("ativa");
 
   });
 
-  const elemento = document.getElementById(tela);
 
-  if(elemento){
+  const tela =
+    document.getElementById(id);
 
-    elemento.classList.add("active");
+  if(tela){
 
-  }
-
-  document.querySelectorAll(".nav-btn").forEach(function(btn){
-
-    btn.classList.remove("active");
-
-  });
-
-  const nav = document.getElementById("nav-" + tela);
-
-  if(nav){
-
-    nav.classList.add("active");
+    tela.classList.add("ativa");
 
   }
 
-  window.scrollTo({
-    top:0,
-    behavior:"smooth"
-  });
+
+  document.querySelectorAll(".nav button")
+    .forEach(function(btn){
+
+      btn.classList.remove("ativo");
+
+    });
 
 
-  if(tela === "loja"){
+  const mapa = {
 
-    mostrarProdutos();
+    inicio:"navInicio",
+
+    loja:"navLoja",
+
+    carrinho:"navCarrinho",
+
+    pedidos:"navPedidos",
+
+    perfil:"navPerfil"
+
+  };
+
+
+  if(mapa[id]){
+
+    document
+      .getElementById(mapa[id])
+      .classList.add("ativo");
 
   }
 
-  if(tela === "carrinho"){
 
-    atualizarCarrinho();
+  window.scrollTo(0,0);
 
+
+  if(id === "loja"){
+    renderProdutos();
   }
 
-  if(tela === "checkout"){
-
-    atualizarCheckout();
-
+  if(id === "carrinho"){
+    renderCarrinho();
   }
 
-  if(tela === "pedidos"){
-
-    atualizarPedidos();
-
+  if(id === "checkout"){
+    renderCheckout();
   }
 
-  if(tela === "perfil"){
+  if(id === "pedidos"){
+    renderPedidos();
+  }
 
-    atualizarPerfil();
-
+  if(id === "perfil"){
+    renderPerfil();
   }
 
 }
 
 
-/* =========================
-   LOJAS
-========================= */
+function dinheiro(valor){
 
-function abrirLoja(id){
-
-  lojaAtual = id;
-
-  categoriaAtual = "";
-
-  document.getElementById("searchInput").value = "";
-
-  mostrar("loja");
+  return "R$ " +
+    Number(valor).toFixed(2).replace(".",",");
 
 }
 
 
-function filtrarCategoria(categoria){
+function aviso(texto){
 
-  categoriaAtual = categoria;
+  toast.textContent = texto;
 
-  lojaAtual = 0;
+  toast.classList.add("mostrar");
 
-  mostrar("loja");
+  clearTimeout(window.gtToast);
+
+  window.gtToast =
+    setTimeout(function(){
+
+      toast.classList.remove("mostrar");
+
+    },2500);
 
 }
 
 
-/* =========================
-   PRODUTOS
-========================= */
+function atualizarBadge(){
 
-function mostrarProdutos(lista = null){
+  const quantidade =
+    carrinho.reduce(function(total,item){
 
-  const container = document.getElementById("produtosContainer");
+      return total + item.quantidade;
 
-  let dados = lista || produtos;
+    },0);
 
-  if(!lista){
 
-    if(lojaAtual){
+  badge.textContent = quantidade;
 
-      dados = produtos.filter(function(p){
+  badge.style.display =
+    quantidade > 0 ? "flex" : "none";
 
-        return p.loja === lojaAtual;
+}
+
+
+/* ================= PRODUTOS ================= */
+
+function renderProdutos(lista){
+
+  let dados = lista;
+
+
+  if(!dados){
+
+    dados = produtos.slice();
+
+
+    if(lojaSelecionada){
+
+      dados = dados.filter(function(p){
+
+        return p.loja === lojaSelecionada;
 
       });
 
     }
 
-    if(categoriaAtual){
 
-      dados = produtos.filter(function(p){
+    if(categoriaSelecionada){
 
-        return p.categoria === categoriaAtual;
+      dados = dados.filter(function(p){
+
+        return p.categoria === categoriaSelecionada;
 
       });
 
@@ -1239,49 +1412,39 @@ function mostrarProdutos(lista = null){
   }
 
 
-  if(lojaAtual === 1){
+  if(lojaSelecionada){
 
-    document.getElementById("tituloLoja").innerText =
-      "🛒 GT Supermercado";
-
-  }
-
-  else if(lojaAtual === 2){
-
-    document.getElementById("tituloLoja").innerText =
-      "🍔 GT Lanches";
+    document.getElementById("tituloProdutos")
+      .textContent =
+      nomesLojas[lojaSelecionada];
 
   }
 
-  else if(lojaAtual === 3){
+  else if(categoriaSelecionada){
 
-    document.getElementById("tituloLoja").innerText =
-      "🥤 GT Bebidas";
-
-  }
-
-  else if(categoriaAtual){
-
-    document.getElementById("tituloLoja").innerText =
-      "Produtos: " + categoriaAtual;
+    document.getElementById("tituloProdutos")
+      .textContent =
+      "Produtos • " + categoriaSelecionada;
 
   }
 
   else{
 
-    document.getElementById("tituloLoja").innerText =
-      "Produtos";
+    document.getElementById("tituloProdutos")
+      .textContent = "Todos os produtos";
 
   }
 
 
   if(!dados.length){
 
-    container.innerHTML = `
-      <div class="card empty">
+    listaProdutos.innerHTML = `
+
+      <div class="card vazio" style="grid-column:1/-1">
         <div>🔎</div>
         <p>Nenhum produto encontrado.</p>
       </div>
+
     `;
 
     return;
@@ -1289,116 +1452,153 @@ function mostrarProdutos(lista = null){
   }
 
 
-  container.innerHTML = dados.map(function(p){
+  listaProdutos.innerHTML =
+    dados.map(function(p){
 
-    return `
+      return `
 
-      <div class="product">
+        <article class="produto">
 
-        <div class="product-image">
-          ${p.emoji}
-        </div>
-
-        <div class="product-content">
-
-          <h3>${p.nome}</h3>
-
-          <p>${p.categoria}</p>
-
-          <div class="price">
-            R$ ${p.preco.toFixed(2).replace(".",",")}
+          <div class="produto-img">
+            ${p.emoji}
           </div>
 
-          <button class="add"
-            onclick="adicionarCarrinho(${p.id})">
+          <div class="produto-body">
 
-            + Adicionar
+            <h3>${p.nome}</h3>
 
-          </button>
+            <small>${p.categoria}</small>
 
-        </div>
+            <div class="preco">
+              ${dinheiro(p.preco)}
+            </div>
 
-      </div>
+            <button
+              class="adicionar"
+              data-add="${p.id}">
 
-    `;
+              + Adicionar
 
-  }).join("");
+            </button>
+
+          </div>
+
+        </article>
+
+      `;
+
+    }).join("");
 
 }
 
 
-/* =========================
-   BUSCA
-========================= */
+function abrirLoja(id){
 
-function buscarProduto(){
+  lojaSelecionada = id;
+
+  categoriaSelecionada = "";
+
+  mostrarTela("loja");
+
+}
+
+
+function abrirCategoria(cat){
+
+  lojaSelecionada = null;
+
+  categoriaSelecionada = cat;
+
+  mostrarTela("loja");
+
+}
+
+
+/* ================= BUSCA ================= */
+
+function pesquisar(){
 
   const texto =
-    document.getElementById("searchInput").value
-    .toLowerCase()
-    .trim();
+    document.getElementById("busca")
+      .value
+      .toLowerCase()
+      .trim();
 
 
-  if(texto === ""){
+  if(!texto){
 
-    if(document.getElementById("loja").classList.contains("active")){
+    lojaSelecionada = null;
 
-      mostrarProdutos();
+    categoriaSelecionada = "";
 
-    }
+    mostrarTela("loja");
+
+    renderProdutos();
 
     return;
 
   }
 
 
-  const resultado = produtos.filter(function(p){
+  const encontrados =
+    produtos.filter(function(p){
 
-    return (
-      p.nome.toLowerCase().includes(texto) ||
-      p.categoria.toLowerCase().includes(texto)
-    );
+      return (
 
-  });
+        p.nome
+          .toLowerCase()
+          .includes(texto)
+
+        ||
+
+        p.categoria
+          .toLowerCase()
+          .includes(texto)
+
+      );
+
+    });
 
 
-  mostrar("loja");
+  lojaSelecionada = null;
 
-  mostrarProdutos(resultado);
+  categoriaSelecionada = "";
+
+  mostrarTela("loja");
+
+  renderProdutos(encontrados);
 
 }
 
 
-/* =========================
-   CARRINHO
-========================= */
+/* ================= CARRINHO ================= */
 
-function adicionarCarrinho(id){
+function adicionar(id){
 
-  const produto = produtos.find(function(p){
+  const produto =
+    produtos.find(function(p){
 
-    return p.id === id;
+      return p.id === id;
 
-  });
+    });
 
 
   if(!produto){
-
     return;
-
   }
 
 
-  const existente = carrinho.find(function(item){
+  const item =
+    carrinho.find(function(p){
 
-    return item.id === id;
+      return p.id === id;
 
-  });
+    });
 
 
-  if(existente){
+  if(item){
 
-    existente.quantidade++;
+    item.quantidade++;
 
   }
 
@@ -1406,8 +1606,10 @@ function adicionarCarrinho(id){
 
     carrinho.push({
 
-      ...produto,
-
+      id:produto.id,
+      nome:produto.nome,
+      preco:produto.preco,
+      emoji:produto.emoji,
       quantidade:1
 
     });
@@ -1415,114 +1617,81 @@ function adicionarCarrinho(id){
   }
 
 
-  atualizarCarrinho();
-
   atualizarBadge();
 
-  mostrarToast("✅ Produto adicionado ao carrinho!");
+  aviso("✅ Produto adicionado ao carrinho!");
 
 }
 
 
-function alterarQuantidade(id, quantidade){
+function mudarQuantidade(id,valor){
 
-  const item = carrinho.find(function(p){
+  const item =
+    carrinho.find(function(p){
 
-    return p.id === id;
+      return p.id === id;
 
-  });
+    });
 
 
   if(!item){
-
     return;
-
   }
 
 
-  item.quantidade += quantidade;
+  item.quantidade += valor;
 
 
   if(item.quantidade <= 0){
 
-    carrinho = carrinho.filter(function(p){
+    carrinho =
+      carrinho.filter(function(p){
 
-      return p.id !== id;
+        return p.id !== id;
 
-    });
+      });
 
   }
 
-
-  atualizarCarrinho();
 
   atualizarBadge();
 
+  renderCarrinho();
+
 }
 
 
-function calcularTotal(){
+function totalCarrinho(){
 
   return carrinho.reduce(function(total,item){
 
-    return total + item.preco * item.quantidade;
+    return total +
+      item.preco * item.quantidade;
 
   },0);
 
 }
 
 
-function atualizarBadge(){
+function renderCarrinho(){
 
-  const quantidade = carrinho.reduce(function(total,item){
+  if(!carrinho.length){
 
-    return total + item.quantidade;
+    listaCarrinho.innerHTML = `
 
-  },0);
-
-
-  const badge = document.getElementById("cartBadge");
-
-
-  if(quantidade > 0){
-
-    badge.style.display = "flex";
-
-    badge.innerText = quantidade;
-
-  }
-
-  else{
-
-    badge.style.display = "none";
-
-  }
-
-}
-
-
-function atualizarCarrinho(){
-
-  const container =
-    document.getElementById("carrinhoContainer");
-
-
-  if(carrinho.length === 0){
-
-    container.innerHTML = `
-
-      <div class="card empty">
+      <div class="card vazio">
 
         <div>🛒</div>
 
         <h3>Seu carrinho está vazio</h3>
 
-        <p>Adicione produtos para começar seu pedido.</p>
+        <p>Adicione produtos para fazer seu pedido.</p>
 
         <br>
 
-        <button class="btn"
-          onclick="mostrar('loja')">
+        <button
+          class="btn"
+          id="btnIrProdutos">
 
           Ver produtos
 
@@ -1531,6 +1700,15 @@ function atualizarCarrinho(){
       </div>
 
     `;
+
+    document
+      .getElementById("btnIrProdutos")
+      .addEventListener(
+        "click",
+        function(){
+          mostrarTela("loja");
+        }
+      );
 
     return;
 
@@ -1544,11 +1722,11 @@ function atualizarCarrinho(){
 
     html += `
 
-      <div class="cart-item">
+      <div class="item-carrinho">
 
-        <div class="cart-left">
+        <div class="item-esq">
 
-          <div class="cart-icon">
+          <div class="item-icon">
             ${item.emoji}
           </div>
 
@@ -1556,24 +1734,25 @@ function atualizarCarrinho(){
 
             <strong>${item.nome}</strong>
 
-            <p>
-              R$ ${item.preco.toFixed(2).replace(".",",")}
-            </p>
+            <div>
+              ${dinheiro(item.preco)}
+            </div>
 
           </div>
 
         </div>
 
+        <div class="quantidade">
 
-        <div class="quantity">
-
-          <button onclick="alterarQuantidade(${item.id},-1)">
+          <button data-minus="${item.id}">
             −
           </button>
 
-          <strong>${item.quantidade}</strong>
+          <strong>
+            ${item.quantidade}
+          </strong>
 
-          <button onclick="alterarQuantidade(${item.id},1)">
+          <button data-plus="${item.id}">
             +
           </button>
 
@@ -1593,72 +1772,135 @@ function atualizarCarrinho(){
       <span>Total</span>
 
       <span>
-        R$ ${calcularTotal().toFixed(2).replace(".",",")}
+        ${dinheiro(totalCarrinho())}
       </span>
 
     </div>
 
-  `;
+  </div>
 
 
-  html += `</div>`;
+  <button
+    class="btn full"
+    id="btnCheckout">
 
+    💳 FINALIZAR PEDIDO
 
-  html += `
-
-    <button class="btn full"
-      onclick="mostrar('checkout')">
-
-      💳 IR PARA PAGAMENTO
-
-    </button>
+  </button>
 
   `;
 
 
-  container.innerHTML = html;
+  listaCarrinho.innerHTML = html;
+
+
+  document
+    .getElementById("btnCheckout")
+    .addEventListener(
+      "click",
+      function(){
+
+        mostrarTela("checkout");
+
+      }
+    );
+
+
+  listaCarrinho
+    .querySelectorAll("[data-minus]")
+    .forEach(function(btn){
+
+      btn.addEventListener(
+        "click",
+        function(){
+
+          mudarQuantidade(
+            Number(btn.dataset.minus),
+            -1
+          );
+
+        }
+      );
+
+    });
+
+
+  listaCarrinho
+    .querySelectorAll("[data-plus]")
+    .forEach(function(btn){
+
+      btn.addEventListener(
+        "click",
+        function(){
+
+          mudarQuantidade(
+            Number(btn.dataset.plus),
+            1
+          );
+
+        }
+      );
+
+    });
 
 }
 
 
-/* =========================
-   CHECKOUT
-========================= */
+/* ================= CHECKOUT ================= */
 
-function atualizarCheckout(){
+function renderCheckout(){
 
-  const total = calcularTotal();
+  document.getElementById("resumoCheckout")
+    .innerHTML = `
 
-  document.getElementById("checkoutResumo").innerHTML = `
+      <h3>Resumo do pedido</h3>
 
-    <h3>Resumo do pedido</h3>
+      <p>
+        ${carrinho.length} produto(s)
+      </p>
 
-    <p>
-      ${carrinho.length} produto(s)
-    </p>
+      <div class="total">
 
-    <div class="total">
+        <span>Total</span>
 
-      <span>Total</span>
+        <span>
+          ${dinheiro(totalCarrinho())}
+        </span>
 
-      <span>
-        R$ ${total.toFixed(2).replace(".",",")}
-      </span>
+      </div>
 
-    </div>
+    `;
 
-  `;
+
+  const nomeSalvo =
+    localStorage.getItem("gt_nome") || "";
+
+  const telefoneSalvo =
+    localStorage.getItem("gt_telefone") || "";
+
+  const enderecoSalvo =
+    localStorage.getItem("gt_endereco") || "";
+
+
+  document.getElementById("nome").value =
+    nomeSalvo;
+
+  document.getElementById("telefone").value =
+    telefoneSalvo;
+
+  document.getElementById("endereco").value =
+    enderecoSalvo;
 
 }
 
 
 function confirmarPedido(){
 
-  if(carrinho.length === 0){
+  if(!carrinho.length){
 
-    mostrarToast("🛒 Seu carrinho está vazio.");
+    aviso("🛒 Seu carrinho está vazio.");
 
-    mostrar("carrinho");
+    mostrarTela("loja");
 
     return;
 
@@ -1666,37 +1908,53 @@ function confirmarPedido(){
 
 
   const nome =
-    document.getElementById("nomeCliente").value.trim();
+    document.getElementById("nome")
+      .value.trim();
 
   const telefone =
-    document.getElementById("telefoneCliente").value.trim();
+    document.getElementById("telefone")
+      .value.trim();
 
   const endereco =
-    document.getElementById("enderecoCliente").value.trim();
+    document.getElementById("endereco")
+      .value.trim();
 
   const pagamento =
-    document.getElementById("pagamento").value;
+    document.getElementById("pagamento")
+      .value;
 
   const observacao =
-    document.getElementById("observacao").value.trim();
+    document.getElementById("observacao")
+      .value.trim();
 
 
   if(!nome || !telefone || !endereco){
 
-    mostrarToast("⚠️ Preencha nome, telefone e endereço.");
+    aviso("⚠️ Preencha nome, telefone e endereço.");
 
     return;
 
   }
 
 
+  localStorage.setItem("gt_nome",nome);
+
+  localStorage.setItem("gt_telefone",telefone);
+
+  localStorage.setItem("gt_endereco",endereco);
+
+
   const pedido = {
 
     id:Date.now(),
 
-    numero:Math.floor(1000 + Math.random() * 9000),
+    numero:
+      Math.floor(
+        1000 +
+        Math.random() * 9000
+      ),
 
-    cliente:nome,
+    nome:nome,
 
     telefone:telefone,
 
@@ -1706,332 +1964,379 @@ function confirmarPedido(){
 
     observacao:observacao,
 
-    itens:[...carrinho],
+    itens:JSON.parse(
+      JSON.stringify(carrinho)
+    ),
 
-    total:calcularTotal(),
+    total:totalCarrinho(),
 
     status:"Preparando",
 
-    data:new Date().toLocaleString("pt-BR")
+    data:new Date()
+      .toLocaleString("pt-BR")
 
   };
 
 
   pedidos.unshift(pedido);
 
-
-  localStorage.setItem(
-    "gtPedidos",
-    JSON.stringify(pedidos)
-  );
-
-
-  localStorage.setItem(
-    "gtNome",
-    nome
-  );
+  salvarPedidos();
 
 
   carrinho = [];
 
-
   atualizarBadge();
 
-  atualizarPedidos();
+  aviso("🎉 Pedido realizado com sucesso!");
 
-  atualizarPerfil();
+  mostrarTela("pedidos");
 
-
-  mostrarToast("🎉 Pedido realizado com sucesso!");
-
-
-  setTimeout(function(){
-
-    mostrar("pedidos");
-
-  },800);
+  renderPedidos();
 
 }
 
 
-/* =========================
-   PEDIDOS
-========================= */
+/* ================= PEDIDOS ================= */
 
-function atualizarPedidos(){
+function salvarPedidos(){
 
-  const container =
-    document.getElementById("pedidosContainer");
+  localStorage.setItem(
+    "gt_pedidos",
+    JSON.stringify(pedidos)
+  );
+
+}
 
 
-  if(pedidos.length === 0){
+function carregarPedidos(){
 
-    container.innerHTML = `
+  try{
 
-      <div class="card empty">
+    pedidos =
+      JSON.parse(
+        localStorage.getItem("gt_pedidos")
+      ) || [];
+
+  }
+
+  catch(e){
+
+    pedidos = [];
+
+  }
+
+}
+
+
+function renderPedidos(){
+
+  if(!pedidos.length){
+
+    listaPedidos.innerHTML = `
+
+      <div class="card vazio">
 
         <div>📦</div>
 
         <h3>Nenhum pedido ainda</h3>
 
-        <p>Seus pedidos aparecerão aqui.</p>
+        <p>
+          Seus pedidos aparecerão aqui.
+        </p>
 
         <br>
 
-        <button class="btn"
-          onclick="mostrar('loja')">
-
+        <button class="btn" id="fazerPedido">
           Fazer pedido
-
         </button>
 
       </div>
 
     `;
+
+
+    document
+      .getElementById("fazerPedido")
+      .addEventListener(
+        "click",
+        function(){
+
+          mostrarTela("loja");
+
+        }
+      );
 
     return;
 
   }
 
 
-  container.innerHTML = pedidos.map(function(p){
+  listaPedidos.innerHTML =
+    pedidos.map(function(p){
 
-    return `
+      return `
 
-      <div class="card">
+        <div class="card">
 
-        <div style="
-          display:flex;
-          justify-content:space-between;
-          gap:10px;
-        ">
+          <div style="
+            display:flex;
+            justify-content:space-between;
+            gap:8px;
+          ">
 
-          <div>
+            <div>
 
-            <strong>
-              Pedido #${p.numero}
+              <strong>
+                Pedido #${p.numero}
+              </strong>
+
+              <p style="
+                color:#777;
+                font-size:11px;
+                margin-top:4px;
+              ">
+                ${p.data}
+              </p>
+
+            </div>
+
+            <strong class="orange">
+              ${dinheiro(p.total)}
             </strong>
 
-            <p style="color:#777;font-size:12px;margin-top:4px;">
-              ${p.data}
-            </p>
+          </div>
+
+
+          <div class="status">
+
+            <div class="status-icon">
+              👨‍🍳
+            </div>
+
+            <div>
+
+              <strong>${p.status}</strong>
+
+              <p style="
+                color:#777;
+                font-size:12px;
+              ">
+                Seu pedido está sendo preparado.
+              </p>
+
+            </div>
 
           </div>
 
-          <strong class="orange">
-            R$ ${p.total.toFixed(2).replace(".",",")}
-          </strong>
+
+          <button
+            class="btn full"
+            data-acompanhar="${p.id}">
+
+            🛵 Acompanhar entrega
+
+          </button>
 
         </div>
 
+      `;
 
-        <div class="order-status">
-
-          <div class="status-icon">
-            🛵
-          </div>
-
-          <div>
-
-            <strong>${p.status}</strong>
-
-            <p style="color:#777;font-size:12px;">
-              Seu pedido está sendo preparado.
-            </p>
-
-          </div>
-
-        </div>
+    }).join("");
 
 
-        <button class="btn full"
-          onclick="acompanharPedido(${p.id})">
+  listaPedidos
+    .querySelectorAll("[data-acompanhar]")
+    .forEach(function(btn){
 
-          🛵 Acompanhar pedido
+      btn.addEventListener(
+        "click",
+        function(){
 
-        </button>
+          mostrarEntrega(
+            Number(btn.dataset.acompanhar)
+          );
 
-      </div>
+        }
+      );
 
-    `;
-
-  }).join("");
+    });
 
 }
 
 
-/* =========================
-   ACOMPANHAR ENTREGA
-========================= */
+/* ================= ENTREGA ================= */
 
-function acompanharPedido(id){
+function mostrarEntrega(id){
 
-  const pedido = pedidos.find(function(p){
+  const pedido =
+    pedidos.find(function(p){
 
-    return p.id === id;
+      return p.id === id;
 
-  });
+    });
 
 
   if(!pedido){
-
     return;
-
   }
 
 
-  const container =
-    document.getElementById("entregaContainer");
+  document.getElementById("detalheEntrega")
+    .innerHTML = `
+
+      <div class="card">
+
+        <h3>
+          Pedido #${pedido.numero}
+        </h3>
+
+        <p style="
+          color:#777;
+          margin-top:5px;
+        ">
+          GT Delivery
+        </p>
+
+        <div class="barra">
+          <div></div>
+        </div>
 
 
-  container.innerHTML = `
+        <div class="status">
 
-    <div class="card">
+          <div class="status-icon">✅</div>
 
-      <h3>
-        Pedido #${pedido.numero}
-      </h3>
+          <div>
+            <strong>Pedido recebido</strong>
 
-      <p style="color:#777;margin-top:5px;">
-        GT Delivery
-      </p>
+            <p style="
+              color:#777;
+              font-size:12px;
+            ">
+              Pedido confirmado.
+            </p>
+          </div>
 
-      <div class="progress">
-        <div class="progress-bar"></div>
+        </div>
+
+
+        <div class="status">
+
+          <div class="status-icon">👨‍🍳</div>
+
+          <div>
+            <strong>Preparando</strong>
+
+            <p style="
+              color:#777;
+              font-size:12px;
+            ">
+              A loja está preparando seu pedido.
+            </p>
+          </div>
+
+        </div>
+
+
+        <div class="status">
+
+          <div class="status-icon">🛵</div>
+
+          <div>
+            <strong>Entregador</strong>
+
+            <p style="
+              color:#777;
+              font-size:12px;
+            ">
+              O entregador receberá o pedido.
+            </p>
+          </div>
+
+        </div>
+
+
+        <div class="status">
+
+          <div class="status-icon">🏠</div>
+
+          <div>
+            <strong>Entrega</strong>
+
+            <p style="
+              color:#777;
+              font-size:12px;
+            ">
+              ${pedido.endereco}
+            </p>
+          </div>
+
+        </div>
+
       </div>
 
-      <div class="order-status">
-
-        <div class="status-icon">
-          ✅
-        </div>
-
-        <div>
-          <strong>Pedido recebido</strong>
-          <p style="color:#777;font-size:12px;">
-            Seu pedido foi confirmado.
-          </p>
-        </div>
-
-      </div>
+    `;
 
 
-      <div class="order-status">
-
-        <div class="status-icon">
-          👨‍🍳
-        </div>
-
-        <div>
-          <strong>Preparando</strong>
-          <p style="color:#777;font-size:12px;">
-            A loja está preparando seu pedido.
-          </p>
-        </div>
-
-      </div>
-
-
-      <div class="order-status">
-
-        <div class="status-icon">
-          🛵
-        </div>
-
-        <div>
-          <strong>Entregador a caminho</strong>
-          <p style="color:#777;font-size:12px;">
-            A próxima etapa será a entrega.
-          </p>
-        </div>
-
-      </div>
-
-
-      <div class="order-status">
-
-        <div class="status-icon">
-          🏠
-        </div>
-
-        <div>
-          <strong>Entrega</strong>
-          <p style="color:#777;font-size:12px;">
-            Endereço: ${pedido.endereco}
-          </p>
-        </div>
-
-      </div>
-
-
-      <button class="btn full"
-        onclick="mostrar('pedidos')">
-
-        ← Voltar aos pedidos
-
-      </button>
-
-    </div>
-
-  `;
-
-
-  mostrar("entregador");
+  mostrarTela("entrega");
 
 }
 
 
-/* =========================
-   PERFIL
-========================= */
+/* ================= CADASTRO ================= */
 
 function abrirCadastro(){
 
-  const area =
-    document.getElementById("cadastroArea");
+  document.getElementById("areaCadastro")
+    .innerHTML = `
+
+      <div class="card">
+
+        <h3>👤 Cadastro</h3>
+
+        <label>Nome</label>
+
+        <input
+          id="cadNome"
+          value="${localStorage.getItem("gt_nome") || ""}"
+          placeholder="Seu nome"
+        >
+
+        <label>Telefone</label>
+
+        <input
+          id="cadTelefone"
+          value="${localStorage.getItem("gt_telefone") || ""}"
+          placeholder="Seu telefone"
+        >
+
+        <label>Endereço</label>
+
+        <input
+          id="cadEndereco"
+          value="${localStorage.getItem("gt_endereco") || ""}"
+          placeholder="Seu endereço"
+        >
+
+        <button
+          class="btn full"
+          id="salvarCadastro">
+
+          💾 SALVAR CADASTRO
+
+        </button>
+
+      </div>
+
+    `;
 
 
-  area.innerHTML = `
-
-    <div class="card">
-
-      <h3>👤 Cadastro</h3>
-
-      <label>Nome</label>
-
-      <input
-        id="cadNome"
-        type="text"
-        placeholder="Seu nome"
-        value="${localStorage.getItem("gtNome") || ""}"
-      >
-
-      <label>Telefone</label>
-
-      <input
-        id="cadTelefone"
-        type="tel"
-        placeholder="Seu telefone"
-      >
-
-      <label>Endereço</label>
-
-      <input
-        id="cadEndereco"
-        type="text"
-        placeholder="Seu endereço"
-      >
-
-      <button class="btn full"
-        onclick="salvarCadastro()">
-
-        💾 SALVAR CADASTRO
-
-      </button>
-
-    </div>
-
-  `;
+  document
+    .getElementById("salvarCadastro")
+    .addEventListener(
+      "click",
+      salvarCadastro
+    );
 
 }
 
@@ -2039,101 +2344,83 @@ function abrirCadastro(){
 function salvarCadastro(){
 
   const nome =
-    document.getElementById("cadNome").value.trim();
+    document.getElementById("cadNome")
+      .value.trim();
+
+  const telefone =
+    document.getElementById("cadTelefone")
+      .value.trim();
+
+  const endereco =
+    document.getElementById("cadEndereco")
+      .value.trim();
 
 
   if(!nome){
 
-    mostrarToast("⚠️ Digite seu nome.");
+    aviso("⚠️ Digite seu nome.");
 
     return;
 
   }
 
 
-  localStorage.setItem(
-    "gtNome",
-    nome
-  );
-
-
-  const telefone =
-    document.getElementById("cadTelefone").value;
-
-  const endereco =
-    document.getElementById("cadEndereco").value;
-
+  localStorage.setItem("gt_nome",nome);
 
   localStorage.setItem(
-    "gtTelefone",
+    "gt_telefone",
     telefone
   );
 
   localStorage.setItem(
-    "gtEndereco",
+    "gt_endereco",
     endereco
   );
 
 
-  atualizarPerfil();
+  renderPerfil();
 
-  mostrarToast("✅ Cadastro salvo!");
+  aviso("✅ Cadastro salvo!");
 
 }
 
 
-function atualizarPerfil(){
+/* ================= PERFIL ================= */
+
+function renderPerfil(){
 
   const nome =
-    localStorage.getItem("gtNome");
+    localStorage.getItem("gt_nome");
 
 
-  if(nome){
-
-    document.getElementById("perfilNome").innerText =
-      nome;
-
-  }
-
-  else{
-
-    document.getElementById("perfilNome").innerText =
-      "Meu perfil";
-
-  }
+  document.getElementById("nomePerfil")
+    .textContent =
+    nome || "Meu perfil";
 
 
-  document.getElementById("saldoCashback").innerText =
-    "R$ " +
-    saldoCashback.toFixed(2).replace(".",",");
+  document.getElementById("saldo")
+    .textContent =
+    dinheiro(cashback);
+
 
 }
 
 
-/* =========================
-   ROLETA
-========================= */
+/* ================= ROLETA ================= */
 
 function girarRoleta(){
 
-  if(roletaGirando){
+  if(girando){
 
     return;
 
   }
 
 
-  roletaGirando = true;
+  girando = true;
 
 
-  const roleta =
-    document.getElementById("roleta");
-
-  const resultado =
-    document.getElementById("resultadoRoleta");
-
-
-  resultado.innerHTML =
+  resultado.textContent =
     "🎰 Girando...";
 
 
@@ -2148,130 +2435,354 @@ function girarRoleta(){
 
 
   const indice =
-    Math.floor(Math.random() * premios.length);
+    Math.floor(
+      Math.random() * premios.length
+    );
 
 
   const premio =
     premios[indice];
 
 
-  const grausPorPremio = 60;
+  const giroExtra =
+    360 * 5;
 
 
-  const alvo =
-    360 * 5 +
-    (360 - indice * grausPorPremio - 30);
+  const parada =
+    360 - (indice * 60) - 30;
 
 
-  giroRoleta += alvo;
+  giro +=
+    giroExtra + parada;
 
 
   roleta.style.transform =
-    "rotate(" + giroRoleta + "deg)";
+    "rotate(" + giro + "deg)";
 
 
   setTimeout(function(){
 
-    const cashback =
-      premio / 100 * 50;
+    const valor =
+      50 * premio / 100;
 
 
-    saldoCashback += cashback;
+    cashback += valor;
+
+
+    localStorage.setItem(
+      "gt_cashback",
+      cashback
+    );
 
 
     resultado.innerHTML =
-      "🎉 Parabéns! Você ganhou " +
-      "<strong>" +
+      "🎉 Você ganhou <strong>" +
       premio +
       "% de cashback!</strong>";
 
 
-    atualizarPerfil();
+    renderPerfil();
 
 
-    roletaGirando = false;
+    girando = false;
 
 
-  },4000);
-
-}
-
-
-/* =========================
-   TOAST
-========================= */
-
-function mostrarToast(mensagem){
-
-  const toast =
-    document.getElementById("toast");
-
-
-  toast.innerText = mensagem;
-
-  toast.classList.add("show");
-
-
-  setTimeout(function(){
-
-    toast.classList.remove("show");
-
-  },2500);
+  },4100);
 
 }
 
 
-/* =========================
-   CARREGAR DADOS
-========================= */
-
-function carregarDados(){
-
-  try{
-
-    const dados =
-      localStorage.getItem("gtPedidos");
+/* ================= EVENTOS ================= */
 
 
-    if(dados){
+/* Menu */
 
-      pedidos = JSON.parse(dados);
+document
+  .getElementById("navInicio")
+  .addEventListener(
+    "click",
+    function(){
+      mostrarTela("inicio");
+    }
+  );
+
+
+document
+  .getElementById("navLoja")
+  .addEventListener(
+    "click",
+    function(){
+
+      lojaSelecionada = null;
+
+      categoriaSelecionada = "";
+
+      mostrarTela("loja");
 
     }
-
-  }
-
-  catch(e){
-
-    pedidos = [];
-
-  }
+  );
 
 
-  atualizarBadge();
+document
+  .getElementById("navCarrinho")
+  .addEventListener(
+    "click",
+    function(){
+      mostrarTela("carrinho");
+    }
+  );
 
-  atualizarPedidos();
 
-  atualizarPerfil();
+document
+  .getElementById("navPedidos")
+  .addEventListener(
+    "click",
+    function(){
+      mostrarTela("pedidos");
+    }
+  );
 
-}
+
+document
+  .getElementById("navPerfil")
+  .addEventListener(
+    "click",
+    function(){
+      mostrarTela("perfil");
+    }
+  );
 
 
-/* =========================
-   INICIALIZAÇÃO
-========================= */
+/* Perfil */
 
-document.addEventListener(
-  "DOMContentLoaded",
-  function(){
+document
+  .getElementById("btnPerfil")
+  .addEventListener(
+    "click",
+    function(){
+      mostrarTela("perfil");
+    }
+  );
 
-    carregarDados();
 
-    mostrarProdutos();
+document
+  .getElementById("btnCadastro")
+  .addEventListener(
+    "click",
+    abrirCadastro
+  );
+
+
+document
+  .getElementById("btnMeusPedidos")
+  .addEventListener(
+    "click",
+    function(){
+      mostrarTela("pedidos");
+    }
+  );
+
+
+document
+  .getElementById("btnMeuCarrinho")
+  .addEventListener(
+    "click",
+    function(){
+      mostrarTela("carrinho");
+    }
+  );
+
+
+document
+  .getElementById("btnMinhaRoleta")
+  .addEventListener(
+    "click",
+    function(){
+      mostrarTela("inicio");
+    }
+  );
+
+
+/* Busca */
+
+document
+  .getElementById("btnBusca")
+  .addEventListener(
+    "click",
+    pesquisar
+  );
+
+
+document
+  .getElementById("busca")
+  .addEventListener(
+    "keydown",
+    function(e){
+
+      if(e.key === "Enter"){
+
+        pesquisar();
+
+      }
+
+    }
+  );
+
+
+/* Roleta */
+
+document
+  .getElementById("btnRoleta")
+  .addEventListener(
+    "click",
+    girarRoleta
+  );
+
+
+/* Lojas */
+
+document
+  .querySelectorAll("[data-loja]")
+  .forEach(function(btn){
+
+    btn.addEventListener(
+      "click",
+      function(){
+
+        abrirLoja(
+          Number(btn.dataset.loja)
+        );
+
+      }
+    );
+
+  });
+
+
+/* Categorias */
+
+document
+  .querySelectorAll("[data-cat]")
+  .forEach(function(btn){
+
+    btn.addEventListener(
+      "click",
+      function(){
+
+        abrirCategoria(
+          btn.dataset.cat
+        );
+
+      }
+    );
+
+  });
+
+
+/* Ver lojas */
+
+document
+  .getElementById("verLojas")
+  .addEventListener(
+    "click",
+    function(){
+
+      lojaSelecionada = null;
+
+      categoriaSelecionada = "";
+
+      mostrarTela("loja");
+
+    }
+  );
+
+
+/* Voltar */
+
+document
+  .getElementById("voltarInicio")
+  .addEventListener(
+    "click",
+    function(){
+      mostrarTela("inicio");
+    }
+  );
+
+
+document
+  .getElementById("continuarComprando")
+  .addEventListener(
+    "click",
+    function(){
+      mostrarTela("loja");
+    }
+  );
+
+
+document
+  .getElementById("voltarCarrinho")
+  .addEventListener(
+    "click",
+    function(){
+      mostrarTela("carrinho");
+    }
+  );
+
+
+document
+  .getElementById("voltarPedidos")
+  .addEventListener(
+    "click",
+    function(){
+      mostrarTela("pedidos");
+    }
+  );
+
+
+/* Checkout */
+
+document
+  .getElementById("btnConfirmar")
+  .addEventListener(
+    "click",
+    confirmarPedido
+  );
+
+
+/* Adicionar produto */
+
+listaProdutos.addEventListener(
+  "click",
+  function(e){
+
+    const botao =
+      e.target.closest("[data-add]");
+
+
+    if(!botao){
+      return;
+    }
+
+
+    adicionar(
+      Number(botao.dataset.add)
+    );
 
   }
 );
 
+
+/* Inicialização */
+
+carregarPedidos();
+
+atualizarBadge();
+
+renderProdutos();
+
+renderPerfil();
+
+})();
 </script>
 
 </body>
