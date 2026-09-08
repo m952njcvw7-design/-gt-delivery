@@ -2408,83 +2408,95 @@ function renderPerfil(){
 
 /* ================= ROLETA ================= */
 
+let roletaGirando = false;
+
 function girarRoleta(){
 
-  if(girando){
+if(roletaGirando){
+return;
+}
 
-    return;
+/* CONTROLE: máximo 2 giros a cada 12 horas */
 
-  }
+const agora = Date.now();
 
+let giros = JSON.parse(
+localStorage.getItem("gtRoletaGiros") || "[]"
+);
 
-  girando = true;
+/* Remove giros com mais de 12 horas */
 
+giros = giros.filter(function(data){
+return agora - data < 12 * 60 * 60 * 1000;
+});
 
-  resultado.textContent =
-    "🎰 Girando...";
+/* Limite de 2 giros */
 
+if(giros.length >= 2){
 
-  const premios = [
-    2,
-    5,
-    10,
-    15,
-    20,
-    5
-  ];
+const restante =
+12 * 60 * 60 * 1000 - (agora - giros[0]);
 
+const horas =
+Math.ceil(restante / (60 * 60 * 1000));
 
-  const indice =
-    Math.floor(
-      Math.random() * premios.length
-    );
+alert(
+"🎡 Você já usou seus 2 giros.\n\n" +
+"Você poderá girar novamente em aproximadamente " +
+horas + " hora(s)."
+);
 
+return;
 
-  const premio =
-    premios[indice];
+}
 
+/* Registra o novo giro */
 
-  const giroExtra =
-    360 * 5;
+giros.push(agora);
 
+localStorage.setItem(
+"gtRoletaGiros",
+JSON.stringify(giros)
+);
 
-  const parada =
-    360 - (indice * 60) - 30;
+roletaGirando = true;
 
+const roleta =
+document.getElementById("roleta");
 
-  giro +=
-    giroExtra + parada;
+const resultado =
+document.getElementById("resultadoRoleta");
 
+resultado.innerText = "";
 
-  roleta.style.transform =
-    "rotate(" + giro + "deg)";
+const premios = [
+"🎁 Você ganhou R$ 1,00 de cashback!",
+"🎁 Você ganhou R$ 2,00 de cashback!",
+"🎉 Você ganhou R$ 5,00 de cashback!",
+"🔥 Você ganhou 10% de desconto!",
+"🎁 Você ganhou R$ 3,00 de cashback!",
+"😔 Tente novamente!"
+];
 
+const numero =
+Math.floor(Math.random() * premios.length);
 
-  setTimeout(function(){
+const giro =
+360 * 5 + (360 - numero * 60 - 30);
 
-    const valor =
-      50 * premio / 100;
+roleta.style.transform =
+"rotate(" + giro + "deg)";
 
+setTimeout(function(){
 
-    cashback += valor;
+resultado.innerText =
+premios[numero];
 
+roletaGirando = false;
 
-    localStorage.setItem(
-      "gt_cashback",
-      cashback
-    );
+},4000);
 
-
-    resultado.innerHTML =
-      "🎉 Você ganhou <strong>" +
-      premio +
-      "% de cashback!</strong>";
-
-
-    renderPerfil();
-
-
-    girando = false;
+};
 
 
   },4100);
