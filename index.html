@@ -247,6 +247,19 @@ main{
   background:#111;
 }
 
+.btn.vermelho{
+  background:#d32f2f;
+}
+
+.btn.verde{
+  background:#16833b;
+}
+
+.btn.secundario{
+  background:#eee;
+  color:#222;
+}
+
 .produtos{
   display:grid;
   grid-template-columns:repeat(2,1fr);
@@ -439,7 +452,7 @@ label{
   margin:9px 0 5px;
 }
 
-input,select{
+input,select,textarea{
   width:100%;
   border:1px solid #ddd;
   border-radius:10px;
@@ -447,6 +460,17 @@ input,select{
   font-size:14px;
   outline:none;
   background:white;
+}
+
+textarea{
+  min-height:80px;
+  resize:vertical;
+}
+
+input:focus,
+select:focus,
+textarea:focus{
+  border-color:#ff6b00;
 }
 
 .vazio{
@@ -594,6 +618,100 @@ input,select{
   display:block;
 }
 
+.admin-header{
+  background:#111;
+  color:white;
+  padding:18px;
+  border-radius:15px;
+  margin-bottom:15px;
+}
+
+.admin-header h2{
+  color:#ff9800;
+  margin-bottom:5px;
+}
+
+.admin-item{
+  background:white;
+  border-radius:14px;
+  padding:15px;
+  margin-bottom:12px;
+  box-shadow:0 2px 8px #0001;
+}
+
+.admin-item-top{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+}
+
+.admin-item h3{
+  font-size:16px;
+}
+
+.admin-item p{
+  color:#777;
+  font-size:12px;
+  margin-top:4px;
+}
+
+.pill{
+  display:inline-block;
+  padding:5px 8px;
+  border-radius:20px;
+  font-size:10px;
+  font-weight:bold;
+  background:#e8f7ed;
+  color:#16833b;
+}
+
+.pill.off{
+  background:#ffe9e9;
+  color:#c62828;
+}
+
+.admin-acoes{
+  display:flex;
+  gap:7px;
+  margin-top:12px;
+}
+
+.admin-acoes button{
+  flex:1;
+}
+
+.grade-admin{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:10px;
+}
+
+.info-box{
+  background:#fff3e8;
+  border:1px solid #ffd9bd;
+  padding:13px;
+  border-radius:11px;
+  margin-bottom:12px;
+  font-size:13px;
+}
+
+.separador{
+  height:1px;
+  background:#eee;
+  margin:18px 0;
+}
+
+.codigo{
+  background:#111;
+  color:#fff;
+  padding:12px;
+  border-radius:9px;
+  font-family:monospace;
+  font-size:12px;
+  overflow:auto;
+}
+
 @media(max-width:400px){
 
   .categorias{
@@ -612,6 +730,9 @@ input,select{
     font-size:10px;
   }
 
+  .grade-admin{
+    grid-template-columns:1fr;
+  }
 }
 </style>
 </head>
@@ -753,76 +874,17 @@ input,select{
 
 
   <div class="titulo">
+
     <h2>Lojas</h2>
 
     <button class="link" id="verLojas">
       Ver todas
     </button>
-  </div>
-
-
-  <div class="card">
-
-    <div class="loja">
-
-      <div class="loja-info">
-
-        <div class="loja-icon">🛒</div>
-
-        <div>
-          <h3>GT Supermercado</h3>
-          <p>Mercado • ⭐ 4.9 • 20-35 min</p>
-        </div>
-
-      </div>
-
-      <button class="btn" data-loja="1">
-        Ver
-      </button>
-
-    </div>
-
-
-    <div class="loja">
-
-      <div class="loja-info">
-
-        <div class="loja-icon">🍔</div>
-
-        <div>
-          <h3>GT Lanches</h3>
-          <p>Lanches • ⭐ 4.8 • 25-40 min</p>
-        </div>
-
-      </div>
-
-      <button class="btn" data-loja="2">
-        Ver
-      </button>
-
-    </div>
-
-
-    <div class="loja">
-
-      <div class="loja-info">
-
-        <div class="loja-icon">🥤</div>
-
-        <div>
-          <h3>GT Bebidas</h3>
-          <p>Bebidas • ⭐ 4.7 • 20-30 min</p>
-        </div>
-
-      </div>
-
-      <button class="btn" data-loja="3">
-        Ver
-      </button>
-
-    </div>
 
   </div>
+
+
+  <div class="card" id="listaLojas"></div>
 
 </section>
 
@@ -885,13 +947,31 @@ input,select{
   <div class="card">
 
     <label>Nome</label>
-    <input id="nome" type="text" placeholder="Seu nome">
+
+    <input
+      id="nome"
+      type="text"
+      placeholder="Seu nome"
+    >
+
 
     <label>Telefone</label>
-    <input id="telefone" type="tel" placeholder="Seu telefone">
+
+    <input
+      id="telefone"
+      type="tel"
+      placeholder="Seu telefone"
+    >
+
 
     <label>Endereço</label>
-    <input id="endereco" type="text" placeholder="Endereço de entrega">
+
+    <input
+      id="endereco"
+      type="text"
+      placeholder="Endereço de entrega"
+    >
+
 
     <label>Pagamento</label>
 
@@ -903,13 +983,14 @@ input,select{
 
     </select>
 
+
     <label>Observação</label>
 
     <input
       id="observacao"
       type="text"
       placeholder="Alguma observação?"
-    >
+    />
 
   </div>
 
@@ -991,29 +1072,138 @@ input,select{
   <div class="card">
 
     <button class="menu" id="btnCadastro">
+
       <span>👤 Cadastro</span>
+
       <span>›</span>
+
     </button>
+
 
     <button class="menu" id="btnMeusPedidos">
+
       <span>📦 Meus pedidos</span>
+
       <span>›</span>
+
     </button>
+
 
     <button class="menu" id="btnMeuCarrinho">
+
       <span>🛒 Meu carrinho</span>
+
       <span>›</span>
+
     </button>
 
+
     <button class="menu" id="btnMinhaRoleta">
+
       <span>🎰 Roleta de cashback</span>
+
       <span>›</span>
+
+    </button>
+
+
+    <!-- ÁREA EXCLUSIVA DO PROPRIETÁRIO -->
+
+    <button class="menu" id="btnProprietario">
+
+      <span>🔐 Área do proprietário</span>
+
+      <span>›</span>
+
     </button>
 
   </div>
 
 
   <div id="areaCadastro"></div>
+
+</section>
+
+
+<!-- ================= PROPRIETÁRIO ================= -->
+
+<section id="proprietario" class="tela">
+
+  <div class="admin-header">
+
+    <h2>🔐 Proprietário GT Delivery</h2>
+
+    <p>
+      Área administrativa para cadastrar e controlar
+      suas lojas parceiras.
+    </p>
+
+  </div>
+
+
+  <div class="card">
+
+    <button
+      class="btn full"
+      id="btnNovaLoja">
+
+      🏪 CADASTRAR NOVA LOJA
+
+    </button>
+
+  </div>
+
+
+  <div id="formLojaAdmin"></div>
+
+
+  <div class="titulo">
+
+    <h2>🏪 Minhas lojas</h2>
+
+  </div>
+
+
+  <div id="adminLojas"></div>
+
+
+  <div class="titulo">
+
+    <h2>📦 Produtos</h2>
+
+  </div>
+
+
+  <div class="card">
+
+    <button
+      class="btn full"
+      id="btnNovoProduto">
+
+      ➕ CADASTRAR PRODUTO
+
+    </button>
+
+  </div>
+
+
+  <div id="formProdutoAdmin"></div>
+
+
+  <div id="adminProdutos"></div>
+
+
+  <div class="card">
+
+    <button
+      class="btn preto full"
+      id="btnVoltarCliente">
+
+      ← VOLTAR PARA O GT DELIVERY
+
+    </button>
+
+  </div>
 
 </section>
 
@@ -1025,29 +1215,51 @@ input,select{
 <nav class="nav">
 
   <button class="ativo" id="navInicio">
+
     <div>🏠</div>
+
     Início
+
   </button>
+
 
   <button id="navLoja">
+
     <div>🏪</div>
+
     Lojas
+
   </button>
+
 
   <button id="navCarrinho">
+
     <div>🛒</div>
+
     Carrinho
-    <span class="badge" id="badge">0</span>
+
+    <span class="badge" id="badge">
+      0
+    </span>
+
   </button>
+
 
   <button id="navPedidos">
+
     <div>📦</div>
+
     Pedidos
+
   </button>
 
+
   <button id="navPerfil">
+
     <div>👤</div>
+
     Perfil
+
   </button>
 
 </nav>
@@ -1057,157 +1269,217 @@ input,select{
 
 
 <script>
-/* =========================================================
-   GT DELIVERY
-   JAVASCRIPT PRINCIPAL
-========================================================= */
 
 (function(){
 
 "use strict";
 
 
-/* ================= DADOS ================= */
+/* =========================================================
+   CONFIGURAÇÃO DO TESTE
+========================================================= */
 
-const produtos = [
+/*
+   SENHA TEMPORÁRIA DO PROPRIETÁRIO.
+
+   ATENÇÃO:
+   Esta senha NÃO é segura para produção.
+   Ela serve apenas para nosso teste.
+   Depois vamos trocar pelo login real do Supabase.
+*/
+
+const SENHA_PROPRIETARIO = "1234";
+
+
+/* =========================================================
+   DADOS INICIAIS
+========================================================= */
+
+const lojasPadrao = [
 
   {
     id:1,
-    nome:"Arroz 5kg",
-    preco:25.90,
+    nome:"GT Supermercado",
+    telefone:"",
+    endereco:"Tobias Barreto - SE",
     categoria:"Mercado",
-    loja:1,
-    emoji:"🍚"
+    emoji:"🛒",
+    ativa:true
   },
 
   {
     id:2,
-    nome:"Feijão 1kg",
-    preco:8.90,
-    categoria:"Mercado",
-    loja:1,
-    emoji:"🫘"
+    nome:"GT Lanches",
+    telefone:"",
+    endereco:"Tobias Barreto - SE",
+    categoria:"Comida",
+    emoji:"🍔",
+    ativa:true
   },
 
   {
     id:3,
-    nome:"Óleo de soja",
-    preco:7.50,
-    categoria:"Mercado",
-    loja:1,
-    emoji:"🫗"
-  },
-
-  {
-    id:4,
-    nome:"Açúcar 1kg",
-    preco:5.20,
-    categoria:"Mercado",
-    loja:1,
-    emoji:"🍬"
-  },
-
-  {
-    id:5,
-    nome:"Coca-Cola 2L",
-    preco:12.00,
+    nome:"GT Bebidas",
+    telefone:"",
+    endereco:"Tobias Barreto - SE",
     categoria:"Bebidas",
-    loja:3,
-    emoji:"🥤"
-  },
-
-  {
-    id:6,
-    nome:"Guaraná 2L",
-    preco:9.50,
-    categoria:"Bebidas",
-    loja:3,
-    emoji:"🥤"
-  },
-
-  {
-    id:7,
-    nome:"Hambúrguer",
-    preco:16.90,
-    categoria:"Comida",
-    loja:2,
-    emoji:"🍔"
-  },
-
-  {
-    id:8,
-    nome:"X-Bacon",
-    preco:21.90,
-    categoria:"Comida",
-    loja:2,
-    emoji:"🍔"
-  },
-
-  {
-    id:9,
-    nome:"Pizza Calabresa",
-    preco:39.90,
-    categoria:"Comida",
-    loja:2,
-    emoji:"🍕"
-  },
-
-  {
-    id:10,
-    nome:"Batata Frita",
-    preco:14.90,
-    categoria:"Comida",
-    loja:2,
-    emoji:"🍟"
-  },
-
-  {
-    id:11,
-    nome:"Pão Francês",
-    preco:0.80,
-    categoria:"Padaria",
-    loja:1,
-    emoji:"🥖"
-  },
-
-  {
-    id:12,
-    nome:"Frango",
-    preco:14.90,
-    categoria:"Açougue",
-    loja:1,
-    emoji:"🍗"
-  },
-
-  {
-    id:13,
-    nome:"Banana",
-    preco:6.90,
-    categoria:"Hortifruti",
-    loja:1,
-    emoji:"🍌"
-  },
-
-  {
-    id:14,
-    nome:"Maçã",
-    preco:8.90,
-    categoria:"Hortifruti",
-    loja:1,
-    emoji:"🍎"
+    emoji:"🥤",
+    ativa:true
   }
 
 ];
 
 
-const nomesLojas = {
-  1:"🛒 GT Supermercado",
-  2:"🍔 GT Lanches",
-  3:"🥤 GT Bebidas"
-};
+const produtosPadrao = [
+
+  {
+    id:1,
+    nome:"Arroz 5kg",
+    descricao:"Arroz branco 5kg",
+    preco:25.90,
+    categoria:"Mercado",
+    loja:1,
+    emoji:"🍚",
+    disponivel:true
+  },
+
+  {
+    id:2,
+    nome:"Feijão 1kg",
+    descricao:"Feijão carioca 1kg",
+    preco:8.90,
+    categoria:"Mercado",
+    loja:1,
+    emoji:"🫘",
+    disponivel:true
+  },
+
+  {
+    id:3,
+    nome:"Óleo de soja",
+    descricao:"Óleo de soja 900ml",
+    preco:7.50,
+    categoria:"Mercado",
+    loja:1,
+    emoji:"🫗",
+    disponivel:true
+  },
+
+  {
+    id:4,
+    nome:"Açúcar 1kg",
+    descricao:"Açúcar refinado",
+    preco:5.20,
+    categoria:"Mercado",
+    loja:1,
+    emoji:"🍬",
+    disponivel:true
+  },
+
+  {
+    id:5,
+    nome:"Coca-Cola 2L",
+    descricao:"Refrigerante Coca-Cola 2 litros",
+    preco:12.00,
+    categoria:"Bebidas",
+    loja:3,
+    emoji:"🥤",
+    disponivel:true
+  },
+
+  {
+    id:6,
+    nome:"Guaraná 2L",
+    descricao:"Refrigerante Guaraná 2 litros",
+    preco:9.50,
+    categoria:"Bebidas",
+    loja:3,
+    emoji:"🥤",
+    disponivel:true
+  },
+
+  {
+    id:7,
+    nome:"Hambúrguer",
+    descricao:"Hambúrguer artesanal",
+    preco:16.90,
+    categoria:"Comida",
+    loja:2,
+    emoji:"🍔",
+    disponivel:true
+  },
+
+  {
+    id:8,
+    nome:"X-Bacon",
+    descricao:"Hambúrguer com bacon",
+    preco:21.90,
+    categoria:"Comida",
+    loja:2,
+    emoji:"🍔",
+    disponivel:true
+  },
+
+  {
+    id:9,
+    nome:"Pizza Calabresa",
+    descricao:"Pizza de calabresa",
+    preco:39.90,
+    categoria:"Comida",
+    loja:2,
+    emoji:"🍕",
+    disponivel:true
+  },
+
+  {
+    id:10,
+    nome:"Batata Frita",
+    descricao:"Porção de batata frita",
+    preco:14.90,
+    categoria:"Comida",
+    loja:2,
+    emoji:"🍟",
+    disponivel:true
+  }
+
+];
 
 
-/* ================= ESTADO ================= */
+let lojas = JSON.parse(
+  localStorage.getItem("gt_lojas") || "null"
+);
+
+if(!lojas){
+
+  lojas = lojasPadrao;
+
+  localStorage.setItem(
+    "gt_lojas",
+    JSON.stringify(lojas)
+  );
+
+}
+
+
+let produtos = JSON.parse(
+  localStorage.getItem("gt_produtos") || "null"
+);
+
+if(!produtos){
+
+  produtos = produtosPadrao;
+
+  localStorage.setItem(
+    "gt_produtos",
+    JSON.stringify(produtos)
+  );
+
+}
+
+
+/* =========================================================
+   ESTADO
+========================================================= */
 
 let carrinho = [];
 
@@ -1221,12 +1493,12 @@ let cashback = Number(
   localStorage.getItem("gt_cashback") || 0
 );
 
-let giro = 0;
-
-let girando = false;
+let roletaGirando = false;
 
 
-/* ================= ELEMENTOS ================= */
+/* =========================================================
+   ELEMENTOS
+========================================================= */
 
 const telas =
   document.querySelectorAll(".tela");
@@ -1240,20 +1512,13 @@ const listaCarrinho =
 const listaPedidos =
   document.getElementById("listaPedidos");
 
-const roleta =
-  document.getElementById("roleta");
-
-const resultado =
-  document.getElementById("resultado");
-
-const badge =
-  document.getElementById("badge");
-
 const toast =
   document.getElementById("toast");
 
 
-/* ================= FUNÇÕES ================= */
+/* =========================================================
+   FUNÇÕES GERAIS
+========================================================= */
 
 function mostrarTela(id){
 
@@ -1274,7 +1539,8 @@ function mostrarTela(id){
   }
 
 
-  document.querySelectorAll(".nav button")
+  document
+    .querySelectorAll(".nav button")
     .forEach(function(btn){
 
       btn.classList.remove("ativo");
@@ -1299,15 +1565,22 @@ function mostrarTela(id){
 
   if(mapa[id]){
 
-    document
-      .getElementById(mapa[id])
-      .classList.add("ativo");
+    const botao =
+      document.getElementById(mapa[id]);
+
+    if(botao){
+      botao.classList.add("ativo");
+    }
 
   }
 
 
   window.scrollTo(0,0);
 
+
+  if(id === "inicio"){
+    renderLojas();
+  }
 
   if(id === "loja"){
     renderProdutos();
@@ -1329,13 +1602,19 @@ function mostrarTela(id){
     renderPerfil();
   }
 
+  if(id === "proprietario"){
+    renderAdmin();
+  }
+
 }
 
 
 function dinheiro(valor){
 
   return "R$ " +
-    Number(valor).toFixed(2).replace(".",",");
+    Number(valor)
+      .toFixed(2)
+      .replace(".",",");
 
 }
 
@@ -1368,6 +1647,9 @@ function atualizarBadge(){
     },0);
 
 
+  const badge =
+    document.getElementById("badge");
+
   badge.textContent = quantidade;
 
   badge.style.display =
@@ -1376,7 +1658,202 @@ function atualizarBadge(){
 }
 
 
-/* ================= PRODUTOS ================= */
+function salvarLojas(){
+
+  localStorage.setItem(
+    "gt_lojas",
+    JSON.stringify(lojas)
+  );
+
+}
+
+
+function salvarProdutos(){
+
+  localStorage.setItem(
+    "gt_produtos",
+    JSON.stringify(produtos)
+  );
+
+}
+
+
+function salvarPedidos(){
+
+  localStorage.setItem(
+    "gt_pedidos",
+    JSON.stringify(pedidos)
+  );
+
+}
+
+
+function carregarPedidos(){
+
+  try{
+
+    pedidos =
+      JSON.parse(
+        localStorage.getItem("gt_pedidos")
+      ) || [];
+
+  }
+
+  catch(e){
+
+    pedidos = [];
+
+  }
+
+}
+
+
+/* =========================================================
+   LOJAS DO CLIENTE
+========================================================= */
+
+function renderLojas(){
+
+  const container =
+    document.getElementById("listaLojas");
+
+
+  const ativas =
+    lojas.filter(function(loja){
+
+      return loja.ativa;
+
+    });
+
+
+  if(!ativas.length){
+
+    container.innerHTML = `
+
+      <div class="vazio">
+
+        <div>🏪</div>
+
+        <h3>Nenhuma loja disponível</h3>
+
+        <p>Volte novamente mais tarde.</p>
+
+      </div>
+
+    `;
+
+    return;
+
+  }
+
+
+  container.innerHTML =
+    ativas.map(function(loja){
+
+      return `
+
+        <div class="loja">
+
+          <div class="loja-info">
+
+            <div class="loja-icon">
+              ${loja.emoji || "🏪"}
+            </div>
+
+            <div>
+
+              <h3>
+                ${loja.nome}
+              </h3>
+
+              <p>
+                ${loja.categoria}
+                • ⭐ 4.9
+                • 20-35 min
+              </p>
+
+            </div>
+
+          </div>
+
+
+          <button
+            class="btn"
+            data-loja="${loja.id}">
+
+            Ver
+
+          </button>
+
+        </div>
+
+      `;
+
+    }).join("");
+
+
+  container
+    .querySelectorAll("[data-loja]")
+    .forEach(function(btn){
+
+      btn.addEventListener(
+        "click",
+        function(){
+
+          abrirLoja(
+            Number(btn.dataset.loja)
+          );
+
+        }
+      );
+
+    });
+
+}
+
+
+function abrirLoja(id){
+
+  const loja =
+    lojas.find(function(l){
+
+      return l.id === id;
+
+    });
+
+
+  if(!loja || !loja.ativa){
+
+    aviso("⚠️ Esta loja não está disponível.");
+
+    return;
+
+  }
+
+
+  lojaSelecionada = id;
+
+  categoriaSelecionada = "";
+
+  mostrarTela("loja");
+
+}
+
+
+function abrirCategoria(cat){
+
+  lojaSelecionada = null;
+
+  categoriaSelecionada = cat;
+
+  mostrarTela("loja");
+
+}
+
+
+/* =========================================================
+   PRODUTOS
+========================================================= */
 
 function renderProdutos(lista){
 
@@ -1385,7 +1862,11 @@ function renderProdutos(lista){
 
   if(!dados){
 
-    dados = produtos.slice();
+    dados = produtos.filter(function(p){
+
+      return p.disponivel !== false;
+
+    });
 
 
     if(lojaSelecionada){
@@ -1412,26 +1893,36 @@ function renderProdutos(lista){
   }
 
 
+  const titulo =
+    document.getElementById("tituloProdutos");
+
+
   if(lojaSelecionada){
 
-    document.getElementById("tituloProdutos")
-      .textContent =
-      nomesLojas[lojaSelecionada];
+    const loja =
+      lojas.find(function(l){
+
+        return l.id === lojaSelecionada;
+
+      });
+
+
+    titulo.textContent =
+      loja ? loja.nome : "Produtos";
 
   }
 
   else if(categoriaSelecionada){
 
-    document.getElementById("tituloProdutos")
-      .textContent =
+    titulo.textContent =
       "Produtos • " + categoriaSelecionada;
 
   }
 
   else{
 
-    document.getElementById("tituloProdutos")
-      .textContent = "Todos os produtos";
+    titulo.textContent =
+      "Todos os produtos";
 
   }
 
@@ -1440,9 +1931,13 @@ function renderProdutos(lista){
 
     listaProdutos.innerHTML = `
 
-      <div class="card vazio" style="grid-column:1/-1">
+      <div class="card vazio"
+           style="grid-column:1/-1">
+
         <div>🔎</div>
+
         <p>Nenhum produto encontrado.</p>
+
       </div>
 
     `;
@@ -1460,14 +1955,18 @@ function renderProdutos(lista){
         <article class="produto">
 
           <div class="produto-img">
-            ${p.emoji}
+            ${p.emoji || "📦"}
           </div>
 
           <div class="produto-body">
 
-            <h3>${p.nome}</h3>
+            <h3>
+              ${p.nome}
+            </h3>
 
-            <small>${p.categoria}</small>
+            <small>
+              ${p.categoria}
+            </small>
 
             <div class="preco">
               ${dinheiro(p.preco)}
@@ -1492,29 +1991,9 @@ function renderProdutos(lista){
 }
 
 
-function abrirLoja(id){
-
-  lojaSelecionada = id;
-
-  categoriaSelecionada = "";
-
-  mostrarTela("loja");
-
-}
-
-
-function abrirCategoria(cat){
-
-  lojaSelecionada = null;
-
-  categoriaSelecionada = cat;
-
-  mostrarTela("loja");
-
-}
-
-
-/* ================= BUSCA ================= */
+/* =========================================================
+   BUSCA
+========================================================= */
 
 function pesquisar(){
 
@@ -1543,6 +2022,10 @@ function pesquisar(){
   const encontrados =
     produtos.filter(function(p){
 
+      if(p.disponivel === false){
+        return false;
+      }
+
       return (
 
         p.nome
@@ -1552,6 +2035,12 @@ function pesquisar(){
         ||
 
         p.categoria
+          .toLowerCase()
+          .includes(texto)
+
+        ||
+
+        (p.descricao || "")
           .toLowerCase()
           .includes(texto)
 
@@ -1571,7 +2060,9 @@ function pesquisar(){
 }
 
 
-/* ================= CARRINHO ================= */
+/* =========================================================
+   CARRINHO
+========================================================= */
 
 function adicionar(id){
 
@@ -1584,7 +2075,18 @@ function adicionar(id){
 
 
   if(!produto){
+
     return;
+
+  }
+
+
+  if(produto.disponivel === false){
+
+    aviso("⚠️ Produto indisponível.");
+
+    return;
+
   }
 
 
@@ -1607,9 +2109,15 @@ function adicionar(id){
     carrinho.push({
 
       id:produto.id,
+
       nome:produto.nome,
+
       preco:produto.preco,
+
       emoji:produto.emoji,
+
+      loja:produto.loja,
+
       quantidade:1
 
     });
@@ -1685,7 +2193,9 @@ function renderCarrinho(){
 
         <h3>Seu carrinho está vazio</h3>
 
-        <p>Adicione produtos para fazer seu pedido.</p>
+        <p>
+          Adicione produtos para fazer seu pedido.
+        </p>
 
         <br>
 
@@ -1701,12 +2211,15 @@ function renderCarrinho(){
 
     `;
 
+
     document
       .getElementById("btnIrProdutos")
       .addEventListener(
         "click",
         function(){
+
           mostrarTela("loja");
+
         }
       );
 
@@ -1715,7 +2228,8 @@ function renderCarrinho(){
   }
 
 
-  let html = `<div class="card">`;
+  let html =
+    `<div class="card">`;
 
 
   carrinho.forEach(function(item){
@@ -1727,12 +2241,14 @@ function renderCarrinho(){
         <div class="item-esq">
 
           <div class="item-icon">
-            ${item.emoji}
+            ${item.emoji || "📦"}
           </div>
 
           <div>
 
-            <strong>${item.nome}</strong>
+            <strong>
+              ${item.nome}
+            </strong>
 
             <div>
               ${dinheiro(item.preco)}
@@ -1741,6 +2257,7 @@ function renderCarrinho(){
           </div>
 
         </div>
+
 
         <div class="quantidade">
 
@@ -1846,11 +2363,14 @@ function renderCarrinho(){
 }
 
 
-/* ================= CHECKOUT ================= */
+/* =========================================================
+   CHECKOUT
+========================================================= */
 
 function renderCheckout(){
 
-  document.getElementById("resumoCheckout")
+  document
+    .getElementById("resumoCheckout")
     .innerHTML = `
 
       <h3>Resumo do pedido</h3>
@@ -1872,24 +2392,16 @@ function renderCheckout(){
     `;
 
 
-  const nomeSalvo =
+  document.getElementById("nome").value =
     localStorage.getItem("gt_nome") || "";
 
-  const telefoneSalvo =
-    localStorage.getItem("gt_telefone") || "";
-
-  const enderecoSalvo =
-    localStorage.getItem("gt_endereco") || "";
-
-
-  document.getElementById("nome").value =
-    nomeSalvo;
 
   document.getElementById("telefone").value =
-    telefoneSalvo;
+    localStorage.getItem("gt_telefone") || "";
+
 
   document.getElementById("endereco").value =
-    enderecoSalvo;
+    localStorage.getItem("gt_endereco") || "";
 
 }
 
@@ -1930,18 +2442,49 @@ function confirmarPedido(){
 
   if(!nome || !telefone || !endereco){
 
-    aviso("⚠️ Preencha nome, telefone e endereço.");
+    aviso(
+      "⚠️ Preencha nome, telefone e endereço."
+    );
 
     return;
 
   }
 
 
-  localStorage.setItem("gt_nome",nome);
+  localStorage.setItem(
+    "gt_nome",
+    nome
+  );
 
-  localStorage.setItem("gt_telefone",telefone);
+  localStorage.setItem(
+    "gt_telefone",
+    telefone
+  );
 
-  localStorage.setItem("gt_endereco",endereco);
+  localStorage.setItem(
+    "gt_endereco",
+    endereco
+  );
+
+
+  const lojaIds = [
+    ...new Set(
+      carrinho.map(function(item){
+        return item.loja;
+      })
+    )
+  ];
+
+
+  if(lojaIds.length > 1){
+
+    aviso(
+      "⚠️ Faça um pedido por loja."
+    );
+
+    return;
+
+  }
 
 
   const pedido = {
@@ -1953,6 +2496,9 @@ function confirmarPedido(){
         1000 +
         Math.random() * 9000
       ),
+
+    loja:
+      lojaIds[0] || null,
 
     nome:nome,
 
@@ -1970,7 +2516,7 @@ function confirmarPedido(){
 
     total:totalCarrinho(),
 
-    status:"Preparando",
+    status:"Recebido",
 
     data:new Date()
       .toLocaleString("pt-BR")
@@ -1987,7 +2533,11 @@ function confirmarPedido(){
 
   atualizarBadge();
 
-  aviso("🎉 Pedido realizado com sucesso!");
+
+  aviso(
+    "🎉 Pedido realizado com sucesso!"
+  );
+
 
   mostrarTela("pedidos");
 
@@ -1996,37 +2546,9 @@ function confirmarPedido(){
 }
 
 
-/* ================= PEDIDOS ================= */
-
-function salvarPedidos(){
-
-  localStorage.setItem(
-    "gt_pedidos",
-    JSON.stringify(pedidos)
-  );
-
-}
-
-
-function carregarPedidos(){
-
-  try{
-
-    pedidos =
-      JSON.parse(
-        localStorage.getItem("gt_pedidos")
-      ) || [];
-
-  }
-
-  catch(e){
-
-    pedidos = [];
-
-  }
-
-}
-
+/* =========================================================
+   PEDIDOS
+========================================================= */
 
 function renderPedidos(){
 
@@ -2046,8 +2568,12 @@ function renderPedidos(){
 
         <br>
 
-        <button class="btn" id="fazerPedido">
+        <button
+          class="btn"
+          id="fazerPedido">
+
           Fazer pedido
+
         </button>
 
       </div>
@@ -2074,6 +2600,14 @@ function renderPedidos(){
   listaPedidos.innerHTML =
     pedidos.map(function(p){
 
+      const loja =
+        lojas.find(function(l){
+
+          return l.id === p.loja;
+
+        });
+
+
       return `
 
         <div class="card">
@@ -2095,12 +2629,21 @@ function renderPedidos(){
                 font-size:11px;
                 margin-top:4px;
               ">
+                ${loja ? loja.nome : "GT Delivery"}
+              </p>
+
+              <p style="
+                color:#777;
+                font-size:11px;
+                margin-top:4px;
+              ">
                 ${p.data}
               </p>
 
             </div>
 
-            <strong class="orange">
+
+            <strong>
               ${dinheiro(p.total)}
             </strong>
 
@@ -2110,18 +2653,20 @@ function renderPedidos(){
           <div class="status">
 
             <div class="status-icon">
-              👨‍🍳
+              ${iconeStatus(p.status)}
             </div>
 
             <div>
 
-              <strong>${p.status}</strong>
+              <strong>
+                ${p.status}
+              </strong>
 
               <p style="
                 color:#777;
                 font-size:12px;
               ">
-                Seu pedido está sendo preparado.
+                ${textoStatus(p.status)}
               </p>
 
             </div>
@@ -2133,7 +2678,7 @@ function renderPedidos(){
             class="btn full"
             data-acompanhar="${p.id}">
 
-            🛵 Acompanhar entrega
+            🛵 Acompanhar pedido
 
           </button>
 
@@ -2164,7 +2709,63 @@ function renderPedidos(){
 }
 
 
-/* ================= ENTREGA ================= */
+function iconeStatus(status){
+
+  if(status === "Recebido"){
+    return "📥";
+  }
+
+  if(status === "Aceito"){
+    return "✅";
+  }
+
+  if(status === "Preparando"){
+    return "👨‍🍳";
+  }
+
+  if(status === "Saiu para entrega"){
+    return "🛵";
+  }
+
+  if(status === "Entregue"){
+    return "🏠";
+  }
+
+  return "📦";
+
+}
+
+
+function textoStatus(status){
+
+  if(status === "Recebido"){
+    return "Seu pedido foi recebido pela loja.";
+  }
+
+  if(status === "Aceito"){
+    return "A loja aceitou seu pedido.";
+  }
+
+  if(status === "Preparando"){
+    return "A loja está preparando seu pedido.";
+  }
+
+  if(status === "Saiu para entrega"){
+    return "O entregador está a caminho.";
+  }
+
+  if(status === "Entregue"){
+    return "Pedido entregue com sucesso.";
+  }
+
+  return "Acompanhe seu pedido pelo GT Delivery.";
+
+}
+
+
+/* =========================================================
+   ENTREGA
+========================================================= */
 
 function mostrarEntrega(id){
 
@@ -2181,7 +2782,23 @@ function mostrarEntrega(id){
   }
 
 
-  document.getElementById("detalheEntrega")
+  const percentual = {
+
+    Recebido:20,
+
+    Aceito:35,
+
+    Preparando:55,
+
+    "Saiu para entrega":80,
+
+    Entregue:100
+
+  }[pedido.status] || 20;
+
+
+  document
+    .getElementById("detalheEntrega")
     .innerHTML = `
 
       <div class="card">
@@ -2197,24 +2814,33 @@ function mostrarEntrega(id){
           GT Delivery
         </p>
 
+
         <div class="barra">
-          <div></div>
+
+          <div style="
+            width:${percentual}%;
+          "></div>
+
         </div>
 
 
         <div class="status">
 
-          <div class="status-icon">✅</div>
+          <div class="status-icon">
+            ${pedido.status === "Recebido" ? "✅" : "📥"}
+          </div>
 
           <div>
+
             <strong>Pedido recebido</strong>
 
             <p style="
               color:#777;
               font-size:12px;
             ">
-              Pedido confirmado.
+              Pedido enviado para a loja.
             </p>
+
           </div>
 
         </div>
@@ -2222,17 +2848,22 @@ function mostrarEntrega(id){
 
         <div class="status">
 
-          <div class="status-icon">👨‍🍳</div>
+          <div class="status-icon">
+            👨‍🍳
+          </div>
 
           <div>
-            <strong>Preparando</strong>
+
+            <strong>Preparação</strong>
 
             <p style="
               color:#777;
               font-size:12px;
             ">
-              A loja está preparando seu pedido.
+              Status atual:
+              ${pedido.status}
             </p>
+
           </div>
 
         </div>
@@ -2240,9 +2871,12 @@ function mostrarEntrega(id){
 
         <div class="status">
 
-          <div class="status-icon">🛵</div>
+          <div class="status-icon">
+            🛵
+          </div>
 
           <div>
+
             <strong>Entregador</strong>
 
             <p style="
@@ -2251,6 +2885,7 @@ function mostrarEntrega(id){
             ">
               O entregador receberá o pedido.
             </p>
+
           </div>
 
         </div>
@@ -2258,10 +2893,13 @@ function mostrarEntrega(id){
 
         <div class="status">
 
-          <div class="status-icon">🏠</div>
+          <div class="status-icon">
+            🏠
+          </div>
 
           <div>
-            <strong>Entrega</strong>
+
+            <strong>Endereço</strong>
 
             <p style="
               color:#777;
@@ -2269,6 +2907,7 @@ function mostrarEntrega(id){
             ">
               ${pedido.endereco}
             </p>
+
           </div>
 
         </div>
@@ -2283,16 +2922,20 @@ function mostrarEntrega(id){
 }
 
 
-/* ================= CADASTRO ================= */
+/* =========================================================
+   CADASTRO DO CLIENTE
+========================================================= */
 
 function abrirCadastro(){
 
-  document.getElementById("areaCadastro")
+  document
+    .getElementById("areaCadastro")
     .innerHTML = `
 
       <div class="card">
 
-        <h3>👤 Cadastro</h3>
+        <h3>👤 Cadastro do cliente</h3>
+
 
         <label>Nome</label>
 
@@ -2302,6 +2945,7 @@ function abrirCadastro(){
           placeholder="Seu nome"
         >
 
+
         <label>Telefone</label>
 
         <input
@@ -2310,6 +2954,17 @@ function abrirCadastro(){
           placeholder="Seu telefone"
         >
 
+
+        <label>E-mail</label>
+
+        <input
+          id="cadEmail"
+          type="email"
+          value="${localStorage.getItem("gt_email") || ""}"
+          placeholder="seuemail@email.com"
+        >
+
+
         <label>Endereço</label>
 
         <input
@@ -2317,6 +2972,7 @@ function abrirCadastro(){
           value="${localStorage.getItem("gt_endereco") || ""}"
           placeholder="Seu endereço"
         >
+
 
         <button
           class="btn full"
@@ -2351,6 +3007,10 @@ function salvarCadastro(){
     document.getElementById("cadTelefone")
       .value.trim();
 
+  const email =
+    document.getElementById("cadEmail")
+      .value.trim();
+
   const endereco =
     document.getElementById("cadEndereco")
       .value.trim();
@@ -2365,11 +3025,19 @@ function salvarCadastro(){
   }
 
 
-  localStorage.setItem("gt_nome",nome);
+  localStorage.setItem(
+    "gt_nome",
+    nome
+  );
 
   localStorage.setItem(
     "gt_telefone",
     telefone
+  );
+
+  localStorage.setItem(
+    "gt_email",
+    email
   );
 
   localStorage.setItem(
@@ -2385,7 +3053,9 @@ function salvarCadastro(){
 }
 
 
-/* ================= PERFIL ================= */
+/* =========================================================
+   PERFIL
+========================================================= */
 
 function renderPerfil(){
 
@@ -2393,123 +3063,1215 @@ function renderPerfil(){
     localStorage.getItem("gt_nome");
 
 
-  document.getElementById("nomePerfil")
+  document
+    .getElementById("nomePerfil")
     .textContent =
     nome || "Meu perfil";
 
 
-  document.getElementById("saldo")
+  document
+    .getElementById("saldo")
     .textContent =
     dinheiro(cashback);
 
-
 }
 
 
-/* ================= ROLETA ================= */
-
-let roletaGirando = false;
+/* =========================================================
+   ROLETA
+========================================================= */
 
 function girarRoleta(){
 
-if(roletaGirando){
-return;
+  if(roletaGirando){
+    return;
+  }
+
+
+  const agora =
+    Date.now();
+
+
+  let giros =
+    JSON.parse(
+      localStorage.getItem("gtRoletaGiros") || "[]"
+    );
+
+
+  giros =
+    giros.filter(function(data){
+
+      return agora - data <
+        12 * 60 * 60 * 1000;
+
+    });
+
+
+  if(giros.length >= 2){
+
+    aviso(
+      "🎡 Você já usou seus 2 giros."
+    );
+
+    return;
+
+  }
+
+
+  giros.push(agora);
+
+
+  localStorage.setItem(
+    "gtRoletaGiros",
+    JSON.stringify(giros)
+  );
+
+
+  roletaGirando = true;
+
+
+  const roleta =
+    document.getElementById("roleta");
+
+
+  const resultado =
+    document.getElementById("resultado");
+
+
+  resultado.textContent =
+    "Girando... 🎰";
+
+
+  const premios = [
+
+    {
+      texto:"🎁 Você ganhou R$ 1,00 de cashback!",
+      valor:1
+    },
+
+    {
+      texto:"🎁 Você ganhou R$ 2,00 de cashback!",
+      valor:2
+    },
+
+    {
+      texto:"🎉 Você ganhou R$ 5,00 de cashback!",
+      valor:5
+    },
+
+    {
+      texto:"🔥 Você ganhou R$ 3,00 de cashback!",
+      valor:3
+    },
+
+    {
+      texto:"🎁 Você ganhou R$ 1,00 de cashback!",
+      valor:1
+    },
+
+    {
+      texto:"😔 Tente novamente!",
+      valor:0
+    }
+
+  ];
+
+
+  const numero =
+    Math.floor(
+      Math.random() *
+      premios.length
+    );
+
+
+  const giro =
+    360 * 5 +
+    (360 - numero * 60 - 30);
+
+
+  roleta.style.transform =
+    "rotate(" + giro + "deg)";
+
+
+  setTimeout(function(){
+
+    const premio =
+      premios[numero];
+
+
+    resultado.textContent =
+      premio.texto;
+
+
+    if(premio.valor > 0){
+
+      cashback += premio.valor;
+
+
+      localStorage.setItem(
+        "gt_cashback",
+        cashback
+      );
+
+    }
+
+
+    roletaGirando = false;
+
+    renderPerfil();
+
+  },4000);
+
 }
 
-/* CONTROLE: máximo 2 giros a cada 12 horas */
 
-const agora = Date.now();
+/* =========================================================
+   ÁREA DO PROPRIETÁRIO
+========================================================= */
 
-let giros = JSON.parse(
-localStorage.getItem("gtRoletaGiros") || "[]"
-);
+function entrarProprietario(){
 
-/* Remove giros com mais de 12 horas */
+  const senha =
+    prompt(
+      "🔐 Digite a senha do proprietário:"
+    );
 
-giros = giros.filter(function(data){
-return agora - data < 12 * 60 * 60 * 1000;
-});
 
-/* Limite de 2 giros */
+  if(senha !== SENHA_PROPRIETARIO){
 
-if(giros.length >= 2){
+    aviso(
+      "❌ Senha incorreta."
+    );
 
-const restante =
-12 * 60 * 60 * 1000 - (agora - giros[0]);
+    return;
 
-const horas =
-Math.ceil(restante / (60 * 60 * 1000));
+  }
 
-alert(
-"🎡 Você já usou seus 2 giros.\n\n" +
-"Você poderá girar novamente em aproximadamente " +
-horas + " hora(s)."
-);
 
-return;
+  mostrarTela("proprietario");
 
 }
 
-/* Registra o novo giro */
 
-giros.push(agora);
+/* =========================================================
+   FORMULÁRIO DE LOJA
+========================================================= */
 
-localStorage.setItem(
-"gtRoletaGiros",
-JSON.stringify(giros)
-);
+function abrirFormularioLoja(){
 
-roletaGirando = true;
+  document
+    .getElementById("formLojaAdmin")
+    .innerHTML = `
 
-const roleta =
-document.getElementById("roleta");
+      <div class="card">
 
-const resultado =
-document.getElementById("resultadoRoleta");
-
-resultado.innerText = "";
-
-const premios = [
-"🎁 Você ganhou R$ 1,00 de cashback!",
-"🎁 Você ganhou R$ 2,00 de cashback!",
-"🎉 Você ganhou R$ 5,00 de cashback!",
-"🔥 Você ganhou 10% de desconto!",
-"🎁 Você ganhou R$ 3,00 de cashback!",
-"😔 Tente novamente!"
-];
-
-const numero =
-Math.floor(Math.random() * premios.length);
-
-const giro =
-360 * 5 + (360 - numero * 60 - 30);
-
-roleta.style.transform =
-"rotate(" + giro + "deg)";
-
-setTimeout(function(){
-
-resultado.innerText =
-premios[numero];
-
-roletaGirando = false;
-
-},4000);
-
-};
+        <h3>🏪 Nova loja</h3>
 
 
-/* ================= EVENTOS ================= */
+        <label>Nome da loja</label>
+
+        <input
+          id="novaLojaNome"
+          placeholder="Ex.: Supermercado Val Bença"
+        >
 
 
-/* Menu */
+        <label>Telefone / WhatsApp</label>
+
+        <input
+          id="novaLojaTelefone"
+          type="tel"
+          placeholder="(79) 99999-9999"
+        >
+
+
+        <label>Endereço</label>
+
+        <input
+          id="novaLojaEndereco"
+          placeholder="Rua, número e bairro"
+        >
+
+
+        <label>Categoria</label>
+
+        <select id="novaLojaCategoria">
+
+          <option value="Mercado">
+            Mercado
+          </option>
+
+          <option value="Comida">
+            Comida
+          </option>
+
+          <option value="Bebidas">
+            Bebidas
+          </option>
+
+          <option value="Farmácia">
+            Farmácia
+          </option>
+
+          <option value="Padaria">
+            Padaria
+          </option>
+
+          <option value="Açougue">
+            Açougue
+          </option>
+
+          <option value="Hortifruti">
+            Hortifruti
+          </option>
+
+          <option value="Outros">
+            Outros
+          </option>
+
+        </select>
+
+
+        <label>Ícone</label>
+
+        <select id="novaLojaEmoji">
+
+          <option value="🛒">🛒 Mercado</option>
+          <option value="🍔">🍔 Comida</option>
+          <option value="🥤">🥤 Bebidas</option>
+          <option value="💊">💊 Farmácia</option>
+          <option value="🥖">🥖 Padaria</option>
+          <option value="🥩">🥩 Açougue</option>
+          <option value="🥬">🥬 Hortifruti</option>
+          <option value="📦">📦 Outros</option>
+
+        </select>
+
+
+        <br>
+
+
+        <button
+          class="btn full"
+          id="salvarNovaLoja">
+
+          ✅ CADASTRAR LOJA
+
+        </button>
+
+
+        <br><br>
+
+
+        <button
+          class="btn secundario full"
+          id="cancelarNovaLoja">
+
+          Cancelar
+
+        </button>
+
+      </div>
+
+    `;
+
+
+  document
+    .getElementById("salvarNovaLoja")
+    .addEventListener(
+      "click",
+      salvarNovaLoja
+    );
+
+
+  document
+    .getElementById("cancelarNovaLoja")
+    .addEventListener(
+      "click",
+      function(){
+
+        document
+          .getElementById("formLojaAdmin")
+          .innerHTML = "";
+
+      }
+    );
+
+}
+
+
+function salvarNovaLoja(){
+
+  const nome =
+    document
+      .getElementById("novaLojaNome")
+      .value.trim();
+
+
+  const telefone =
+    document
+      .getElementById("novaLojaTelefone")
+      .value.trim();
+
+
+  const endereco =
+    document
+      .getElementById("novaLojaEndereco")
+      .value.trim();
+
+
+  const categoria =
+    document
+      .getElementById("novaLojaCategoria")
+      .value;
+
+
+  const emoji =
+    document
+      .getElementById("novaLojaEmoji")
+      .value;
+
+
+  if(!nome){
+
+    aviso(
+      "⚠️ Digite o nome da loja."
+    );
+
+    return;
+
+  }
+
+
+  const novaLoja = {
+
+    id:Date.now(),
+
+    nome:nome,
+
+    telefone:telefone,
+
+    endereco:endereco,
+
+    categoria:categoria,
+
+    emoji:emoji,
+
+    ativa:true
+
+  };
+
+
+  lojas.push(novaLoja);
+
+  salvarLojas();
+
+
+  document
+    .getElementById("formLojaAdmin")
+    .innerHTML = "";
+
+
+  renderAdmin();
+
+  renderLojas();
+
+
+  aviso(
+    "✅ Loja cadastrada com sucesso!"
+  );
+
+}
+
+
+/* =========================================================
+   LISTA ADMINISTRATIVA DE LOJAS
+========================================================= */
+
+function renderAdminLojas(){
+
+  const container =
+    document.getElementById("adminLojas");
+
+
+  if(!lojas.length){
+
+    container.innerHTML = `
+
+      <div class="card vazio">
+
+        <div>🏪</div>
+
+        <p>Nenhuma loja cadastrada.</p>
+
+      </div>
+
+    `;
+
+    return;
+
+  }
+
+
+  container.innerHTML =
+    lojas.map(function(loja){
+
+      return `
+
+        <div class="admin-item">
+
+          <div class="admin-item-top">
+
+            <div>
+
+              <h3>
+                ${loja.emoji || "🏪"}
+                ${loja.nome}
+              </h3>
+
+              <p>
+                ${loja.categoria}
+              </p>
+
+            </div>
+
+
+            <span class="
+              pill
+              ${loja.ativa ? "" : "off"}
+            ">
+
+              ${loja.ativa ? "ATIVA" : "INATIVA"}
+
+            </span>
+
+          </div>
+
+
+          <p>
+            📍 ${loja.endereco || "Sem endereço"}
+          </p>
+
+
+          <p>
+            📞 ${loja.telefone || "Sem telefone"}
+          </p>
+
+
+          <div class="admin-acoes">
+
+            <button
+              class="btn"
+              data-toggle-loja="${loja.id}">
+
+              ${loja.ativa ? "Desativar" : "Ativar"}
+
+            </button>
+
+
+            <button
+              class="btn vermelho"
+              data-excluir-loja="${loja.id}">
+
+              Excluir
+
+            </button>
+
+          </div>
+
+        </div>
+
+      `;
+
+    }).join("");
+
+
+  container
+    .querySelectorAll("[data-toggle-loja]")
+    .forEach(function(btn){
+
+      btn.addEventListener(
+        "click",
+        function(){
+
+          alternarLoja(
+            Number(btn.dataset.toggleLoja)
+          );
+
+        }
+      );
+
+    });
+
+
+  container
+    .querySelectorAll("[data-excluir-loja]")
+    .forEach(function(btn){
+
+      btn.addEventListener(
+        "click",
+        function(){
+
+          excluirLoja(
+            Number(btn.dataset.excluirLoja)
+          );
+
+        }
+      );
+
+    });
+
+}
+
+
+function alternarLoja(id){
+
+  const loja =
+    lojas.find(function(l){
+
+      return l.id === id;
+
+    });
+
+
+  if(!loja){
+    return;
+  }
+
+
+  loja.ativa =
+    !loja.ativa;
+
+
+  salvarLojas();
+
+  renderAdmin();
+
+  renderLojas();
+
+
+  aviso(
+    loja.ativa
+      ? "🟢 Loja ativada."
+      : "🔴 Loja desativada."
+  );
+
+}
+
+
+function excluirLoja(id){
+
+  const loja =
+    lojas.find(function(l){
+
+      return l.id === id;
+
+    });
+
+
+  if(!loja){
+    return;
+  }
+
+
+  const confirmou =
+    confirm(
+      "Excluir a loja " +
+      loja.nome +
+      "?"
+    );
+
+
+  if(!confirmou){
+    return;
+  }
+
+
+  lojas =
+    lojas.filter(function(l){
+
+      return l.id !== id;
+
+    });
+
+
+  produtos =
+    produtos.filter(function(p){
+
+      return p.loja !== id;
+
+    });
+
+
+  salvarLojas();
+
+  salvarProdutos();
+
+  renderAdmin();
+
+  renderLojas();
+
+
+  aviso(
+    "🗑️ Loja excluída."
+  );
+
+}
+
+
+/* =========================================================
+   FORMULÁRIO DE PRODUTO
+========================================================= */
+
+function abrirFormularioProduto(){
+
+  if(!lojas.length){
+
+    aviso(
+      "⚠️ Cadastre uma loja primeiro."
+    );
+
+    return;
+
+  }
+
+
+  const opcoesLojas =
+    lojas.map(function(loja){
+
+      return `
+
+        <option value="${loja.id}">
+          ${loja.nome}
+        </option>
+
+      `;
+
+    }).join("");
+
+
+  document
+    .getElementById("formProdutoAdmin")
+    .innerHTML = `
+
+      <div class="card">
+
+        <h3>📦 Novo produto</h3>
+
+
+        <label>Loja</label>
+
+        <select id="novoProdutoLoja">
+
+          ${opcoesLojas}
+
+        </select>
+
+
+        <label>Nome do produto</label>
+
+        <input
+          id="novoProdutoNome"
+          placeholder="Ex.: Arroz 5kg"
+        >
+
+
+        <label>Descrição</label>
+
+        <textarea
+          id="novoProdutoDescricao"
+          placeholder="Descrição do produto"
+        ></textarea>
+
+
+        <label>Preço</label>
+
+        <input
+          id="novoProdutoPreco"
+          type="number"
+          step="0.01"
+          min="0"
+          placeholder="25.90"
+        >
+
+
+        <label>Categoria</label>
+
+        <select id="novoProdutoCategoria">
+
+          <option value="Mercado">
+            Mercado
+          </option>
+
+          <option value="Comida">
+            Comida
+          </option>
+
+          <option value="Bebidas">
+            Bebidas
+          </option>
+
+          <option value="Farmácia">
+            Farmácia
+          </option>
+
+          <option value="Padaria">
+            Padaria
+          </option>
+
+          <option value="Açougue">
+            Açougue
+          </option>
+
+          <option value="Hortifruti">
+            Hortifruti
+          </option>
+
+          <option value="Outros">
+            Outros
+          </option>
+
+        </select>
+
+
+        <label>Ícone do produto</label>
+
+        <select id="novoProdutoEmoji">
+
+          <option value="📦">📦 Produto</option>
+          <option value="🍚">🍚 Arroz</option>
+          <option value="🫘">🫘 Feijão</option>
+          <option value="🥤">🥤 Bebida</option>
+          <option value="🍔">🍔 Hambúrguer</option>
+          <option value="🍕">🍕 Pizza</option>
+          <option value="🍗">🍗 Frango</option>
+          <option value="🥖">🥖 Pão</option>
+          <option value="🍎">🍎 Fruta</option>
+          <option value="🥩">🥩 Carne</option>
+
+        </select>
+
+
+        <br>
+
+
+        <button
+          class="btn full"
+          id="salvarNovoProduto">
+
+          ✅ CADASTRAR PRODUTO
+
+        </button>
+
+
+        <br><br>
+
+
+        <button
+          class="btn secundario full"
+          id="cancelarNovoProduto">
+
+          Cancelar
+
+        </button>
+
+      </div>
+
+    `;
+
+
+  document
+    .getElementById("salvarNovoProduto")
+    .addEventListener(
+      "click",
+      salvarNovoProduto
+    );
+
+
+  document
+    .getElementById("cancelarNovoProduto")
+    .addEventListener(
+      "click",
+      function(){
+
+        document
+          .getElementById("formProdutoAdmin")
+          .innerHTML = "";
+
+      }
+    );
+
+}
+
+
+function salvarNovoProduto(){
+
+  const loja =
+    Number(
+      document
+        .getElementById("novoProdutoLoja")
+        .value
+    );
+
+
+  const nome =
+    document
+      .getElementById("novoProdutoNome")
+      .value.trim();
+
+
+  const descricao =
+    document
+      .getElementById("novoProdutoDescricao")
+      .value.trim();
+
+
+  const preco =
+    Number(
+      document
+        .getElementById("novoProdutoPreco")
+        .value
+    );
+
+
+  const categoria =
+    document
+      .getElementById("novoProdutoCategoria")
+      .value;
+
+
+  const emoji =
+    document
+      .getElementById("novoProdutoEmoji")
+      .value;
+
+
+  if(!nome){
+
+    aviso(
+      "⚠️ Digite o nome do produto."
+    );
+
+    return;
+
+  }
+
+
+  if(!preco || preco <= 0){
+
+    aviso(
+      "⚠️ Informe um preço válido."
+    );
+
+    return;
+
+  }
+
+
+  const novoProduto = {
+
+    id:Date.now(),
+
+    loja:loja,
+
+    nome:nome,
+
+    descricao:descricao,
+
+    preco:preco,
+
+    categoria:categoria,
+
+    emoji:emoji,
+
+    disponivel:true
+
+  };
+
+
+  produtos.push(novoProduto);
+
+  salvarProdutos();
+
+
+  document
+    .getElementById("formProdutoAdmin")
+    .innerHTML = "";
+
+
+  renderAdmin();
+
+
+  aviso(
+    "✅ Produto cadastrado!"
+  );
+
+}
+
+
+/* =========================================================
+   PRODUTOS DO ADMIN
+========================================================= */
+
+function renderAdminProdutos(){
+
+  const container =
+    document.getElementById("adminProdutos");
+
+
+  if(!produtos.length){
+
+    container.innerHTML = `
+
+      <div class="card vazio">
+
+        <div>📦</div>
+
+        <p>Nenhum produto cadastrado.</p>
+
+      </div>
+
+    `;
+
+    return;
+
+  }
+
+
+  container.innerHTML =
+    produtos.map(function(produto){
+
+      const loja =
+        lojas.find(function(l){
+
+          return l.id === produto.loja;
+
+        });
+
+
+      return `
+
+        <div class="admin-item">
+
+          <div class="admin-item-top">
+
+            <div>
+
+              <h3>
+                ${produto.emoji || "📦"}
+                ${produto.nome}
+              </h3>
+
+              <p>
+                ${loja
+                  ? loja.nome
+                  : "Loja não encontrada"}
+              </p>
+
+            </div>
+
+
+            <strong>
+              ${dinheiro(produto.preco)}
+            </strong>
+
+          </div>
+
+
+          <p>
+            ${produto.descricao || "Sem descrição"}
+          </p>
+
+
+          <p>
+            Categoria: ${produto.categoria}
+          </p>
+
+
+          <div class="admin-acoes">
+
+            <button
+              class="btn"
+              data-toggle-produto="${produto.id}">
+
+              ${produto.disponivel
+                ? "Indisponibilizar"
+                : "Disponibilizar"}
+
+            </button>
+
+
+            <button
+              class="btn vermelho"
+              data-excluir-produto="${produto.id}">
+
+              Excluir
+
+            </button>
+
+          </div>
+
+        </div>
+
+      `;
+
+    }).join("");
+
+
+  container
+    .querySelectorAll("[data-toggle-produto]")
+    .forEach(function(btn){
+
+      btn.addEventListener(
+        "click",
+        function(){
+
+          alternarProduto(
+            Number(btn.dataset.toggleProduto)
+          );
+
+        }
+      );
+
+    });
+
+
+  container
+    .querySelectorAll("[data-excluir-produto]")
+    .forEach(function(btn){
+
+      btn.addEventListener(
+        "click",
+        function(){
+
+          excluirProduto(
+            Number(btn.dataset.excluirProduto)
+          );
+
+        }
+      );
+
+    });
+
+}
+
+
+function alternarProduto(id){
+
+  const produto =
+    produtos.find(function(p){
+
+      return p.id === id;
+
+    });
+
+
+  if(!produto){
+    return;
+  }
+
+
+  produto.disponivel =
+    !produto.disponivel;
+
+
+  salvarProdutos();
+
+  renderAdmin();
+
+  renderProdutos();
+
+
+  aviso(
+    produto.disponivel
+      ? "🟢 Produto disponível."
+      : "🔴 Produto indisponível."
+  );
+
+}
+
+
+function excluirProduto(id){
+
+  const produto =
+    produtos.find(function(p){
+
+      return p.id === id;
+
+    });
+
+
+  if(!produto){
+    return;
+  }
+
+
+  const confirmou =
+    confirm(
+      "Excluir o produto " +
+      produto.nome +
+      "?"
+    );
+
+
+  if(!confirmou){
+    return;
+  }
+
+
+  produtos =
+    produtos.filter(function(p){
+
+      return p.id !== id;
+
+    });
+
+
+  salvarProdutos();
+
+  renderAdmin();
+
+  renderProdutos();
+
+
+  aviso(
+    "🗑️ Produto excluído."
+  );
+
+}
+
+
+/* =========================================================
+   PAINEL ADMIN
+========================================================= */
+
+function renderAdmin(){
+
+  renderAdminLojas();
+
+  renderAdminProdutos();
+
+}
+
+
+/* =========================================================
+   EVENTOS
+========================================================= */
+
+/* Menu inferior */
 
 document
   .getElementById("navInicio")
   .addEventListener(
     "click",
     function(){
+
+      lojaSelecionada = null;
+
+      categoriaSelecionada = "";
+
       mostrarTela("inicio");
+
     }
   );
 
@@ -2535,7 +4297,9 @@ document
   .addEventListener(
     "click",
     function(){
+
       mostrarTela("carrinho");
+
     }
   );
 
@@ -2545,7 +4309,9 @@ document
   .addEventListener(
     "click",
     function(){
+
       mostrarTela("pedidos");
+
     }
   );
 
@@ -2555,7 +4321,9 @@ document
   .addEventListener(
     "click",
     function(){
+
       mostrarTela("perfil");
+
     }
   );
 
@@ -2567,7 +4335,9 @@ document
   .addEventListener(
     "click",
     function(){
+
       mostrarTela("perfil");
+
     }
   );
 
@@ -2585,7 +4355,9 @@ document
   .addEventListener(
     "click",
     function(){
+
       mostrarTela("pedidos");
+
     }
   );
 
@@ -2595,7 +4367,9 @@ document
   .addEventListener(
     "click",
     function(){
+
       mostrarTela("carrinho");
+
     }
   );
 
@@ -2605,8 +4379,18 @@ document
   .addEventListener(
     "click",
     function(){
+
       mostrarTela("inicio");
+
     }
+  );
+
+
+document
+  .getElementById("btnProprietario")
+  .addEventListener(
+    "click",
+    entrarProprietario
   );
 
 
@@ -2644,26 +4428,6 @@ document
     "click",
     girarRoleta
   );
-
-
-/* Lojas */
-
-document
-  .querySelectorAll("[data-loja]")
-  .forEach(function(btn){
-
-    btn.addEventListener(
-      "click",
-      function(){
-
-        abrirLoja(
-          Number(btn.dataset.loja)
-        );
-
-      }
-    );
-
-  });
 
 
 /* Categorias */
@@ -2711,7 +4475,9 @@ document
   .addEventListener(
     "click",
     function(){
+
       mostrarTela("inicio");
+
     }
   );
 
@@ -2721,7 +4487,9 @@ document
   .addEventListener(
     "click",
     function(){
+
       mostrarTela("loja");
+
     }
   );
 
@@ -2731,7 +4499,9 @@ document
   .addEventListener(
     "click",
     function(){
+
       mostrarTela("carrinho");
+
     }
   );
 
@@ -2741,7 +4511,9 @@ document
   .addEventListener(
     "click",
     function(){
+
       mostrarTela("pedidos");
+
     }
   );
 
@@ -2756,7 +4528,7 @@ document
   );
 
 
-/* Adicionar produto */
+/* Produtos */
 
 listaProdutos.addEventListener(
   "click",
@@ -2779,17 +4551,52 @@ listaProdutos.addEventListener(
 );
 
 
-/* Inicialização */
+/* Proprietário */
+
+document
+  .getElementById("btnNovaLoja")
+  .addEventListener(
+    "click",
+    abrirFormularioLoja
+  );
+
+
+document
+  .getElementById("btnNovoProduto")
+  .addEventListener(
+    "click",
+    abrirFormularioProduto
+  );
+
+
+document
+  .getElementById("btnVoltarCliente")
+  .addEventListener(
+    "click",
+    function(){
+
+      mostrarTela("inicio");
+
+    }
+  );
+
+
+/* =========================================================
+   INICIALIZAÇÃO
+========================================================= */
 
 carregarPedidos();
 
 atualizarBadge();
+
+renderLojas();
 
 renderProdutos();
 
 renderPerfil();
 
 })();
+
 </script>
 
 </body>
