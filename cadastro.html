@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Cadastro - GT Delivery</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: #f5f5f5;
+      color: #222;
+    }
+
+    header {
+      background: #ff6b00;
+      color: white;
+      padding: 18px 20px;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 25px;
+      margin-bottom: 5px;
+    }
+
+    header p {
+      font-size: 14px;
+      opacity: 0.95;
+    }
+
+    .container {
+      max-width: 500px;
+      margin: 25px auto;
+      padding: 0 15px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 15px;
+      padding: 22px;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+    }
+
+    .card h2 {
+      text-align: center;
+      margin-bottom: 8px;
+      color: #222;
+    }
+
+    .subtitulo {
+      text-align: center;
+      color: #777;
+      font-size: 14px;
+      margin-bottom: 22px;
+    }
+
+    label {
+      display: block;
+      font-weight: bold;
+      font-size: 14px;
+      margin: 14px 0 6px;
+    }
+
+    input {
+      width: 100%;
+      padding: 13px;
+      border: 1px solid #ddd;
+      border-radius: 9px;
+      font-size: 16px;
+      outline: none;
+      background: #fff;
+    }
+
+    input:focus {
+      border-color: #ff6b00;
+      box-shadow: 0 0 0 2px rgba(255,107,0,0.12);
+    }
+
+    .senha-area {
+      position: relative;
+    }
+
+    .senha-area input {
+      padding-right: 60px;
+    }
+
+    .mostrar-senha {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      border: none;
+      background: none;
+      color: #ff6b00;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .botao {
+      width: 100%;
+      border: none;
+      background: #ff6b00;
+      color: white;
+      padding: 15px;
+      border-radius: 10px;
+      font-size: 17px;
+      font-weight: bold;
+      margin-top: 22px;
+      cursor: pointer;
+    }
+
+    .botao:active {
+      transform: scale(0.98);
+    }
+
+    .login {
+      text-align: center;
+      margin-top: 18px;
+      font-size: 14px;
+      color: #666;
+    }
+
+    .login button {
+      border: none;
+      background: none;
+      color: #ff6b00;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .mensagem {
+      display: none;
+      margin-top: 15px;
+      padding: 12px;
+      border-radius: 8px;
+      text-align: center;
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    .sucesso {
+      background: #e7f8ed;
+      color: #16833b;
+    }
+
+    .erro {
+      background: #ffe9e9;
+      color: #c62828;
+    }
+
+    .voltar {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .voltar button {
+      border: none;
+      background: transparent;
+      color: #555;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        margin-top: 15px;
+      }
+
+      .card {
+        padding: 18px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1>GT Delivery</h1>
+    <p>Seu delivery de confiança</p>
+  </header>
+
+  <main class="container">
+
+    <section class="card">
+
+      <h2>Criar minha conta</h2>
+
+      <p class="subtitulo">
+        Cadastre-se para fazer seus pedidos no GT Delivery
+      </p>
+
+      <form id="formCadastro">
+
+        <label for="nome">Nome completo</label>
+        <input
+          type="text"
+          id="nome"
+          placeholder="Digite seu nome"
+          autocomplete="name"
+          required
+        >
+
+        <label for="telefone">Telefone / WhatsApp</label>
+        <input
+          type="tel"
+          id="telefone"
+          placeholder="(79) 99999-9999"
+          autocomplete="tel"
+          required
+        >
+
+        <label for="email">E-mail</label>
+        <input
+          type="email"
+          id="email"
+          placeholder="seuemail@email.com"
+          autocomplete="email"
+          required
+        >
+
+        <label for="senha">Senha</label>
+
+        <div class="senha-area">
+          <input
+            type="password"
+            id="senha"
+            placeholder="Crie uma senha"
+            autocomplete="new-password"
+            minlength="6"
+            required
+          >
+
+          <button
+            type="button"
+            class="mostrar-senha"
+            onclick="mostrarSenha()"
+          >
+            Ver
+          </button>
+        </div>
+
+        <label for="endereco">Endereço</label>
+        <input
+          type="text"
+          id="endereco"
+          placeholder="Rua, avenida..."
+          autocomplete="street-address"
+          required
+        >
+
+        <label for="numero">Número</label>
+        <input
+          type="text"
+          id="numero"
+          placeholder="Número da residência"
+          required
+        >
+
+        <label for="bairro">Bairro</label>
+        <input
+          type="text"
+          id="bairro"
+          placeholder="Seu bairro"
+          required
+        >
+
+        <label for="cidade">Cidade</label>
+        <input
+          type="text"
+          id="cidade"
+          value="Tobias Barreto"
+          required
+        >
+
+        <label for="cep">CEP</label>
+        <input
+          type="text"
+          id="cep"
+          placeholder="49300-000"
+          inputmode="numeric"
+          required
+        >
+
+        <button type="submit" class="botao">
+          Criar minha conta
+        </button>
+
+      </form>
+
+      <div id="mensagem" class="mensagem"></div>
+
+      <div class="login">
+        Já possui uma conta?
+        <button type="button" onclick="irParaLogin()">
+          Entrar
+        </button>
+      </div>
+
+      <div class="voltar">
+        <button type="button" onclick="voltarInicio()">
+          ← Voltar para o início
+        </button>
+      </div>
+
+    </section>
+
+  </main>
+
+  <script>
+
+    function mostrarSenha() {
+
+      const senha = document.getElementById("senha");
+      const botao = document.querySelector(".mostrar-senha");
+
+      if (senha.type === "password") {
+        senha.type = "text";
+        botao.textContent = "Ocultar";
+      } else {
+        senha.type = "password";
+        botao.textContent = "Ver";
+      }
+    }
+
+
+    document
+      .getElementById("formCadastro")
+      .addEventListener("submit", function(event) {
+
+        event.preventDefault();
+
+        const nome = document.getElementById("nome").value.trim();
+        const telefone = document.getElementById("telefone").value.trim();
+        const email = document.getElementById("email").value.trim();
+        const senha = document.getElementById("senha").value;
+        const endereco = document.getElementById("endereco").value.trim();
+        const numero = document.getElementById("numero").value.trim();
+        const bairro = document.getElementById("bairro").value.trim();
+        const cidade = document.getElementById("cidade").value.trim();
+        const cep = document.getElementById("cep").value.trim();
+
+        const mensagem = document.getElementById("mensagem");
+
+
+        if (senha.length < 6) {
+
+          mensagem.className = "mensagem erro";
+          mensagem.style.display = "block";
+          mensagem.textContent =
+            "A senha precisa ter pelo menos 6 caracteres.";
+
+          return;
+        }
+
+
+        const cliente = {
+          nome: nome,
+          telefone: telefone,
+          email: email,
+          senha: senha,
+          endereco: endereco,
+          numero: numero,
+          bairro: bairro,
+          cidade: cidade,
+          cep: cep
+        };
+
+
+        localStorage.setItem(
+          "clienteGTDelivery",
+          JSON.stringify(cliente)
+        );
+
+
+        mensagem.className = "mensagem sucesso";
+        mensagem.style.display = "block";
+
+        mensagem.textContent =
+          "✅ Cadastro realizado com sucesso!";
+
+
+        document.getElementById("formCadastro").reset();
+
+        document.getElementById("cidade").value =
+          "Tobias Barreto";
+
+
+        setTimeout(function() {
+
+          window.location.href = "index.html";
+
+        }, 1500);
+
+      });
+
+
+    function irParaLogin() {
+
+      alert(
+        "A tela de login será conectada ao cadastro do cliente."
+      );
+
+    }
+
+
+    function voltarInicio() {
+
+      window.location.href = "index.html";
+
+    }
+
+  </script>
+
+</body>
+</html>
