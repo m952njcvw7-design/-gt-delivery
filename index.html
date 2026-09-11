@@ -2,3871 +2,3580 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#ff6b00">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
 <title>GT Delivery</title>
-
-<link rel="icon" type="image/png"
-href="29EEE903-7A28-4C72-AC7C-91575E3FC770.png">
-
-<link rel="apple-touch-icon"
-href="29EEE903-7A28-4C72-AC7C-91575E3FC770.png">
 
 <style>
 *{
-    box-sizing:border-box;
-    margin:0;
-    padding:0;
-    font-family:Arial,Helvetica,sans-serif;
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+  -webkit-tap-highlight-color:transparent;
 }
 
 body{
-    background:#f5f5f5;
-    color:#222;
-    padding-bottom:80px;
+  font-family:Arial,Helvetica,sans-serif;
+  background:#f5f5f5;
+  color:#222;
+  padding-bottom:82px;
 }
 
-header{
-    background:linear-gradient(135deg,#ff6b00,#ff9800);
-    color:white;
-    padding:18px 16px 20px;
-    position:sticky;
-    top:0;
-    z-index:20;
-    box-shadow:0 2px 8px rgba(0,0,0,.15);
+button,input,select,textarea{
+  font-family:inherit;
 }
+
+button{
+  cursor:pointer;
+}
+
+/* =========================
+   TOPO
+========================= */
 
 .topo{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
+  background:linear-gradient(135deg,#ff6b00,#ff9800);
+  color:white;
+  padding:18px 16px 20px;
+  border-radius:0 0 28px 28px;
+  position:relative;
+  box-shadow:0 4px 14px rgba(255,107,0,.25);
+}
+
+.topo-linha{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
 }
 
 .logo{
-    font-size:25px;
-    font-weight:800;
+  font-size:28px;
+  font-weight:900;
+  line-height:1;
 }
 
-.slogan{
-    font-size:12px;
-    opacity:.9;
-    margin-top:3px;
+.logo span{
+  display:block;
+  font-size:13px;
+  margin-top:3px;
+  font-weight:600;
 }
 
-.header-icons{
-    display:flex;
-    gap:12px;
-    font-size:22px;
+.endereco{
+  flex:1;
+  text-align:center;
+  font-size:13px;
+  font-weight:bold;
 }
 
-.header-icons button{
-    background:none;
-    border:0;
-    color:white;
-    font-size:22px;
-    cursor:pointer;
+.endereco strong{
+  display:block;
+  font-size:16px;
+  margin-top:3px;
 }
 
-.busca{
-    margin-top:15px;
-    background:white;
-    border-radius:12px;
-    padding:11px 14px;
-    display:flex;
-    align-items:center;
-    gap:8px;
+.acao-topo{
+  width:48px;
+  height:48px;
+  border-radius:50%;
+  border:1px solid rgba(255,255,255,.35);
+  background:rgba(0,0,0,.14);
+  color:white;
+  font-size:24px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  position:relative;
 }
 
-.busca input{
-    width:100%;
-    border:0;
-    outline:0;
-    font-size:15px;
+.badge-carrinho{
+  position:absolute;
+  top:-5px;
+  right:-2px;
+  background:#fff;
+  color:#ff5b00;
+  min-width:21px;
+  height:21px;
+  border-radius:50%;
+  font-size:12px;
+  font-weight:bold;
+  display:flex;
+  align-items:center;
+  justify-content:center;
 }
 
-main{
-    max-width:900px;
-    margin:auto;
-    padding:15px;
+.menu-topo{
+  display:none;
+  position:absolute;
+  z-index:100;
+  right:12px;
+  top:78px;
+  width:260px;
+  background:white;
+  color:#222;
+  border-radius:18px;
+  padding:8px;
+  box-shadow:0 10px 35px rgba(0,0,0,.22);
 }
 
-.secao{
-    display:none;
+.menu-topo button{
+  width:100%;
+  border:0;
+  background:white;
+  padding:13px 10px;
+  text-align:left;
+  border-radius:12px;
+  font-size:14px;
+  color:#222;
 }
 
-.secao.ativa{
-    display:block;
+.menu-topo button:hover{
+  background:#fff2e8;
 }
 
-.titulo{
-    font-size:21px;
-    font-weight:800;
-    margin:8px 0 14px;
+.menu-topo button span{
+  display:inline-block;
+  width:28px;
+  color:#ff6500;
+  font-size:18px;
 }
 
-.subtitulo{
-    color:#666;
-    font-size:14px;
-    margin-bottom:15px;
+/* =========================
+   CONTEÚDO
+========================= */
+
+.container{
+  max-width:900px;
+  margin:auto;
+  padding:22px 16px;
+}
+
+.saudar{
+  font-size:27px;
+  font-weight:800;
+  margin-bottom:18px;
+}
+
+.saudar small{
+  display:block;
+  font-size:15px;
+  color:#777;
+  font-weight:normal;
+  margin-top:5px;
+}
+
+/* pesquisa */
+
+.pesquisa{
+  background:white;
+  border:2px solid #e0e3e8;
+  border-radius:30px;
+  padding:14px 18px;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin-bottom:22px;
+}
+
+.pesquisa-icon{
+  font-size:25px;
+  color:#9299a5;
+}
+
+.pesquisa input{
+  width:100%;
+  border:0;
+  outline:none;
+  font-size:16px;
+  background:transparent;
+}
+
+.pesquisa input::placeholder{
+  color:#a1a7b2;
+}
+
+/* =========================
+   CATEGORIAS
+========================= */
+
+.titulo-secao{
+  font-size:22px;
+  font-weight:800;
+  margin:22px 0 14px;
+  display:flex;
+  align-items:center;
+  gap:9px;
+}
+
+.titulo-secao:before{
+  content:"";
+  width:6px;
+  height:26px;
+  border-radius:5px;
+  background:#ff6500;
 }
 
 .categorias{
-    display:flex;
-    gap:10px;
-    overflow-x:auto;
-    padding-bottom:8px;
+  display:flex;
+  gap:13px;
+  overflow-x:auto;
+  padding:3px 2px 10px;
+  scrollbar-width:none;
+}
+
+.categorias::-webkit-scrollbar{
+  display:none;
 }
 
 .categoria{
-    min-width:78px;
-    background:white;
-    border-radius:14px;
-    padding:12px 8px;
-    text-align:center;
-    box-shadow:0 1px 5px rgba(0,0,0,.08);
-    cursor:pointer;
+  min-width:76px;
+  text-align:center;
+  border:0;
+  background:transparent;
 }
 
-.categoria .emoji{
-    font-size:27px;
-    display:block;
-    margin-bottom:5px;
+.categoria-icone{
+  width:66px;
+  height:66px;
+  background:white;
+  border-radius:20px;
+  margin:auto;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:31px;
+  box-shadow:0 3px 12px rgba(0,0,0,.08);
 }
 
-.categoria span:last-child{
-    font-size:12px;
+.categoria p{
+  font-size:12px;
+  font-weight:bold;
+  margin-top:8px;
+  white-space:nowrap;
 }
 
-.roleta{
-    background:linear-gradient(135deg,#7b1fa2,#e040fb);
-    color:white;
-    border-radius:18px;
-    padding:18px;
-    margin:20px 0;
-    text-align:center;
-    box-shadow:0 5px 15px rgba(0,0,0,.12);
+/* =========================
+   BANNER ROLETA
+========================= */
+
+.banner-roleta{
+  margin-top:18px;
+  background:linear-gradient(135deg,#ff6500,#ff9800);
+  border-radius:24px;
+  padding:18px;
+  color:white;
+  overflow:hidden;
+  position:relative;
 }
 
-.roleta h2{
-    margin-bottom:5px;
+.banner-roleta-conteudo{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
 }
 
-.roleta p{
-    font-size:13px;
-    opacity:.9;
-    margin-bottom:12px;
+.roleta-texto{
+  flex:1;
 }
 
-/* =========================================================
-   ROLETA GT CASHBACK - MODERNA E REDONDA
-========================================================= */
-
-.roleta{
-    background:linear-gradient(135deg,#7b1fa2,#e040fb);
-    color:white;
-    border-radius:22px;
-    padding:22px 15px;
-    margin:22px 0;
-    text-align:center;
-    box-shadow:0 8px 25px rgba(123,31,162,.28);
-    overflow:hidden;
+.roleta-texto h2{
+  font-size:27px;
+  line-height:1;
+  font-weight:900;
 }
 
-.roleta h2{
-    font-size:25px;
-    margin-bottom:5px;
+.roleta-texto h2 span{
+  color:#ffe500;
 }
 
-.roleta p{
-    font-size:15px;
-    margin-bottom:18px;
-    opacity:.95;
+.roleta-texto p{
+  margin:10px 0;
+  font-size:14px;
+  line-height:1.35;
 }
 
-.roleta-area{
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:center;
+.botao-girar{
+  background:#6a00b8;
+  border:0;
+  color:white;
+  border-radius:25px;
+  padding:11px 16px;
+  font-weight:800;
 }
 
-/* Roda */
-
-.roleta-wheel-wrap{
-    position:relative;
-    width:280px;
-    height:280px;
-    margin:5px auto 20px;
+.mini-roleta{
+  width:125px;
+  height:125px;
+  flex-shrink:0;
+  border-radius:50%;
+  border:7px solid #9e45e8;
+  background:
+    conic-gradient(
+      #4b0082 0deg 60deg,
+      #7b1fc5 60deg 120deg,
+      #55118f 120deg 180deg,
+      #902de0 180deg 240deg,
+      #5f159d 240deg 300deg,
+      #9c38e7 300deg 360deg
+    );
+  box-shadow:0 4px 15px rgba(0,0,0,.3);
+  position:relative;
+  display:flex;
+  align-items:center;
+  justify-content:center;
 }
 
-.roleta-wheel{
-    width:280px;
-    height:280px;
-    border-radius:50%;
-    border:8px solid rgba(255,255,255,.9);
-    box-shadow:
-        0 0 0 5px rgba(255,255,255,.25),
-        0 8px 25px rgba(0,0,0,.25);
-    position:relative;
-    overflow:hidden;
-    transition:transform 5s cubic-bezier(.12,.75,.15,1);
-    background:
-        conic-gradient(
-            #8e24aa 0deg 60deg,
-            #ab47bc 60deg 120deg,
-            #7b1fa2 120deg 180deg,
-            #ba68c8 180deg 240deg,
-            #8e24aa 240deg 300deg,
-            #ce93d8 300deg 360deg
-        );
+.mini-roleta:after{
+  content:"GT";
+  width:40px;
+  height:40px;
+  border-radius:50%;
+  background:#4c087b;
+  border:3px solid #d78aff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:900;
 }
 
-.roleta-segmentos{
-    position:absolute;
-    inset:0;
-    border-radius:50%;
+.premios-mini{
+  position:absolute;
+  inset:0;
+  font-size:12px;
+  font-weight:900;
 }
 
-.segmento{
-    position:absolute;
-    width:50%;
-    height:50%;
-    left:25%;
-    top:0;
-    transform-origin:50% 100%;
-    display:flex;
-    justify-content:center;
-    align-items:flex-start;
-    padding-top:28px;
-    color:white;
-    font-size:20px;
-    font-weight:900;
-    text-shadow:0 2px 3px rgba(0,0,0,.3);
+.premios-mini span{
+  position:absolute;
 }
 
-.segmento:nth-child(1){transform:rotate(0deg);}
-.segmento:nth-child(2){transform:rotate(60deg);}
-.segmento:nth-child(3){transform:rotate(120deg);}
-.segmento:nth-child(4){transform:rotate(180deg);}
-.segmento:nth-child(5){transform:rotate(240deg);}
-.segmento:nth-child(6){transform:rotate(300deg);}
+.p1{top:13px;left:50%;transform:translateX(-50%)}
+.p2{right:12px;top:35px}
+.p3{right:13px;bottom:28px}
+.p4{bottom:10px;left:50%;transform:translateX(-50%)}
+.p5{left:12px;bottom:28px}
+.p6{left:13px;top:35px}
 
-/* Ponteiro */
-
-.roleta-ponteiro{
-    position:absolute;
-    top:-7px;
-    left:50%;
-    transform:translateX(-50%);
-    width:0;
-    height:0;
-    border-left:16px solid transparent;
-    border-right:16px solid transparent;
-    border-top:0;
-    border-bottom:30px solid white;
-    z-index:5;
-    filter:drop-shadow(0 2px 3px rgba(0,0,0,.35));
+.roleta-status{
+  margin-top:12px;
+  background:rgba(255,255,255,.16);
+  padding:8px 10px;
+  border-radius:12px;
+  font-size:12px;
+  text-align:center;
 }
 
-/* Botão central */
+/* =========================
+   ESTABELECIMENTOS
+========================= */
 
-.roleta-centro{
-    position:absolute;
-    width:82px;
-    height:82px;
-    left:50%;
-    top:50%;
-    transform:translate(-50%,-50%);
-    border-radius:50%;
-    background:linear-gradient(135deg,#e040fb,#7b1fa2);
-    border:5px solid white;
-    color:white;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    text-align:center;
-    font-size:17px;
-    font-weight:900;
-    cursor:pointer;
-    z-index:4;
-    box-shadow:0 4px 15px rgba(0,0,0,.3);
-}
-
-.roleta-centro:active{
-    transform:translate(-50%,-50%) scale(.96);
-}
-
-.roleta-centro:disabled{
-    opacity:.55;
-    cursor:not-allowed;
-}
-
-/* Resultado */
-
-#resultadoRoleta{
-    font-size:18px;
-    font-weight:bold;
-    min-height:55px;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-    margin-bottom:12px;
-}
-
-.cashback-ativo{
-    background:rgba(255,255,255,.16);
-    border:1px solid rgba(255,255,255,.35);
-    border-radius:14px;
-    padding:12px;
-    margin:10px auto;
-    max-width:330px;
-}
-
-.cashback-ativo strong{
-    font-size:22px;
-}
-
-.roleta-contador{
-    background:rgba(0,0,0,.16);
-    border-radius:14px;
-    padding:12px 16px;
-    margin-top:12px;
-    font-size:14px;
-}
-
-.roleta-contador strong{
-    display:block;
-    font-size:20px;
-    margin-top:3px;
-}
-
-@media(max-width:500px){
-
-    .roleta-wheel-wrap,
-    .roleta-wheel{
-        width:250px;
-        height:250px;
-    }
-
-    .segmento{
-        font-size:18px;
-        padding-top:25px;
-    }
-
-}
-    background:white;
-    color:#7b1fa2;
-    border-radius:8px;
-    padding:8px 10px;
-    font-weight:bold;
-    font-size:13px;
-}
-
-.botao{
-    border:0;
-    border-radius:10px;
-    padding:12px 16px;
-    background:#ff6b00;
-    color:white;
-    font-weight:bold;
-    cursor:pointer;
-}
-
-.botao.secundario{
-    background:#eee;
-    color:#333;
-}
-
-.botao.verde{
-    background:#16a34a;
-}
-
-.botao.vermelho{
-    background:#dc2626;
-}
-
-.botao.pequeno{
-    padding:8px 11px;
-    font-size:12px;
-}
-
-.botao:active{
-    transform:scale(.98);
-}
-
-.lista-lojas{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-    gap:13px;
+.estabelecimentos{
+  display:flex;
+  flex-direction:column;
+  gap:13px;
 }
 
 .loja-card{
-    background:white;
-    border-radius:16px;
-    padding:16px;
-    box-shadow:0 2px 8px rgba(0,0,0,.08);
+  background:white;
+  border-radius:20px;
+  padding:14px;
+  box-shadow:0 3px 13px rgba(0,0,0,.07);
+  display:flex;
+  gap:13px;
+  align-items:center;
 }
 
-.loja-topo{
-    display:flex;
-    align-items:center;
-    gap:12px;
+.loja-icone{
+  width:65px;
+  height:65px;
+  min-width:65px;
+  border-radius:18px;
+  background:#fff0e5;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:31px;
 }
 
-.loja-emoji{
-    width:55px;
-    height:55px;
-    border-radius:14px;
-    background:#fff3e8;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:30px;
+.loja-info{
+  flex:1;
+  min-width:0;
 }
 
-.loja-card h3{
-    font-size:17px;
+.loja-info h3{
+  font-size:17px;
+  margin-bottom:5px;
 }
 
-.loja-card p{
-    color:#777;
-    font-size:12px;
-    margin-top:4px;
+.loja-info p{
+  color:#737983;
+  font-size:12px;
+  margin:3px 0;
 }
 
-.loja-card .botao{
-    width:100%;
-    margin-top:13px;
+.loja-info .categoria-loja{
+  color:#ff6500;
+  font-weight:bold;
 }
+
+.botao-ver-loja{
+  background:#ff6500;
+  color:white;
+  border:0;
+  border-radius:22px;
+  padding:10px 13px;
+  font-weight:bold;
+  white-space:nowrap;
+}
+
+/* =========================
+   PÁGINAS
+========================= */
+
+.pagina{
+  display:none;
+}
+
+.pagina.ativa{
+  display:block;
+}
+
+.cabecalho-pagina{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  margin-bottom:18px;
+}
+
+.botao-voltar{
+  width:42px;
+  height:42px;
+  border:0;
+  border-radius:50%;
+  background:white;
+  box-shadow:0 2px 8px rgba(0,0,0,.1);
+  font-size:22px;
+}
+
+.cabecalho-pagina h2{
+  font-size:23px;
+}
+
+/* =========================
+   PRODUTOS
+========================= */
 
 .produtos{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-    gap:13px;
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:13px;
 }
 
 .produto{
-    background:white;
-    border-radius:15px;
-    padding:14px;
-    box-shadow:0 2px 8px rgba(0,0,0,.08);
+  background:white;
+  border-radius:18px;
+  padding:12px;
+  box-shadow:0 3px 10px rgba(0,0,0,.06);
 }
 
-.produto-imagem{
-    height:130px;
-    border-radius:12px;
-    background:#fff3e8;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    font-size:55px;
-    margin-bottom:10px;
+.produto-img{
+  height:125px;
+  border-radius:14px;
+  background:#fff1e7;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:50px;
+  margin-bottom:10px;
 }
 
 .produto h3{
-    font-size:16px;
+  font-size:15px;
+  margin-bottom:5px;
 }
 
-.produto .descricao{
-    color:#777;
-    font-size:12px;
-    margin:5px 0 10px;
+.produto p{
+  color:#777;
+  font-size:12px;
+  min-height:30px;
 }
 
 .preco{
-    color:#e85d00;
-    font-size:19px;
-    font-weight:800;
+  color:#ff6500;
+  font-size:19px;
+  font-weight:900;
+  margin:9px 0;
 }
 
-.produto-acoes{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    gap:8px;
-    margin-top:10px;
+.botao{
+  border:0;
+  border-radius:12px;
+  padding:11px 14px;
+  font-weight:bold;
 }
 
-.quantidade{
-    display:flex;
-    align-items:center;
-    gap:8px;
+.botao-laranja{
+  width:100%;
+  background:#ff6500;
+  color:white;
 }
 
-.quantidade button{
-    border:0;
-    width:30px;
-    height:30px;
-    border-radius:50%;
-    background:#eee;
-    cursor:pointer;
-    font-weight:bold;
-}
+/* =========================
+   FORMULÁRIOS
+========================= */
 
 .formulario{
-    background:white;
-    border-radius:16px;
-    padding:17px;
-    box-shadow:0 2px 8px rgba(0,0,0,.07);
-    margin-bottom:16px;
-}
-
-.formulario h3{
-    margin-bottom:13px;
+  background:white;
+  padding:18px;
+  border-radius:20px;
+  box-shadow:0 3px 12px rgba(0,0,0,.06);
 }
 
 .campo{
-    margin-bottom:11px;
+  margin-bottom:13px;
 }
 
 .campo label{
-    display:block;
-    font-size:12px;
-    font-weight:bold;
-    margin-bottom:5px;
+  display:block;
+  font-size:13px;
+  font-weight:bold;
+  margin-bottom:6px;
 }
 
 .campo input,
 .campo select,
 .campo textarea{
-    width:100%;
-    border:1px solid #ddd;
-    border-radius:9px;
-    padding:11px;
-    outline:0;
-    background:white;
+  width:100%;
+  border:1px solid #ddd;
+  border-radius:12px;
+  padding:12px;
+  outline:none;
+  background:white;
 }
 
 .campo textarea{
-    min-height:70px;
-    resize:vertical;
+  min-height:80px;
+  resize:vertical;
 }
 
-.formulario .botao{
-    width:100%;
-}
-
-.lista-itens{
-    display:flex;
-    flex-direction:column;
-    gap:10px;
-}
+/* =========================
+   CARRINHO
+========================= */
 
 .item-carrinho{
-    background:white;
-    border-radius:13px;
-    padding:13px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    gap:10px;
-    box-shadow:0 1px 5px rgba(0,0,0,.07);
+  background:white;
+  border-radius:16px;
+  padding:14px;
+  margin-bottom:10px;
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
 }
 
-.item-info{
-    flex:1;
+.quantidade{
+  display:flex;
+  align-items:center;
+  gap:9px;
 }
 
-.item-info strong{
-    display:block;
+.quantidade button{
+  width:30px;
+  height:30px;
+  border:0;
+  border-radius:50%;
+  background:#ff6500;
+  color:white;
+  font-weight:bold;
 }
 
-.item-info small{
-    color:#777;
+.total-box{
+  background:white;
+  border-radius:18px;
+  padding:18px;
+  margin-top:15px;
 }
 
-.resumo{
-    background:white;
-    border-radius:15px;
-    padding:16px;
-    margin-top:15px;
-    box-shadow:0 2px 8px rgba(0,0,0,.07);
+.linha-total{
+  display:flex;
+  justify-content:space-between;
+  margin:8px 0;
 }
 
-.linha{
-    display:flex;
-    justify-content:space-between;
-    margin:8px 0;
+.total-final{
+  font-size:23px;
+  font-weight:900;
+  color:#ff6500;
 }
 
-.total{
-    border-top:1px solid #eee;
-    padding-top:12px;
-    font-size:20px;
-    font-weight:bold;
-}
-
-.resumo .botao{
-    width:100%;
-    margin-top:12px;
-}
-
-.vazio{
-    text-align:center;
-    background:white;
-    border-radius:15px;
-    padding:30px 15px;
-    color:#777;
-}
-
-.perfil-card{
-    background:white;
-    border-radius:16px;
-    padding:20px;
-    box-shadow:0 2px 8px rgba(0,0,0,.07);
-    margin-bottom:15px;
-}
-
-.perfil-avatar{
-    width:65px;
-    height:65px;
-    border-radius:50%;
-    background:#fff3e8;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:34px;
-    margin-bottom:10px;
-}
-
-.menu-perfil{
-    background:white;
-    border-radius:15px;
-    overflow:hidden;
-    box-shadow:0 2px 8px rgba(0,0,0,.07);
-}
-
-.menu-item{
-    width:100%;
-    padding:16px;
-    border:0;
-    border-bottom:1px solid #eee;
-    background:white;
-    text-align:left;
-    font-size:15px;
-    cursor:pointer;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-}
-
-.menu-item:last-child{
-    border-bottom:0;
-}
-
-.menu-item.proprietario{
-    color:#e85d00;
-    font-weight:bold;
-}
+/* =========================
+   PEDIDOS
+========================= */
 
 .pedido{
-    background:white;
-    border-radius:15px;
-    padding:16px;
-    margin-bottom:12px;
-    box-shadow:0 2px 8px rgba(0,0,0,.07);
-}
-
-.pedido-cabecalho{
-    display:flex;
-    justify-content:space-between;
-    margin-bottom:10px;
+  background:white;
+  border-radius:18px;
+  padding:16px;
+  margin-bottom:12px;
+  box-shadow:0 2px 10px rgba(0,0,0,.06);
 }
 
 .status{
-    display:inline-block;
-    background:#fff3e8;
-    color:#e85d00;
-    border-radius:20px;
-    padding:6px 10px;
-    font-size:12px;
-    font-weight:bold;
+  display:inline-block;
+  background:#fff1e7;
+  color:#ff6500;
+  border-radius:20px;
+  padding:6px 10px;
+  font-size:12px;
+  font-weight:bold;
+  margin-top:8px;
 }
 
-.etapas{
-    display:flex;
-    justify-content:space-between;
-    margin-top:15px;
+/* =========================
+   PERFIL
+========================= */
+
+.perfil-card{
+  background:white;
+  border-radius:20px;
+  padding:20px;
+  text-align:center;
 }
 
-.etapa{
-    flex:1;
-    text-align:center;
-    font-size:10px;
-    color:#999;
-    position:relative;
+.avatar{
+  width:75px;
+  height:75px;
+  margin:auto;
+  border-radius:50%;
+  background:#fff0e5;
+  color:#ff6500;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:36px;
 }
 
-.etapa.ativa{
-    color:#16a34a;
-    font-weight:bold;
+.perfil-opcao{
+  margin-top:10px;
+  background:#fff;
+  border:1px solid #eee;
+  width:100%;
+  border-radius:14px;
+  padding:15px;
+  text-align:left;
 }
 
-.etapa::before{
-    content:"";
-    display:block;
-    width:13px;
-    height:13px;
-    background:#ddd;
-    border-radius:50%;
-    margin:0 auto 5px;
-}
+/* =========================
+   ÁREA PROPRIETÁRIO
+========================= */
 
-.etapa.ativa::before{
-    background:#16a34a;
-}
-
-.admin-header{
-    background:linear-gradient(135deg,#222,#444);
-    color:white;
-    border-radius:17px;
-    padding:18px;
-    margin-bottom:15px;
-}
-
-.admin-header h2{
-    margin-bottom:5px;
-}
-
-.admin-header p{
-    font-size:13px;
-    opacity:.8;
+.admin-menu{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:12px;
 }
 
 .admin-card{
-    background:white;
-    border-radius:16px;
-    padding:17px;
-    margin-bottom:15px;
-    box-shadow:0 2px 8px rgba(0,0,0,.07);
+  background:white;
+  border-radius:18px;
+  padding:18px;
+  box-shadow:0 3px 10px rgba(0,0,0,.06);
+  border:0;
+  text-align:left;
 }
 
-.admin-card h3{
-    margin-bottom:13px;
+.admin-card strong{
+  display:block;
+  font-size:16px;
+  margin-top:8px;
 }
 
-.admin-lista{
-    display:flex;
-    flex-direction:column;
-    gap:9px;
+.lista-admin{
+  margin-top:15px;
 }
 
 .admin-item{
-    border:1px solid #eee;
-    border-radius:12px;
-    padding:12px;
+  background:white;
+  border-radius:15px;
+  padding:13px;
+  margin-bottom:10px;
 }
 
-.admin-item-topo{
-    display:flex;
-    justify-content:space-between;
-    gap:10px;
+/* =========================
+   BOTTOM NAV
+========================= */
+
+.bottom-nav{
+  position:fixed;
+  z-index:200;
+  left:0;
+  right:0;
+  bottom:0;
+  height:75px;
+  background:white;
+  border-top:1px solid #eee;
+  display:flex;
+  justify-content:space-around;
+  align-items:center;
+  box-shadow:0 -4px 15px rgba(0,0,0,.08);
 }
 
-.admin-item small{
-    color:#777;
+.nav-item{
+  border:0;
+  background:white;
+  color:#969696;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:4px;
+  font-size:11px;
+  min-width:55px;
 }
 
-.admin-acoes{
-    display:flex;
-    gap:7px;
-    flex-wrap:wrap;
-    margin-top:10px;
+.nav-item .icone{
+  font-size:23px;
 }
 
-.senha-box{
-    max-width:400px;
-    margin:40px auto;
-    background:white;
-    padding:25px;
-    border-radius:18px;
-    box-shadow:0 3px 12px rgba(0,0,0,.1);
-    text-align:center;
+.nav-item.ativo{
+  color:#ff6500;
+  font-weight:bold;
 }
 
-.senha-box h2{
-    margin-bottom:8px;
+/* =========================
+   MODAL ROLETA
+========================= */
+
+.modal{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.65);
+  z-index:500;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
 }
 
-.senha-box p{
-    color:#777;
-    font-size:13px;
-    margin-bottom:15px;
+.modal.aberto{
+  display:flex;
 }
 
-.senha-box input{
-    width:100%;
-    padding:13px;
-    border:1px solid #ddd;
-    border-radius:10px;
-    margin-bottom:10px;
-    text-align:center;
+.modal-caixa{
+  width:100%;
+  max-width:400px;
+  background:white;
+  border-radius:25px;
+  padding:20px;
+  text-align:center;
+  position:relative;
 }
 
-.mensagem{
-    position:fixed;
-    left:50%;
-    bottom:90px;
-    transform:translateX(-50%);
-    background:#222;
-    color:white;
-    padding:12px 17px;
-    border-radius:25px;
-    z-index:100;
-    display:none;
-    max-width:90%;
-    text-align:center;
+.fechar{
+  position:absolute;
+  right:13px;
+  top:13px;
+  width:35px;
+  height:35px;
+  border:0;
+  border-radius:50%;
+  background:#eee;
+  font-size:20px;
 }
 
-.nav{
-    position:fixed;
-    bottom:0;
-    left:0;
-    right:0;
-    background:white;
-    height:68px;
-    display:flex;
-    justify-content:space-around;
-    align-items:center;
-    box-shadow:0 -2px 10px rgba(0,0,0,.12);
-    z-index:50;
+.roleta-grande{
+  width:280px;
+  height:280px;
+  margin:20px auto;
+  border-radius:50%;
+  border:12px solid #a449df;
+  position:relative;
+  background:
+    conic-gradient(
+      #4c087b 0deg 60deg,
+      #8f29d7 60deg 120deg,
+      #5f129c 120deg 180deg,
+      #a73dea 180deg 240deg,
+      #7015b7 240deg 300deg,
+      #962fe0 300deg 360deg
+    );
+  box-shadow:
+    0 5px 20px rgba(76,8,123,.4),
+    inset 0 0 0 5px #d88fff;
+  transition:transform 4s cubic-bezier(.12,.65,.1,1);
 }
 
-.nav button{
-    border:0;
-    background:none;
-    color:#777;
-    font-size:11px;
-    cursor:pointer;
+.roleta-grande:before{
+  content:"";
+  position:absolute;
+  left:50%;
+  top:-28px;
+  transform:translateX(-50%);
+  width:0;
+  height:0;
+  border-left:15px solid transparent;
+  border-right:15px solid transparent;
+  border-top:30px solid #fff;
+  z-index:5;
+  filter:drop-shadow(0 2px 3px rgba(0,0,0,.3));
 }
 
-.nav button span{
-    display:block;
+.roleta-centro{
+  position:absolute;
+  left:50%;
+  top:50%;
+  transform:translate(-50%,-50%);
+  width:72px;
+  height:72px;
+  border-radius:50%;
+  border:5px solid #e1a1ff;
+  background:#45056f;
+  color:white;
+  font-size:15px;
+  font-weight:900;
+}
+
+.roleta-premios{
+  position:absolute;
+  inset:0;
+  color:white;
+  font-size:20px;
+  font-weight:900;
+}
+
+.roleta-premios span{
+  position:absolute;
+}
+
+.r1{top:27px;left:50%;transform:translateX(-50%)}
+.r2{top:67px;right:28px}
+.r3{bottom:67px;right:28px}
+.r4{bottom:27px;left:50%;transform:translateX(-50%)}
+.r5{bottom:67px;left:28px}
+.r6{top:67px;left:28px}
+
+.resultado-roleta{
+  font-size:20px;
+  font-weight:900;
+  color:#6b009e;
+}
+
+.contador-roleta{
+  margin-top:7px;
+  color:#777;
+  font-size:13px;
+}
+
+/* =========================
+   TOAST
+========================= */
+
+.toast{
+  position:fixed;
+  z-index:1000;
+  left:50%;
+  bottom:90px;
+  transform:translateX(-50%);
+  background:#222;
+  color:white;
+  padding:12px 18px;
+  border-radius:25px;
+  display:none;
+  font-size:13px;
+  max-width:90%;
+  text-align:center;
+}
+
+.toast.mostrar{
+  display:block;
+}
+
+/* =========================
+   RESPONSIVO
+========================= */
+
+@media(max-width:600px){
+
+  .logo{
+    font-size:23px;
+  }
+
+  .endereco strong{
+    font-size:14px;
+  }
+
+  .saudar{
+    font-size:26px;
+  }
+
+  .banner-roleta{
+    padding:15px;
+  }
+
+  .roleta-texto h2{
     font-size:22px;
-    margin-bottom:2px;
-}
+  }
 
-.nav button.ativo{
-    color:#ff6b00;
-    font-weight:bold;
-}
+  .mini-roleta{
+    width:105px;
+    height:105px;
+  }
 
-.badge{
-    position:absolute;
-    top:5px;
-    right:22%;
-    background:#e53935;
-    color:white;
-    border-radius:10px;
-    padding:2px 5px;
-    font-size:9px;
-    display:none;
-}
+  .produtos{
+    grid-template-columns:repeat(2,1fr);
+  }
 
-@media(max-width:500px){
-    .produtos{
-        grid-template-columns:1fr 1fr;
-    }
+  .produto-img{
+    height:105px;
+  }
 
-    .produto-imagem{
-        height:110px;
-    }
+  .loja-card{
+    align-items:flex-start;
+  }
 
-    .produto h3{
-        font-size:14px;
-    }
+  .botao-ver-loja{
+    padding:9px 10px;
+    font-size:12px;
+  }
 
-    .preco{
-        font-size:17px;
-    }
+  .menu-topo{
+    width:245px;
+  }
 }
 </style>
 </head>
 
 <body>
 
-<header>
-    <div class="topo">
-        <div>
-            <div class="logo">GT Delivery</div>
-            <div class="slogan">Seu pedido do seu jeito</div>
-        </div>
+<!-- =========================
+     TOPO
+========================= -->
 
-        <div class="header-icons">
-            <button onclick="mostrar('perfil')">👤</button>
-            <button onclick="focarBusca()">🔎</button>
-        </div>
+<header class="topo">
+
+  <div class="topo-linha">
+
+    <button class="acao-topo" onclick="abrirMenu()" aria-label="Menu">
+      ☰
+    </button>
+
+    <div class="logo">
+      GT
+      <span>Delivery</span>
     </div>
 
-    <div class="busca">
-        🔎
-        <input id="campoBusca"
-               type="text"
-               placeholder="Buscar produtos ou lojas..."
-               oninput="buscar(this.value)">
+    <div class="endereco">
+      📍 ENTREGAR EM
+      <strong id="enderecoAtual">Tobias Barreto - SE⌄</strong>
     </div>
+
+    <button class="acao-topo" onclick="mostrarPagina('carrinho')" aria-label="Carrinho">
+      🛒
+      <span class="badge-carrinho" id="badgeCarrinho">0</span>
+    </button>
+
+    <button class="acao-topo" onclick="abrirMenu()" aria-label="Opções">
+      ⋮
+    </button>
+
+  </div>
+
+  <div class="menu-topo" id="menuTopo">
+
+    <button onclick="alterarEndereco()">
+      <span>📍</span> Alterar endereço
+    </button>
+
+    <button onclick="mostrarSaldo()">
+      <span>💰</span> Meu saldo
+    </button>
+
+    <button onclick="alterarCidade()">
+      <span>🏙️</span> Minha cidade
+    </button>
+
+    <button onclick="mostrarPagina('pedidos');fecharMenu()">
+      <span>📦</span> Meus pedidos
+    </button>
+
+    <button onclick="mostrarCupons()">
+      <span>🎟️</span> Cupons de desconto
+    </button>
+
+    <button onclick="mostrarPagina('perfil');fecharMenu()">
+      <span>👤</span> Minha conta
+    </button>
+
+    <button onclick="mostrarCartoes()">
+      <span>💳</span> Meus cartões
+    </button>
+
+    <button onclick="mostrarOutros()">
+      <span>⚙️</span> Outros
+    </button>
+
+  </div>
+
 </header>
 
-<main>
 
-<!-- INÍCIO -->
-<section id="inicio" class="secao ativa">
+<!-- =========================
+     INÍCIO
+========================= -->
 
-    <div class="titulo" id="saudacao">Olá! 👋</div>
+<main class="container">
 
-    <p class="subtitulo">
-        Encontre produtos, faça seu pedido e receba onde estiver com o GT Delivery.
+<section id="inicio" class="pagina ativa">
+
+  <div class="saudar">
+    Olá, <span id="nomeClienteTopo">Cliente GT</span> 👋
+    <small>O que você deseja pedir hoje?</small>
+  </div>
+
+  <div class="pesquisa">
+    <span class="pesquisa-icon">⌕</span>
+    <input
+      id="campoPesquisa"
+      type="search"
+      placeholder="Buscar produtos ou lojas..."
+      oninput="pesquisar()"
+    >
+  </div>
+
+
+  <!-- CATEGORIAS -->
+
+  <div class="categorias">
+
+    <button class="categoria" onclick="filtrarCategoria('Mercado')">
+      <div class="categoria-icone">🛒</div>
+      <p>Supermercado</p>
+    </button>
+
+    <button class="categoria" onclick="filtrarCategoria('Farmácia')">
+      <div class="categoria-icone">💊</div>
+      <p>Farmácia</p>
+    </button>
+
+    <button class="categoria" onclick="filtrarCategoria('Hortifruti')">
+      <div class="categoria-icone">🍎</div>
+      <p>Hortifruti</p>
+    </button>
+
+    <button class="categoria" onclick="filtrarCategoria('Padaria')">
+      <div class="categoria-icone">🥖</div>
+      <p>Padaria</p>
+    </button>
+
+    <button class="categoria" onclick="filtrarCategoria('Lanches')">
+      <div class="categoria-icone">🍔</div>
+      <p>Lanchonete</p>
+    </button>
+
+    <button class="categoria" onclick="filtrarCategoria('Pizzaria')">
+      <div class="categoria-icone">🍕</div>
+      <p>Pizzaria</p>
+    </button>
+
+    <button class="categoria" onclick="filtrarCategoria('Outros')">
+      <div class="categoria-icone">•••</div>
+      <p>Outros</p>
+    </button>
+
+  </div>
+
+
+  <!-- ROLETA -->
+
+  <div class="banner-roleta">
+
+    <div class="banner-roleta-conteudo">
+
+      <div class="roleta-texto">
+
+        <h2>
+          ROLETA GT<br>
+          <span>CASHBACK</span>
+        </h2>
+
+        <p>
+          Gire e ganhe de <strong>2% a 12%</strong>
+          de cashback a cada 12 horas!
+        </p>
+
+        <button class="botao-girar" onclick="abrirRoleta()">
+          🎡 GIRAR ROLETA
+        </button>
+
+      </div>
+
+      <div class="mini-roleta">
+
+        <div class="premios-mini">
+          <span class="p1">2%</span>
+          <span class="p2">4%</span>
+          <span class="p3">6%</span>
+          <span class="p4">8%</span>
+          <span class="p5">10%</span>
+          <span class="p6">12%</span>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="roleta-status" id="roletaStatus">
+      Você pode girar agora! 🍀
+    </div>
+
+  </div>
+
+
+  <!-- ESTABELECIMENTOS -->
+
+  <div class="titulo-secao">
+    Estabelecimentos
+  </div>
+
+  <div class="estabelecimentos" id="listaLojas">
+  </div>
+
+</section>
+
+
+<!-- =========================
+     LOJA
+========================= -->
+
+<section id="loja" class="pagina">
+
+  <div class="cabecalho-pagina">
+
+    <button class="botao-voltar" onclick="voltarDosProdutos()">
+      ←
+    </button>
+
+    <div>
+      <h2 id="nomeLojaAtual">Estabelecimento</h2>
+      <small id="categoriaLojaAtual"></small>
+    </div>
+
+  </div>
+
+  <div id="produtosLoja" class="produtos">
+  </div>
+
+</section>
+
+
+<!-- =========================
+     CARRINHO
+========================= -->
+
+<section id="carrinho" class="pagina">
+
+  <div class="cabecalho-pagina">
+
+    <button class="botao-voltar" onclick="mostrarPagina('inicio')">
+      ←
+    </button>
+
+    <h2>Meu carrinho</h2>
+
+  </div>
+
+  <div id="listaCarrinho">
+  </div>
+
+  <div id="resumoCarrinho">
+  </div>
+
+</section>
+
+
+<!-- =========================
+     CHECKOUT
+========================= -->
+
+<section id="checkout" class="pagina">
+
+  <div class="cabecalho-pagina">
+
+    <button class="botao-voltar" onclick="mostrarPagina('carrinho')">
+      ←
+    </button>
+
+    <h2>Finalizar pedido</h2>
+
+  </div>
+
+  <div class="formulario">
+
+    <div class="campo">
+      <label>Nome</label>
+      <input id="checkoutNome" type="text">
+    </div>
+
+    <div class="campo">
+      <label>Telefone</label>
+      <input id="checkoutTelefone" type="tel">
+    </div>
+
+    <div class="campo">
+      <label>Endereço de entrega</label>
+      <input id="checkoutEndereco" type="text">
+    </div>
+
+    <div class="campo">
+      <label>Forma de pagamento</label>
+
+      <select id="checkoutPagamento">
+        <option>Pix</option>
+        <option>Cartão</option>
+        <option>Dinheiro</option>
+      </select>
+
+    </div>
+
+    <div class="campo">
+      <label>Observação</label>
+      <textarea id="checkoutObservacao"
+        placeholder="Ex.: tocar a campainha..."></textarea>
+    </div>
+
+    <button class="botao botao-laranja"
+      onclick="confirmarPedido()">
+      Confirmar pedido
+    </button>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     PEDIDOS
+========================= -->
+
+<section id="pedidos" class="pagina">
+
+  <div class="cabecalho-pagina">
+
+    <button class="botao-voltar" onclick="mostrarPagina('inicio')">
+      ←
+    </button>
+
+    <h2>Meus pedidos</h2>
+
+  </div>
+
+  <div id="listaPedidos">
+  </div>
+
+</section>
+
+
+<!-- =========================
+     PERFIL
+========================= -->
+
+<section id="perfil" class="pagina">
+
+  <div class="cabecalho-pagina">
+
+    <button class="botao-voltar" onclick="mostrarPagina('inicio')">
+      ←
+    </button>
+
+    <h2>Minha conta</h2>
+
+  </div>
+
+  <div class="perfil-card">
+
+    <div class="avatar">👤</div>
+
+    <h2 id="perfilNome" style="margin-top:10px">
+      Cliente GT Delivery
+    </h2>
+
+    <p style="color:#777;margin-top:5px">
+      💰 Cashback disponível
     </p>
 
-    <div class="titulo">Categorias</div>
+    <h2 style="color:#ff6500;margin:8px"
+      id="saldoCashback">
+      R$ 0,00
+    </h2>
 
-    <div class="categorias">
+  </div>
 
-        <div class="categoria" onclick="filtrarCategoria('Mercado')">
-            <span class="emoji">🛒</span>
-            <span>Mercado</span>
-        </div>
+  <button class="perfil-opcao" onclick="editarCadastro()">
+    👤 Cadastro
+  </button>
 
-        <div class="categoria" onclick="filtrarCategoria('Lanches')">
-            <span class="emoji">🍔</span>
-            <span>Comida</span>
-        </div>
+  <button class="perfil-opcao" onclick="mostrarPagina('pedidos')">
+    📦 Meus pedidos
+  </button>
 
-        <div class="categoria" onclick="filtrarCategoria('Bebidas')">
-            <span class="emoji">🥤</span>
-            <span>Bebidas</span>
-        </div>
+  <button class="perfil-opcao" onclick="abrirRoleta()">
+    🎡 Roleta GT Cashback
+  </button>
 
-        <div class="categoria" onclick="filtrarCategoria('Farmácia')">
-            <span class="emoji">💊</span>
-            <span>Farmácia</span>
-        </div>
-
-        <div class="categoria" onclick="filtrarCategoria('Padaria')">
-            <span class="emoji">🥖</span>
-            <span>Padaria</span>
-        </div>
-
-        <div class="categoria" onclick="filtrarCategoria('Açougue')">
-            <span class="emoji">🥩</span>
-            <span>Açougue</span>
-        </div>
-
-        <div class="categoria" onclick="filtrarCategoria('Hortifruti')">
-            <span class="emoji">🥬</span>
-            <span>Hortifruti</span>
-        </div>
-
-        <div class="categoria" onclick="filtrarCategoria('Outros')">
-            <span class="emoji">📦</span>
-            <span>Outros</span>
-        </div>
-
-    </div>
-
-    <div class="roleta">
-        <h2>🎰 Roleta GT Cashback</h2>
-        <p>Gire e ganhe cashback!</p>
-
-        <div class="roleta-resultados">
-            <span class="premio">2%</span>
-            <span class="premio">5%</span>
-            <span class="premio">10%</span>
-            <span class="premio">15%</span>
-            <span class="premio">20%</span>
-            <span class="premio">5%</span>
-        </div>
-
-        <div id="resultadoRoleta">
-            Boa sorte! 🍀
-        </div>
-
-        <br>
-
-        <button class="botao" onclick="girarRoleta()">
-            🎰 GIRAR ROLETA
-        </button>
-    </div>
-
-    <div class="titulo">Lojas</div>
-
-    <div class="subtitulo">
-        <button class="botao pequeno secundario"
-                onclick="mostrarLojas()">
-            Ver todas
-        </button>
-    </div>
-
-    <div id="listaLojasInicio" class="lista-lojas"></div>
+  <button class="perfil-opcao" onclick="areaProprietario()">
+    🔐 Área do proprietário
+  </button>
 
 </section>
 
 
-<!-- LOJAS -->
-<section id="loja" class="secao">
+<!-- =========================
+     CADASTRO CLIENTE
+========================= -->
 
-    <div class="titulo">Lojas</div>
+<section id="cadastroCliente" class="pagina">
 
-    <div class="subtitulo">
-        Escolha uma loja para ver seus produtos.
-    </div>
+  <div class="cabecalho-pagina">
 
-    <div id="listaLojas" class="lista-lojas"></div>
-
-</section>
-
-
-<!-- PRODUTOS DA LOJA -->
-<section id="produtosLoja" class="secao">
-
-    <button class="botao secundario pequeno"
-            onclick="mostrar('loja')">
-        ← Voltar
+    <button class="botao-voltar" onclick="mostrarPagina('perfil')">
+      ←
     </button>
 
-    <div class="titulo" id="nomeLojaProdutos"></div>
+    <h2>Meu cadastro</h2>
 
-    <div class="subtitulo" id="infoLojaProdutos"></div>
+  </div>
 
-    <div id="listaProdutos" class="produtos"></div>
+  <div class="formulario">
 
-</section>
+    <div class="campo">
+      <label>Nome</label>
+      <input id="clienteNome" type="text">
+    </div>
 
+    <div class="campo">
+      <label>Telefone</label>
+      <input id="clienteTelefone" type="tel">
+    </div>
 
-<!-- CARRINHO -->
-<section id="carrinho" class="secao">
+    <div class="campo">
+      <label>E-mail</label>
+      <input id="clienteEmail" type="email">
+    </div>
 
-    <div class="titulo">🛒 Meu carrinho</div>
+    <div class="campo">
+      <label>Endereço</label>
+      <input id="clienteEndereco" type="text">
+    </div>
 
-    <div id="listaCarrinho" class="lista-itens"></div>
-
-    <div id="resumoCarrinho"></div>
-
-</section>
-
-
-<!-- CHECKOUT -->
-<section id="checkout" class="secao">
-
-    <button class="botao secundario pequeno"
-            onclick="mostrar('carrinho')">
-        ← Voltar
+    <button class="botao botao-laranja"
+      onclick="salvarCliente()">
+      Salvar cadastro
     </button>
 
-    <div class="titulo">Finalizar pedido</div>
-
-    <div class="formulario">
-
-        <h3>📍 Endereço de entrega</h3>
-
-        <div class="campo">
-            <label>Nome</label>
-            <input id="checkoutNome"
-                   type="text"
-                   placeholder="Seu nome">
-        </div>
-
-        <div class="campo">
-            <label>Telefone</label>
-            <input id="checkoutTelefone"
-                   type="tel"
-                   placeholder="(79) 99999-9999">
-        </div>
-
-        <div class="campo">
-            <label>Endereço</label>
-            <input id="checkoutEndereco"
-                   type="text"
-                   placeholder="Rua, número, bairro">
-        </div>
-
-        <div class="campo">
-            <label>Forma de pagamento</label>
-
-            <select id="checkoutPagamento">
-                <option value="Pix">Pix</option>
-                <option value="Dinheiro">Dinheiro</option>
-                <option value="Cartão">Cartão</option>
-            </select>
-        </div>
-
-        <div class="campo">
-            <label>Observação</label>
-
-            <textarea id="checkoutObservacao"
-                      placeholder="Alguma observação para a loja?"></textarea>
-        </div>
-
-    </div>
-
-    <div id="resumoCheckout"></div>
+  </div>
 
 </section>
 
 
-<!-- PEDIDOS -->
-<section id="pedidos" class="secao">
+<!-- =========================
+     LOGIN PROPRIETÁRIO
+========================= -->
 
-    <div class="titulo">📦 Meus pedidos</div>
+<section id="loginProprietario" class="pagina">
 
-    <div class="subtitulo">
-        Acompanhe seus pedidos realizados.
-    </div>
+  <div class="cabecalho-pagina">
 
-    <div id="listaPedidos"></div>
-
-</section>
-
-
-<!-- PERFIL -->
-<section id="perfil" class="secao">
-
-    <div class="titulo">Meu perfil</div>
-
-    <div class="perfil-card">
-
-        <div class="perfil-avatar">👤</div>
-
-        <h3 id="nomePerfil">
-            Cliente GT Delivery
-        </h3>
-
-        <p style="color:#777;margin-top:5px;">
-            💰 Cashback disponível
-        </p>
-
-        <strong id="cashbackPerfil"
-                style="display:block;margin-top:5px;font-size:20px;color:#ff6b00;">
-            R$ 0,00
-        </strong>
-
-    </div>
-
-    <div class="menu-perfil">
-
-        <button class="menu-item"
-                onclick="abrirCadastroCliente()">
-            <span>👤 Cadastro</span>
-            <span>›</span>
-        </button>
-
-        <button class="menu-item"
-                onclick="mostrar('pedidos');carregarPedidos()">
-            <span>📦 Meus pedidos</span>
-            <span>›</span>
-        </button>
-
-        <button class="menu-item"
-                onclick="mostrar('carrinho');atualizarCarrinho()">
-            <span>🛒 Meu carrinho</span>
-            <span>›</span>
-        </button>
-
-        <button class="menu-item"
-                onclick="mostrar('inicio')">
-            <span>🎰 Roleta de cashback</span>
-            <span>›</span>
-        </button>
-
-        <!-- ÁREA DO PROPRIETÁRIO -->
-        <button class="menu-item proprietario"
-                onclick="abrirAreaProprietario()">
-            <span>🔐 Área do proprietário</span>
-            <span>›</span>
-        </button>
-
-    </div>
-
-</section>
-
-
-<!-- CADASTRO CLIENTE -->
-<section id="cadastroCliente" class="secao">
-
-    <button class="botao secundario pequeno"
-            onclick="mostrar('perfil')">
-        ← Voltar
+    <button class="botao-voltar"
+      onclick="mostrarPagina('perfil')">
+      ←
     </button>
 
-    <div class="titulo">👤 Cadastro</div>
+    <h2>Área do proprietário</h2>
 
-    <div class="formulario">
+  </div>
 
-        <div class="campo">
-            <label>Nome</label>
-            <input id="clienteNome"
-                   type="text"
-                   placeholder="Seu nome">
-        </div>
+  <div class="formulario">
 
-        <div class="campo">
-            <label>Telefone</label>
-            <input id="clienteTelefone"
-                   type="tel"
-                   placeholder="(79) 99999-9999">
-        </div>
+    <p style="margin-bottom:15px;color:#666">
+      Acesso exclusivo para proprietário.
+    </p>
 
-        <div class="campo">
-            <label>E-mail</label>
-            <input id="clienteEmail"
-                   type="email"
-                   placeholder="seu@email.com">
-        </div>
-
-        <div class="campo">
-            <label>Endereço</label>
-            <input id="clienteEndereco"
-                   type="text"
-                   placeholder="Rua, número, bairro">
-        </div>
-
-        <button class="botao"
-                onclick="salvarCliente()">
-            💾 Salvar cadastro
-        </button>
-
+    <div class="campo">
+      <label>Senha</label>
+      <input id="senhaProprietario"
+        type="password"
+        placeholder="Digite a senha">
     </div>
 
-</section>
-
-
-<!-- LOGIN PROPRIETÁRIO -->
-<section id="loginProprietario" class="secao">
-
-    <div class="senha-box">
-
-        <div style="font-size:50px;">
-            🔐
-        </div>
-
-        <h2>Área do proprietário</h2>
-
-        <p>
-            Esta área é exclusiva para o proprietário
-            administrar lojas e produtos.
-        </p>
-
-        <input id="senhaProprietario"
-               type="password"
-               placeholder="Digite a senha">
-
-        <button class="botao"
-                onclick="entrarProprietario()">
-            Entrar
-        </button>
-
-        <br><br>
-
-        <button class="botao secundario pequeno"
-                onclick="mostrar('perfil')">
-            Voltar
-        </button>
-
-    </div>
-
-</section>
-
-
-<!-- ÁREA DO PROPRIETÁRIO -->
-<section id="proprietario" class="secao">
-
-    <div class="admin-header">
-
-        <h2>🔐 Área do proprietário</h2>
-
-        <p>
-            Administração do GT Delivery
-        </p>
-
-    </div>
-
-    <!-- CADASTRAR LOJA -->
-    <div class="admin-card">
-
-        <h3>🏪 Cadastrar nova loja</h3>
-
-        <div class="campo">
-            <label>Nome da loja</label>
-
-            <input id="novaLojaNome"
-                   type="text"
-                   placeholder="Ex.: Supermercado Val Bença">
-        </div>
-
-        <div class="campo">
-            <label>Telefone</label>
-
-            <input id="novaLojaTelefone"
-                   type="tel"
-                   placeholder="(79) 99999-9999">
-        </div>
-
-        <div class="campo">
-            <label>Endereço</label>
-
-            <input id="novaLojaEndereco"
-                   type="text"
-                   placeholder="Endereço da loja">
-        </div>
-
-        <div class="campo">
-            <label>Categoria</label>
-
-            <select id="novaLojaCategoria">
-
-                <option value="Mercado">
-                    🛒 Mercado
-                </option>
-
-                <option value="Lanches">
-                    🍔 Lanches
-                </option>
-
-                <option value="Restaurante">
-                    🍽️ Restaurante
-                </option>
-
-                <option value="Pizza">
-                    🍕 Pizza
-                </option>
-
-                <option value="Bebidas">
-                    🥤 Bebidas
-                </option>
-
-                <option value="Farmácia">
-                    💊 Farmácia
-                </option>
-
-                <option value="Açougue">
-                    🥩 Açougue
-                </option>
-
-                <option value="Doces">
-                    🍬 Doces
-                </option>
-
-                <option value="Padaria">
-                    🥖 Padaria
-                </option>
-
-                <option value="Hortifruti">
-                    🥬 Hortifruti
-                </option>
-
-                <option value="Outros">
-                    📦 Outros
-                </option>
-
-            </select>
-        </div>
-
-        <div class="campo">
-            <label>Emoji/ícone da loja</label>
-
-            <input id="novaLojaEmoji"
-                   type="text"
-                   value="🏪"
-                   maxlength="2">
-        </div>
-
-        <button class="botao"
-                onclick="cadastrarLoja()">
-            ➕ Cadastrar loja
-        </button>
-
-    </div>
-
-
-    <!-- LISTA DE LOJAS ADMIN -->
-    <div class="admin-card">
-
-        <h3>🏪 Lojas cadastradas</h3>
-
-        <div id="adminLojas"
-             class="admin-lista">
-        </div>
-
-    </div>
-
-
-    <!-- CADASTRAR PRODUTO -->
-    <div class="admin-card">
-
-        <h3>📦 Cadastrar produto</h3>
-
-        <div class="campo">
-            <label>Loja</label>
-
-            <select id="novoProdutoLoja">
-            </select>
-        </div>
-
-        <div class="campo">
-            <label>Nome do produto</label>
-
-            <input id="novoProdutoNome"
-                   type="text"
-                   placeholder="Ex.: Arroz Branco 5kg">
-        </div>
-
-        <div class="campo">
-            <label>Descrição</label>
-
-            <textarea id="novoProdutoDescricao"
-                      placeholder="Descrição do produto"></textarea>
-        </div>
-
-        <div class="campo">
-            <label>Preço</label>
-
-            <input id="novoProdutoPreco"
-                   type="number"
-                   step="0.01"
-                   placeholder="0,00">
-        </div>
-
-        <div class="campo">
-            <label>Categoria</label>
-
-            <input id="novoProdutoCategoria"
-                   type="text"
-                   placeholder="Ex.: Mercearia">
-        </div>
-
-        <div class="campo">
-            <label>Emoji/ícone do produto</label>
-
-            <input id="novoProdutoEmoji"
-                   type="text"
-                   value="📦"
-                   maxlength="2">
-        </div>
-
-        <button class="botao"
-                onclick="cadastrarProduto()">
-            ➕ Cadastrar produto
-        </button>
-
-    </div>
-
-
-    <!-- PRODUTOS ADMIN -->
-    <div class="admin-card">
-
-        <h3>📦 Produtos cadastrados</h3>
-
-        <div id="adminProdutos"
-             class="admin-lista">
-        </div>
-
-    </div>
-
-
-    <button class="botao secundario"
-            style="width:100%;margin-bottom:20px;"
-            onclick="sairProprietario()">
-        ← Sair da área do proprietário
+    <button class="botao botao-laranja"
+      onclick="entrarProprietario()">
+      Entrar
     </button>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     PAINEL PROPRIETÁRIO
+========================= -->
+
+<section id="proprietario" class="pagina">
+
+  <div class="cabecalho-pagina">
+
+    <button class="botao-voltar"
+      onclick="mostrarPagina('perfil')">
+      ←
+    </button>
+
+    <h2>Proprietário</h2>
+
+  </div>
+
+  <div class="admin-menu">
+
+    <button class="admin-card"
+      onclick="abrirCadastroLoja()">
+
+      🏪
+
+      <strong>
+        Cadastrar loja
+      </strong>
+
+      <small>
+        Adicione um estabelecimento
+      </small>
+
+    </button>
+
+
+    <button class="admin-card"
+      onclick="abrirCadastroProduto()">
+
+      📦
+
+      <strong>
+        Cadastrar produto
+      </strong>
+
+      <small>
+        Adicione produtos à loja
+      </small>
+
+    </button>
+
+  </div>
+
+  <div class="titulo-secao">
+    Lojas cadastradas
+  </div>
+
+  <div id="listaAdminLojas"
+    class="lista-admin">
+  </div>
+
+</section>
+
+
+<!-- =========================
+     CADASTRO LOJA
+========================= -->
+
+<section id="cadastroLoja" class="pagina">
+
+  <div class="cabecalho-pagina">
+
+    <button class="botao-voltar"
+      onclick="mostrarPagina('proprietario')">
+      ←
+    </button>
+
+    <h2>Cadastrar loja</h2>
+
+  </div>
+
+  <div class="formulario">
+
+    <div class="campo">
+      <label>Nome da loja</label>
+      <input id="nomeLoja" type="text"
+        placeholder="Ex.: Supermercado Val Bença">
+    </div>
+
+    <div class="campo">
+      <label>Telefone</label>
+      <input id="telefoneLoja" type="tel"
+        placeholder="(79) 99999-9999">
+    </div>
+
+    <div class="campo">
+      <label>Endereço</label>
+      <input id="enderecoLoja" type="text">
+    </div>
+
+    <div class="campo">
+      <label>Categoria</label>
+
+      <select id="categoriaLoja">
+
+        <option value="Mercado">
+          Supermercado
+        </option>
+
+        <option value="Farmácia">
+          Farmácia
+        </option>
+
+        <option value="Hortifruti">
+          Hortifruti
+        </option>
+
+        <option value="Padaria">
+          Padaria
+        </option>
+
+        <option value="Lanches">
+          Lanchonete
+        </option>
+
+        <option value="Pizzaria">
+          Pizzaria
+        </option>
+
+        <option value="Bebidas">
+          Bebidas
+        </option>
+
+        <option value="Açougue">
+          Açougue
+        </option>
+
+        <option value="Outros">
+          Outros
+        </option>
+
+      </select>
+
+    </div>
+
+    <div class="campo">
+      <label>Ícone da loja</label>
+      <input id="emojiLoja"
+        value="🏪"
+        maxlength="2">
+    </div>
+
+    <button class="botao botao-laranja"
+      onclick="cadastrarLoja()">
+      Cadastrar estabelecimento
+    </button>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     CADASTRO PRODUTO
+========================= -->
+
+<section id="cadastroProduto" class="pagina">
+
+  <div class="cabecalho-pagina">
+
+    <button class="botao-voltar"
+      onclick="mostrarPagina('proprietario')">
+      ←
+    </button>
+
+    <h2>Cadastrar produto</h2>
+
+  </div>
+
+  <div class="formulario">
+
+    <div class="campo">
+      <label>Estabelecimento</label>
+      <select id="produtoLoja"></select>
+    </div>
+
+    <div class="campo">
+      <label>Nome do produto</label>
+      <input id="produtoNome" type="text">
+    </div>
+
+    <div class="campo">
+      <label>Descrição</label>
+      <input id="produtoDescricao" type="text">
+    </div>
+
+    <div class="campo">
+      <label>Preço</label>
+      <input id="produtoPreco"
+        type="number"
+        step="0.01"
+        min="0">
+    </div>
+
+    <div class="campo">
+      <label>Categoria</label>
+      <input id="produtoCategoria"
+        type="text"
+        placeholder="Ex.: Bebidas">
+    </div>
+
+    <div class="campo">
+      <label>Ícone</label>
+      <input id="produtoEmoji"
+        value="📦"
+        maxlength="2">
+    </div>
+
+    <button class="botao botao-laranja"
+      onclick="cadastrarProduto()">
+      Cadastrar produto
+    </button>
+
+  </div>
 
 </section>
 
 </main>
 
 
-<!-- NAVEGAÇÃO -->
-<nav class="nav">
+<!-- =========================
+     MODAL ROLETA
+========================= -->
 
-    <button id="navInicio"
-            class="ativo"
-            onclick="mostrar('inicio')">
-        <span>🏠</span>
-        Início
+<div class="modal" id="modalRoleta">
+
+  <div class="modal-caixa">
+
+    <button class="fechar"
+      onclick="fecharRoleta()">
+      ×
     </button>
 
-    <button id="navLojas"
-            onclick="mostrarLojas()">
-        <span>🏪</span>
-        Lojas
-    </button>
+    <h2 style="color:#5d008c">
+      🎡 Roleta GT Cashback
+    </h2>
 
-    <button id="navCarrinho"
-            onclick="mostrar('carrinho');atualizarCarrinho()"
-            style="position:relative;">
-        <span>🛒</span>
-        Carrinho
-        <b id="badgeCarrinho"
-           class="badge">0</b>
-    </button>
+    <p style="margin-top:6px;color:#777">
+      Gire e ganhe de 2% a 12%
+    </p>
 
-    <button id="navPedidos"
-            onclick="mostrar('pedidos');carregarPedidos()">
-        <span>📦</span>
-        Pedidos
-    </button>
+    <div class="roleta-grande"
+      id="roletaGrande">
 
-    <button id="navPerfil"
-            onclick="mostrar('perfil')">
-        <span>👤</span>
-        Perfil
-    </button>
+      <div class="roleta-premios">
+
+        <span class="r1">2%</span>
+        <span class="r2">4%</span>
+        <span class="r3">6%</span>
+        <span class="r4">8%</span>
+        <span class="r5">10%</span>
+        <span class="r6">12%</span>
+
+      </div>
+
+      <button class="roleta-centro"
+        id="botaoRoleta"
+        onclick="girarRoleta()">
+        GIRAR
+      </button>
+
+    </div>
+
+    <div class="resultado-roleta"
+      id="resultadoRoleta">
+      Boa sorte! 🍀
+    </div>
+
+    <div class="contador-roleta"
+      id="contadorRoleta">
+      Você pode girar agora.
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- TOAST -->
+
+<div class="toast" id="toast"></div>
+
+
+<!-- =========================
+     NAVEGAÇÃO
+========================= -->
+
+<nav class="bottom-nav">
+
+  <button class="nav-item ativo"
+    id="navInicio"
+    onclick="mostrarPagina('inicio')">
+
+    <span class="icone">⌂</span>
+    <span>Início</span>
+
+  </button>
+
+  <button class="nav-item"
+    id="navLojas"
+    onclick="mostrarPagina('inicio')">
+
+    <span class="icone">🏪</span>
+    <span>Lojas</span>
+
+  </button>
+
+  <button class="nav-item"
+    id="navCarrinho"
+    onclick="mostrarPagina('carrinho')">
+
+    <span class="icone">🛒</span>
+    <span>Carrinho</span>
+
+  </button>
+
+  <button class="nav-item"
+    id="navPedidos"
+    onclick="mostrarPagina('pedidos')">
+
+    <span class="icone">📦</span>
+    <span>Pedidos</span>
+
+  </button>
+
+  <button class="nav-item"
+    id="navPerfil"
+    onclick="mostrarPagina('perfil')">
+
+    <span class="icone">👤</span>
+    <span>Perfil</span>
+
+  </button>
 
 </nav>
 
 
-<div id="mensagem"
-     class="mensagem">
-</div>
-
-
 <script>
 
-/* =========================================================
-   CONFIGURAÇÃO INICIAL
-========================================================= */
+/* =====================================================
+   DADOS
+===================================================== */
 
-const SENHA_PROPRIETARIO = "1234";
+const CHAVE_LOJAS = "gt_lojas";
+const CHAVE_PRODUTOS = "gt_produtos";
+const CHAVE_CARRINHO = "gt_carrinho";
+const CHAVE_PEDIDOS = "gt_pedidos";
+const CHAVE_CLIENTE = "gt_cliente";
+const CHAVE_CASHBACK = "gt_cashback";
+const CHAVE_ROLETA = "gt_roleta_estado";
 
-let lojas = [];
-let produtos = [];
-let carrinho = [];
-let pedidos = [];
-let cliente = {};
-let cashback = 0;
-let lojaAtual = null;
+const INTERVALO_ROLETA = 12 * 60 * 60 * 1000;
+
+let lojas = JSON.parse(
+  localStorage.getItem(CHAVE_LOJAS) || "null"
+);
+
+let produtos = JSON.parse(
+  localStorage.getItem(CHAVE_PRODUTOS) || "null"
+);
+
+let carrinho = JSON.parse(
+  localStorage.getItem(CHAVE_CARRINHO) || "[]"
+);
+
+let pedidos = JSON.parse(
+  localStorage.getItem(CHAVE_PEDIDOS) || "[]"
+);
+
+let cliente = JSON.parse(
+  localStorage.getItem(CHAVE_CLIENTE) || "null"
+);
+
+let cashback = Number(
+  localStorage.getItem(CHAVE_CASHBACK) || "0"
+);
+
+let lojaAtualId = null;
+let categoriaFiltro = null;
 
 
-/* =========================================================
-   DADOS PADRÃO
-========================================================= */
+/* =====================================================
+   DADOS INICIAIS
+===================================================== */
 
-const lojasPadrao = [
+if(!lojas){
+
+  lojas = [
 
     {
-        id: 1,
-        nome: "GT Supermercado",
-        telefone: "",
-        endereco: "Tobias Barreto - SE",
-        categoria: "Mercado",
-        emoji: "🛒",
-        ativa: true
+      id:1,
+      nome:"GT Supermercado",
+      telefone:"",
+      endereco:"Tobias Barreto - SE",
+      categoria:"Mercado",
+      emoji:"🛒",
+      ativa:true
     },
 
     {
-        id: 2,
-        nome: "GT Lanches",
-        telefone: "",
-        endereco: "Tobias Barreto - SE",
-        categoria: "Lanches",
-        emoji: "🍔",
-        ativa: true
+      id:2,
+      nome:"GT Lanches",
+      telefone:"",
+      endereco:"Tobias Barreto - SE",
+      categoria:"Lanches",
+      emoji:"🍔",
+      ativa:true
     },
 
     {
-        id: 3,
-        nome: "GT Bebidas",
-        telefone: "",
-        endereco: "Tobias Barreto - SE",
-        categoria: "Bebidas",
-        emoji: "🥤",
-        ativa: true
+      id:3,
+      nome:"GT Bebidas",
+      telefone:"",
+      endereco:"Tobias Barreto - SE",
+      categoria:"Bebidas",
+      emoji:"🥤",
+      ativa:true
     }
 
-];
+  ];
 
-
-const produtosPadrao = [
-
-    {
-        id: 1,
-        lojaId: 1,
-        nome: "Arroz Branco 5kg",
-        descricao: "Arroz branco tipo 1",
-        preco: 25,
-        categoria: "Mercado",
-        emoji: "🍚",
-        ativo: true
-    },
-
-    {
-        id: 2,
-        lojaId: 1,
-        nome: "Feijão 1kg",
-        descricao: "Feijão carioca",
-        preco: 7.50,
-        categoria: "Mercado",
-        emoji: "🫘",
-        ativo: true
-    },
-
-    {
-        id: 3,
-        lojaId: 1,
-        nome: "Óleo de Soja",
-        descricao: "Óleo de soja 900ml",
-        preco: 6.99,
-        categoria: "Mercado",
-        emoji: "🫗",
-        ativo: true
-    },
-
-    {
-        id: 4,
-        lojaId: 1,
-        nome: "Açúcar 1kg",
-        descricao: "Açúcar refinado",
-        preco: 5,
-        categoria: "Mercado",
-        emoji: "🍬",
-        ativo: true
-    },
-
-    {
-        id: 5,
-        lojaId: 3,
-        nome: "Coca-Cola 2L",
-        descricao: "Refrigerante Coca-Cola 2 litros",
-        preco: 10,
-        categoria: "Bebidas",
-        emoji: "🥤",
-        ativo: true
-    },
-
-    {
-        id: 6,
-        lojaId: 3,
-        nome: "Guaraná 2L",
-        descricao: "Refrigerante Guaraná 2 litros",
-        preco: 8,
-        categoria: "Bebidas",
-        emoji: "🥤",
-        ativo: true
-    },
-
-    {
-        id: 7,
-        lojaId: 2,
-        nome: "Hambúrguer GT",
-        descricao: "Hambúrguer artesanal",
-        preco: 18,
-        categoria: "Lanches",
-        emoji: "🍔",
-        ativo: true
-    },
-
-    {
-        id: 8,
-        lojaId: 2,
-        nome: "X-Bacon",
-        descricao: "Hambúrguer com bacon",
-        preco: 22,
-        categoria: "Lanches",
-        emoji: "🍔",
-        ativo: true
-    },
-
-    {
-        id: 9,
-        lojaId: 2,
-        nome: "Pizza Calabresa",
-        descricao: "Pizza de calabresa",
-        preco: 35,
-        categoria: "Pizza",
-        emoji: "🍕",
-        ativo: true
-    },
-
-    {
-        id: 10,
-        lojaId: 2,
-        nome: "Batata Frita",
-        descricao: "Porção de batata frita",
-        preco: 15,
-        categoria: "Lanches",
-        emoji: "🍟",
-        ativo: true
-    }
-
-];
-
-
-/* =========================================================
-   LOCAL STORAGE
-========================================================= */
-
-function carregarDados(){
-
-    const lojasSalvas =
-        localStorage.getItem("gt_lojas");
-
-    const produtosSalvos =
-        localStorage.getItem("gt_produtos");
-
-    const carrinhoSalvo =
-        localStorage.getItem("gt_carrinho");
-
-    const pedidosSalvos =
-        localStorage.getItem("gt_pedidos");
-
-    const clienteSalvo =
-        localStorage.getItem("gt_cliente");
-
-    const cashbackSalvo =
-        localStorage.getItem("gt_cashback");
-
-
-    if(lojasSalvas){
-        lojas = JSON.parse(lojasSalvas);
-    }else{
-        lojas = lojasPadrao;
-        salvarLojas();
-    }
-
-
-    if(produtosSalvos){
-        produtos = JSON.parse(produtosSalvos);
-    }else{
-        produtos = produtosPadrao;
-        salvarProdutos();
-    }
-
-
-    if(carrinhoSalvo){
-        carrinho = JSON.parse(carrinhoSalvo);
-    }
-
-
-    if(pedidosSalvos){
-        pedidos = JSON.parse(pedidosSalvos);
-    }
-
-
-    if(clienteSalvo){
-        cliente = JSON.parse(clienteSalvo);
-    }
-
-
-    if(cashbackSalvo){
-        cashback = Number(cashbackSalvo);
-    }
-
+  salvarLojas();
 }
 
+
+if(!produtos){
+
+  produtos = [
+
+    {
+      id:1,
+      lojaId:1,
+      nome:"Arroz",
+      descricao:"Arroz branco",
+      preco:5.99,
+      categoria:"Mercado",
+      emoji:"🍚",
+      ativo:true
+    },
+
+    {
+      id:2,
+      lojaId:1,
+      nome:"Feijão",
+      descricao:"Feijão carioca",
+      preco:7.99,
+      categoria:"Mercado",
+      emoji:"🫘",
+      ativo:true
+    },
+
+    {
+      id:3,
+      lojaId:1,
+      nome:"Leite",
+      descricao:"Leite integral",
+      preco:4.99,
+      categoria:"Mercado",
+      emoji:"🥛",
+      ativo:true
+    },
+
+    {
+      id:4,
+      lojaId:1,
+      nome:"Café",
+      descricao:"Café tradicional",
+      preco:9.99,
+      categoria:"Mercado",
+      emoji:"☕",
+      ativo:true
+    },
+
+    {
+      id:5,
+      lojaId:2,
+      nome:"X-Burguer",
+      descricao:"Hambúrguer artesanal",
+      preco:15.00,
+      categoria:"Lanches",
+      emoji:"🍔",
+      ativo:true
+    },
+
+    {
+      id:6,
+      lojaId:2,
+      nome:"X-Salada",
+      descricao:"Hambúrguer com salada",
+      preco:17.00,
+      categoria:"Lanches",
+      emoji:"🍔",
+      ativo:true
+    },
+
+    {
+      id:7,
+      lojaId:2,
+      nome:"Batata Frita",
+      descricao:"Porção de batata",
+      preco:10.00,
+      categoria:"Lanches",
+      emoji:"🍟",
+      ativo:true
+    },
+
+    {
+      id:8,
+      lojaId:3,
+      nome:"Refrigerante",
+      descricao:"Lata 350ml",
+      preco:5.00,
+      categoria:"Bebidas",
+      emoji:"🥤",
+      ativo:true
+    },
+
+    {
+      id:9,
+      lojaId:3,
+      nome:"Água",
+      descricao:"Garrafa 500ml",
+      preco:2.50,
+      categoria:"Bebidas",
+      emoji:"💧",
+      ativo:true
+    },
+
+    {
+      id:10,
+      lojaId:3,
+      nome:"Suco",
+      descricao:"Suco natural",
+      preco:7.00,
+      categoria:"Bebidas",
+      emoji:"🧃",
+      ativo:true
+    }
+
+  ];
+
+  salvarProdutos();
+}
+
+
+/* =====================================================
+   SALVAR
+===================================================== */
 
 function salvarLojas(){
-    localStorage.setItem(
-        "gt_lojas",
-        JSON.stringify(lojas)
-    );
-}
 
+  localStorage.setItem(
+    CHAVE_LOJAS,
+    JSON.stringify(lojas)
+  );
+
+}
 
 function salvarProdutos(){
-    localStorage.setItem(
-        "gt_produtos",
-        JSON.stringify(produtos)
-    );
-}
 
+  localStorage.setItem(
+    CHAVE_PRODUTOS,
+    JSON.stringify(produtos)
+  );
+
+}
 
 function salvarCarrinho(){
-    localStorage.setItem(
-        "gt_carrinho",
-        JSON.stringify(carrinho)
-    );
+
+  localStorage.setItem(
+    CHAVE_CARRINHO,
+    JSON.stringify(carrinho)
+  );
+
+  atualizarBadge();
+
+}
+
+function salvarPedidos(){
+
+  localStorage.setItem(
+    CHAVE_PEDIDOS,
+    JSON.stringify(pedidos)
+  );
+
 }
 
 
-function salvarPedidos(){
+/* =====================================================
+   NAVEGAÇÃO
+===================================================== */
+
+function mostrarPagina(id){
+
+  document
+    .querySelectorAll(".pagina")
+    .forEach(p => p.classList.remove("ativa"));
+
+  const pagina = document.getElementById(id);
+
+  if(pagina){
+    pagina.classList.add("ativa");
+  }
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+
+  atualizarNav(id);
+
+  if(id === "carrinho"){
+    renderizarCarrinho();
+  }
+
+  if(id === "pedidos"){
+    renderizarPedidos();
+  }
+
+  if(id === "perfil"){
+    atualizarPerfil();
+  }
+
+  if(id === "proprietario"){
+    renderizarAdmin();
+  }
+
+}
+
+
+function atualizarNav(id){
+
+  document
+    .querySelectorAll(".nav-item")
+    .forEach(item => item.classList.remove("ativo"));
+
+  if(id === "inicio"){
+    document.getElementById("navInicio")
+      .classList.add("ativo");
+  }
+
+  if(id === "carrinho"){
+    document.getElementById("navCarrinho")
+      .classList.add("ativo");
+  }
+
+  if(id === "pedidos"){
+    document.getElementById("navPedidos")
+      .classList.add("ativo");
+  }
+
+  if(id === "perfil"){
+    document.getElementById("navPerfil")
+      .classList.add("ativo");
+  }
+
+}
+
+
+/* =====================================================
+   MENU
+===================================================== */
+
+function abrirMenu(){
+
+  const menu =
+    document.getElementById("menuTopo");
+
+  menu.style.display =
+    menu.style.display === "block"
+      ? "none"
+      : "block";
+
+}
+
+function fecharMenu(){
+
+  document.getElementById("menuTopo")
+    .style.display = "none";
+
+}
+
+
+/* =====================================================
+   ENDEREÇO
+===================================================== */
+
+function alterarEndereco(){
+
+  fecharMenu();
+
+  const novo = prompt(
+    "Digite seu endereço de entrega:",
+    cliente?.endereco || ""
+  );
+
+  if(novo){
+
+    if(!cliente){
+      cliente = {};
+    }
+
+    cliente.endereco = novo;
+
     localStorage.setItem(
-        "gt_pedidos",
-        JSON.stringify(pedidos)
+      CHAVE_CLIENTE,
+      JSON.stringify(cliente)
     );
+
+    document.getElementById(
+      "enderecoAtual"
+    ).textContent = novo + "⌄";
+
+    toast("Endereço atualizado!");
+
+  }
+
+}
+
+
+function alterarCidade(){
+
+  fecharMenu();
+
+  const cidade = prompt(
+    "Digite sua cidade:",
+    "Tobias Barreto - SE"
+  );
+
+  if(cidade){
+    toast("Cidade selecionada: " + cidade);
+  }
+
+}
+
+
+function mostrarSaldo(){
+
+  fecharMenu();
+
+  alert(
+    "💰 Seu cashback disponível:\n\n" +
+    formatarMoeda(cashback)
+  );
+
+}
+
+
+function mostrarCupons(){
+
+  fecharMenu();
+
+  alert(
+    "🎟️ Cupons de desconto\n\n" +
+    "Você ainda não possui cupons disponíveis."
+  );
+
+}
+
+
+function mostrarCartoes(){
+
+  fecharMenu();
+
+  alert(
+    "💳 Meus cartões\n\n" +
+    "Nenhum cartão cadastrado."
+  );
+
+}
+
+
+function mostrarOutros(){
+
+  fecharMenu();
+
+  alert(
+    "⚙️ Outras opções\n\n" +
+    "Em breve teremos mais configurações."
+  );
+
+}
+
+
+/* =====================================================
+   CLIENTE
+===================================================== */
+
+function carregarCliente(){
+
+  if(!cliente){
+    cliente = {
+      nome:"Cliente GT",
+      telefone:"",
+      email:"",
+      endereco:"Tobias Barreto - SE"
+    };
+
+    localStorage.setItem(
+      CHAVE_CLIENTE,
+      JSON.stringify(cliente)
+    );
+  }
+
+  document.getElementById(
+    "nomeClienteTopo"
+  ).textContent =
+    cliente.nome || "Cliente GT";
+
+  document.getElementById(
+    "enderecoAtual"
+  ).textContent =
+    (cliente.endereco || "Tobias Barreto - SE") + "⌄";
+
+}
+
+
+function atualizarPerfil(){
+
+  document.getElementById(
+    "perfilNome"
+  ).textContent =
+    cliente?.nome || "Cliente GT Delivery";
+
+  document.getElementById(
+    "saldoCashback"
+  ).textContent =
+    formatarMoeda(cashback);
+
+}
+
+
+function editarCadastro(){
+
+  document.getElementById("clienteNome").value =
+    cliente?.nome || "";
+
+  document.getElementById("clienteTelefone").value =
+    cliente?.telefone || "";
+
+  document.getElementById("clienteEmail").value =
+    cliente?.email || "";
+
+  document.getElementById("clienteEndereco").value =
+    cliente?.endereco || "";
+
+  mostrarPagina("cadastroCliente");
+
 }
 
 
 function salvarCliente(){
-    cliente = {
-        nome:
-            document.getElementById("clienteNome").value.trim(),
 
-        telefone:
-            document.getElementById("clienteTelefone").value.trim(),
+  cliente = {
 
-        email:
-            document.getElementById("clienteEmail").value.trim(),
+    nome:
+      document.getElementById("clienteNome").value.trim()
+      || "Cliente GT",
 
-        endereco:
-            document.getElementById("clienteEndereco").value.trim()
-    };
+    telefone:
+      document.getElementById("clienteTelefone").value.trim(),
 
-    localStorage.setItem(
-        "gt_cliente",
-        JSON.stringify(cliente)
-    );
+    email:
+      document.getElementById("clienteEmail").value.trim(),
 
-    atualizarPerfil();
+    endereco:
+      document.getElementById("clienteEndereco").value.trim()
+      || "Tobias Barreto - SE"
 
-    mostrarMensagem("Cadastro salvo com sucesso! ✅");
+  };
 
-    mostrar("perfil");
+  localStorage.setItem(
+    CHAVE_CLIENTE,
+    JSON.stringify(cliente)
+  );
+
+  carregarCliente();
+
+  toast("Cadastro salvo com sucesso!");
+
+  mostrarPagina("perfil");
+
 }
 
 
-/* =========================================================
-   NAVEGAÇÃO
-========================================================= */
-
-function mostrar(id){
-
-    document
-        .querySelectorAll(".secao")
-        .forEach(secao=>{
-            secao.classList.remove("ativa");
-        });
-
-
-    const alvo =
-        document.getElementById(id);
-
-    if(alvo){
-        alvo.classList.add("ativa");
-    }
-
-
-    document
-        .querySelectorAll(".nav button")
-        .forEach(btn=>{
-            btn.classList.remove("ativo");
-        });
-
-
-    if(id === "inicio"){
-        document
-            .getElementById("navInicio")
-            .classList.add("ativo");
-    }
-
-    if(id === "loja" || id === "produtosLoja"){
-        document
-            .getElementById("navLojas")
-            .classList.add("ativo");
-    }
-
-    if(id === "carrinho" || id === "checkout"){
-        document
-            .getElementById("navCarrinho")
-            .classList.add("ativo");
-    }
-
-    if(id === "pedidos"){
-        document
-            .getElementById("navPedidos")
-            .classList.add("ativo");
-    }
-
-    if(
-        id === "perfil" ||
-        id === "cadastroCliente" ||
-        id === "loginProprietario"
-    ){
-        document
-            .getElementById("navPerfil")
-            .classList.add("ativo");
-    }
-
-
-    window.scrollTo({
-        top:0,
-        behavior:"smooth"
-    });
-}
-
-
-/* =========================================================
+/* =====================================================
    LOJAS
-========================================================= */
+===================================================== */
 
-function mostrarLojas(){
+function iconeCategoria(categoria){
 
-    mostrar("loja");
+  const mapa = {
 
-    renderizarLojas();
+    Mercado:"🛒",
+    Farmácia:"💊",
+    Hortifruti:"🍎",
+    Padaria:"🥖",
+    Lanches:"🍔",
+    Pizzaria:"🍕",
+    Bebidas:"🥤",
+    Açougue:"🥩",
+    Doces:"🍰",
+    Restaurante:"🍽️",
+    Outros:"🏪"
+
+  };
+
+  return mapa[categoria] || "🏪";
 
 }
 
 
 function renderizarLojas(){
 
-    const lista =
-        document.getElementById("listaLojas");
+  const lista =
+    document.getElementById("listaLojas");
 
-    const listaInicio =
-        document.getElementById("listaLojasInicio");
+  let resultado = lojas.filter(
+    loja => loja.ativa !== false
+  );
 
+  if(categoriaFiltro){
 
-    const lojasAtivas =
-        lojas.filter(loja=>loja.ativa);
+    resultado = resultado.filter(
+      loja =>
+        loja.categoria === categoriaFiltro
+    );
 
+  }
 
-    if(lojasAtivas.length === 0){
+  const busca =
+    document.getElementById("campoPesquisa")
+      ?.value
+      ?.toLowerCase()
+      ?.trim();
 
-        lista.innerHTML =
-            `<div class="vazio">
-                Nenhuma loja disponível.
-             </div>`;
+  if(busca){
 
-        listaInicio.innerHTML =
-            `<div class="vazio">
-                Nenhuma loja disponível.
-             </div>`;
+    resultado = resultado.filter(loja =>
+      loja.nome.toLowerCase().includes(busca) ||
+      loja.categoria.toLowerCase().includes(busca)
+    );
 
-        return;
-    }
+  }
 
+  if(!resultado.length){
 
-    const html =
-        lojasAtivas.map(loja=>{
+    lista.innerHTML = `
+      <div class="loja-card">
+        <div class="loja-icone">🔎</div>
+        <div class="loja-info">
+          <h3>Nenhum estabelecimento encontrado</h3>
+          <p>Tente outra busca ou categoria.</p>
+        </div>
+      </div>
+    `;
 
-            return `
-                <div class="loja-card">
+    return;
+  }
 
-                    <div class="loja-topo">
+  lista.innerHTML =
+    resultado.map(loja => `
 
-                        <div class="loja-emoji">
-                            ${loja.emoji || "🏪"}
-                        </div>
+      <div class="loja-card">
 
-                        <div>
-                            <h3>${escapar(loja.nome)}</h3>
+        <div class="loja-icone">
+          ${loja.emoji || iconeCategoria(loja.categoria)}
+        </div>
 
-                            <p>
-                                ${escapar(loja.categoria)}
-                                • ⭐ 4.9
-                            </p>
+        <div class="loja-info">
 
-                            <p>
-                                20-35 min
-                            </p>
-                        </div>
+          <h3>${escapar(loja.nome)}</h3>
 
-                    </div>
+          <p class="categoria-loja">
+            ${escapar(loja.categoria)}
+          </p>
 
-                    <button
-                        class="botao"
-                        onclick="abrirLoja(${loja.id})">
-                        Ver loja
-                    </button>
+          <p>
+            📍 ${escapar(loja.endereco || "Tobias Barreto - SE")}
+          </p>
 
-                </div>
-            `;
+          <p>
+            ⏱️ 20 - 40 min
+          </p>
 
-        }).join("");
+        </div>
 
+        <button
+          class="botao-ver-loja"
+          onclick="abrirLoja(${loja.id})">
+          Ver loja
+        </button>
 
-    lista.innerHTML = html;
+      </div>
 
-    listaInicio.innerHTML =
-        lojasAtivas
-        .slice(0,3)
-        .map(loja=>{
-
-            return `
-                <div class="loja-card">
-
-                    <div class="loja-topo">
-
-                        <div class="loja-emoji">
-                            ${loja.emoji || "🏪"}
-                        </div>
-
-                        <div>
-                            <h3>${escapar(loja.nome)}</h3>
-
-                            <p>
-                                ${escapar(loja.categoria)}
-                                • ⭐ 4.9
-                            </p>
-
-                            <p>
-                                20-35 min
-                            </p>
-                        </div>
-
-                    </div>
-
-                    <button
-                        class="botao"
-                        onclick="abrirLoja(${loja.id})">
-                        Ver
-                    </button>
-
-                </div>
-            `;
-
-        }).join("");
+    `).join("");
 
 }
 
 
-/* =========================================================
+function filtrarCategoria(categoria){
+
+  categoriaFiltro =
+    categoria === categoriaFiltro
+      ? null
+      : categoria;
+
+  renderizarLojas();
+
+}
+
+
+function pesquisar(){
+
+  categoriaFiltro = null;
+
+  renderizarLojas();
+
+}
+
+
+/* =====================================================
    ABRIR LOJA
-========================================================= */
+===================================================== */
 
 function abrirLoja(id){
 
-    lojaAtual =
-        lojas.find(loja=>loja.id === id);
+  lojaAtualId = id;
 
-    if(!lojaAtual){
-        mostrarMensagem("Loja não encontrada.");
-        return;
-    }
+  const loja =
+    lojas.find(l => Number(l.id) === Number(id));
 
+  if(!loja) return;
 
-    document.getElementById(
-        "nomeLojaProdutos"
-    ).textContent =
-        lojaAtual.emoji +
-        " " +
-        lojaAtual.nome;
+  document.getElementById(
+    "nomeLojaAtual"
+  ).textContent = loja.nome;
 
+  document.getElementById(
+    "categoriaLojaAtual"
+  ).textContent =
+    loja.categoria +
+    " • " +
+    (loja.endereco || "Tobias Barreto - SE");
 
-    document.getElementById(
-        "infoLojaProdutos"
-    ).textContent =
-        lojaAtual.categoria +
-        " • " +
-        (lojaAtual.endereco || "Tobias Barreto");
+  renderizarProdutosLoja();
 
-
-    mostrarProdutos();
-
-
-    mostrar("produtosLoja");
-}
-
-
-function mostrarProdutos(lista = null){
-
-    const container =
-        document.getElementById("listaProdutos");
-
-
-    let listaProdutos =
-        lista ||
-        produtos.filter(produto =>
-            produto.lojaId === lojaAtual.id &&
-            produto.ativo
-        );
-
-
-    if(listaProdutos.length === 0){
-
-        container.innerHTML =
-            `<div class="vazio">
-                Esta loja ainda não possui produtos disponíveis.
-             </div>`;
-
-        return;
-    }
-
-
-    container.innerHTML =
-        listaProdutos.map(produto=>{
-
-            return `
-                <div class="produto">
-
-                    <div class="produto-imagem">
-                        ${produto.emoji || "📦"}
-                    </div>
-
-                    <h3>
-                        ${escapar(produto.nome)}
-                    </h3>
-
-                    <div class="descricao">
-                        ${escapar(produto.descricao || "")}
-                    </div>
-
-                    <div class="produto-acoes">
-
-                        <div>
-                            <div class="preco">
-                                ${formatarMoeda(produto.preco)}
-                            </div>
-
-                            <small>
-                                ${escapar(produto.categoria || "")}
-                            </small>
-                        </div>
-
-                        <button
-                            class="botao pequeno"
-                            onclick="adicionar(${produto.id})">
-                            + Adicionar
-                        </button>
-
-                    </div>
-
-                </div>
-            `;
-
-        }).join("");
+  mostrarPagina("loja");
 
 }
 
 
-/* =========================================================
-   CARRINHO
-========================================================= */
+function voltarDosProdutos(){
 
-function adicionar(id){
+  lojaAtualId = null;
 
-    const produto =
-        produtos.find(p=>p.id === id);
+  mostrarPagina("inicio");
 
-    if(!produto){
-        mostrarMensagem("Produto não encontrado.");
-        return;
-    }
+}
 
 
-    if(!produto.ativo){
-        mostrarMensagem("Produto indisponível.");
-        return;
-    }
+/* =====================================================
+   PRODUTOS
+===================================================== */
 
+function renderizarProdutosLoja(){
 
-    const item =
-        carrinho.find(i=>i.produtoId === id);
+  const area =
+    document.getElementById("produtosLoja");
 
-
-    if(item){
-
-        item.quantidade++;
-
-    }else{
-
-        carrinho.push({
-            produtoId:id,
-            quantidade:1
-        });
-
-    }
-
-
-    salvarCarrinho();
-
-    atualizarBadge();
-
-    mostrarMensagem(
-        produto.nome + " adicionado ao carrinho! 🛒"
+  const lista =
+    produtos.filter(
+      produto =>
+        Number(produto.lojaId) === Number(lojaAtualId) &&
+        produto.ativo !== false
     );
-}
 
+  if(!lista.length){
 
-function alterarQuantidade(id, quantidade){
-
-    const item =
-        carrinho.find(i=>i.produtoId === id);
-
-    if(!item){
-        return;
-    }
-
-
-    item.quantidade = quantidade;
-
-
-    if(item.quantidade <= 0){
-
-        carrinho =
-            carrinho.filter(
-                i=>i.produtoId !== id
-            );
-
-    }
-
-
-    salvarCarrinho();
-
-    atualizarCarrinho();
-
-    atualizarBadge();
-}
-
-
-function atualizarCarrinho(){
-
-    const lista =
-        document.getElementById("listaCarrinho");
-
-    const resumo =
-        document.getElementById("resumoCarrinho");
-
-
-    if(carrinho.length === 0){
-
-        lista.innerHTML =
-            `<div class="vazio">
-                🛒<br><br>
-                Seu carrinho está vazio.
-                <br><br>
-                <button
-                    class="botao"
-                    onclick="mostrarLojas()">
-                    Ver lojas
-                </button>
-             </div>`;
-
-        resumo.innerHTML = "";
-
-        return;
-    }
-
-
-    let subtotal = 0;
-
-
-    lista.innerHTML =
-        carrinho.map(item=>{
-
-            const produto =
-                produtos.find(
-                    p=>p.id === item.produtoId
-                );
-
-
-            if(!produto){
-                return "";
-            }
-
-
-            const totalItem =
-                produto.preco *
-                item.quantidade;
-
-
-            subtotal += totalItem;
-
-
-            return `
-                <div class="item-carrinho">
-
-                    <div class="item-info">
-
-                        <strong>
-                            ${produto.emoji || "📦"}
-                            ${escapar(produto.nome)}
-                        </strong>
-
-                        <small>
-                            ${formatarMoeda(produto.preco)}
-                            cada
-                        </small>
-
-                    </div>
-
-                    <div class="quantidade">
-
-                        <button
-                            onclick="alterarQuantidade(
-                                ${produto.id},
-                                ${item.quantidade - 1}
-                            )">
-                            −
-                        </button>
-
-                        <strong>
-                            ${item.quantidade}
-                        </strong>
-
-                        <button
-                            onclick="alterarQuantidade(
-                                ${produto.id},
-                                ${item.quantidade + 1}
-                            )">
-                            +
-                        </button>
-
-                    </div>
-
-                    <strong>
-                        ${formatarMoeda(totalItem)}
-                    </strong>
-
-                </div>
-            `;
-
-        }).join("");
-
-
-    const taxa = subtotal > 0 ? 5 : 0;
-
-    const total = subtotal + taxa;
-
-
-    resumo.innerHTML = `
-
-        <div class="resumo">
-
-            <div class="linha">
-                <span>Subtotal</span>
-                <strong>
-                    ${formatarMoeda(subtotal)}
-                </strong>
-            </div>
-
-            <div class="linha">
-                <span>Entrega</span>
-                <strong>
-                    ${formatarMoeda(taxa)}
-                </strong>
-            </div>
-
-            <div class="linha total">
-                <span>Total</span>
-                <strong>
-                    ${formatarMoeda(total)}
-                </strong>
-            </div>
-
-            <button
-                class="botao"
-                onclick="abrirCheckout()">
-                Continuar para checkout
-            </button>
-
+    area.innerHTML = `
+      <div class="loja-card">
+        <div class="loja-icone">📦</div>
+        <div class="loja-info">
+          <h3>Nenhum produto cadastrado</h3>
+          <p>O estabelecimento ainda não cadastrou produtos.</p>
         </div>
+      </div>
     `;
+
+    return;
+  }
+
+  area.innerHTML =
+    lista.map(produto => `
+
+      <div class="produto">
+
+        <div class="produto-img">
+          ${produto.emoji || "📦"}
+        </div>
+
+        <h3>
+          ${escapar(produto.nome)}
+        </h3>
+
+        <p>
+          ${escapar(produto.descricao || "")}
+        </p>
+
+        <div class="preco">
+          ${formatarMoeda(produto.preco)}
+        </div>
+
+        <button
+          class="botao botao-laranja"
+          onclick="adicionarCarrinho(${produto.id})">
+          + Adicionar
+        </button>
+
+      </div>
+
+    `).join("");
+
+}
+
+
+/* =====================================================
+   CARRINHO
+===================================================== */
+
+function adicionarCarrinho(id){
+
+  const produto =
+    produtos.find(
+      p => Number(p.id) === Number(id)
+    );
+
+  if(!produto) return;
+
+  const existente =
+    carrinho.find(
+      item => Number(item.id) === Number(id)
+    );
+
+  if(existente){
+
+    existente.quantidade++;
+
+  }else{
+
+    carrinho.push({
+
+      id:produto.id,
+      lojaId:produto.lojaId,
+      nome:produto.nome,
+      preco:Number(produto.preco),
+      quantidade:1
+
+    });
+
+  }
+
+  salvarCarrinho();
+
+  toast("Produto adicionado ao carrinho 🛒");
+
+}
+
+
+function diminuirProduto(id){
+
+  const item =
+    carrinho.find(
+      p => Number(p.id) === Number(id)
+    );
+
+  if(!item) return;
+
+  item.quantidade--;
+
+  if(item.quantidade <= 0){
+
+    carrinho =
+      carrinho.filter(
+        p => Number(p.id) !== Number(id)
+      );
+
+  }
+
+  salvarCarrinho();
+
+  renderizarCarrinho();
+
+}
+
+
+function aumentarProduto(id){
+
+  const item =
+    carrinho.find(
+      p => Number(p.id) === Number(id)
+    );
+
+  if(!item) return;
+
+  item.quantidade++;
+
+  salvarCarrinho();
+
+  renderizarCarrinho();
+
 }
 
 
 function atualizarBadge(){
 
-    const badge =
-        document.getElementById("badgeCarrinho");
+  const total =
+    carrinho.reduce(
+      (soma,item) =>
+        soma + Number(item.quantidade),
+      0
+    );
 
-    const total =
-        carrinho.reduce(
-            (s,item)=>s + item.quantidade,
-            0
-        );
-
-
-    if(total > 0){
-
-        badge.style.display = "block";
-        badge.textContent = total;
-
-    }else{
-
-        badge.style.display = "none";
-
-    }
+  document.getElementById(
+    "badgeCarrinho"
+  ).textContent = total;
 
 }
 
 
-/* =========================================================
-   CHECKOUT
-========================================================= */
+function calcularSubtotal(){
 
-function abrirCheckout(){
+  return carrinho.reduce(
+    (soma,item) =>
+      soma +
+      Number(item.preco) *
+      Number(item.quantidade),
+    0
+  );
 
-    if(carrinho.length === 0){
-
-        mostrarMensagem(
-            "Seu carrinho está vazio."
-        );
-
-        return;
-    }
-
-
-    document.getElementById(
-        "checkoutNome"
-    ).value =
-        cliente.nome || "";
-
-
-    document.getElementById(
-        "checkoutTelefone"
-    ).value =
-        cliente.telefone || "";
-
-
-    document.getElementById(
-        "checkoutEndereco"
-    ).value =
-        cliente.endereco || "";
-
-
-    renderizarResumoCheckout();
-
-    mostrar("checkout");
 }
 
 
-function renderizarResumoCheckout(){
+function renderizarCarrinho(){
 
-    let subtotal = 0;
+  const lista =
+    document.getElementById("listaCarrinho");
 
+  const resumo =
+    document.getElementById("resumoCarrinho");
 
-    carrinho.forEach(item=>{
+  if(!carrinho.length){
 
-        const produto =
-            produtos.find(
-                p=>p.id === item.produtoId
-            );
+    lista.innerHTML = `
+      <div class="loja-card">
+        <div class="loja-icone">🛒</div>
+        <div class="loja-info">
+          <h3>Seu carrinho está vazio</h3>
+          <p>Escolha um estabelecimento para começar.</p>
+        </div>
+      </div>
+    `;
 
-        if(produto){
-            subtotal +=
-                produto.preco *
-                item.quantidade;
-        }
+    resumo.innerHTML = "";
 
-    });
+    return;
+  }
 
+  lista.innerHTML =
+    carrinho.map(item => `
 
-    const entrega =
-        subtotal > 0 ? 5 : 0;
+      <div class="item-carrinho">
 
-    const total =
-        subtotal + entrega;
+        <div>
 
+          <strong>
+            ${escapar(item.nome)}
+          </strong>
 
-    document.getElementById(
-        "resumoCheckout"
-    ).innerHTML = `
-
-        <div class="resumo">
-
-            <h3>Resumo do pedido</h3>
-
-            <div class="linha">
-                <span>Subtotal</span>
-                <strong>
-                    ${formatarMoeda(subtotal)}
-                </strong>
-            </div>
-
-            <div class="linha">
-                <span>Entrega</span>
-                <strong>
-                    ${formatarMoeda(entrega)}
-                </strong>
-            </div>
-
-            <div class="linha total">
-                <span>Total</span>
-                <strong>
-                    ${formatarMoeda(total)}
-                </strong>
-            </div>
-
-            <button
-                class="botao verde"
-                onclick="confirmarPedido()">
-                ✅ Confirmar pedido
-            </button>
+          <p style="color:#ff6500;margin-top:5px">
+            ${formatarMoeda(item.preco)}
+          </p>
 
         </div>
 
-    `;
+        <div class="quantidade">
+
+          <button
+            onclick="diminuirProduto(${item.id})">
+            −
+          </button>
+
+          <strong>
+            ${item.quantidade}
+          </strong>
+
+          <button
+            onclick="aumentarProduto(${item.id})">
+            +
+          </button>
+
+        </div>
+
+      </div>
+
+    `).join("");
+
+  const subtotal =
+    calcularSubtotal();
+
+  const taxa =
+    subtotal > 0 ? 5 : 0;
+
+  const total =
+    subtotal + taxa;
+
+  resumo.innerHTML = `
+
+    <div class="total-box">
+
+      <div class="linha-total">
+        <span>Subtotal</span>
+        <strong>${formatarMoeda(subtotal)}</strong>
+      </div>
+
+      <div class="linha-total">
+        <span>Entrega</span>
+        <strong>${formatarMoeda(taxa)}</strong>
+      </div>
+
+      <hr style="margin:12px 0;border:0;border-top:1px solid #eee">
+
+      <div class="linha-total total-final">
+        <span>Total</span>
+        <strong>${formatarMoeda(total)}</strong>
+      </div>
+
+      <button
+        class="botao botao-laranja"
+        style="margin-top:12px;width:100%"
+        onclick="irParaCheckout()">
+        Continuar pedido
+      </button>
+
+    </div>
+
+  `;
+
+}
+
+
+/* =====================================================
+   CHECKOUT
+===================================================== */
+
+function irParaCheckout(){
+
+  if(!carrinho.length){
+
+    toast("Seu carrinho está vazio.");
+
+    return;
+  }
+
+  document.getElementById(
+    "checkoutNome"
+  ).value =
+    cliente?.nome || "";
+
+  document.getElementById(
+    "checkoutTelefone"
+  ).value =
+    cliente?.telefone || "";
+
+  document.getElementById(
+    "checkoutEndereco"
+  ).value =
+    cliente?.endereco || "";
+
+  mostrarPagina("checkout");
+
 }
 
 
 function confirmarPedido(){
 
-    const nome =
-        document.getElementById(
-            "checkoutNome"
-        ).value.trim();
+  if(!carrinho.length){
 
+    toast("Carrinho vazio.");
 
-    const telefone =
-        document.getElementById(
-            "checkoutTelefone"
-        ).value.trim();
+    return;
+  }
 
+  const nome =
+    document.getElementById("checkoutNome")
+      .value.trim();
 
-    const endereco =
-        document.getElementById(
-            "checkoutEndereco"
-        ).value.trim();
+  const telefone =
+    document.getElementById("checkoutTelefone")
+      .value.trim();
 
+  const endereco =
+    document.getElementById("checkoutEndereco")
+      .value.trim();
 
-    const pagamento =
-        document.getElementById(
-            "checkoutPagamento"
-        ).value;
+  const pagamento =
+    document.getElementById("checkoutPagamento")
+      .value;
 
+  const observacao =
+    document.getElementById("checkoutObservacao")
+      .value.trim();
 
-    const observacao =
-        document.getElementById(
-            "checkoutObservacao"
-        ).value.trim();
+  if(!nome || !telefone || !endereco){
 
-
-    if(!nome || !telefone || !endereco){
-
-        mostrarMensagem(
-            "Preencha nome, telefone e endereço."
-        );
-
-        return;
-    }
-
-
-    let subtotal = 0;
-
-    const itensPedido =
-        carrinho.map(item=>{
-
-            const produto =
-                produtos.find(
-                    p=>p.id === item.produtoId
-                );
-
-
-            const totalItem =
-                produto.preco *
-                item.quantidade;
-
-
-            subtotal += totalItem;
-
-
-            return {
-                produtoId:produto.id,
-                nome:produto.nome,
-                preco:produto.preco,
-                quantidade:item.quantidade,
-                total:totalItem
-            };
-
-        });
-
-
-    const entrega = 5;
-
-    const total =
-        subtotal + entrega;
-
-
-    const pedido = {
-
-        id:Date.now(),
-
-        data:new Date().toLocaleString(
-            "pt-BR"
-        ),
-
-        cliente:{
-            nome,
-            telefone,
-            endereco
-        },
-
-        pagamento,
-
-        observacao,
-
-        itens:itensPedido,
-
-        subtotal,
-
-        entrega,
-
-        total,
-
-        status:"Pedido recebido",
-
-        etapa:1
-
-    };
-
-
-    pedidos.unshift(pedido);
-
-    salvarPedidos();
-
-
-    cliente = {
-        ...cliente,
-        nome,
-        telefone,
-        endereco
-    };
-
-
-    localStorage.setItem(
-        "gt_cliente",
-        JSON.stringify(cliente)
+    toast(
+      "Preencha nome, telefone e endereço."
     );
 
+    return;
+  }
 
-    carrinho = [];
+  const subtotal =
+    calcularSubtotal();
 
-    salvarCarrinho();
+  const entrega = 5;
 
-    atualizarBadge();
+  const total =
+    subtotal + entrega;
 
+  const pedido = {
 
-    mostrarMensagem(
-        "Pedido realizado com sucesso! 🎉"
-    );
+    id:Date.now(),
 
+    data:new Date().toLocaleString("pt-BR"),
 
-    mostrar("pedidos");
+    cliente:nome,
 
-    carregarPedidos();
+    telefone,
+
+    endereco,
+
+    pagamento,
+
+    observacao,
+
+    itens:[...carrinho],
+
+    subtotal,
+
+    entrega,
+
+    total,
+
+    status:"Em processamento",
+
+    etapa:"Pedido recebido"
+
+  };
+
+  pedidos.unshift(pedido);
+
+  salvarPedidos();
+
+  carrinho = [];
+
+  salvarCarrinho();
+
+  cliente = {
+
+    nome,
+    telefone,
+    email:cliente?.email || "",
+    endereco
+
+  };
+
+  localStorage.setItem(
+    CHAVE_CLIENTE,
+    JSON.stringify(cliente)
+  );
+
+  carregarCliente();
+
+  document.getElementById(
+    "checkoutObservacao"
+  ).value = "";
+
+  toast(
+    "Pedido enviado com sucesso! 🎉"
+  );
+
+  mostrarPagina("pedidos");
 
 }
 
 
-/* =========================================================
+/* =====================================================
    PEDIDOS
-========================================================= */
+===================================================== */
 
-function carregarPedidos(){
+function renderizarPedidos(){
 
-    const container =
-        document.getElementById(
-            "listaPedidos"
-        );
+  const area =
+    document.getElementById("listaPedidos");
 
+  if(!pedidos.length){
 
-    if(pedidos.length === 0){
+    area.innerHTML = `
+      <div class="loja-card">
+        <div class="loja-icone">📦</div>
+        <div class="loja-info">
+          <h3>Nenhum pedido ainda</h3>
+          <p>Seus pedidos aparecerão aqui.</p>
+        </div>
+      </div>
+    `;
 
-        container.innerHTML =
-            `<div class="vazio">
-                📦<br><br>
-                Você ainda não fez nenhum pedido.
-             </div>`;
+    return;
+  }
 
-        return;
-    }
+  area.innerHTML =
+    pedidos.map(pedido => `
 
+      <div class="pedido">
 
-    container.innerHTML =
-        pedidos.map(pedido=>{
+        <div style="display:flex;justify-content:space-between;gap:10px">
 
-            return `
+          <strong>
+            Pedido #${String(pedido.id).slice(-5)}
+          </strong>
 
-                <div class="pedido">
+          <strong style="color:#ff6500">
+            ${formatarMoeda(pedido.total)}
+          </strong>
 
-                    <div class="pedido-cabecalho">
+        </div>
 
-                        <div>
-                            <strong>
-                                Pedido #${pedido.id
-                                    .toString()
-                                    .slice(-6)}
-                            </strong>
+        <p style="margin-top:8px;color:#777">
+          ${pedido.data}
+        </p>
 
-                            <br>
+        <div class="status">
+          ${pedido.status}
+        </div>
 
-                            <small>
-                                ${pedido.data}
-                            </small>
-                        </div>
+        <p style="margin-top:10px">
+          🚚 ${pedido.etapa}
+        </p>
 
-                        <span class="status">
-                            ${pedido.status}
-                        </span>
+      </div>
 
-                    </div>
-
-
-                    <div>
-                        ${pedido.itens.map(item=>`
-
-                            <div class="linha">
-
-                                <span>
-                                    ${item.quantidade}x
-                                    ${escapar(item.nome)}
-                                </span>
-
-                                <strong>
-                                    ${formatarMoeda(item.total)}
-                                </strong>
-
-                            </div>
-
-                        `).join("")}
-                    </div>
-
-
-                    <div class="linha total">
-
-                        <span>Total</span>
-
-                        <strong>
-                            ${formatarMoeda(pedido.total)}
-                        </strong>
-
-                    </div>
-
-
-                    <div class="etapas">
-
-                        <div class="etapa ativa">
-                            Pedido recebido
-                        </div>
-
-                        <div class="etapa ${pedido.etapa >= 2 ? "ativa":""}">
-                            Preparando
-                        </div>
-
-                        <div class="etapa ${pedido.etapa >= 3 ? "ativa":""}">
-                            Saiu para entrega
-                        </div>
-
-                        <div class="etapa ${pedido.etapa >= 4 ? "ativa":""}">
-                            Entregue
-                        </div>
-
-                    </div>
-
-                </div>
-
-            `;
-
-        }).join("");
+    `).join("");
 
 }
 
 
-/* =========================================================
-   CADASTRO CLIENTE
-========================================================= */
+/* =====================================================
+   PROPRIETÁRIO
+===================================================== */
 
-function abrirCadastroCliente(){
+function areaProprietario(){
 
-    document.getElementById(
-        "clienteNome"
-    ).value =
-        cliente.nome || "";
+  fecharMenu();
 
+  mostrarPagina("loginProprietario");
 
-    document.getElementById(
-        "clienteTelefone"
-    ).value =
-        cliente.telefone || "";
-
-
-    document.getElementById(
-        "clienteEmail"
-    ).value =
-        cliente.email || "";
-
-
-    document.getElementById(
-        "clienteEndereco"
-    ).value =
-        cliente.endereco || "";
-
-
-    mostrar("cadastroCliente");
-}
-
-
-function atualizarPerfil(){
-
-    const nome =
-        cliente.nome ||
-        "Cliente GT Delivery";
-
-
-    document.getElementById(
-        "nomePerfil"
-    ).textContent = nome;
-
-
-    document.getElementById(
-        "cashbackPerfil"
-    ).textContent =
-        formatarMoeda(cashback);
-
-
-    const saudacao =
-        document.getElementById(
-            "saudacao"
-        );
-
-
-    if(cliente.nome){
-
-        saudacao.textContent =
-            "Olá, " +
-            cliente.nome.split(" ")[0] +
-            "! 👋";
-
-    }else{
-
-        saudacao.textContent =
-            "Olá! 👋";
-
-    }
-
-}
-
-
-/* =========================================================
-   ROLETA DE CASHBACK
-========================================================= */
-
-function girarRoleta(){
-
-    const botao =
-        event && event.target
-        ? event.target
-        : null;
-
-
-    if(botao){
-        botao.disabled = true;
-    }
-
-
-    const premios = [
-        2,
-        5,
-        10,
-        15,
-        20,
-        5
-    ];
-
-
-    const resultado =
-        premios[
-            Math.floor(
-                Math.random() *
-                premios.length
-            )
-        ];
-
-
-    const valorBase =
-        100;
-
-
-    const ganho =
-        valorBase *
-        (resultado / 100);
-
-
-    cashback += ganho;
-
-
-    localStorage.setItem(
-        "gt_cashback",
-        cashback
-    );
-
-
-    const elemento =
-        document.getElementById(
-            "resultadoRoleta"
-        );
-
-
-    elemento.innerHTML =
-        `
-        🎉 Você ganhou
-        <strong>${resultado}%</strong>
-        de cashback!
-        <br>
-        <small>
-            + ${formatarMoeda(ganho)}
-        </small>
-        `;
-
-
-    atualizarPerfil();
-
-
-    setTimeout(()=>{
-
-        if(botao){
-            botao.disabled = false;
-        }
-
-    },1500);
-
-}
-
-
-/* =========================================================
-   ÁREA DO PROPRIETÁRIO
-========================================================= */
-
-function abrirAreaProprietario(){
-
-    document.getElementById(
-        "senhaProprietario"
-    ).value = "";
-
-
-    mostrar("loginProprietario");
 }
 
 
 function entrarProprietario(){
 
-    const senha =
-        document.getElementById(
-            "senhaProprietario"
-        ).value;
+  const senha =
+    document.getElementById(
+      "senhaProprietario"
+    ).value;
 
+  if(senha === "1234"){
 
-    if(senha !== SENHA_PROPRIETARIO){
+    document.getElementById(
+      "senhaProprietario"
+    ).value = "";
 
-        mostrarMensagem(
-            "Senha incorreta. ❌"
-        );
+    mostrarPagina("proprietario");
 
-        return;
-    }
+  }else{
 
+    toast("Senha incorreta.");
 
-    renderizarAdmin();
-
-    mostrar("proprietario");
-
-}
-
-
-function sairProprietario(){
-
-    mostrar("perfil");
-
-    mostrarMensagem(
-        "Você saiu da área do proprietário."
-    );
+  }
 
 }
 
 
-/* =========================================================
-   CADASTRAR LOJA
-========================================================= */
+function abrirCadastroLoja(){
+
+  mostrarPagina("cadastroLoja");
+
+}
+
+
+function abrirCadastroProduto(){
+
+  preencherSelectLojas();
+
+  mostrarPagina("cadastroProduto");
+
+}
+
+
+function preencherSelectLojas(){
+
+  const select =
+    document.getElementById("produtoLoja");
+
+  select.innerHTML =
+    lojas.map(loja => `
+
+      <option value="${loja.id}">
+        ${escapar(loja.nome)}
+      </option>
+
+    `).join("");
+
+}
+
 
 function cadastrarLoja(){
 
-    const nome =
-        document.getElementById(
-            "novaLojaNome"
-        ).value.trim();
+  const nome =
+    document.getElementById("nomeLoja")
+      .value.trim();
 
+  const telefone =
+    document.getElementById("telefoneLoja")
+      .value.trim();
 
-    const telefone =
-        document.getElementById(
-            "novaLojaTelefone"
-        ).value.trim();
+  const endereco =
+    document.getElementById("enderecoLoja")
+      .value.trim();
 
+  const categoria =
+    document.getElementById("categoriaLoja")
+      .value;
 
-    const endereco =
-        document.getElementById(
-            "novaLojaEndereco"
-        ).value.trim();
+  const emoji =
+    document.getElementById("emojiLoja")
+      .value.trim()
+      || iconeCategoria(categoria);
 
+  if(!nome){
 
-    const categoria =
-        document.getElementById(
-            "novaLojaCategoria"
-        ).value;
+    toast("Digite o nome da loja.");
 
+    return;
+  }
 
-    const emoji =
-        document.getElementById(
-            "novaLojaEmoji"
-        ).value.trim() ||
-        "🏪";
+  const novaLoja = {
 
+    id:Date.now(),
 
-    if(!nome){
+    nome,
 
-        mostrarMensagem(
-            "Digite o nome da loja."
-        );
+    telefone,
 
-        return;
-    }
+    endereco:
+      endereco || "Tobias Barreto - SE",
 
+    categoria,
 
-    const novaLoja = {
+    emoji,
 
-        id:Date.now(),
+    ativa:true
 
-        nome,
+  };
 
-        telefone,
+  lojas.push(novaLoja);
 
-        endereco,
+  salvarLojas();
 
-        categoria,
+  document.getElementById("nomeLoja").value = "";
+  document.getElementById("telefoneLoja").value = "";
+  document.getElementById("enderecoLoja").value = "";
+  document.getElementById("emojiLoja").value = "🏪";
 
-        emoji,
+  renderizarLojas();
 
-        ativa:true
+  renderizarAdmin();
 
-    };
+  toast(
+    "Estabelecimento cadastrado com sucesso! 🏪"
+  );
 
-
-    lojas.push(novaLoja);
-
-    salvarLojas();
-
-
-    document.getElementById(
-        "novaLojaNome"
-    ).value = "";
-
-
-    document.getElementById(
-        "novaLojaTelefone"
-    ).value = "";
-
-
-    document.getElementById(
-        "novaLojaEndereco"
-    ).value = "";
-
-
-    renderizarAdmin();
-
-    renderizarLojas();
-
-
-    mostrarMensagem(
-        "Loja cadastrada com sucesso! 🏪"
-    );
+  mostrarPagina("proprietario");
 
 }
 
-
-/* =========================================================
-   CADASTRAR PRODUTO
-========================================================= */
 
 function cadastrarProduto(){
 
-    const lojaId =
-        Number(
-            document.getElementById(
-                "novoProdutoLoja"
-            ).value
-        );
-
-
-    const nome =
-        document.getElementById(
-            "novoProdutoNome"
-        ).value.trim();
-
-
-    const descricao =
-        document.getElementById(
-            "novoProdutoDescricao"
-        ).value.trim();
-
-
-    const preco =
-        Number(
-            document.getElementById(
-                "novoProdutoPreco"
-            ).value
-        );
-
-
-    const categoria =
-        document.getElementById(
-            "novoProdutoCategoria"
-        ).value.trim();
-
-
-    const emoji =
-        document.getElementById(
-            "novoProdutoEmoji"
-        ).value.trim() ||
-        "📦";
-
-
-    if(!lojaId){
-
-        mostrarMensagem(
-            "Selecione uma loja."
-        );
-
-        return;
-    }
-
-
-    if(!nome){
-
-        mostrarMensagem(
-            "Digite o nome do produto."
-        );
-
-        return;
-    }
-
-
-    if(!preco || preco <= 0){
-
-        mostrarMensagem(
-            "Digite um preço válido."
-        );
-
-        return;
-    }
-
-
-    const novoProduto = {
-
-        id:Date.now(),
-
-        lojaId,
-
-        nome,
-
-        descricao,
-
-        preco,
-
-        categoria,
-
-        emoji,
-
-        ativo:true
-
-    };
-
-
-    produtos.push(novoProduto);
-
-    salvarProdutos();
-
-
-    document.getElementById(
-        "novoProdutoNome"
-    ).value = "";
-
-
-    document.getElementById(
-        "novoProdutoDescricao"
-    ).value = "";
-
-
-    document.getElementById(
-        "novoProdutoPreco"
-    ).value = "";
-
-
-    document.getElementById(
-        "novoProdutoCategoria"
-    ).value = "";
-
-
-    renderizarAdmin();
-
-
-    mostrarMensagem(
-        "Produto cadastrado com sucesso! 📦"
+  const lojaId =
+    Number(
+      document.getElementById("produtoLoja")
+        .value
     );
+
+  const nome =
+    document.getElementById("produtoNome")
+      .value.trim();
+
+  const descricao =
+    document.getElementById("produtoDescricao")
+      .value.trim();
+
+  const preco =
+    Number(
+      document.getElementById("produtoPreco")
+        .value
+    );
+
+  const categoria =
+    document.getElementById("produtoCategoria")
+      .value.trim();
+
+  const emoji =
+    document.getElementById("produtoEmoji")
+      .value.trim()
+      || "📦";
+
+  if(!lojaId || !nome || !preco){
+
+    toast(
+      "Preencha loja, produto e preço."
+    );
+
+    return;
+  }
+
+  const novoProduto = {
+
+    id:Date.now(),
+
+    lojaId,
+
+    nome,
+
+    descricao,
+
+    preco,
+
+    categoria,
+
+    emoji,
+
+    ativo:true
+
+  };
+
+  produtos.push(novoProduto);
+
+  salvarProdutos();
+
+  document.getElementById("produtoNome").value = "";
+  document.getElementById("produtoDescricao").value = "";
+  document.getElementById("produtoPreco").value = "";
+  document.getElementById("produtoCategoria").value = "";
+  document.getElementById("produtoEmoji").value = "📦";
+
+  renderizarAdmin();
+
+  toast(
+    "Produto cadastrado com sucesso! 📦"
+  );
+
+  mostrarPagina("proprietario");
 
 }
 
-
-/* =========================================================
-   ADMIN
-========================================================= */
 
 function renderizarAdmin(){
 
-    const listaLojas =
-        document.getElementById(
-            "adminLojas"
-        );
-
-
-    const listaProdutos =
-        document.getElementById(
-            "adminProdutos"
-        );
-
-
-    const selectLoja =
-        document.getElementById(
-            "novoProdutoLoja"
-        );
-
-
-    /* LOJAS */
-
-    if(lojas.length === 0){
-
-        listaLojas.innerHTML =
-            `<div class="vazio">
-                Nenhuma loja cadastrada.
-             </div>`;
-
-    }else{
-
-        listaLojas.innerHTML =
-            lojas.map(loja=>{
-
-                return `
-
-                    <div class="admin-item">
-
-                        <div class="admin-item-topo">
-
-                            <div>
-
-                                <strong>
-                                    ${loja.emoji}
-                                    ${escapar(loja.nome)}
-                                </strong>
-
-                                <br>
-
-                                <small>
-                                    ${escapar(loja.categoria)}
-                                </small>
-
-                                <br>
-
-                                <small>
-                                    ${escapar(
-                                        loja.endereco ||
-                                        "Endereço não informado"
-                                    )}
-                                </small>
-
-                            </div>
-
-                            <strong>
-                                ${loja.ativa
-                                    ? "🟢 Ativa"
-                                    : "🔴 Inativa"}
-                            </strong>
-
-                        </div>
-
-
-                        <div class="admin-acoes">
-
-                            <button
-                                class="botao pequeno"
-                                onclick="alternarLoja(${loja.id})">
-
-                                ${loja.ativa
-                                    ? "Desativar"
-                                    : "Ativar"}
-
-                            </button>
-
-                            <button
-                                class="botao pequeno vermelho"
-                                onclick="excluirLoja(${loja.id})">
-
-                                Excluir
-
-                            </button>
-
-                        </div>
-
-                    </div>
-
-                `;
-
-            }).join("");
-
-    }
-
-
-    /* SELECT DE LOJAS */
-
-    selectLoja.innerHTML =
-        lojas.map(loja=>{
-
-            return `
-                <option value="${loja.id}">
-                    ${loja.emoji}
-                    ${escapar(loja.nome)}
-                </option>
-            `;
-
-        }).join("");
-
-
-    /* PRODUTOS */
-
-    if(produtos.length === 0){
-
-        listaProdutos.innerHTML =
-            `<div class="vazio">
-                Nenhum produto cadastrado.
-             </div>`;
-
-    }else{
-
-        listaProdutos.innerHTML =
-            produtos.map(produto=>{
-
-                const loja =
-                    lojas.find(
-                        l=>l.id === produto.lojaId
-                    );
-
-
-                return `
-
-                    <div class="admin-item">
-
-                        <div class="admin-item-topo">
-
-                            <div>
-
-                                <strong>
-                                    ${produto.emoji}
-                                    ${escapar(produto.nome)}
-                                </strong>
-
-                                <br>
-
-                                <small>
-                                    Loja:
-                                    ${loja
-                                        ? escapar(loja.nome)
-                                        : "Não encontrada"}
-                                </small>
-
-                                <br>
-
-                                <small>
-                                    ${formatarMoeda(produto.preco)}
-                                </small>
-
-                            </div>
-
-                            <strong>
-                                ${produto.ativo
-                                    ? "🟢 Ativo"
-                                    : "🔴 Inativo"}
-                            </strong>
-
-                        </div>
-
-
-                        <div class="admin-acoes">
-
-                            <button
-                                class="botao pequeno"
-                                onclick="alternarProduto(${produto.id})">
-
-                                ${produto.ativo
-                                    ? "Desativar"
-                                    : "Ativar"}
-
-                            </button>
-
-                            <button
-                                class="botao pequeno vermelho"
-                                onclick="excluirProduto(${produto.id})">
-
-                                Excluir
-
-                            </button>
-
-                        </div>
-
-                    </div>
-
-                `;
-
-            }).join("");
-
-    }
-
-}
-
-
-/* =========================================================
-   ATIVAR/DESATIVAR LOJA
-========================================================= */
-
-function alternarLoja(id){
-
-    const loja =
-        lojas.find(l=>l.id === id);
-
-
-    if(!loja){
-        return;
-    }
-
-
-    loja.ativa =
-        !loja.ativa;
-
-
-    salvarLojas();
-
-    renderizarAdmin();
-
-    renderizarLojas();
-
-
-    mostrarMensagem(
-        loja.ativa
-        ? "Loja ativada. 🟢"
-        : "Loja desativada. 🔴"
+  const area =
+    document.getElementById(
+      "listaAdminLojas"
     );
 
-}
+  area.innerHTML =
+    lojas.map(loja => {
 
-
-/* =========================================================
-   EXCLUIR LOJA
-========================================================= */
-
-function excluirLoja(id){
-
-    const loja =
-        lojas.find(l=>l.id === id);
-
-
-    if(!loja){
-        return;
-    }
-
-
-    const confirmar =
-        confirm(
-            "Excluir a loja " +
-            loja.nome +
-            "?"
-        );
-
-
-    if(!confirmar){
-        return;
-    }
-
-
-    lojas =
-        lojas.filter(
-            l=>l.id !== id
-        );
-
-
-    produtos =
+      const quantidade =
         produtos.filter(
-            p=>p.lojaId !== id
-        );
+          p =>
+            Number(p.lojaId) === Number(loja.id)
+        ).length;
+
+      return `
+
+        <div class="admin-item">
+
+          <div style="display:flex;align-items:center;gap:10px">
+
+            <div style="
+              width:48px;
+              height:48px;
+              border-radius:14px;
+              background:#fff0e5;
+              display:flex;
+              align-items:center;
+              justify-content:center;
+              font-size:25px;">
+              ${loja.emoji || "🏪"}
+            </div>
+
+            <div>
+
+              <strong>
+                ${escapar(loja.nome)}
+              </strong>
+
+              <p style="font-size:12px;color:#777">
+                ${escapar(loja.categoria)}
+              </p>
+
+              <p style="font-size:12px;color:#777">
+                ${quantidade} produto(s)
+              </p>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      `;
+
+    }).join("");
+
+}
 
 
-    salvarLojas();
+/* =====================================================
+   ROLETA
+===================================================== */
 
-    salvarProdutos();
+function abrirRoleta(){
 
-    renderizarAdmin();
+  document.getElementById(
+    "modalRoleta"
+  ).classList.add("aberto");
 
-    renderizarLojas();
+  atualizarRoleta();
+
+}
 
 
-    mostrarMensagem(
-        "Loja excluída."
+function fecharRoleta(){
+
+  document.getElementById(
+    "modalRoleta"
+  ).classList.remove("aberto");
+
+}
+
+
+function obterEstadoRoleta(){
+
+  return JSON.parse(
+    localStorage.getItem(CHAVE_ROLETA)
+      || "null"
+  );
+
+}
+
+
+function podeGirar(){
+
+  const estado =
+    obterEstadoRoleta();
+
+  if(!estado){
+    return true;
+  }
+
+  return (
+    Date.now() - estado.data
+    >= INTERVALO_ROLETA
+  );
+
+}
+
+
+function tempoRestanteRoleta(){
+
+  const estado =
+    obterEstadoRoleta();
+
+  if(!estado){
+    return 0;
+  }
+
+  return Math.max(
+    0,
+    INTERVALO_ROLETA -
+    (Date.now() - estado.data)
+  );
+
+}
+
+
+function formatarTempo(ms){
+
+  const horas =
+    Math.floor(ms / 3600000);
+
+  const minutos =
+    Math.floor(
+      (ms % 3600000) / 60000
     );
 
+  return horas + "h " +
+         minutos + "min";
+
 }
 
 
-/* =========================================================
-   ATIVAR/DESATIVAR PRODUTO
-========================================================= */
+function atualizarRoleta(){
 
-function alternarProduto(id){
-
-    const produto =
-        produtos.find(
-            p=>p.id === id
-        );
-
-
-    if(!produto){
-        return;
-    }
-
-
-    produto.ativo =
-        !produto.ativo;
-
-
-    salvarProdutos();
-
-    renderizarAdmin();
-
-
-    mostrarMensagem(
-        produto.ativo
-        ? "Produto ativado. 🟢"
-        : "Produto desativado. 🔴"
+  const status =
+    document.getElementById(
+      "roletaStatus"
     );
 
-}
-
-
-/* =========================================================
-   EXCLUIR PRODUTO
-========================================================= */
-
-function excluirProduto(id){
-
-    const produto =
-        produtos.find(
-            p=>p.id === id
-        );
-
-
-    if(!produto){
-        return;
-    }
-
-
-    const confirmar =
-        confirm(
-            "Excluir o produto " +
-            produto.nome +
-            "?"
-        );
-
-
-    if(!confirmar){
-        return;
-    }
-
-
-    produtos =
-        produtos.filter(
-            p=>p.id !== id
-        );
-
-
-    carrinho =
-        carrinho.filter(
-            item=>item.produtoId !== id
-        );
-
-
-    salvarProdutos();
-
-    salvarCarrinho();
-
-    renderizarAdmin();
-
-    atualizarBadge();
-
-    atualizarCarrinho();
-
-
-    mostrarMensagem(
-        "Produto excluído."
+  const contador =
+    document.getElementById(
+      "contadorRoleta"
     );
 
-}
+  const estado =
+    obterEstadoRoleta();
 
+  if(!estado || podeGirar()){
 
-/* =========================================================
-   PESQUISA
-========================================================= */
+    status.textContent =
+      "Você pode girar agora! 🍀";
 
-function focarBusca(){
+    contador.textContent =
+      "Você pode girar agora.";
 
-    const campo =
-        document.getElementById(
-            "campoBusca"
-        );
+    return;
 
-    campo.focus();
+  }
 
-    window.scrollTo({
-        top:0,
-        behavior:"smooth"
-    });
+  const restante =
+    tempoRestanteRoleta();
 
-}
+  status.textContent =
+    "Cashback ativo: " +
+    estado.premio +
+    "% • próximo giro em " +
+    formatarTempo(restante);
 
-
-function buscar(texto){
-
-    const termo =
-        texto
-        .toLowerCase()
-        .trim();
-
-
-    if(!termo){
-
-        renderizarLojas();
-
-        return;
-    }
-
-
-    const lojasEncontradas =
-        lojas.filter(loja=>
-
-            loja.ativa &&
-
-            (
-                loja.nome
-                    .toLowerCase()
-                    .includes(termo)
-
-                ||
-
-                loja.categoria
-                    .toLowerCase()
-                    .includes(termo)
-            )
-
-        );
-
-
-    mostrar("loja");
-
-
-    const lista =
-        document.getElementById(
-            "listaLojas"
-        );
-
-
-    if(lojasEncontradas.length === 0){
-
-        lista.innerHTML =
-            `<div class="vazio">
-                Nenhum resultado encontrado.
-             </div>`;
-
-        return;
-    }
-
-
-    lista.innerHTML =
-        lojasEncontradas.map(loja=>{
-
-            return `
-
-                <div class="loja-card">
-
-                    <div class="loja-topo">
-
-                        <div class="loja-emoji">
-                            ${loja.emoji}
-                        </div>
-
-                        <div>
-
-                            <h3>
-                                ${escapar(loja.nome)}
-                            </h3>
-
-                            <p>
-                                ${escapar(loja.categoria)}
-                            </p>
-
-                        </div>
-
-                    </div>
-
-                    <button
-                        class="botao"
-                        onclick="abrirLoja(${loja.id})">
-                        Ver loja
-                    </button>
-
-                </div>
-
-            `;
-
-        }).join("");
+  contador.textContent =
+    "Seu prêmio de " +
+    estado.premio +
+    "% permanece ativo por 12 horas. " +
+    "Próximo giro em " +
+    formatarTempo(restante);
 
 }
 
 
-/* =========================================================
-   FILTRO DE CATEGORIA
-========================================================= */
+function girarRoleta(){
 
-function filtrarCategoria(categoria){
+  if(!podeGirar()){
 
-    const encontrados =
-        lojas.filter(loja=>
+    const restante =
+      tempoRestanteRoleta();
 
-            loja.ativa &&
+    document.getElementById(
+      "resultadoRoleta"
+    ).textContent =
+      "⏳ Aguarde " +
+      formatarTempo(restante);
 
-            (
-                loja.categoria === categoria
-                ||
-                (
-                    categoria === "Lanches" &&
-                    (
-                        loja.categoria === "Lanches" ||
-                        loja.categoria === "Restaurante" ||
-                        loja.categoria === "Pizza"
-                    )
-                )
-            )
+    return;
+  }
 
-        );
+  const botao =
+    document.getElementById(
+      "botaoRoleta"
+    );
 
+  const wheel =
+    document.getElementById(
+      "roletaGrande"
+    );
 
-    mostrar("loja");
+  botao.disabled = true;
 
+  const premios =
+    [2,4,6,8,10,12];
 
-    const lista =
-        document.getElementById(
-            "listaLojas"
-        );
+  const indice =
+    Math.floor(
+      Math.random() * premios.length
+    );
 
+  const premio =
+    premios[indice];
 
-    if(encontrados.length === 0){
+  const anguloPorPremio = 60;
 
-        lista.innerHTML =
-            `<div class="vazio">
-                Nenhuma loja encontrada nessa categoria.
-             </div>`;
+  const voltas = 5;
 
-        return;
-    }
+  const destino =
+    voltas * 360 +
+    (360 - (indice * anguloPorPremio + 30));
 
+  wheel.style.transform =
+    "rotate(" + destino + "deg)";
 
-    lista.innerHTML =
-        encontrados.map(loja=>{
+  setTimeout(() => {
 
-            return `
+    const estado = {
 
-                <div class="loja-card">
+      data:Date.now(),
 
-                    <div class="loja-topo">
+      premio
 
-                        <div class="loja-emoji">
-                            ${loja.emoji}
-                        </div>
+    };
 
-                        <div>
+    localStorage.setItem(
+      CHAVE_ROLETA,
+      JSON.stringify(estado)
+    );
 
-                            <h3>
-                                ${escapar(loja.nome)}
-                            </h3>
+    /*
+      O prêmio também entra no saldo
+      como crédito demonstrativo.
+    */
 
-                            <p>
-                                ${escapar(loja.categoria)}
-                            </p>
+    cashback += premio;
 
-                        </div>
+    localStorage.setItem(
+      CHAVE_CASHBACK,
+      cashback.toFixed(2)
+    );
 
-                    </div>
+    document.getElementById(
+      "resultadoRoleta"
+    ).textContent =
+      "🎉 Você ganhou " +
+      premio +
+      "% de cashback!";
 
-                    <button
-                        class="botao"
-                        onclick="abrirLoja(${loja.id})">
-                        Ver loja
-                    </button>
+    atualizarRoleta();
 
-                </div>
+    atualizarPerfil();
 
-            `;
+    botao.disabled = false;
 
-        }).join("");
+    toast(
+      "Parabéns! Você ganhou " +
+      premio +
+      "% 🎉"
+    );
+
+  },4200);
 
 }
 
 
-/* =========================================================
+/* =====================================================
    UTILIDADES
-========================================================= */
+===================================================== */
 
 function formatarMoeda(valor){
 
-    return Number(valor || 0)
-        .toLocaleString(
-            "pt-BR",
-            {
-                style:"currency",
-                currency:"BRL"
-            }
-        );
+  return Number(valor || 0)
+    .toLocaleString(
+      "pt-BR",
+      {
+        style:"currency",
+        currency:"BRL"
+      }
+    );
 
 }
 
 
 function escapar(texto){
 
-    return String(texto || "")
-        .replace(/&/g,"&amp;")
-        .replace(/</g,"&lt;")
-        .replace(/>/g,"&gt;")
-        .replace(/"/g,"&quot;")
-        .replace(/'/g,"&#039;");
+  return String(texto || "")
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
 
 }
 
 
-function mostrarMensagem(texto){
+function toast(mensagem){
 
-    const elemento =
-        document.getElementById(
-            "mensagem"
-        );
+  const elemento =
+    document.getElementById("toast");
 
+  elemento.textContent =
+    mensagem;
 
-    elemento.textContent = texto;
+  elemento.classList.add("mostrar");
 
-    elemento.style.display = "block";
+  clearTimeout(window.timerToast);
 
+  window.timerToast =
+    setTimeout(() => {
 
-    clearTimeout(
-        window.timerMensagem
-    );
+      elemento.classList.remove("mostrar");
 
-
-    window.timerMensagem =
-        setTimeout(()=>{
-
-            elemento.style.display =
-                "none";
-
-        },2500);
+    },2500);
 
 }
 
 
-/* =========================================================
+/* =====================================================
    INICIALIZAÇÃO
-========================================================= */
+===================================================== */
 
-carregarDados();
+function iniciar(){
 
-atualizarPerfil();
+  carregarCliente();
 
-atualizarBadge();
+  atualizarBadge();
 
-renderizarLojas();
+  renderizarLojas();
 
-carregarPedidos();
+  renderizarPedidos();
+
+  renderizarAdmin();
+
+  atualizarRoleta();
+
+  setInterval(
+    atualizarRoleta,
+    30000
+  );
+
+}
+
+iniciar();
 
 </script>
 
