@@ -3,243 +3,318 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+<meta name="theme-color" content="#ff6b00">
 <title>GT Delivery Loja</title>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <style>
 *{
-    box-sizing:border-box;
-    margin:0;
-    padding:0;
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
 }
 
 body{
-    font-family:Arial,Helvetica,sans-serif;
-    background:#f5f5f5;
-    color:#222;
+  font-family:Arial,Helvetica,sans-serif;
+  background:#f5f5f5;
+  color:#222;
 }
 
 header{
-    background:linear-gradient(135deg,#ff6b00,#ff9800);
-    color:white;
-    padding:18px;
-    text-align:center;
+  background:linear-gradient(135deg,#ff6b00,#ff9800);
+  color:white;
+  padding:18px;
+  text-align:center;
+  box-shadow:0 2px 8px rgba(0,0,0,.15);
 }
 
 header h1{
-    font-size:24px;
+  font-size:25px;
 }
 
 header p{
-    margin-top:5px;
-    font-size:14px;
+  margin-top:5px;
+  font-size:14px;
 }
 
 .container{
-    width:100%;
-    max-width:1000px;
-    margin:auto;
-    padding:15px;
+  max-width:1000px;
+  margin:auto;
+  padding:15px;
 }
 
 .card{
-    background:white;
-    border-radius:15px;
-    padding:18px;
-    margin-bottom:15px;
-    box-shadow:0 3px 12px rgba(0,0,0,.08);
+  background:white;
+  border-radius:15px;
+  padding:18px;
+  margin-bottom:15px;
+  box-shadow:0 2px 10px rgba(0,0,0,.08);
+}
+
+h2{
+  margin-bottom:15px;
+  color:#ff6b00;
+}
+
+h3{
+  margin-bottom:10px;
 }
 
 input,
 select,
 textarea{
-    width:100%;
-    padding:13px;
-    margin-top:8px;
-    margin-bottom:12px;
-    border:1px solid #ddd;
-    border-radius:10px;
-    font-size:15px;
+  width:100%;
+  padding:13px;
+  border:1px solid #ddd;
+  border-radius:10px;
+  margin-top:7px;
+  margin-bottom:12px;
+  font-size:15px;
+  background:white;
 }
 
 textarea{
-    min-height:90px;
-    resize:vertical;
+  min-height:90px;
+  resize:vertical;
 }
 
 button{
-    border:0;
-    border-radius:10px;
-    padding:13px 16px;
-    font-size:15px;
-    cursor:pointer;
-    background:#ff6b00;
-    color:white;
-    margin:4px;
+  border:0;
+  border-radius:10px;
+  padding:13px 16px;
+  font-size:15px;
+  font-weight:bold;
+  cursor:pointer;
 }
 
-button:hover{
-    opacity:.9;
+.btn{
+  background:#ff6b00;
+  color:white;
+  width:100%;
+}
+
+.btn:hover{
+  opacity:.9;
 }
 
 .btn-secondary{
-    background:#333;
+  background:#222;
+  color:white;
+}
+
+.btn-danger{
+  background:#d62828;
+  color:white;
 }
 
 .btn-green{
-    background:#159447;
-}
-
-.btn-red{
-    background:#d93025;
-}
-
-.btn-blue{
-    background:#1976d2;
-}
-
-.hidden{
-    display:none !important;
+  background:#16803c;
+  color:white;
 }
 
 .menu{
-    display:flex;
-    flex-wrap:wrap;
-    gap:8px;
-    margin-bottom:15px;
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:10px;
+  margin-bottom:15px;
 }
 
 .menu button{
-    flex:1;
-    min-width:130px;
+  background:white;
+  border:1px solid #eee;
+  color:#222;
+  min-height:60px;
+  box-shadow:0 2px 6px rgba(0,0,0,.06);
 }
 
-.grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-    gap:15px;
+.menu button:hover{
+  background:#fff3eb;
 }
 
-.stat{
-    background:white;
-    border-radius:15px;
-    padding:20px;
-    box-shadow:0 3px 12px rgba(0,0,0,.07);
+.hidden{
+  display:none !important;
 }
 
-.stat small{
-    color:#777;
+.login{
+  max-width:450px;
+  margin:30px auto;
 }
 
-.stat h2{
-    margin-top:8px;
-    color:#ff6b00;
+.logo-small{
+  width:70px;
+  height:70px;
+  border-radius:50%;
+  object-fit:cover;
+  border:3px solid white;
+  background:#eee;
 }
 
-.product{
-    border:1px solid #eee;
-    border-radius:12px;
-    padding:12px;
-    background:#fff;
+.store-header{
+  display:flex;
+  align-items:center;
+  gap:15px;
 }
 
-.product img{
-    width:100%;
-    height:160px;
-    object-fit:cover;
-    border-radius:10px;
-    background:#eee;
+.store-header img{
+  width:75px;
+  height:75px;
+  border-radius:50%;
+  object-fit:cover;
+  border:3px solid #ff6b00;
+  background:#eee;
 }
 
-.product h3{
-    margin-top:10px;
+.store-header .sem-logo{
+  width:75px;
+  height:75px;
+  border-radius:50%;
+  background:#eee;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:30px;
+}
+
+.status{
+  display:inline-block;
+  padding:6px 10px;
+  border-radius:20px;
+  font-size:12px;
+  font-weight:bold;
+  background:#eee;
+}
+
+.status.received{
+  background:#fff3cd;
+  color:#856404;
+}
+
+.status.preparing{
+  background:#cfe2ff;
+  color:#084298;
+}
+
+.status.out_for_delivery{
+  background:#d1e7dd;
+  color:#0f5132;
+}
+
+.status.delivered{
+  background:#d1e7dd;
+  color:#0f5132;
+}
+
+.status.cancelled{
+  background:#f8d7da;
+  color:#842029;
+}
+
+.item{
+  border:1px solid #eee;
+  padding:13px;
+  border-radius:12px;
+  margin-bottom:10px;
+}
+
+.item strong{
+  display:block;
+  margin-bottom:5px;
 }
 
 .price{
-    color:#159447;
-    font-size:18px;
-    font-weight:bold;
-    margin:7px 0;
+  color:#16803c;
+  font-weight:bold;
 }
 
-.badge{
-    display:inline-block;
-    padding:5px 8px;
-    border-radius:20px;
-    font-size:12px;
-    background:#eee;
+.grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:12px;
 }
 
-.badge.green{
-    background:#d9f5e3;
-    color:#16743c;
+.stat{
+  background:#fff7f0;
+  border-radius:12px;
+  padding:15px;
 }
 
-.badge.red{
-    background:#fde0dd;
-    color:#a51d13;
+.stat strong{
+  display:block;
+  font-size:22px;
+  color:#ff6b00;
+  margin-top:5px;
 }
 
-.order{
-    border:1px solid #eee;
-    border-radius:12px;
-    padding:15px;
-    margin-bottom:12px;
+.product-image{
+  width:90px;
+  height:90px;
+  object-fit:cover;
+  border-radius:10px;
+  background:#eee;
+  margin-bottom:10px;
 }
 
-.order strong{
-    color:#ff6b00;
+.logo-preview{
+  width:160px;
+  height:160px;
+  border-radius:50%;
+  object-fit:cover;
+  border:4px solid #ff6b00;
+  display:block;
+  margin:15px auto;
+  background:#eee;
 }
 
-.logo{
-    font-weight:bold;
-    font-size:25px;
+.logo-placeholder{
+  width:160px;
+  height:160px;
+  border-radius:50%;
+  background:#eee;
+  border:4px solid #ff6b00;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin:15px auto;
+  font-size:55px;
 }
 
-.small{
-    font-size:13px;
-    color:#777;
+.center{
+  text-align:center;
 }
 
-.message{
-    padding:12px;
-    border-radius:10px;
-    margin:10px 0;
-    background:#eee;
+.alert{
+  padding:12px;
+  border-radius:10px;
+  margin-bottom:12px;
+  background:#fff3cd;
+  color:#664d03;
 }
 
 .success{
-    background:#dff5e6;
-    color:#176c38;
+  padding:12px;
+  border-radius:10px;
+  margin-bottom:12px;
+  background:#d1e7dd;
+  color:#0f5132;
 }
 
 .error{
-    background:#ffe1df;
-    color:#9b1c13;
-}
-
-table{
-    width:100%;
-    border-collapse:collapse;
-    margin-top:10px;
-}
-
-th,td{
-    padding:10px;
-    border-bottom:1px solid #eee;
-    text-align:left;
+  padding:12px;
+  border-radius:10px;
+  margin-bottom:12px;
+  background:#f8d7da;
+  color:#842029;
 }
 
 @media(max-width:600px){
-    .menu button{
-        min-width:100%;
-    }
+  .grid{
+    grid-template-columns:1fr;
+  }
 
-    table{
-        font-size:13px;
-    }
+  .menu{
+    grid-template-columns:1fr 1fr;
+  }
 }
 </style>
 </head>
@@ -247,1846 +322,335 @@ th,td{
 <body>
 
 <header>
-    <div class="logo">GT Delivery</div>
-    <p>Área do Parceiro / Loja</p>
+  <h1>🛵 GT Delivery</h1>
+  <p>Área da Loja / Parceiro</p>
 </header>
 
 <div class="container">
 
-<!-- ================= LOGIN ================= -->
+<!-- LOGIN -->
+<section id="loginScreen" class="login">
 
-<section id="loginSection">
+  <div class="card">
+    <h2>🔐 Entrar</h2>
 
-<div class="card">
+    <input
+      type="email"
+      id="loginEmail"
+      placeholder="E-mail"
+      autocomplete="email"
+    >
 
-<h2>🔐 Entrar na GT Delivery Loja</h2>
+    <input
+      type="password"
+      id="loginPassword"
+      placeholder="Senha"
+      autocomplete="current-password"
+    >
 
-<p class="small">
-Acesso exclusivo para parceiros autorizados.
-</p>
+    <button class="btn" onclick="entrar()">
+      Entrar
+    </button>
 
-<br>
+    <br><br>
 
-<label>E-mail</label>
-<input
-    type="email"
-    id="loginEmail"
-    placeholder="Digite seu e-mail"
->
+    <button
+      class="btn-secondary"
+      style="width:100%;"
+      onclick="recuperarSenha()"
+    >
+      Esqueci minha senha
+    </button>
 
-<label>Senha</label>
-<input
-    type="password"
-    id="loginPassword"
-    placeholder="Digite sua senha"
->
-
-<button onclick="login()">
-    Entrar
-</button>
-
-<button
-    class="btn-secondary"
-    onclick="recuperarSenha()"
->
-    Esqueci minha senha
-</button>
-
-<div id="loginMessage"></div>
-
-</div>
+    <div id="loginMessage" style="margin-top:12px;"></div>
+  </div>
 
 </section>
 
 
-<!-- ================= PAINEL ================= -->
+<!-- PAINEL -->
+<section id="panelScreen" class="hidden">
 
-<section id="panelSection" class="hidden">
+  <div class="card">
 
-<div class="card">
+    <div class="store-header">
 
-<h2 id="welcomeTitle">
-    🏪 Minha Loja
-</h2>
+      <div id="headerLogoContainer">
+        <div class="sem-logo">🏪</div>
+      </div>
 
-<p id="storeInfo" class="small"></p>
+      <div>
+        <h2 id="storeNameHeader">Minha Loja</h2>
+        <p id="storeInfoHeader">GT Delivery</p>
+      </div>
 
-<br>
+    </div>
 
-<button
-    class="btn-secondary"
-    onclick="logout()"
->
-    Sair
-</button>
+  </div>
 
-</div>
 
+  <!-- MENU -->
+  <div class="menu">
 
-<!-- MENU -->
+    <button onclick="mostrarTela('dashboardScreen')">
+      📊<br>Dashboard
+    </button>
 
-<div class="menu">
+    <button onclick="mostrarTela('ordersScreen'); carregarPedidos()">
+      📦<br>Pedidos
+    </button>
 
-<button onclick="mostrarTela('dashboard')">
-    📊 Início
-</button>
+    <button onclick="mostrarTela('productsScreen'); carregarProdutos()">
+      🛒<br>Produtos
+    </button>
 
-<button onclick="mostrarTela('orders')">
-    📦 Pedidos
-</button>
+    <button onclick="mostrarTela('financeScreen'); carregarFinanceiro()">
+      💰<br>Financeiro
+    </button>
 
-<button onclick="mostrarTela('products')">
-    🛒 Produtos
-</button>
+    <button onclick="mostrarTela('bankScreen'); carregarContaBancaria()">
+      🏦<br>Minha conta
+    </button>
 
-<button onclick="mostrarTela('finance')">
-    💰 Financeiro
-</button>
+    <button onclick="mostrarTela('storeProfileScreen'); carregarPerfilLoja()">
+      🏪<br>Perfil da Loja
+    </button>
 
-<button onclick="mostrarTela('bank')">
-    🏦 Minha conta
-</button>
+    <button
+      id="ownerButton"
+      class="hidden"
+      onclick="mostrarTela('ownerScreen'); carregarFinanceiroProprietario()"
+    >
+      👑<br>Proprietário
+    </button>
 
-<button
-    id="ownerButton"
-    class="hidden"
-    onclick="mostrarTela('owner')"
->
-    👑 Proprietário
-</button>
+    <button onclick="sair()">
+      🚪<br>Sair
+    </button>
 
-</div>
+  </div>
 
 
-<!-- ================= DASHBOARD ================= -->
+  <!-- DASHBOARD -->
+  <section id="dashboardScreen" class="screen">
 
-<div id="dashboardScreen">
+    <div class="card">
 
-<div class="grid">
+      <h2>📊 Dashboard</h2>
 
-<div class="stat">
-    <small>Vendas entregues</small>
-    <h2 id="dashGross">R$ 0,00</h2>
-</div>
+      <p>
+        Olá! Seja bem-vindo ao painel da sua loja no
+        <strong>GT Delivery</strong>.
+      </p>
 
-<div class="stat">
-    <small>Comissão GT — 5%</small>
-    <h2 id="dashCommission">R$ 0,00</h2>
-</div>
+      <br>
 
-<div class="stat">
-    <small>Valor da loja — 95%</small>
-    <h2 id="dashNet">R$ 0,00</h2>
-</div>
+      <div class="grid">
 
-<div class="stat">
-    <small>Pedidos</small>
-    <h2 id="dashOrders">0</h2>
-</div>
+        <div class="stat">
+          Pedidos entregues
+          <strong id="dashboardDelivered">0</strong>
+        </div>
 
-</div>
+        <div class="stat">
+          Vendas
+          <strong id="dashboardSales">R$ 0,00</strong>
+        </div>
 
-<br>
+      </div>
 
-<div class="card">
+    </div>
 
-<h2>📢 Área do parceiro</h2>
+  </section>
 
-<p>
-Aqui você poderá acompanhar suas vendas,
-pedidos, produtos, comissão do GT Delivery
-e dados financeiros.
-</p>
 
-<br>
+  <!-- PEDIDOS -->
+  <section id="ordersScreen" class="screen hidden">
 
-<p class="small">
-O GT Delivery fica com 5% de cada venda
-concluída. O parceiro recebe 95%.
-</p>
+    <div class="card">
 
-</div>
+      <h2>📦 Pedidos</h2>
 
-</div>
+      <div id="ordersList">
+        Carregando pedidos...
+      </div>
 
+    </div>
 
-<!-- ================= PEDIDOS ================= -->
+  </section>
 
-<div id="ordersScreen" class="hidden">
 
-<div class="card">
+  <!-- PRODUTOS -->
+  <section id="productsScreen" class="screen hidden">
 
-<h2>📦 Pedidos</h2>
+    <div class="card">
 
-<div id="ordersList">
-    Carregando pedidos...
-</div>
+      <h2>🛒 Cadastrar produto</h2>
 
-</div>
+      <input type="hidden" id="productId">
 
-</div>
+      <label>Nome do produto</label>
+      <input
+        type="text"
+        id="productName"
+        placeholder="Ex.: Café 500g"
+      >
 
+      <label>Descrição</label>
+      <textarea
+        id="productDescription"
+        placeholder="Descrição do produto"
+      ></textarea>
 
-<!-- ================= PRODUTOS ================= -->
+      <label>Preço</label>
+      <input
+        type="number"
+        id="productPrice"
+        step="0.01"
+        min="0"
+        placeholder="0,00"
+      >
 
-<div id="productsScreen" class="hidden">
+      <label>Categoria</label>
+      <select id="productCategory">
+        <option value="Mercado">Mercado</option>
+        <option value="Comida">Comida</option>
+        <option value="Bebidas">Bebidas</option>
+        <option value="Farmácia">Farmácia</option>
+        <option value="Padaria">Padaria</option>
+        <option value="Açougue">Açougue</option>
+        <option value="Hortifruti">Hortifruti</option>
+        <option value="Outros">Outros</option>
+      </select>
 
-<div class="card">
+      <label>Imagem do produto</label>
+      <input
+        type="file"
+        id="productImage"
+        accept="image/*"
+      >
 
-<h2>➕ Cadastrar produto</h2>
+      <button class="btn" onclick="salvarProduto()">
+        💾 Salvar produto
+      </button>
 
-<label>Nome do produto</label>
+      <br><br>
 
-<input
-    type="text"
-    id="productName"
-    placeholder="Ex.: Arroz 5kg"
->
+      <button
+        class="btn-secondary"
+        style="width:100%;"
+        onclick="limparProduto()"
+      >
+        Limpar
+      </button>
 
-<label>Descrição</label>
+      <div id="productMessage" style="margin-top:12px;"></div>
 
-<textarea
-    id="productDescription"
-    placeholder="Descrição do produto"
-></textarea>
+    </div>
 
-<label>Preço</label>
 
-<input
-    type="number"
-    id="productPrice"
-    step="0.01"
-    placeholder="0,00"
->
+    <div class="card">
 
-<label>Categoria</label>
+      <h2>📋 Meus produtos</h2>
 
-<select id="productCategory">
+      <div id="productsList">
+        Carregando produtos...
+      </div>
 
-<option value="Mercado">Mercado</option>
-<option value="Comida">Comida</option>
-<option value="Bebidas">Bebidas</option>
-<option value="Farmácia">Farmácia</option>
-<option value="Padaria">Padaria</option>
-<option value="Açougue">Açougue</option>
-<option value="Hortifruti">Hortifruti</option>
-<option value="Outros">Outros</option>
+    </div>
 
-</select>
+  </section>
 
-<label>Imagem do produto</label>
 
-<input
-    type="file"
-    id="productImage"
-    accept="image/*"
->
+  <!-- FINANCEIRO -->
+  <section id="financeScreen" class="screen hidden">
 
-<button onclick="cadastrarProduto()">
-    Cadastrar produto
-</button>
+    <div class="card">
 
-<div id="productMessage"></div>
+      <h2>💰 Financeiro</h2>
 
-</div>
+      <p>
+        A comissão do GT Delivery é de
+        <strong>5%</strong> sobre as vendas concluídas.
+      </p>
 
+      <br>
 
-<div class="card">
+      <div class="grid">
 
-<h2>🛒 Meus produtos</h2>
+        <div class="stat">
+          Vendas brutas
+          <strong id="financeGross">R$ 0,00</strong>
+        </div>
 
-<div id="productsList">
-    Carregando produtos...
-</div>
+        <div class="stat">
+          GT Delivery — 5%
+          <strong id="financeCommission">R$ 0,00</strong>
+        </div>
 
-</div>
+        <div class="stat">
+          Sua loja — 95%
+          <strong id="financeNet">R$ 0,00</strong>
+        </div>
 
-</div>
+      </div>
 
+    </div>
 
-<!-- ================= FINANCEIRO ================= -->
+  </section>
 
-<div id="financeScreen" class="hidden">
 
-<div class="card">
+  <!-- CONTA BANCÁRIA -->
+  <section id="bankScreen" class="screen hidden">
 
-<h2>💰 Financeiro</h2>
+    <div class="card">
 
-<p class="small">
-Resumo das vendas concluídas.
-</p>
+      <h2>🏦 Minha conta</h2>
 
-<br>
+      <p>
+        Cadastre os dados da conta que será utilizada para receber
+        os valores das vendas da sua loja.
+      </p>
 
-<div class="grid">
+      <br>
 
-<div class="stat">
-    <small>Total vendido</small>
-    <h2 id="financeGross">
-        R$ 0,00
-    </h2>
-</div>
+      <label>Nome do titular</label>
+      <input
+        type="text"
+        id="bankHolder"
+        placeholder="Nome do titular"
+      >
 
-<div class="stat">
-    <small>5% GT Delivery</small>
-    <h2 id="financeCommission">
-        R$ 0,00
-    </h2>
-</div>
+      <label>Banco</label>
+      <input
+        type="text"
+        id="bankName"
+        placeholder="Nome do banco"
+      >
 
-<div class="stat">
-    <small>95% Parceiro</small>
-    <h2 id="financeNet">
-        R$ 0,00
-    </h2>
-</div>
+      <label>Agência</label>
+      <input
+        type="text"
+        id="bankAgency"
+        placeholder="Agência"
+      >
 
-</div>
+      <label>Conta</label>
+      <input
+        type="text"
+        id="bankAccount"
+        placeholder="Número da conta"
+      >
 
-<br>
+      <label>Tipo de conta</label>
+      <select id="bankType">
+        <option value="corrente">Conta corrente</option>
+        <option value="poupanca">Conta poupança</option>
+        <option value="pagamento">Conta de pagamento</option>
+      </select>
 
-<div class="message">
-
-<b>Como funciona:</b>
-
-<br><br>
-
-Venda de R$ 100,00
-
-<br>
-
-GT Delivery: R$ 5,00
-
-<br>
-
-Parceiro: R$ 95,00
-
-</div>
-
-</div>
-
-</div>
-
-
-<!-- ================= CONTA BANCÁRIA PARCEIRO ================= -->
-
-<div id="bankScreen" class="hidden">
-
-<div class="card">
-
-<h2>🏦 Minha conta bancária</h2>
-
-<p class="small">
-Cadastre os dados que serão utilizados
-para receber os valores das suas vendas.
-</p>
-
-<br>
-
-<label>Nome do titular</label>
-
-<input
-    type="text"
-    id="bankHolder"
-    placeholder="Nome do titular"
->
-
-<label>Banco</label>
-
-<input
-    type="text"
-    id="bankName"
-    placeholder="Nome do banco"
->
-
-<label>Agência</label>
-
-<input
-    type="text"
-    id="bankAgency"
-    placeholder="Agência"
->
-
-<label>Conta</label>
-
-<input
-    type="text"
-    id="bankAccount"
-    placeholder="Número da conta"
->
-
-<label>Tipo de conta</label>
-
-<select id="bankType">
-
-<option value="corrente">
-    Conta corrente
-</option>
-
-<option value="poupanca">
-    Conta poupança
-</option>
-
-</select>
-
-<label>ID da conta no gateway</label>
-
-<input
-    type="text"
-    id="gatewayAccountId"
-    placeholder="Preenchido após integração"
->
-
-<button onclick="salvarContaParceiro()">
-    💾 Salvar conta
-</button>
-
-<div id="bankMessage"></div>
-
-</div>
-
-</div>
-
-
-<!-- ================= PROPRIETÁRIO ================= -->
-
-<div id="ownerScreen" class="hidden">
-
-<div class="card">
-
-<h2>👑 Área do Proprietário</h2>
-
-<p class="small">
-Área exclusiva do proprietário do GT Delivery.
-</p>
-
-<br>
-
-<div class="grid">
-
-<div class="stat">
-    <small>Total vendido</small>
-    <h2 id="ownerGross">
-        R$ 0,00
-    </h2>
-</div>
-
-<div class="stat">
-    <small>5% comissão GT</small>
-    <h2 id="ownerCommission">
-        R$ 0,00
-    </h2>
-</div>
-
-<div class="stat">
-    <small>Total dos parceiros</small>
-    <h2 id="ownerPartners">
-        R$ 0,00
-    </h2>
-</div>
-
-</div>
-
-</div>
-
-
-<div class="card">
-
-<h2>🏦 Conta bancária do GT Delivery</h2>
-
-<label>Nome do titular</label>
-
-<input
-    type="text"
-    id="ownerBankHolder"
-    placeholder="Nome do titular"
->
-
-<label>Banco</label>
-
-<input
-    type="text"
-    id="ownerBankName"
-    placeholder="Nome do banco"
->
-
-<label>Agência</label>
-
-<input
-    type="text"
-    id="ownerBankAgency"
-    placeholder="Agência"
->
-
-<label>Conta</label>
-
-<input
-    type="text"
-    id="ownerBankAccount"
-    placeholder="Conta"
->
-
-<label>Tipo de conta</label>
-
-<select id="ownerBankType">
-
-<option value="corrente">
-    Conta corrente
-</option>
-
-<option value="poupanca">
-    Conta poupança
-</option>
-
-</select>
-
-<label>ID da conta no gateway</label>
-
-<input
-    type="text"
-    id="ownerGatewayAccountId"
-    placeholder="ID da conta no gateway"
->
-
-<button onclick="salvarContaProprietario()">
-    💾 Salvar conta do GT
-</button>
-
-<div id="ownerBankMessage"></div>
-
-</div>
-
-</div>
-
-</section>
-
-</div>
-
-
-<script>
-
-/* =========================================
-   SUPABASE
-========================================= */
-
-const SUPABASE_URL =
-'https://cgdvehummqfttsyfebfo.supabase.co';
-
-const SUPABASE_KEY =
-'sb_publishable_rzYfEMq3RKJwlVPOmMQaUA_AAxWN9nr';
-
-const sb =
-supabase.createClient(
-    SUPABASE_URL,
-    SUPABASE_KEY
-);
-
-
-/* =========================================
-   VARIÁVEIS
-========================================= */
-
-let currentUser = null;
-let currentStore = null;
-let currentRole = null;
-
-
-/* =========================================
-   LOGIN
-========================================= */
-
-async function login(){
-
-    const email =
-        document.getElementById('loginEmail').value.trim();
-
-    const password =
-        document.getElementById('loginPassword').value;
-
-    const msg =
-        document.getElementById('loginMessage');
-
-    msg.innerHTML = '';
-
-    if(!email || !password){
-
-        msg.innerHTML =
-        '<div class="message error">Preencha e-mail e senha.</div>';
-
-        return;
-    }
-
-    const {data,error} =
-    await sb.auth.signInWithPassword({
-        email,
-        password
-    });
-
-    if(error){
-
-        msg.innerHTML =
-        '<div class="message error">'+
-        error.message+
-        '</div>';
-
-        return;
-    }
-
-    currentUser = data.user;
-
-    await carregarUsuario();
-
-}
-
-
-/* =========================================
-   CARREGAR USUÁRIO
-========================================= */
-
-async function carregarUsuario(){
-
-    if(!currentUser) return;
-
-    const {data,error} =
-    await sb
-    .from('profiles')
-    .select('*')
-    .eq('id',currentUser.id)
-    .maybeSingle();
-
-    if(error){
-
-        alert(
-            'Não foi possível carregar o perfil.'
-        );
-
-        return;
-    }
-
-    if(data){
-
-        currentRole = data.role;
-
-    }
-
-    await carregarLoja();
-
-    document
-    .getElementById('loginSection')
-    .classList.add('hidden');
-
-    document
-    .getElementById('panelSection')
-    .classList.remove('hidden');
-
-    if(currentRole === 'owner'){
-
-        document
-        .getElementById('ownerButton')
-        .classList.remove('hidden');
-
-    }
-
-    mostrarTela('dashboard');
-
-}
-
-
-/* =========================================
-   CARREGAR LOJA
-========================================= */
-
-async function carregarLoja(){
-
-    if(currentRole === 'owner'){
-
-        document
-        .getElementById('welcomeTitle')
-        .innerText =
-        '👑 Proprietário GT Delivery';
-
-        document
-        .getElementById('storeInfo')
-        .innerText =
-        'Acesso administrativo';
-
-        return;
-    }
-
-    const {data,error} =
-    await sb
-    .from('store_users')
-    .select('store_id,role')
-    .eq('user_id',currentUser.id)
-    .maybeSingle();
-
-    if(error || !data){
-
-        alert(
-            'Sua conta ainda não está vinculada a uma loja.'
-        );
-
-        return;
-    }
-
-    currentRole = data.role;
-
-    const {data:store,error:storeError} =
-    await sb
-    .from('stores')
-    .select('*')
-    .eq('id',data.store_id)
-    .maybeSingle();
-
-    if(storeError || !store){
-
-        alert(
-            'Loja não encontrada.'
-        );
-
-        return;
-    }
-
-    currentStore = store;
-
-    document
-    .getElementById('welcomeTitle')
-    .innerText =
-    '🏪 '+store.name;
-
-    document
-    .getElementById('storeInfo')
-    .innerText =
-    (store.category || '')+
-    ' • '+
-    (store.city || '');
-
-}
-
-
-/* =========================================
-   TELAS
-========================================= */
-
-function mostrarTela(tela){
-
-    const telas = [
-        'dashboardScreen',
-        'ordersScreen',
-        'productsScreen',
-        'financeScreen',
-        'bankScreen',
-        'ownerScreen'
-    ];
-
-    telas.forEach(id => {
-
-        document
-        .getElementById(id)
-        .classList.add('hidden');
-
-    });
-
-    if(tela === 'dashboard'){
-
-        document
-        .getElementById('dashboardScreen')
-        .classList.remove('hidden');
-
-        carregarDashboard();
-
-    }
-
-    if(tela === 'orders'){
-
-        document
-        .getElementById('ordersScreen')
-        .classList.remove('hidden');
-
-        carregarPedidos();
-
-    }
-
-    if(tela === 'products'){
-
-        document
-        .getElementById('productsScreen')
-        .classList.remove('hidden');
-
-        carregarProdutos();
-
-    }
-
-    if(tela === 'finance'){
-
-        document
-        .getElementById('financeScreen')
-        .classList.remove('hidden');
-
-        carregarFinanceiro();
-
-    }
-
-    if(tela === 'bank'){
-
-        document
-        .getElementById('bankScreen')
-        .classList.remove('hidden');
-
-        carregarContaParceiro();
-
-    }
-
-    if(tela === 'owner'){
-
-        document
-        .getElementById('ownerScreen')
-        .classList.remove('hidden');
-
-        carregarFinanceiroProprietario();
-
-    }
-
-}
-
-
-/* =========================================
-   PEDIDOS
-========================================= */
-
-async function buscarPedidos(){
-
-    let query =
-        sb
-        .from('orders')
-        .select('*')
-        .order('created_at',{ascending:false});
-
-    if(currentStore){
-
-        query =
-        query.eq(
-            'store_id',
-            currentStore.id
-        );
-
-    }
-
-    const {data,error} =
-    await query;
-
-    if(error){
-
-        console.error(error);
-
-        return [];
-
-    }
-
-    return data || [];
-
-}
-
-
-/* =========================================
-   CARREGAR PEDIDOS
-========================================= */
-
-async function carregarPedidos(){
-
-    const lista =
-        document.getElementById('ordersList');
-
-    lista.innerHTML =
-        'Carregando pedidos...';
-
-    const pedidos =
-        await buscarPedidos();
-
-    if(!pedidos.length){
-
-        lista.innerHTML =
-        '<div class="message">Nenhum pedido encontrado.</div>';
-
-        return;
-    }
-
-    lista.innerHTML = '';
-
-    pedidos.forEach(pedido => {
-
-        const total =
-            Number(pedido.total || 0);
-
-        const comissao =
-            total * 0.05;
-
-        const parceiro =
-            total - comissao;
-
-        const div =
-        document.createElement('div');
-
-        div.className = 'order';
-
-        div.innerHTML = `
-
-            <strong>
-                Pedido #${pedido.id}
-            </strong>
-
-            <br><br>
-
-            <b>Cliente:</b>
-            ${pedido.customer_name || 'Não informado'}
-
-            <br>
-
-            <b>Telefone:</b>
-            ${pedido.customer_phone || 'Não informado'}
-
-            <br>
-
-            <b>Endereço:</b>
-            ${pedido.customer_address || 'Não informado'}
-
-            <br><br>
-
-            <b>Total:</b>
-            R$ ${formatar(total)}
-
-            <br>
-
-            <b>GT 5%:</b>
-            R$ ${formatar(comissao)}
-
-            <br>
-
-            <b>Parceiro 95%:</b>
-            R$ ${formatar(parceiro)}
-
-            <br><br>
-
-            <b>Status:</b>
-            ${pedido.status || 'received'}
-
-            <br><br>
-
-            <button
-                onclick="alterarStatusPedido(${pedido.id},'preparing')"
-            >
-                👨‍🍳 Preparando
-            </button>
-
-            <button
-                class="btn-blue"
-                onclick="alterarStatusPedido(${pedido.id},'out_for_delivery')"
-            >
-                🛵 Saiu para entrega
-            </button>
-
-            <button
-                class="btn-green"
-                onclick="alterarStatusPedido(${pedido.id},'delivered')"
-            >
-                ✅ Entregue
-            </button>
-
-            <button
-                class="btn-red"
-                onclick="alterarStatusPedido(${pedido.id},'cancelled')"
-            >
-                ❌ Cancelar
-            </button>
-
-        `;
-
-        lista.appendChild(div);
-
-    });
-
-}
-
-
-/* =========================================
-   ALTERAR STATUS
-========================================= */
-
-async function alterarStatusPedido(
-    id,
-    status
-){
-
-    const {error} =
-    await sb
-    .from('orders')
-    .update({
-        status:status,
-        updated_at:new Date().toISOString()
-    })
-    .eq('id',id);
-
-    if(error){
-
-        alert(
-            'Erro: '+error.message
-        );
-
-        return;
-    }
-
-    carregarPedidos();
-
-}
-
-
-/* =========================================
-   PRODUTOS
-========================================= */
-
-async function cadastrarProduto(){
-
-    if(!currentStore){
-
-        alert(
-            'Loja não encontrada.'
-        );
-
-        return;
-    }
-
-    const name =
-        document
-        .getElementById('productName')
-        .value
-        .trim();
-
-    const description =
-        document
-        .getElementById('productDescription')
-        .value
-        .trim();
-
-    const price =
-        Number(
-            document
-            .getElementById('productPrice')
-            .value
-        );
-
-    const category =
-        document
-        .getElementById('productCategory')
-        .value;
-
-    const file =
-        document
-        .getElementById('productImage')
-        .files[0];
-
-    const msg =
-        document
-        .getElementById('productMessage');
-
-    msg.innerHTML = '';
-
-    if(!name || !price){
-
-        msg.innerHTML =
-        '<div class="message error">Informe nome e preço.</div>';
-
-        return;
-    }
-
-    let imageUrl = null;
-
-
-    /* IMAGEM */
-
-    if(file){
-
-        const extension =
-            file.name.split('.').pop();
-
-        const fileName =
-            currentStore.id+
-            '/' +
-            Date.now()+
-            '.'+
-            extension;
-
-        const upload =
-        await sb
-        .storage
-        .from('product-images')
-        .upload(
-            fileName,
-            file,
-            {
-                upsert:true
-            }
-        );
-
-        if(upload.error){
-
-            msg.innerHTML =
-            '<div class="message error">'+
-            upload.error.message+
-            '</div>';
-
-            return;
-        }
-
-        const publicUrl =
-        sb
-        .storage
-        .from('product-images')
-        .getPublicUrl(fileName);
-
-        imageUrl =
-            publicUrl.data.publicUrl;
-
-    }
-
-
-    const {error} =
-    await sb
-    .from('products')
-    .insert({
-
-        store_id:currentStore.id,
-
-        name:name,
-
-        price:price,
-
-        description:description || null,
-
-        category:category,
-
-        image_url:imageUrl,
-
-        available:true
-
-    });
-
-    if(error){
-
-        msg.innerHTML =
-        '<div class="message error">'+
-        error.message+
-        '</div>';
-
-        return;
-    }
-
-    msg.innerHTML =
-    '<div class="message success">Produto cadastrado com sucesso!</div>';
-
-    document
-    .getElementById('productName')
-    .value='';
-
-    document
-    .getElementById('productDescription')
-    .value='';
-
-    document
-    .getElementById('productPrice')
-    .value='';
-
-    document
-    .getElementById('productImage')
-    .value='';
-
-    carregarProdutos();
-
-}
-
-
-/* =========================================
-   LISTAR PRODUTOS
-========================================= */
-
-async function carregarProdutos(){
-
-    const lista =
-        document
-        .getElementById('productsList');
-
-    if(!currentStore){
-
-        lista.innerHTML =
-        'Loja não encontrada.';
-
-        return;
-    }
-
-    lista.innerHTML =
-        'Carregando produtos...';
-
-    const {data,error} =
-    await sb
-    .from('products')
-    .select('*')
-    .eq('store_id',currentStore.id)
-    .order('created_at',{ascending:false});
-
-    if(error){
-
-        lista.innerHTML =
-        '<div class="message error">'+
-        error.message+
-        '</div>';
-
-        return;
-    }
-
-    if(!data.length){
-
-        lista.innerHTML =
-        '<div class="message">Nenhum produto cadastrado.</div>';
-
-        return;
-    }
-
-    lista.innerHTML =
-        '<div class="grid"></div>';
-
-    const grid =
-        lista.querySelector('.grid');
-
-    data.forEach(produto => {
-
-        const div =
-            document.createElement('div');
-
-        div.className =
-            'product';
-
-        const imagem =
-            produto.image_url
-            ?
-            `<img src="${produto.image_url}">`
-            :
-            `<div style="
-                height:160px;
-                border-radius:10px;
-                background:#eee;
-                display:flex;
-                align-items:center;
-                justify-content:center;
-                color:#888;
-            ">
-                Sem imagem
-            </div>`;
-
-        const disponivel =
-            produto.available !== false;
-
-        div.innerHTML = `
-
-            ${imagem}
-
-            <h3>
-                ${produto.name}
-            </h3>
-
-            <div class="price">
-                R$ ${formatar(produto.price)}
-            </div>
-
-            <p class="small">
-                ${produto.description || ''}
-            </p>
-
-            <br>
-
-            <span class="badge ${
-                disponivel
-                ? 'green'
-                : 'red'
-            }">
-
-                ${
-                    disponivel
-                    ? 'Disponível'
-                    : 'Indisponível'
-                }
-
-            </span>
-
-            <br><br>
-
-            <button
-                onclick="alternarProduto(
-                    ${produto.id},
-                    ${disponivel}
-                )"
-            >
-
-                ${
-                    disponivel
-                    ? '⛔ Desativar'
-                    : '✅ Ativar'
-                }
-
-            </button>
-
-        `;
-
-        grid.appendChild(div);
-
-    });
-
-}
-
-
-/* =========================================
-   ATIVAR / DESATIVAR PRODUTO
-========================================= */
-
-async function alternarProduto(
-    id,
-    atual
-){
-
-    const {error} =
-    await sb
-    .from('products')
-    .update({
-        available:!atual,
-        updated_at:new Date().toISOString()
-    })
-    .eq('id',id);
-
-    if(error){
-
-        alert(error.message);
-
-        return;
-    }
-
-    carregarProdutos();
-
-}
-
-
-/* =========================================
-   FINANCEIRO PARCEIRO
-========================================= */
-
-async function carregarFinanceiro(){
-
-    const pedidos =
-        await buscarPedidos();
-
-    let bruto = 0;
-    let comissao = 0;
-    let liquido = 0;
-
-    pedidos.forEach(pedido => {
-
-        if(pedido.status === 'delivered'){
-
-            const total =
-                Number(pedido.total || 0);
-
-            bruto += total;
-
-            comissao +=
-                total * 0.05;
-
-            liquido +=
-                total * 0.95;
-
-        }
-
-    });
-
-    document
-    .getElementById('financeGross')
-    .innerText =
-    'R$ '+formatar(bruto);
-
-    document
-    .getElementById('financeCommission')
-    .innerText =
-    'R$ '+formatar(comissao);
-
-    document
-    .getElementById('financeNet')
-    .innerText =
-    'R$ '+formatar(liquido);
-
-}
-
-
-/* =========================================
-   DASHBOARD
-========================================= */
-
-async function carregarDashboard(){
-
-    const pedidos =
-        await buscarPedidos();
-
-    let bruto = 0;
-    let comissao = 0;
-    let liquido = 0;
-    let quantidade = 0;
-
-    pedidos.forEach(pedido => {
-
-        if(pedido.status === 'delivered'){
-
-            const total =
-                Number(pedido.total || 0);
-
-            bruto += total;
-
-            comissao +=
-                total * 0.05;
-
-            liquido +=
-                total * 0.95;
-
-            quantidade++;
-
-        }
-
-    });
-
-    document
-    .getElementById('dashGross')
-    .innerText =
-    'R$ '+formatar(bruto);
-
-    document
-    .getElementById('dashCommission')
-    .innerText =
-    'R$ '+formatar(comissao);
-
-    document
-    .getElementById('dashNet')
-    .innerText =
-    'R$ '+formatar(liquido);
-
-    document
-    .getElementById('dashOrders')
-    .innerText =
-    quantidade;
-
-}
-
-
-/* =========================================
-   CONTA PARCEIRO
-========================================= */
-
-async function carregarContaParceiro(){
-
-    if(!currentStore) return;
-
-    const {data,error} =
-    await sb
-    .from('payout_accounts')
-    .select('*')
-    .eq('store_id',currentStore.id)
-    .maybeSingle();
-
-    if(error){
-
-        console.log(
-            'Tabela payout_accounts ainda pode não existir:',
-            error.message
-        );
-
-        return;
-    }
-
-    if(!data) return;
-
-    document
-    .getElementById('bankHolder')
-    .value =
-    data.holder_name || '';
-
-    document
-    .getElementById('bankName')
-    .value =
-    data.bank_name || '';
-
-    document
-    .getElementById('bankAgency')
-    .value =
-    data.agency || '';
-
-    document
-    .getElementById('bankAccount')
-    .value =
-    data.account || '';
-
-    document
-    .getElementById('bankType')
-    .value =
-    data.account_type || 'corrente';
-
-    document
-    .getElementById('gatewayAccountId')
-    .value =
-    data.gateway_account_id || '';
-
-}
-
-
-/* =========================================
-   SALVAR CONTA PARCEIRO
-========================================= */
-
-async function salvarContaParceiro(){
-
-    if(!currentStore){
-
-        alert(
-            'Loja não encontrada.'
-        );
-
-        return;
-    }
-
-    const dados = {
-
-        store_id:
-        currentStore.id,
-
-        holder_name:
-        document
-        .getElementById('bankHolder')
-        .value
-        .trim(),
-
-        bank_name:
-        document
-        .getElementById('bankName')
-        .value
-        .trim(),
-
-        agency:
-        document
-        .getElementById('bankAgency')
-        .value
-        .trim(),
-
-        account:
-        document
-        .getElementById('bankAccount')
-        .value
-        .trim(),
-
-        account_type:
-        document
-        .getElementById('bankType')
-        .value,
-
-        gateway_account_id:
-        document
-        .getElementById('gatewayAccountId')
-        .value
-        .trim(),
-
-        updated_at:
-        new Date().toISOString()
-
-    };
-
-    const {error} =
-    await sb
-    .from('payout_accounts')
-    .upsert(
-        dados,
-        {
-            onConflict:'store_id'
-        }
-    );
-
-    const msg =
-        document
-        .getElementById('bankMessage');
-
-    if(error){
-
-        msg.innerHTML =
-        '<div class="message error">'+
-        error.message+
-        '<br><br>'+
-        'A tabela payout_accounts precisa ser criada no Supabase.'+
-        '</div>';
-
-        return;
-    }
-
-    msg.innerHTML =
-    '<div class="message success">'+
-    'Conta bancária salva com sucesso!'+
-    '</div>';
-
-}
-
-
-/* =========================================
-   FINANCEIRO PROPRIETÁRIO
-========================================= */
-
-async function carregarFinanceiroProprietario(){
-
-    const {data,error} =
-    await sb
-    .from('orders')
-    .select('total,status');
-
-    if(error){
-
-        console.error(error);
-
-        return;
-    }
-
-    let bruto = 0;
-    let comissao = 0;
-    let parceiros = 0;
-
-    (data || []).forEach(pedido => {
-
-        if(pedido.status === 'delivered'){
-
-            const total =
-                Number(pedido.total || 0);
-
-            bruto += total;
-
-            comissao +=
-                total * 0.05;
-
-            parceiros +=
-                total * 0.95;
-
-        }
-
-    });
-
-    document
-    .getElementById('ownerGross')
-    .innerText =
-    'R$ '+formatar(bruto);
-
-    document
-    .getElementById('ownerCommission')
-    .innerText =
-    'R$ '+formatar(comissao);
-
-    document
-    .getElementById('ownerPartners')
-    .innerText =
-    'R$ '+formatar(parceiros);
-
-}
-
-
-/* =========================================
-   CONTA DO PROPRIETÁRIO
-========================================= */
-
-async function salvarContaProprietario(){
-
-    const holder =
-        document
-        .getElementById('ownerBankHolder')
-        .value
-        .trim();
-
-    const bank =
-        document
-        .getElementById('ownerBankName')
-        .value
-        .trim();
-
-    const agency =
-        document
-        .getElementById('ownerBankAgency')
-        .value
-        .trim();
-
-    const account =
-        document
-        .getElementById('ownerBankAccount')
-        .value
-        .trim();
-
-    const type =
-        document
-        .getElementById('ownerBankType')
-        .value;
-
-    const gateway =
-        document
-        .getElementById('ownerGatewayAccountId')
-        .value
-        .trim();
-
-    const msg =
-        document
-        .getElementById('ownerBankMessage');
-
-    if(
-        !holder ||
-        !bank ||
-        !agency ||
-        !account
-    ){
-
-        msg.innerHTML =
-        '<div class="message error">'+
-        'Preencha os dados da conta.'+
-        '</div>';
-
-        return;
-    }
-
-    /*
-       O cadastro da conta do proprietário
-       poderá ser ligado posteriormente
-       à tabela de configurações do GT.
-    */
-
-    msg.innerHTML =
-    '<div class="message success">'+
-    'Dados da conta do proprietário preenchidos.'+
-    '<br><br>'+
-    'A integração com o gateway será responsável pelo recebimento automático.'+
-    '</div>';
-
-}
-
-
-/* =========================================
-   RECUPERAR SENHA
-========================================= */
-
-async function recuperarSenha(){
-
-    const email =
-        document
-        .getElementById('loginEmail')
-        .value
-        .trim();
-
-    const msg =
-        document
-        .getElementById('loginMessage');
-
-    if(!email){
-
-        msg.innerHTML =
-        '<div class="message error">'+
-        'Digite seu e-mail primeiro.'+
-        '</div>';
-
-        return;
-    }
-
-    const {error} =
-    await sb.auth.resetPasswordForEmail(
-        email,
-        {
-            redirectTo:
-            window.location.origin+
-            window.location.pathname
-        }
-    );
-
-    if(error){
-
-        msg.innerHTML =
-        '<div class="message error">'+
-        error.message+
-        '</div>';
-
-        return;
-    }
-
-    msg.innerHTML =
-    '<div class="message success">'+
-    'Link de recuperação enviado para seu e-mail.'+
-    '</div>';
-
-}
-
-
-/* =========================================
-   LOGOUT
-========================================= */
-
-async function logout(){
-
-    await sb.auth.signOut();
-
-    currentUser = null;
-    currentStore = null;
-    currentRole = null;
-
-    document
-    .getElementById('panelSection')
-    .classList.add('hidden');
-
-    document
-    .getElementById('loginSection')
-    .classList.remove('hidden');
-
-}
-
-
-/* =========================================
-   FORMATAR DINHEIRO
-========================================= */
-
-function formatar(valor){
-
-    return Number(valor || 0)
-    .toLocaleString(
-        'pt-BR',
-        {
-            minimumFractionDigits:2,
-            maximumFractionDigits:2
-        }
-    );
-
-}
-
-
-/* =========================================
-   VERIFICAR SESSÃO
-========================================= */
-
-async function verificarSessao(){
-
-    const {data} =
-    await sb.auth.getSession();
-
-    if(data.session){
-
-        currentUser =
-        data.session.user;
-
-        await carregarUsuario();
-
-    }
-
-}
-
-verificarSessao();
-
-</script>
-
-</body>
-</html>
+      <label>ID da conta no gateway (se houver)</label>
+      <input
+        type="text"
+        id="gatewayAccountId"
+        placeholder="Será usado
