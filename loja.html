@@ -3,704 +3,771 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>GT Delivery Loja</title>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 <style>
-*{box-sizing:border-box}
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
 
 body{
-  margin:0;
-  font-family:Arial,sans-serif;
-  background:#f7f7f7;
-  color:#171717;
-  min-height:100vh;
-  padding:20px;
+    font-family:Arial,Helvetica,sans-serif;
+    background:#f5f5f5;
+    color:#222;
+}
+
+header{
+    background:linear-gradient(135deg,#ff6b00,#ff9800);
+    color:white;
+    padding:18px;
+    text-align:center;
+}
+
+header h1{
+    font-size:24px;
+}
+
+header p{
+    margin-top:5px;
+    font-size:14px;
+}
+
+.container{
+    width:100%;
+    max-width:1000px;
+    margin:auto;
+    padding:15px;
 }
 
 .card{
-  width:100%;
-  max-width:600px;
-  margin:auto;
-  background:#fff;
-  border-radius:22px;
-  padding:25px 20px;
-  box-shadow:0 12px 35px rgba(0,0,0,.12);
-}
-
-.brand{
-  text-align:center;
-  margin-bottom:25px;
-}
-
-.logo{
-  width:76px;
-  height:76px;
-  border-radius:20px;
-  background:#ff7a00;
-  color:#fff;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-weight:900;
-  font-size:27px;
-  margin:0 auto 14px;
-}
-
-.brand h1{
-  margin:0;
-  font-size:27px;
-}
-
-.brand p{
-  margin:7px 0 0;
-  color:#777;
-  font-size:14px;
-}
-
-.title{
-  font-size:20px;
-  font-weight:800;
-  margin:0 0 18px;
-}
-
-label{
-  display:block;
-  font-size:14px;
-  font-weight:700;
-  margin:14px 0 7px;
+    background:white;
+    border-radius:15px;
+    padding:18px;
+    margin-bottom:15px;
+    box-shadow:0 3px 12px rgba(0,0,0,.08);
 }
 
 input,
 select,
 textarea{
-  width:100%;
-  padding:14px;
-  border:1px solid #ddd;
-  border-radius:12px;
-  font-size:16px;
-  outline:none;
-  background:#fff;
+    width:100%;
+    padding:13px;
+    margin-top:8px;
+    margin-bottom:12px;
+    border:1px solid #ddd;
+    border-radius:10px;
+    font-size:15px;
 }
 
 textarea{
-  min-height:90px;
-  resize:vertical;
-}
-
-input:focus,
-select:focus,
-textarea:focus{
-  border-color:#ff7a00;
-  box-shadow:0 0 0 3px rgba(255,122,0,.12);
+    min-height:90px;
+    resize:vertical;
 }
 
 button{
-  width:100%;
-  border:0;
-  border-radius:12px;
-  padding:15px;
-  margin-top:15px;
-  background:#ff7a00;
-  color:#fff;
-  font-size:16px;
-  font-weight:800;
-  cursor:pointer;
+    border:0;
+    border-radius:10px;
+    padding:13px 16px;
+    font-size:15px;
+    cursor:pointer;
+    background:#ff6b00;
+    color:white;
+    margin:4px;
 }
 
-button:active{
-  transform:scale(.99);
+button:hover{
+    opacity:.9;
 }
 
-.secondary{
-  background:#171717;
+.btn-secondary{
+    background:#333;
+}
+
+.btn-green{
+    background:#159447;
+}
+
+.btn-red{
+    background:#d93025;
+}
+
+.btn-blue{
+    background:#1976d2;
 }
 
 .hidden{
-  display:none!important;
-}
-
-.link{
-  display:block;
-  text-align:center;
-  color:#ff7a00;
-  font-weight:700;
-  text-decoration:none;
-  margin-top:17px;
-  font-size:14px;
-  cursor:pointer;
-}
-
-.msg{
-  display:none;
-  margin-top:15px;
-  padding:12px;
-  border-radius:10px;
-  font-size:14px;
-  line-height:1.4;
-}
-
-.ok{
-  background:#eaf8ee;
-  color:#176b35;
-}
-
-.error{
-  background:#fff0f0;
-  color:#a71919;
-}
-
-.storebox{
-  background:#fff3e8;
-  border-radius:15px;
-  padding:16px;
-  margin-top:20px;
-  line-height:1.6;
+    display:none !important;
 }
 
 .menu{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:10px;
-  margin-top:20px;
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    margin-bottom:15px;
 }
 
 .menu button{
-  margin-top:0;
+    flex:1;
+    min-width:130px;
 }
 
-.section{
-  margin-top:25px;
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:15px;
 }
 
-.topbar{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:10px;
-  margin-bottom:20px;
+.stat{
+    background:white;
+    border-radius:15px;
+    padding:20px;
+    box-shadow:0 3px 12px rgba(0,0,0,.07);
 }
 
-.topbar h2{
-  margin:0;
-  font-size:22px;
+.stat small{
+    color:#777;
 }
 
-.back{
-  width:auto;
-  padding:10px 15px;
-  margin:0;
-  background:#171717;
-}
-
-.photo-area{
-  border:2px dashed #ddd;
-  border-radius:16px;
-  padding:18px;
-  text-align:center;
-  background:#fafafa;
-  margin-top:8px;
-}
-
-.photo-preview{
-  width:150px;
-  height:150px;
-  border-radius:16px;
-  object-fit:cover;
-  display:none;
-  margin:0 auto 12px;
-  background:#eee;
-}
-
-.photo-placeholder{
-  width:150px;
-  height:150px;
-  border-radius:16px;
-  background:#eee;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  margin:0 auto 12px;
-  font-size:55px;
-}
-
-.photo-buttons{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:10px;
-}
-
-.photo-buttons button{
-  margin-top:0;
-  font-size:14px;
-}
-
-.remove-photo{
-  background:#555;
-}
-
-.product-list{
-  margin-top:25px;
+.stat h2{
+    margin-top:8px;
+    color:#ff6b00;
 }
 
 .product{
-  display:flex;
-  gap:12px;
-  padding:12px;
-  border:1px solid #eee;
-  border-radius:15px;
-  margin-bottom:10px;
-  background:#fff;
+    border:1px solid #eee;
+    border-radius:12px;
+    padding:12px;
+    background:#fff;
 }
 
-.product-img{
-  width:75px;
-  height:75px;
-  min-width:75px;
-  border-radius:12px;
-  object-fit:cover;
-  background:#f1f1f1;
+.product img{
+    width:100%;
+    height:160px;
+    object-fit:cover;
+    border-radius:10px;
+    background:#eee;
 }
 
-.product-info{
-  flex:1;
-  min-width:0;
-}
-
-.product-info h3{
-  margin:0 0 5px;
-  font-size:16px;
-}
-
-.product-info p{
-  margin:3px 0;
-  font-size:13px;
-  color:#777;
+.product h3{
+    margin-top:10px;
 }
 
 .price{
-  color:#ff7a00!important;
-  font-size:16px!important;
-  font-weight:800;
+    color:#159447;
+    font-size:18px;
+    font-weight:bold;
+    margin:7px 0;
 }
 
-.product-actions{
-  display:flex;
-  gap:7px;
-  margin-top:8px;
+.badge{
+    display:inline-block;
+    padding:5px 8px;
+    border-radius:20px;
+    font-size:12px;
+    background:#eee;
 }
 
-.product-actions button{
-  width:auto;
-  margin:0;
-  padding:8px 10px;
-  font-size:12px;
+.badge.green{
+    background:#d9f5e3;
+    color:#16743c;
 }
 
-.off{
-  background:#777;
+.badge.red{
+    background:#fde0dd;
+    color:#a51d13;
 }
 
-.danger{
-  background:#c62828;
+.order{
+    border:1px solid #eee;
+    border-radius:12px;
+    padding:15px;
+    margin-bottom:12px;
 }
 
-.empty{
-  text-align:center;
-  color:#777;
-  padding:30px 10px;
+.order strong{
+    color:#ff6b00;
+}
+
+.logo{
+    font-weight:bold;
+    font-size:25px;
 }
 
 .small{
-  font-size:12px;
-  color:#777;
-  margin-top:20px;
-  text-align:center;
-  line-height:1.5;
+    font-size:13px;
+    color:#777;
 }
 
-.loading{
-  text-align:center;
-  padding:20px;
-  color:#777;
+.message{
+    padding:12px;
+    border-radius:10px;
+    margin:10px 0;
+    background:#eee;
 }
 
-.category-badge{
-  display:inline-block;
-  background:#fff0e3;
-  color:#e76700;
-  padding:4px 8px;
-  border-radius:20px;
-  font-size:11px;
-  font-weight:700;
+.success{
+    background:#dff5e6;
+    color:#176c38;
+}
+
+.error{
+    background:#ffe1df;
+    color:#9b1c13;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:10px;
+}
+
+th,td{
+    padding:10px;
+    border-bottom:1px solid #eee;
+    text-align:left;
+}
+
+@media(max-width:600px){
+    .menu button{
+        min-width:100%;
+    }
+
+    table{
+        font-size:13px;
+    }
 }
 </style>
 </head>
 
 <body>
 
+<header>
+    <div class="logo">GT Delivery</div>
+    <p>Área do Parceiro / Loja</p>
+</header>
+
+<div class="container">
+
+<!-- ================= LOGIN ================= -->
+
+<section id="loginSection">
+
 <div class="card">
 
-  <!-- LOGIN -->
-  <div id="loginView">
+<h2>🔐 Entrar na GT Delivery Loja</h2>
 
-    <div class="brand">
-      <div class="logo">GT</div>
-      <h1>GT Delivery</h1>
-      <p>Painel do Lojista</p>
-    </div>
+<p class="small">
+Acesso exclusivo para parceiros autorizados.
+</p>
 
-    <h2 class="title">Entrar na sua loja</h2>
+<br>
 
-    <form id="loginForm">
+<label>E-mail</label>
+<input
+    type="email"
+    id="loginEmail"
+    placeholder="Digite seu e-mail"
+>
 
-      <label for="email">E-mail</label>
-      <input
-        id="email"
-        type="email"
-        autocomplete="email"
-        placeholder="seuemail@exemplo.com"
-        required
-      >
+<label>Senha</label>
+<input
+    type="password"
+    id="loginPassword"
+    placeholder="Digite sua senha"
+>
 
-      <label for="password">Senha</label>
-      <input
-        id="password"
-        type="password"
-        autocomplete="current-password"
-        placeholder="Digite sua senha"
-        required
-      >
+<button onclick="login()">
+    Entrar
+</button>
 
-      <button type="submit">Entrar</button>
+<button
+    class="btn-secondary"
+    onclick="recuperarSenha()"
+>
+    Esqueci minha senha
+</button>
 
-    </form>
+<div id="loginMessage"></div>
 
-    <a class="link" id="forgot">Esqueci minha senha</a>
+</div>
 
-    <div id="loginMsg" class="msg"></div>
+</section>
 
-    <p class="small">
-      Acesso exclusivo para lojas cadastradas no GT Delivery.
-    </p>
 
-  </div>
+<!-- ================= PAINEL ================= -->
 
+<section id="panelSection" class="hidden">
 
-  <!-- RECUPERAR SENHA -->
-  <div id="forgotView" class="hidden">
+<div class="card">
 
-    <div class="brand">
-      <div class="logo">GT</div>
-      <h1>Recuperar acesso</h1>
-      <p>GT Delivery Loja</p>
-    </div>
+<h2 id="welcomeTitle">
+    🏪 Minha Loja
+</h2>
 
-    <h2 class="title">Redefinir senha</h2>
+<p id="storeInfo" class="small"></p>
 
-    <label for="resetEmail">E-mail da loja</label>
+<br>
 
-    <input
-      id="resetEmail"
-      type="email"
-      autocomplete="email"
-      placeholder="seuemail@exemplo.com"
-    >
-
-    <button id="sendReset">
-      Enviar link de recuperação
-    </button>
-
-    <a class="link" id="backLogin">
-      Voltar para o login
-    </a>
-
-    <div id="resetMsg" class="msg"></div>
-
-  </div>
-
-
-  <!-- DASHBOARD -->
-  <div id="dashboardView" class="hidden">
-
-    <div class="brand">
-
-      <div class="logo">GT</div>
-
-      <h1>GT Delivery Loja</h1>
-
-      <p>Painel do estabelecimento</p>
-
-    </div>
-
-
-    <div class="storebox">
-
-      <strong id="storeName">
-        Loja
-      </strong>
-
-      <br>
-
-      <span id="userEmail"></span>
-
-      <br>
-
-      <small id="userRole"></small>
-
-    </div>
-
-
-    <div class="menu">
-
-      <button onclick="abrirProdutos()">
-        📦 Produtos
-      </button>
-
-      <button onclick="abrirCadastroProduto()">
-        ➕ Cadastrar produto
-      </button>
-
-    </div>
-
-
-    <div id="dashboardMsg" class="msg"></div>
-
-    <button class="secondary" id="logout">
-      Sair da conta
-    </button>
-
-  </div>
-
-
-  <!-- PRODUTOS -->
-  <div id="productsView" class="hidden">
-
-    <div class="topbar">
-
-      <h2>📦 Meus produtos</h2>
-
-      <button class="back" onclick="voltarDashboard()">
-        ← Voltar
-      </button>
-
-    </div>
-
-    <button onclick="abrirCadastroProduto()">
-      ➕ Novo produto
-    </button>
-
-    <div id="productList" class="product-list">
-
-      <div class="loading">
-        Carregando produtos...
-      </div>
-
-    </div>
-
-  </div>
-
-
-  <!-- CADASTRO DE PRODUTO -->
-  <div id="productFormView" class="hidden">
-
-    <div class="topbar">
-
-      <h2 id="productFormTitle">
-        ➕ Novo produto
-      </h2>
-
-      <button class="back" onclick="abrirProdutos()">
-        ← Voltar
-      </button>
-
-    </div>
-
-
-    <form id="productForm">
-
-      <label for="productName">
-        Nome do produto
-      </label>
-
-      <input
-        id="productName"
-        type="text"
-        placeholder="Ex.: Café 500g"
-        required
-      >
-
-
-      <label for="productDescription">
-        Descrição
-      </label>
-
-      <textarea
-        id="productDescription"
-        placeholder="Ex.: Café torrado e moído 500g"
-      ></textarea>
-
-
-      <label for="productPrice">
-        Preço
-      </label>
-
-      <input
-        id="productPrice"
-        type="number"
-        min="0"
-        step="0.01"
-        placeholder="0,00"
-        required
-      >
-
-
-      <label for="productCategory">
-        Categoria
-      </label>
-
-      <select id="productCategory" required>
-
-        <option value="">
-          Selecione uma categoria
-        </option>
-
-        <option value="Alimentos">
-          Alimentos
-        </option>
-
-        <option value="Limpeza">
-          Limpeza
-        </option>
-
-        <option value="Bebidas">
-          Bebidas
-        </option>
-
-        <option value="Açougue">
-          Açougue
-        </option>
-
-        <option value="Padaria">
-          Padaria
-        </option>
-
-        <option value="Hortifruti">
-          Hortifruti
-        </option>
-
-        <option value="Outros">
-          Outros
-        </option>
-
-      </select>
-
-
-      <label>
-        Foto do produto
-      </label>
-
-      <div class="photo-area">
-
-        <img
-          id="photoPreview"
-          class="photo-preview"
-          alt="Foto do produto"
-        >
-
-        <div
-          id="photoPlaceholder"
-          class="photo-placeholder"
-        >
-          📦
-        </div>
-
-        <div class="photo-buttons">
-
-          <button
-            type="button"
-            onclick="abrirCamera()"
-          >
-            📷 Tirar foto
-          </button>
-
-          <button
-            type="button"
-            onclick="abrirGaleria()"
-          >
-            🖼️ Galeria
-          </button>
-
-        </div>
-
-        <button
-          type="button"
-          class="remove-photo"
-          onclick="removerFoto()"
-        >
-          Remover foto
-        </button>
-
-        <!-- Câmera -->
-        <input
-          id="cameraInput"
-          type="file"
-          accept="image/*"
-          capture="environment"
-          style="display:none"
-        >
-
-        <!-- Galeria -->
-        <input
-          id="galleryInput"
-          type="file"
-          accept="image/*"
-          style="display:none"
-        >
-
-        <p class="small">
-          A foto é opcional. Você também pode cadastrar o produto sem imagem.
-        </p>
-
-      </div>
-
-
-      <button
-        type="submit"
-        id="saveProductButton"
-      >
-        Cadastrar produto
-      </button>
-
-      <button
-        type="button"
-        class="secondary"
-        onclick="abrirProdutos()"
-      >
-        Cancelar
-      </button>
-
-    </form>
-
-    <div id="productMsg" class="msg"></div>
-
-  </div>
-
+<button
+    class="btn-secondary"
+    onclick="logout()"
+>
+    Sair
+</button>
 
 </div>
 
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<!-- MENU -->
+
+<div class="menu">
+
+<button onclick="mostrarTela('dashboard')">
+    📊 Início
+</button>
+
+<button onclick="mostrarTela('orders')">
+    📦 Pedidos
+</button>
+
+<button onclick="mostrarTela('products')">
+    🛒 Produtos
+</button>
+
+<button onclick="mostrarTela('finance')">
+    💰 Financeiro
+</button>
+
+<button onclick="mostrarTela('bank')">
+    🏦 Minha conta
+</button>
+
+<button
+    id="ownerButton"
+    class="hidden"
+    onclick="mostrarTela('owner')"
+>
+    👑 Proprietário
+</button>
+
+</div>
+
+
+<!-- ================= DASHBOARD ================= -->
+
+<div id="dashboardScreen">
+
+<div class="grid">
+
+<div class="stat">
+    <small>Vendas entregues</small>
+    <h2 id="dashGross">R$ 0,00</h2>
+</div>
+
+<div class="stat">
+    <small>Comissão GT — 5%</small>
+    <h2 id="dashCommission">R$ 0,00</h2>
+</div>
+
+<div class="stat">
+    <small>Valor da loja — 95%</small>
+    <h2 id="dashNet">R$ 0,00</h2>
+</div>
+
+<div class="stat">
+    <small>Pedidos</small>
+    <h2 id="dashOrders">0</h2>
+</div>
+
+</div>
+
+<br>
+
+<div class="card">
+
+<h2>📢 Área do parceiro</h2>
+
+<p>
+Aqui você poderá acompanhar suas vendas,
+pedidos, produtos, comissão do GT Delivery
+e dados financeiros.
+</p>
+
+<br>
+
+<p class="small">
+O GT Delivery fica com 5% de cada venda
+concluída. O parceiro recebe 95%.
+</p>
+
+</div>
+
+</div>
+
+
+<!-- ================= PEDIDOS ================= -->
+
+<div id="ordersScreen" class="hidden">
+
+<div class="card">
+
+<h2>📦 Pedidos</h2>
+
+<div id="ordersList">
+    Carregando pedidos...
+</div>
+
+</div>
+
+</div>
+
+
+<!-- ================= PRODUTOS ================= -->
+
+<div id="productsScreen" class="hidden">
+
+<div class="card">
+
+<h2>➕ Cadastrar produto</h2>
+
+<label>Nome do produto</label>
+
+<input
+    type="text"
+    id="productName"
+    placeholder="Ex.: Arroz 5kg"
+>
+
+<label>Descrição</label>
+
+<textarea
+    id="productDescription"
+    placeholder="Descrição do produto"
+></textarea>
+
+<label>Preço</label>
+
+<input
+    type="number"
+    id="productPrice"
+    step="0.01"
+    placeholder="0,00"
+>
+
+<label>Categoria</label>
+
+<select id="productCategory">
+
+<option value="Mercado">Mercado</option>
+<option value="Comida">Comida</option>
+<option value="Bebidas">Bebidas</option>
+<option value="Farmácia">Farmácia</option>
+<option value="Padaria">Padaria</option>
+<option value="Açougue">Açougue</option>
+<option value="Hortifruti">Hortifruti</option>
+<option value="Outros">Outros</option>
+
+</select>
+
+<label>Imagem do produto</label>
+
+<input
+    type="file"
+    id="productImage"
+    accept="image/*"
+>
+
+<button onclick="cadastrarProduto()">
+    Cadastrar produto
+</button>
+
+<div id="productMessage"></div>
+
+</div>
+
+
+<div class="card">
+
+<h2>🛒 Meus produtos</h2>
+
+<div id="productsList">
+    Carregando produtos...
+</div>
+
+</div>
+
+</div>
+
+
+<!-- ================= FINANCEIRO ================= -->
+
+<div id="financeScreen" class="hidden">
+
+<div class="card">
+
+<h2>💰 Financeiro</h2>
+
+<p class="small">
+Resumo das vendas concluídas.
+</p>
+
+<br>
+
+<div class="grid">
+
+<div class="stat">
+    <small>Total vendido</small>
+    <h2 id="financeGross">
+        R$ 0,00
+    </h2>
+</div>
+
+<div class="stat">
+    <small>5% GT Delivery</small>
+    <h2 id="financeCommission">
+        R$ 0,00
+    </h2>
+</div>
+
+<div class="stat">
+    <small>95% Parceiro</small>
+    <h2 id="financeNet">
+        R$ 0,00
+    </h2>
+</div>
+
+</div>
+
+<br>
+
+<div class="message">
+
+<b>Como funciona:</b>
+
+<br><br>
+
+Venda de R$ 100,00
+
+<br>
+
+GT Delivery: R$ 5,00
+
+<br>
+
+Parceiro: R$ 95,00
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- ================= CONTA BANCÁRIA PARCEIRO ================= -->
+
+<div id="bankScreen" class="hidden">
+
+<div class="card">
+
+<h2>🏦 Minha conta bancária</h2>
+
+<p class="small">
+Cadastre os dados que serão utilizados
+para receber os valores das suas vendas.
+</p>
+
+<br>
+
+<label>Nome do titular</label>
+
+<input
+    type="text"
+    id="bankHolder"
+    placeholder="Nome do titular"
+>
+
+<label>Banco</label>
+
+<input
+    type="text"
+    id="bankName"
+    placeholder="Nome do banco"
+>
+
+<label>Agência</label>
+
+<input
+    type="text"
+    id="bankAgency"
+    placeholder="Agência"
+>
+
+<label>Conta</label>
+
+<input
+    type="text"
+    id="bankAccount"
+    placeholder="Número da conta"
+>
+
+<label>Tipo de conta</label>
+
+<select id="bankType">
+
+<option value="corrente">
+    Conta corrente
+</option>
+
+<option value="poupanca">
+    Conta poupança
+</option>
+
+</select>
+
+<label>ID da conta no gateway</label>
+
+<input
+    type="text"
+    id="gatewayAccountId"
+    placeholder="Preenchido após integração"
+>
+
+<button onclick="salvarContaParceiro()">
+    💾 Salvar conta
+</button>
+
+<div id="bankMessage"></div>
+
+</div>
+
+</div>
+
+
+<!-- ================= PROPRIETÁRIO ================= -->
+
+<div id="ownerScreen" class="hidden">
+
+<div class="card">
+
+<h2>👑 Área do Proprietário</h2>
+
+<p class="small">
+Área exclusiva do proprietário do GT Delivery.
+</p>
+
+<br>
+
+<div class="grid">
+
+<div class="stat">
+    <small>Total vendido</small>
+    <h2 id="ownerGross">
+        R$ 0,00
+    </h2>
+</div>
+
+<div class="stat">
+    <small>5% comissão GT</small>
+    <h2 id="ownerCommission">
+        R$ 0,00
+    </h2>
+</div>
+
+<div class="stat">
+    <small>Total dos parceiros</small>
+    <h2 id="ownerPartners">
+        R$ 0,00
+    </h2>
+</div>
+
+</div>
+
+</div>
+
+
+<div class="card">
+
+<h2>🏦 Conta bancária do GT Delivery</h2>
+
+<label>Nome do titular</label>
+
+<input
+    type="text"
+    id="ownerBankHolder"
+    placeholder="Nome do titular"
+>
+
+<label>Banco</label>
+
+<input
+    type="text"
+    id="ownerBankName"
+    placeholder="Nome do banco"
+>
+
+<label>Agência</label>
+
+<input
+    type="text"
+    id="ownerBankAgency"
+    placeholder="Agência"
+>
+
+<label>Conta</label>
+
+<input
+    type="text"
+    id="ownerBankAccount"
+    placeholder="Conta"
+>
+
+<label>Tipo de conta</label>
+
+<select id="ownerBankType">
+
+<option value="corrente">
+    Conta corrente
+</option>
+
+<option value="poupanca">
+    Conta poupança
+</option>
+
+</select>
+
+<label>ID da conta no gateway</label>
+
+<input
+    type="text"
+    id="ownerGatewayAccountId"
+    placeholder="ID da conta no gateway"
+>
+
+<button onclick="salvarContaProprietario()">
+    💾 Salvar conta do GT
+</button>
+
+<div id="ownerBankMessage"></div>
+
+</div>
+
+</div>
+
+</section>
+
+</div>
+
 
 <script>
 
-(function(){
-
-'use strict';
-
-
-/* =========================
+/* =========================================
    SUPABASE
-========================= */
+========================================= */
 
 const SUPABASE_URL =
 'https://cgdvehummqfttsyfebfo.supabase.co';
@@ -709,1198 +776,1315 @@ const SUPABASE_KEY =
 'sb_publishable_rzYfEMq3RKJwlVPOmMQaUA_AAxWN9nr';
 
 const sb =
-window.supabase.createClient(
-  SUPABASE_URL,
-  SUPABASE_KEY
+supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
 );
 
 
-/* =========================
+/* =========================================
    VARIÁVEIS
-========================= */
+========================================= */
 
 let currentUser = null;
-let currentStoreId = null;
-let editingProductId = null;
-let selectedImageFile = null;
+let currentStore = null;
+let currentRole = null;
 
 
-/* =========================
-   FUNÇÕES AUXILIARES
-========================= */
+/* =========================================
+   LOGIN
+========================================= */
 
-const $ = id =>
-document.getElementById(id);
+async function login(){
 
+    const email =
+        document.getElementById('loginEmail').value.trim();
 
-function msg(el,text,type){
+    const password =
+        document.getElementById('loginPassword').value;
 
-  el.textContent = text;
+    const msg =
+        document.getElementById('loginMessage');
 
-  el.className = 'msg ' + type;
+    msg.innerHTML = '';
 
-  el.style.display = 'block';
+    if(!email || !password){
 
-}
+        msg.innerHTML =
+        '<div class="message error">Preencha e-mail e senha.</div>';
 
+        return;
+    }
 
-function hideMsg(el){
+    const {data,error} =
+    await sb.auth.signInWithPassword({
+        email,
+        password
+    });
 
-  el.style.display = 'none';
+    if(error){
 
-}
+        msg.innerHTML =
+        '<div class="message error">'+
+        error.message+
+        '</div>';
 
+        return;
+    }
 
-function show(view){
+    currentUser = data.user;
 
-  [
-    'loginView',
-    'forgotView',
-    'dashboardView',
-    'productsView',
-    'productFormView'
-  ].forEach(id => {
-
-    $(id).classList.add('hidden');
-
-  });
-
-  $(view).classList.remove('hidden');
-
-}
-
-
-/* =========================
-   SESSÃO
-========================= */
-
-async function loadSession(){
-
-  const {
-    data:{session}
-  } = await sb.auth.getSession();
-
-  if(session){
-
-    await showDashboard(session.user);
-
-  }else{
-
-    show('loginView');
-
-  }
+    await carregarUsuario();
 
 }
 
 
-/* =========================
-   DASHBOARD
-========================= */
+/* =========================================
+   CARREGAR USUÁRIO
+========================================= */
 
-async function showDashboard(user){
+async function carregarUsuario(){
 
-  currentUser = user;
+    if(!currentUser) return;
 
-  const {
-    data:membership,
-    error
-  } = await sb
+    const {data,error} =
+    await sb
+    .from('profiles')
+    .select('*')
+    .eq('id',currentUser.id)
+    .maybeSingle();
+
+    if(error){
+
+        alert(
+            'Não foi possível carregar o perfil.'
+        );
+
+        return;
+    }
+
+    if(data){
+
+        currentRole = data.role;
+
+    }
+
+    await carregarLoja();
+
+    document
+    .getElementById('loginSection')
+    .classList.add('hidden');
+
+    document
+    .getElementById('panelSection')
+    .classList.remove('hidden');
+
+    if(currentRole === 'owner'){
+
+        document
+        .getElementById('ownerButton')
+        .classList.remove('hidden');
+
+    }
+
+    mostrarTela('dashboard');
+
+}
+
+
+/* =========================================
+   CARREGAR LOJA
+========================================= */
+
+async function carregarLoja(){
+
+    if(currentRole === 'owner'){
+
+        document
+        .getElementById('welcomeTitle')
+        .innerText =
+        '👑 Proprietário GT Delivery';
+
+        document
+        .getElementById('storeInfo')
+        .innerText =
+        'Acesso administrativo';
+
+        return;
+    }
+
+    const {data,error} =
+    await sb
     .from('store_users')
     .select('store_id,role')
-    .eq('user_id',user.id)
-    .limit(1)
+    .eq('user_id',currentUser.id)
     .maybeSingle();
 
+    if(error || !data){
 
-  if(error){
+        alert(
+            'Sua conta ainda não está vinculada a uma loja.'
+        );
 
-    show('loginView');
+        return;
+    }
 
-    msg(
-      $('loginMsg'),
-      'Não foi possível verificar o acesso da loja.',
-      'error'
-    );
+    currentRole = data.role;
 
-    return;
-
-  }
-
-
-  if(!membership){
-
-    await sb.auth.signOut();
-
-    show('loginView');
-
-    msg(
-      $('loginMsg'),
-      'Este e-mail ainda não está vinculado a uma loja.',
-      'error'
-    );
-
-    return;
-
-  }
-
-
-  currentStoreId = membership.store_id;
-
-
-  const {
-    data:store,
-    error:storeError
-  } = await sb
+    const {data:store,error:storeError} =
+    await sb
     .from('stores')
-    .select('name')
-    .eq('id',membership.store_id)
+    .select('*')
+    .eq('id',data.store_id)
     .maybeSingle();
 
+    if(storeError || !store){
 
-  if(storeError){
+        alert(
+            'Loja não encontrada.'
+        );
 
-    msg(
-      $('dashboardMsg'),
-      'Não foi possível carregar os dados da loja.',
-      'error'
-    );
+        return;
+    }
 
-    return;
+    currentStore = store;
 
-  }
+    document
+    .getElementById('welcomeTitle')
+    .innerText =
+    '🏪 '+store.name;
 
-
-  $('storeName').textContent =
-    store?.name || 'Loja GT Delivery';
-
-  $('userEmail').textContent =
-    user.email || '';
-
-  $('userRole').textContent =
-    membership.role === 'owner'
-      ? 'Administrador da loja'
-      : 'Gerente da loja';
-
-
-  show('dashboardView');
+    document
+    .getElementById('storeInfo')
+    .innerText =
+    (store.category || '')+
+    ' • '+
+    (store.city || '');
 
 }
 
 
-/* =========================
-   LOGIN
-========================= */
+/* =========================================
+   TELAS
+========================================= */
 
-$('loginForm').addEventListener(
-'submit',
-async function(e){
+function mostrarTela(tela){
 
-  e.preventDefault();
+    const telas = [
+        'dashboardScreen',
+        'ordersScreen',
+        'productsScreen',
+        'financeScreen',
+        'bankScreen',
+        'ownerScreen'
+    ];
 
-  hideMsg($('loginMsg'));
+    telas.forEach(id => {
 
-  const email =
-    $('email').value.trim();
+        document
+        .getElementById(id)
+        .classList.add('hidden');
 
-  const password =
-    $('password').value;
+    });
 
+    if(tela === 'dashboard'){
 
-  const {
-    data,
-    error
-  } = await sb.auth.signInWithPassword({
+        document
+        .getElementById('dashboardScreen')
+        .classList.remove('hidden');
 
-    email,
-    password
+        carregarDashboard();
 
-  });
-
-
-  if(error){
-
-    msg(
-      $('loginMsg'),
-      'E-mail ou senha incorretos.',
-      'error'
-    );
-
-    return;
-
-  }
-
-
-  await showDashboard(data.user);
-
-});
-
-
-/* =========================
-   RECUPERAÇÃO
-========================= */
-
-$('forgot').addEventListener(
-'click',
-function(){
-
-  $('resetEmail').value =
-    $('email').value.trim();
-
-  hideMsg($('resetMsg'));
-
-  show('forgotView');
-
-});
-
-
-$('backLogin').addEventListener(
-'click',
-function(){
-
-  show('loginView');
-
-});
-
-
-$('sendReset').addEventListener(
-'click',
-async function(){
-
-  const email =
-    $('resetEmail').value.trim();
-
-
-  if(!email){
-
-    msg(
-      $('resetMsg'),
-      'Digite o e-mail da loja.',
-      'error'
-    );
-
-    return;
-
-  }
-
-
-  const {
-    error
-  } = await sb.auth.resetPasswordForEmail(
-    email,
-    {
-      redirectTo:
-        location.origin +
-        location.pathname
     }
-  );
+
+    if(tela === 'orders'){
+
+        document
+        .getElementById('ordersScreen')
+        .classList.remove('hidden');
+
+        carregarPedidos();
+
+    }
+
+    if(tela === 'products'){
+
+        document
+        .getElementById('productsScreen')
+        .classList.remove('hidden');
+
+        carregarProdutos();
+
+    }
+
+    if(tela === 'finance'){
+
+        document
+        .getElementById('financeScreen')
+        .classList.remove('hidden');
+
+        carregarFinanceiro();
+
+    }
+
+    if(tela === 'bank'){
+
+        document
+        .getElementById('bankScreen')
+        .classList.remove('hidden');
+
+        carregarContaParceiro();
+
+    }
+
+    if(tela === 'owner'){
+
+        document
+        .getElementById('ownerScreen')
+        .classList.remove('hidden');
+
+        carregarFinanceiroProprietario();
+
+    }
+
+}
 
 
-  if(error){
+/* =========================================
+   PEDIDOS
+========================================= */
 
-    msg(
-      $('resetMsg'),
-      'Não foi possível enviar a recuperação. Tente novamente.',
-      'error'
-    );
+async function buscarPedidos(){
 
-    return;
+    let query =
+        sb
+        .from('orders')
+        .select('*')
+        .order('created_at',{ascending:false});
 
-  }
+    if(currentStore){
 
+        query =
+        query.eq(
+            'store_id',
+            currentStore.id
+        );
 
-  msg(
-    $('resetMsg'),
-    'Link de recuperação enviado. Verifique seu e-mail.',
-    'ok'
-  );
+    }
 
-});
+    const {data,error} =
+    await query;
 
+    if(error){
 
-/* =========================
-   LOGOUT
-========================= */
+        console.error(error);
 
-$('logout').addEventListener(
-'click',
-async function(){
+        return [];
 
-  await sb.auth.signOut();
+    }
 
-  currentUser = null;
-  currentStoreId = null;
+    return data || [];
 
-  $('password').value = '';
-
-  show('loginView');
-
-  msg(
-    $('loginMsg'),
-    'Você saiu da conta.',
-    'ok'
-  );
-
-});
+}
 
 
-/* =========================
+/* =========================================
+   CARREGAR PEDIDOS
+========================================= */
+
+async function carregarPedidos(){
+
+    const lista =
+        document.getElementById('ordersList');
+
+    lista.innerHTML =
+        'Carregando pedidos...';
+
+    const pedidos =
+        await buscarPedidos();
+
+    if(!pedidos.length){
+
+        lista.innerHTML =
+        '<div class="message">Nenhum pedido encontrado.</div>';
+
+        return;
+    }
+
+    lista.innerHTML = '';
+
+    pedidos.forEach(pedido => {
+
+        const total =
+            Number(pedido.total || 0);
+
+        const comissao =
+            total * 0.05;
+
+        const parceiro =
+            total - comissao;
+
+        const div =
+        document.createElement('div');
+
+        div.className = 'order';
+
+        div.innerHTML = `
+
+            <strong>
+                Pedido #${pedido.id}
+            </strong>
+
+            <br><br>
+
+            <b>Cliente:</b>
+            ${pedido.customer_name || 'Não informado'}
+
+            <br>
+
+            <b>Telefone:</b>
+            ${pedido.customer_phone || 'Não informado'}
+
+            <br>
+
+            <b>Endereço:</b>
+            ${pedido.customer_address || 'Não informado'}
+
+            <br><br>
+
+            <b>Total:</b>
+            R$ ${formatar(total)}
+
+            <br>
+
+            <b>GT 5%:</b>
+            R$ ${formatar(comissao)}
+
+            <br>
+
+            <b>Parceiro 95%:</b>
+            R$ ${formatar(parceiro)}
+
+            <br><br>
+
+            <b>Status:</b>
+            ${pedido.status || 'received'}
+
+            <br><br>
+
+            <button
+                onclick="alterarStatusPedido(${pedido.id},'preparing')"
+            >
+                👨‍🍳 Preparando
+            </button>
+
+            <button
+                class="btn-blue"
+                onclick="alterarStatusPedido(${pedido.id},'out_for_delivery')"
+            >
+                🛵 Saiu para entrega
+            </button>
+
+            <button
+                class="btn-green"
+                onclick="alterarStatusPedido(${pedido.id},'delivered')"
+            >
+                ✅ Entregue
+            </button>
+
+            <button
+                class="btn-red"
+                onclick="alterarStatusPedido(${pedido.id},'cancelled')"
+            >
+                ❌ Cancelar
+            </button>
+
+        `;
+
+        lista.appendChild(div);
+
+    });
+
+}
+
+
+/* =========================================
+   ALTERAR STATUS
+========================================= */
+
+async function alterarStatusPedido(
+    id,
+    status
+){
+
+    const {error} =
+    await sb
+    .from('orders')
+    .update({
+        status:status,
+        updated_at:new Date().toISOString()
+    })
+    .eq('id',id);
+
+    if(error){
+
+        alert(
+            'Erro: '+error.message
+        );
+
+        return;
+    }
+
+    carregarPedidos();
+
+}
+
+
+/* =========================================
    PRODUTOS
-========================= */
+========================================= */
 
-window.abrirProdutos =
-async function(){
+async function cadastrarProduto(){
 
-  show('productsView');
+    if(!currentStore){
 
-  await carregarProdutos();
+        alert(
+            'Loja não encontrada.'
+        );
 
-};
+        return;
+    }
 
+    const name =
+        document
+        .getElementById('productName')
+        .value
+        .trim();
+
+    const description =
+        document
+        .getElementById('productDescription')
+        .value
+        .trim();
+
+    const price =
+        Number(
+            document
+            .getElementById('productPrice')
+            .value
+        );
+
+    const category =
+        document
+        .getElementById('productCategory')
+        .value;
+
+    const file =
+        document
+        .getElementById('productImage')
+        .files[0];
+
+    const msg =
+        document
+        .getElementById('productMessage');
+
+    msg.innerHTML = '';
+
+    if(!name || !price){
+
+        msg.innerHTML =
+        '<div class="message error">Informe nome e preço.</div>';
+
+        return;
+    }
+
+    let imageUrl = null;
+
+
+    /* IMAGEM */
+
+    if(file){
+
+        const extension =
+            file.name.split('.').pop();
+
+        const fileName =
+            currentStore.id+
+            '/' +
+            Date.now()+
+            '.'+
+            extension;
+
+        const upload =
+        await sb
+        .storage
+        .from('product-images')
+        .upload(
+            fileName,
+            file,
+            {
+                upsert:true
+            }
+        );
+
+        if(upload.error){
+
+            msg.innerHTML =
+            '<div class="message error">'+
+            upload.error.message+
+            '</div>';
+
+            return;
+        }
+
+        const publicUrl =
+        sb
+        .storage
+        .from('product-images')
+        .getPublicUrl(fileName);
+
+        imageUrl =
+            publicUrl.data.publicUrl;
+
+    }
+
+
+    const {error} =
+    await sb
+    .from('products')
+    .insert({
+
+        store_id:currentStore.id,
+
+        name:name,
+
+        price:price,
+
+        description:description || null,
+
+        category:category,
+
+        image_url:imageUrl,
+
+        available:true
+
+    });
+
+    if(error){
+
+        msg.innerHTML =
+        '<div class="message error">'+
+        error.message+
+        '</div>';
+
+        return;
+    }
+
+    msg.innerHTML =
+    '<div class="message success">Produto cadastrado com sucesso!</div>';
+
+    document
+    .getElementById('productName')
+    .value='';
+
+    document
+    .getElementById('productDescription')
+    .value='';
+
+    document
+    .getElementById('productPrice')
+    .value='';
+
+    document
+    .getElementById('productImage')
+    .value='';
+
+    carregarProdutos();
+
+}
+
+
+/* =========================================
+   LISTAR PRODUTOS
+========================================= */
 
 async function carregarProdutos(){
 
-  $('productList').innerHTML =
-    '<div class="loading">Carregando produtos...</div>';
+    const lista =
+        document
+        .getElementById('productsList');
 
+    if(!currentStore){
 
-  if(!currentStoreId){
+        lista.innerHTML =
+        'Loja não encontrada.';
 
-    $('productList').innerHTML =
-      '<div class="empty">Loja não identificada.</div>';
+        return;
+    }
 
-    return;
+    lista.innerHTML =
+        'Carregando produtos...';
 
-  }
-
-
-  const {
-    data,
-    error
-  } = await sb
+    const {data,error} =
+    await sb
     .from('products')
     .select('*')
-    .eq('store_id',currentStoreId)
+    .eq('store_id',currentStore.id)
     .order('created_at',{ascending:false});
 
+    if(error){
 
-  if(error){
+        lista.innerHTML =
+        '<div class="message error">'+
+        error.message+
+        '</div>';
 
-    console.error(error);
+        return;
+    }
 
-    $('productList').innerHTML =
-      '<div class="empty">Não foi possível carregar os produtos.</div>';
+    if(!data.length){
 
-    return;
+        lista.innerHTML =
+        '<div class="message">Nenhum produto cadastrado.</div>';
 
-  }
+        return;
+    }
 
+    lista.innerHTML =
+        '<div class="grid"></div>';
 
-  if(!data || data.length === 0){
+    const grid =
+        lista.querySelector('.grid');
 
-    $('productList').innerHTML =
-      '<div class="empty">' +
-      'Você ainda não cadastrou nenhum produto.' +
-      '<br><br>' +
-      'Clique em “Novo produto” para começar.' +
-      '</div>';
+    data.forEach(produto => {
 
-    return;
+        const div =
+            document.createElement('div');
 
-  }
+        div.className =
+            'product';
 
+        const imagem =
+            produto.image_url
+            ?
+            `<img src="${produto.image_url}">`
+            :
+            `<div style="
+                height:160px;
+                border-radius:10px;
+                background:#eee;
+                display:flex;
+                align-items:center;
+                justify-content:center;
+                color:#888;
+            ">
+                Sem imagem
+            </div>`;
 
-  $('productList').innerHTML =
-    data.map(product => {
+        const disponivel =
+            produto.available !== false;
 
-      const imagem =
-        product.image_url ||
-        '';
+        div.innerHTML = `
 
-      const foto =
-        imagem
-          ? `<img class="product-img" src="${escapeHtml(imagem)}" alt="">`
-          : `<div class="product-img" style="display:flex;align-items:center;justify-content:center;font-size:35px">📦</div>`;
-
-
-      return `
-
-        <div class="product">
-
-          ${foto}
-
-          <div class="product-info">
+            ${imagem}
 
             <h3>
-              ${escapeHtml(product.name)}
+                ${produto.name}
             </h3>
 
-            <span class="category-badge">
-              ${escapeHtml(product.category || 'Outros')}
-            </span>
-
-            <p>
-              ${escapeHtml(product.description || '')}
-            </p>
-
-            <p class="price">
-              R$ ${Number(product.price || 0)
-                .toFixed(2)
-                .replace('.',',')}
-            </p>
-
-            <div class="product-actions">
-
-              <button
-                onclick="editarProduto('${product.id}')"
-              >
-                ✏️ Editar
-              </button>
-
-              <button
-                class="${product.active ? 'off' : ''}"
-                onclick="alternarProduto('${product.id}',${!product.active})"
-              >
-                ${product.active ? '🔴 Desativar' : '🟢 Ativar'}
-              </button>
-
-              <button
-                class="danger"
-                onclick="excluirProduto('${product.id}')"
-              >
-                🗑️
-              </button>
-
+            <div class="price">
+                R$ ${formatar(produto.price)}
             </div>
 
-          </div>
+            <p class="small">
+                ${produto.description || ''}
+            </p>
 
-        </div>
+            <br>
 
-      `;
+            <span class="badge ${
+                disponivel
+                ? 'green'
+                : 'red'
+            }">
 
-    }).join('');
+                ${
+                    disponivel
+                    ? 'Disponível'
+                    : 'Indisponível'
+                }
 
-}
+            </span>
 
+            <br><br>
 
-/* =========================
-   NOVO PRODUTO
-========================= */
+            <button
+                onclick="alternarProduto(
+                    ${produto.id},
+                    ${disponivel}
+                )"
+            >
 
-window.abrirCadastroProduto =
-function(){
+                ${
+                    disponivel
+                    ? '⛔ Desativar'
+                    : '✅ Ativar'
+                }
 
-  editingProductId = null;
+            </button>
 
-  $('productForm').reset();
+        `;
 
-  $('productFormTitle').textContent =
-    '➕ Novo produto';
+        grid.appendChild(div);
 
-  $('saveProductButton').textContent =
-    'Cadastrar produto';
-
-  removerFoto();
-
-  hideMsg($('productMsg'));
-
-  show('productFormView');
-
-};
-
-
-/* =========================
-   FOTO
-========================= */
-
-window.abrirCamera =
-function(){
-
-  $('cameraInput').click();
-
-};
-
-
-window.abrirGaleria =
-function(){
-
-  $('galleryInput').click();
-
-};
-
-
-$('cameraInput').addEventListener(
-'change',
-function(){
-
-  selecionarFoto(this.files[0]);
-
-});
-
-
-$('galleryInput').addEventListener(
-'change',
-function(){
-
-  selecionarFoto(this.files[0]);
-
-});
-
-
-function selecionarFoto(file){
-
-  if(!file) return;
-
-
-  if(!file.type.startsWith('image/')){
-
-    msg(
-      $('productMsg'),
-      'Escolha uma imagem válida.',
-      'error'
-    );
-
-    return;
-
-  }
-
-
-  if(file.size > 6 * 1024 * 1024){
-
-    msg(
-      $('productMsg'),
-      'A imagem deve ter no máximo 6 MB.',
-      'error'
-    );
-
-    return;
-
-  }
-
-
-  selectedImageFile = file;
-
-
-  const reader =
-    new FileReader();
-
-
-  reader.onload =
-  function(e){
-
-    $('photoPreview').src =
-      e.target.result;
-
-    $('photoPreview').style.display =
-      'block';
-
-    $('photoPlaceholder').style.display =
-      'none';
-
-  };
-
-
-  reader.readAsDataURL(file);
+    });
 
 }
 
 
-window.removerFoto =
-function(){
-
-  selectedImageFile = null;
-
-  $('cameraInput').value = '';
-  $('galleryInput').value = '';
-
-  $('photoPreview').src = '';
-
-  $('photoPreview').style.display =
-    'none';
-
-  $('photoPlaceholder').style.display =
-    'flex';
-
-};
-
-
-/* =========================
-   UPLOAD DA FOTO
-========================= */
-
-async function enviarFoto(file,productId){
-
-  if(!file) return null;
-
-
-  const extensao =
-    file.name.split('.').pop().toLowerCase() || 'jpg';
-
-
-  const caminho =
-    currentStoreId +
-    '/' +
-    productId +
-    '-' +
-    Date.now() +
-    '.' +
-    extensao;
-
-
-  const {
-    data,
-    error
-  } = await sb.storage
-    .from('product-images')
-    .upload(
-      caminho,
-      file,
-      {
-        cacheControl:'3600',
-        contentType:file.type,
-        upsert:false
-      }
-    );
-
-
-  if(error){
-
-    console.error(error);
-
-    throw new Error(
-      'Não foi possível enviar a foto.'
-    );
-
-  }
-
-
-  const {
-    data:publicData
-  } = sb.storage
-    .from('product-images')
-    .getPublicUrl(data.path);
-
-
-  return publicData.publicUrl;
-
-}
-
-
-/* =========================
-   SALVAR PRODUTO
-========================= */
-
-$('productForm').addEventListener(
-'submit',
-async function(e){
-
-  e.preventDefault();
-
-  hideMsg($('productMsg'));
-
-
-  if(!currentStoreId){
-
-    msg(
-      $('productMsg'),
-      'Sua loja não foi identificada.',
-      'error'
-    );
-
-    return;
-
-  }
-
-
-  const name =
-    $('productName').value.trim();
-
-  const description =
-    $('productDescription').value.trim();
-
-  const price =
-    Number($('productPrice').value);
-
-  const category =
-    $('productCategory').value;
-
-
-  if(!name){
-
-    msg(
-      $('productMsg'),
-      'Digite o nome do produto.',
-      'error'
-    );
-
-    return;
-
-  }
-
-
-  if(!price || price < 0){
-
-    msg(
-      $('productMsg'),
-      'Digite um preço válido.',
-      'error'
-    );
-
-    return;
-
-  }
-
-
-  if(!category){
-
-    msg(
-      $('productMsg'),
-      'Selecione uma categoria.',
-      'error'
-    );
-
-    return;
-
-  }
-
-
-  const button =
-    $('saveProductButton');
-
-  button.disabled = true;
-
-  button.textContent =
-    'Salvando...';
-
-
-  try{
-
-    let productId =
-      editingProductId;
-
-
-    /*
-      PRIMEIRO SALVA O PRODUTO
-      PARA TER O ID.
-    */
-
-    if(!editingProductId){
-
-      const {
-        data,
-        error
-      } = await sb
-        .from('products')
-        .insert({
-
-          store_id:currentStoreId,
-
-          name:name,
-
-          description:
-            description || null,
-
-          price:price,
-
-          category:category,
-
-          active:true
-
-        })
-        .select('id')
-        .single();
-
-
-      if(error){
-
-        console.error(error);
-
-        throw new Error(
-          'Não foi possível cadastrar o produto.'
-        );
-
-      }
-
-
-      productId =
-        data.id;
-
-    }else{
-
-      const {
-        error
-      } = await sb
-        .from('products')
-        .update({
-
-          name:name,
-
-          description:
-            description || null,
-
-          price:price,
-
-          category:category
-
-        })
-        .eq('id',editingProductId)
-        .eq('store_id',currentStoreId);
-
-
-      if(error){
-
-        console.error(error);
-
-        throw new Error(
-          'Não foi possível atualizar o produto.'
-        );
-
-      }
-
-    }
-
-
-    /*
-      SE ESCOLHEU UMA FOTO,
-      ENVIA PARA O STORAGE.
-    */
-
-    if(selectedImageFile){
-
-      const imageUrl =
-        await enviarFoto(
-          selectedImageFile,
-          productId
-        );
-
-
-      const {
-        error
-      } = await sb
-        .from('products')
-        .update({
-          image_url:imageUrl
-        })
-        .eq('id',productId)
-        .eq('store_id',currentStoreId);
-
-
-      if(error){
-
-        console.error(error);
-
-        throw new Error(
-          'Produto salvo, mas não foi possível salvar a foto.'
-        );
-
-      }
-
-    }
-
-
-    msg(
-      $('productMsg'),
-      editingProductId
-        ? 'Produto atualizado com sucesso!'
-        : 'Produto cadastrado com sucesso!',
-      'ok'
-    );
-
-
-    setTimeout(
-      function(){
-
-        abrirProdutos();
-
-      },
-      700
-    );
-
-
-  }catch(error){
-
-    console.error(error);
-
-    msg(
-      $('productMsg'),
-      error.message ||
-      'Ocorreu um erro ao salvar o produto.',
-      'error'
-    );
-
-  }finally{
-
-    button.disabled = false;
-
-    button.textContent =
-      editingProductId
-        ? 'Salvar alterações'
-        : 'Cadastrar produto';
-
-  }
-
-});
-
-
-/* =========================
-   EDITAR
-========================= */
-
-window.editarProduto =
-async function(id){
-
-  const {
-    data,
-    error
-  } = await sb
-    .from('products')
-    .select('*')
-    .eq('id',id)
-    .eq('store_id',currentStoreId)
-    .maybeSingle();
-
-
-  if(error || !data){
-
-    alert('Produto não encontrado.');
-
-    return;
-
-  }
-
-
-  editingProductId =
-    data.id;
-
-
-  $('productFormTitle').textContent =
-    '✏️ Editar produto';
-
-  $('saveProductButton').textContent =
-    'Salvar alterações';
-
-
-  $('productName').value =
-    data.name || '';
-
-  $('productDescription').value =
-    data.description || '';
-
-  $('productPrice').value =
-    data.price ?? '';
-
-  $('productCategory').value =
-    data.category || 'Outros';
-
-
-  removerFoto();
-
-
-  if(data.image_url){
-
-    $('photoPreview').src =
-      data.image_url;
-
-    $('photoPreview').style.display =
-      'block';
-
-    $('photoPlaceholder').style.display =
-      'none';
-
-  }
-
-
-  hideMsg($('productMsg'));
-
-  show('productFormView');
-
-};
-
-
-/* =========================
-   ATIVAR / DESATIVAR
-========================= */
-
-window.alternarProduto =
-async function(id,novoStatus){
-
-  const {
-    error
-  } = await sb
+/* =========================================
+   ATIVAR / DESATIVAR PRODUTO
+========================================= */
+
+async function alternarProduto(
+    id,
+    atual
+){
+
+    const {error} =
+    await sb
     .from('products')
     .update({
-      active:novoStatus
+        available:!atual,
+        updated_at:new Date().toISOString()
     })
-    .eq('id',id)
-    .eq('store_id',currentStoreId);
+    .eq('id',id);
 
+    if(error){
 
-  if(error){
+        alert(error.message);
 
-    alert(
-      'Não foi possível alterar o status.'
-    );
-
-    console.error(error);
-
-    return;
-
-  }
-
-
-  await carregarProdutos();
-
-};
-
-
-/* =========================
-   EXCLUIR
-========================= */
-
-window.excluirProduto =
-async function(id){
-
-  const confirmar =
-    confirm(
-      'Tem certeza que deseja excluir este produto?'
-    );
-
-
-  if(!confirmar) return;
-
-
-  const {
-    data:product
-  } = await sb
-    .from('products')
-    .select('image_url')
-    .eq('id',id)
-    .eq('store_id',currentStoreId)
-    .maybeSingle();
-
-
-  const {
-    error
-  } = await sb
-    .from('products')
-    .delete()
-    .eq('id',id)
-    .eq('store_id',currentStoreId);
-
-
-  if(error){
-
-    alert(
-      'Não foi possível excluir o produto.'
-    );
-
-    console.error(error);
-
-    return;
-
-  }
-
-
-  /*
-    Tenta remover também a imagem.
-  */
-
-  if(product?.image_url){
-
-    try{
-
-      const marker =
-        '/product-images/';
-
-      const pos =
-        product.image_url.indexOf(marker);
-
-      if(pos !== -1){
-
-        const path =
-          product.image_url.substring(
-            pos + marker.length
-          );
-
-        await sb.storage
-          .from('product-images')
-          .remove([path]);
-
-      }
-
-    }catch(err){
-
-      console.warn(
-        'Imagem não removida:',
-        err
-      );
-
+        return;
     }
 
-  }
-
-
-  await carregarProdutos();
-
-};
-
-
-/* =========================
-   VOLTAR
-========================= */
-
-window.voltarDashboard =
-function(){
-
-  show('dashboardView');
-
-};
-
-
-/* =========================
-   ESCAPAR HTML
-========================= */
-
-function escapeHtml(value){
-
-  return String(value ?? '')
-    .replace(/&/g,'&amp;')
-    .replace(/</g,'&lt;')
-    .replace(/>/g,'&gt;')
-    .replace(/"/g,'&quot;')
-    .replace(/'/g,'&#039;');
+    carregarProdutos();
 
 }
 
 
-/* =========================
-   INICIAR
-========================= */
+/* =========================================
+   FINANCEIRO PARCEIRO
+========================================= */
 
-loadSession();
+async function carregarFinanceiro(){
+
+    const pedidos =
+        await buscarPedidos();
+
+    let bruto = 0;
+    let comissao = 0;
+    let liquido = 0;
+
+    pedidos.forEach(pedido => {
+
+        if(pedido.status === 'delivered'){
+
+            const total =
+                Number(pedido.total || 0);
+
+            bruto += total;
+
+            comissao +=
+                total * 0.05;
+
+            liquido +=
+                total * 0.95;
+
+        }
+
+    });
+
+    document
+    .getElementById('financeGross')
+    .innerText =
+    'R$ '+formatar(bruto);
+
+    document
+    .getElementById('financeCommission')
+    .innerText =
+    'R$ '+formatar(comissao);
+
+    document
+    .getElementById('financeNet')
+    .innerText =
+    'R$ '+formatar(liquido);
+
+}
 
 
-/*
-  Mantém o painel atualizado
-  se a sessão mudar.
-*/
+/* =========================================
+   DASHBOARD
+========================================= */
 
-sb.auth.onAuthStateChange(
-function(event,session){
+async function carregarDashboard(){
 
-  if(event === 'SIGNED_OUT'){
+    const pedidos =
+        await buscarPedidos();
+
+    let bruto = 0;
+    let comissao = 0;
+    let liquido = 0;
+    let quantidade = 0;
+
+    pedidos.forEach(pedido => {
+
+        if(pedido.status === 'delivered'){
+
+            const total =
+                Number(pedido.total || 0);
+
+            bruto += total;
+
+            comissao +=
+                total * 0.05;
+
+            liquido +=
+                total * 0.95;
+
+            quantidade++;
+
+        }
+
+    });
+
+    document
+    .getElementById('dashGross')
+    .innerText =
+    'R$ '+formatar(bruto);
+
+    document
+    .getElementById('dashCommission')
+    .innerText =
+    'R$ '+formatar(comissao);
+
+    document
+    .getElementById('dashNet')
+    .innerText =
+    'R$ '+formatar(liquido);
+
+    document
+    .getElementById('dashOrders')
+    .innerText =
+    quantidade;
+
+}
+
+
+/* =========================================
+   CONTA PARCEIRO
+========================================= */
+
+async function carregarContaParceiro(){
+
+    if(!currentStore) return;
+
+    const {data,error} =
+    await sb
+    .from('payout_accounts')
+    .select('*')
+    .eq('store_id',currentStore.id)
+    .maybeSingle();
+
+    if(error){
+
+        console.log(
+            'Tabela payout_accounts ainda pode não existir:',
+            error.message
+        );
+
+        return;
+    }
+
+    if(!data) return;
+
+    document
+    .getElementById('bankHolder')
+    .value =
+    data.holder_name || '';
+
+    document
+    .getElementById('bankName')
+    .value =
+    data.bank_name || '';
+
+    document
+    .getElementById('bankAgency')
+    .value =
+    data.agency || '';
+
+    document
+    .getElementById('bankAccount')
+    .value =
+    data.account || '';
+
+    document
+    .getElementById('bankType')
+    .value =
+    data.account_type || 'corrente';
+
+    document
+    .getElementById('gatewayAccountId')
+    .value =
+    data.gateway_account_id || '';
+
+}
+
+
+/* =========================================
+   SALVAR CONTA PARCEIRO
+========================================= */
+
+async function salvarContaParceiro(){
+
+    if(!currentStore){
+
+        alert(
+            'Loja não encontrada.'
+        );
+
+        return;
+    }
+
+    const dados = {
+
+        store_id:
+        currentStore.id,
+
+        holder_name:
+        document
+        .getElementById('bankHolder')
+        .value
+        .trim(),
+
+        bank_name:
+        document
+        .getElementById('bankName')
+        .value
+        .trim(),
+
+        agency:
+        document
+        .getElementById('bankAgency')
+        .value
+        .trim(),
+
+        account:
+        document
+        .getElementById('bankAccount')
+        .value
+        .trim(),
+
+        account_type:
+        document
+        .getElementById('bankType')
+        .value,
+
+        gateway_account_id:
+        document
+        .getElementById('gatewayAccountId')
+        .value
+        .trim(),
+
+        updated_at:
+        new Date().toISOString()
+
+    };
+
+    const {error} =
+    await sb
+    .from('payout_accounts')
+    .upsert(
+        dados,
+        {
+            onConflict:'store_id'
+        }
+    );
+
+    const msg =
+        document
+        .getElementById('bankMessage');
+
+    if(error){
+
+        msg.innerHTML =
+        '<div class="message error">'+
+        error.message+
+        '<br><br>'+
+        'A tabela payout_accounts precisa ser criada no Supabase.'+
+        '</div>';
+
+        return;
+    }
+
+    msg.innerHTML =
+    '<div class="message success">'+
+    'Conta bancária salva com sucesso!'+
+    '</div>';
+
+}
+
+
+/* =========================================
+   FINANCEIRO PROPRIETÁRIO
+========================================= */
+
+async function carregarFinanceiroProprietario(){
+
+    const {data,error} =
+    await sb
+    .from('orders')
+    .select('total,status');
+
+    if(error){
+
+        console.error(error);
+
+        return;
+    }
+
+    let bruto = 0;
+    let comissao = 0;
+    let parceiros = 0;
+
+    (data || []).forEach(pedido => {
+
+        if(pedido.status === 'delivered'){
+
+            const total =
+                Number(pedido.total || 0);
+
+            bruto += total;
+
+            comissao +=
+                total * 0.05;
+
+            parceiros +=
+                total * 0.95;
+
+        }
+
+    });
+
+    document
+    .getElementById('ownerGross')
+    .innerText =
+    'R$ '+formatar(bruto);
+
+    document
+    .getElementById('ownerCommission')
+    .innerText =
+    'R$ '+formatar(comissao);
+
+    document
+    .getElementById('ownerPartners')
+    .innerText =
+    'R$ '+formatar(parceiros);
+
+}
+
+
+/* =========================================
+   CONTA DO PROPRIETÁRIO
+========================================= */
+
+async function salvarContaProprietario(){
+
+    const holder =
+        document
+        .getElementById('ownerBankHolder')
+        .value
+        .trim();
+
+    const bank =
+        document
+        .getElementById('ownerBankName')
+        .value
+        .trim();
+
+    const agency =
+        document
+        .getElementById('ownerBankAgency')
+        .value
+        .trim();
+
+    const account =
+        document
+        .getElementById('ownerBankAccount')
+        .value
+        .trim();
+
+    const type =
+        document
+        .getElementById('ownerBankType')
+        .value;
+
+    const gateway =
+        document
+        .getElementById('ownerGatewayAccountId')
+        .value
+        .trim();
+
+    const msg =
+        document
+        .getElementById('ownerBankMessage');
+
+    if(
+        !holder ||
+        !bank ||
+        !agency ||
+        !account
+    ){
+
+        msg.innerHTML =
+        '<div class="message error">'+
+        'Preencha os dados da conta.'+
+        '</div>';
+
+        return;
+    }
+
+    /*
+       O cadastro da conta do proprietário
+       poderá ser ligado posteriormente
+       à tabela de configurações do GT.
+    */
+
+    msg.innerHTML =
+    '<div class="message success">'+
+    'Dados da conta do proprietário preenchidos.'+
+    '<br><br>'+
+    'A integração com o gateway será responsável pelo recebimento automático.'+
+    '</div>';
+
+}
+
+
+/* =========================================
+   RECUPERAR SENHA
+========================================= */
+
+async function recuperarSenha(){
+
+    const email =
+        document
+        .getElementById('loginEmail')
+        .value
+        .trim();
+
+    const msg =
+        document
+        .getElementById('loginMessage');
+
+    if(!email){
+
+        msg.innerHTML =
+        '<div class="message error">'+
+        'Digite seu e-mail primeiro.'+
+        '</div>';
+
+        return;
+    }
+
+    const {error} =
+    await sb.auth.resetPasswordForEmail(
+        email,
+        {
+            redirectTo:
+            window.location.origin+
+            window.location.pathname
+        }
+    );
+
+    if(error){
+
+        msg.innerHTML =
+        '<div class="message error">'+
+        error.message+
+        '</div>';
+
+        return;
+    }
+
+    msg.innerHTML =
+    '<div class="message success">'+
+    'Link de recuperação enviado para seu e-mail.'+
+    '</div>';
+
+}
+
+
+/* =========================================
+   LOGOUT
+========================================= */
+
+async function logout(){
+
+    await sb.auth.signOut();
 
     currentUser = null;
-    currentStoreId = null;
+    currentStore = null;
+    currentRole = null;
 
-    show('loginView');
+    document
+    .getElementById('panelSection')
+    .classList.add('hidden');
 
-  }
+    document
+    .getElementById('loginSection')
+    .classList.remove('hidden');
 
-});
+}
 
 
-})();
+/* =========================================
+   FORMATAR DINHEIRO
+========================================= */
+
+function formatar(valor){
+
+    return Number(valor || 0)
+    .toLocaleString(
+        'pt-BR',
+        {
+            minimumFractionDigits:2,
+            maximumFractionDigits:2
+        }
+    );
+
+}
+
+
+/* =========================================
+   VERIFICAR SESSÃO
+========================================= */
+
+async function verificarSessao(){
+
+    const {data} =
+    await sb.auth.getSession();
+
+    if(data.session){
+
+        currentUser =
+        data.session.user;
+
+        await carregarUsuario();
+
+    }
+
+}
+
+verificarSessao();
 
 </script>
 
