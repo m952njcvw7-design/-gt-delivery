@@ -23,7 +23,7 @@ body{
 
 header{
   background:linear-gradient(135deg,#ff6b00,#ff9800);
-  color:white;
+  color:#fff;
   padding:18px;
   text-align:center;
   box-shadow:0 2px 8px rgba(0,0,0,.15);
@@ -45,7 +45,7 @@ header p{
 }
 
 .card{
-  background:white;
+  background:#fff;
   border-radius:15px;
   padding:18px;
   margin-bottom:15px;
@@ -53,8 +53,8 @@ header p{
 }
 
 h2{
-  margin-bottom:15px;
   color:#ff6b00;
+  margin-bottom:15px;
 }
 
 h3{
@@ -71,7 +71,7 @@ textarea{
   margin-top:7px;
   margin-bottom:12px;
   font-size:15px;
-  background:white;
+  background:#fff;
 }
 
 textarea{
@@ -90,27 +90,23 @@ button{
 
 .btn{
   background:#ff6b00;
-  color:white;
+  color:#fff;
   width:100%;
-}
-
-.btn:hover{
-  opacity:.9;
 }
 
 .btn-secondary{
   background:#222;
-  color:white;
+  color:#fff;
 }
 
 .btn-danger{
   background:#d62828;
-  color:white;
+  color:#fff;
 }
 
 .btn-green{
   background:#16803c;
-  color:white;
+  color:#fff;
 }
 
 .menu{
@@ -121,19 +117,11 @@ button{
 }
 
 .menu button{
-  background:white;
+  background:#fff;
   border:1px solid #eee;
   color:#222;
   min-height:60px;
   box-shadow:0 2px 6px rgba(0,0,0,.06);
-}
-
-.menu button:hover{
-  background:#fff3eb;
-}
-
-.hidden{
-  display:none !important;
 }
 
 .login{
@@ -141,13 +129,8 @@ button{
   margin:30px auto;
 }
 
-.logo-small{
-  width:70px;
-  height:70px;
-  border-radius:50%;
-  object-fit:cover;
-  border:3px solid white;
-  background:#eee;
+.hidden{
+  display:none!important;
 }
 
 .store-header{
@@ -165,7 +148,7 @@ button{
   background:#eee;
 }
 
-.store-header .sem-logo{
+.sem-logo{
   width:75px;
   height:75px;
   border-radius:50%;
@@ -176,50 +159,11 @@ button{
   font-size:30px;
 }
 
-.status{
-  display:inline-block;
-  padding:6px 10px;
-  border-radius:20px;
-  font-size:12px;
-  font-weight:bold;
-  background:#eee;
-}
-
-.status.received{
-  background:#fff3cd;
-  color:#856404;
-}
-
-.status.preparing{
-  background:#cfe2ff;
-  color:#084298;
-}
-
-.status.out_for_delivery{
-  background:#d1e7dd;
-  color:#0f5132;
-}
-
-.status.delivered{
-  background:#d1e7dd;
-  color:#0f5132;
-}
-
-.status.cancelled{
-  background:#f8d7da;
-  color:#842029;
-}
-
 .item{
   border:1px solid #eee;
   padding:13px;
   border-radius:12px;
   margin-bottom:10px;
-}
-
-.item strong{
-  display:block;
-  margin-bottom:5px;
 }
 
 .price{
@@ -283,26 +227,59 @@ button{
   text-align:center;
 }
 
-.alert{
+.alert,
+.success,
+.error{
   padding:12px;
   border-radius:10px;
-  margin-bottom:12px;
+  margin-top:12px;
+}
+
+.alert{
   background:#fff3cd;
   color:#664d03;
 }
 
 .success{
-  padding:12px;
-  border-radius:10px;
-  margin-bottom:12px;
   background:#d1e7dd;
   color:#0f5132;
 }
 
 .error{
-  padding:12px;
-  border-radius:10px;
-  margin-bottom:12px;
+  background:#f8d7da;
+  color:#842029;
+}
+
+.status{
+  display:inline-block;
+  padding:6px 10px;
+  border-radius:20px;
+  font-size:12px;
+  font-weight:bold;
+  background:#eee;
+}
+
+.status.received{
+  background:#fff3cd;
+  color:#856404;
+}
+
+.status.preparing{
+  background:#cfe2ff;
+  color:#084298;
+}
+
+.status.out_for_delivery{
+  background:#d1e7dd;
+  color:#0f5132;
+}
+
+.status.delivered{
+  background:#d1e7dd;
+  color:#0f5132;
+}
+
+.status.cancelled{
   background:#f8d7da;
   color:#842029;
 }
@@ -310,10 +287,6 @@ button{
 @media(max-width:600px){
   .grid{
     grid-template-columns:1fr;
-  }
-
-  .menu{
-    grid-template-columns:1fr 1fr;
   }
 }
 </style>
@@ -331,39 +304,41 @@ button{
 <!-- LOGIN -->
 <section id="loginScreen" class="login">
 
-  <div class="card">
-    <h2>🔐 Entrar</h2>
+<div class="card">
 
-    <input
-      type="email"
-      id="loginEmail"
-      placeholder="E-mail"
-      autocomplete="email"
-    >
+<h2>🔐 Entrar</h2>
 
-    <input
-      type="password"
-      id="loginPassword"
-      placeholder="Senha"
-      autocomplete="current-password"
-    >
+<input
+id="loginEmail"
+type="email"
+placeholder="E-mail"
+autocomplete="email"
+>
 
-    <button class="btn" onclick="entrar()">
-      Entrar
-    </button>
+<input
+id="loginPassword"
+type="password"
+placeholder="Senha"
+autocomplete="current-password"
+>
 
-    <br><br>
+<button class="btn" onclick="entrar()">
+Entrar
+</button>
 
-    <button
-      class="btn-secondary"
-      style="width:100%;"
-      onclick="recuperarSenha()"
-    >
-      Esqueci minha senha
-    </button>
+<br><br>
 
-    <div id="loginMessage" style="margin-top:12px;"></div>
-  </div>
+<button
+class="btn-secondary"
+style="width:100%"
+onclick="recuperarSenha()"
+>
+Esqueci minha senha
+</button>
+
+<div id="loginMessage"></div>
+
+</div>
 
 </section>
 
@@ -371,286 +346,2287 @@ button{
 <!-- PAINEL -->
 <section id="panelScreen" class="hidden">
 
-  <div class="card">
+<div class="card">
 
-    <div class="store-header">
+<div class="store-header">
 
-      <div id="headerLogoContainer">
-        <div class="sem-logo">🏪</div>
+<div id="headerLogoContainer">
+<div class="sem-logo">🏪</div>
+</div>
+
+<div>
+<h2 id="storeNameHeader">Minha Loja</h2>
+<p id="storeInfoHeader">GT Delivery</p>
+</div>
+
+</div>
+
+</div>
+
+
+<!-- MENU -->
+<div class="menu">
+
+<button onclick="mostrarTela('dashboardScreen')">
+📊<br>Dashboard
+</button>
+
+<button onclick="mostrarTela('ordersScreen');carregarPedidos()">
+📦<br>Pedidos
+</button>
+
+<button onclick="mostrarTela('productsScreen');carregarProdutos()">
+🛒<br>Produtos
+</button>
+
+<button onclick="mostrarTela('financeScreen');carregarFinanceiro()">
+💰<br>Financeiro
+</button>
+
+<button onclick="mostrarTela('bankScreen');carregarContaBancaria()">
+🏦<br>Minha conta
+</button>
+
+<button onclick="mostrarTela('storeProfileScreen');carregarPerfilLoja()">
+🏪<br>Perfil da Loja
+</button>
+
+<button
+id="ownerButton"
+class="hidden"
+onclick="mostrarTela('ownerScreen');carregarFinanceiroProprietario()"
+>
+👑<br>Proprietário
+</button>
+
+<button onclick="sair()">
+🚪<br>Sair
+</button>
+
+</div>
+
+
+<!-- DASHBOARD -->
+<section id="dashboardScreen" class="screen">
+
+<div class="card">
+
+<h2>📊 Dashboard</h2>
+
+<p>
+Olá! Seja bem-vindo ao painel da sua loja no
+<strong>GT Delivery</strong>.
+</p>
+
+<br>
+
+<div class="grid">
+
+<div class="stat">
+Pedidos entregues
+<strong id="dashboardDelivered">0</strong>
+</div>
+
+<div class="stat">
+Vendas
+<strong id="dashboardSales">R$ 0,00</strong>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- PEDIDOS -->
+<section id="ordersScreen" class="screen hidden">
+
+<div class="card">
+
+<h2>📦 Pedidos</h2>
+
+<div id="ordersList">
+Carregando pedidos...
+</div>
+
+</div>
+
+</section>
+
+
+<!-- PRODUTOS -->
+<section id="productsScreen" class="screen hidden">
+
+<div class="card">
+
+<h2>🛒 Cadastrar produto</h2>
+
+<input type="hidden" id="productId">
+
+<label>Nome do produto</label>
+<input
+id="productName"
+type="text"
+placeholder="Ex.: Café 500g"
+>
+
+<label>Descrição</label>
+
+<textarea
+id="productDescription"
+placeholder="Descrição do produto"
+></textarea>
+
+<label>Preço</label>
+
+<input
+id="productPrice"
+type="number"
+step="0.01"
+min="0"
+placeholder="0,00"
+>
+
+<label>Categoria</label>
+
+<select id="productCategory">
+
+<option value="Mercado">Mercado</option>
+<option value="Comida">Comida</option>
+<option value="Bebidas">Bebidas</option>
+<option value="Farmácia">Farmácia</option>
+<option value="Padaria">Padaria</option>
+<option value="Açougue">Açougue</option>
+<option value="Hortifruti">Hortifruti</option>
+<option value="Outros">Outros</option>
+
+</select>
+
+<label>Imagem do produto</label>
+
+<input
+id="productImage"
+type="file"
+accept="image/*"
+>
+
+<button
+class="btn"
+onclick="salvarProduto()"
+>
+💾 Salvar produto
+</button>
+
+<br><br>
+
+<button
+class="btn-secondary"
+style="width:100%"
+onclick="limparProduto()"
+>
+Limpar
+</button>
+
+<div id="productMessage"></div>
+
+</div>
+
+
+<div class="card">
+
+<h2>📋 Meus produtos</h2>
+
+<div id="productsList">
+Carregando produtos...
+</div>
+
+</div>
+
+</section>
+
+
+<!-- FINANCEIRO -->
+<section id="financeScreen" class="screen hidden">
+
+<div class="card">
+
+<h2>💰 Financeiro</h2>
+
+<p>
+A comissão do GT Delivery é de
+<strong>5%</strong> sobre as vendas concluídas.
+</p>
+
+<br>
+
+<div class="grid">
+
+<div class="stat">
+Vendas brutas
+<strong id="financeGross">R$ 0,00</strong>
+</div>
+
+<div class="stat">
+GT Delivery — 5%
+<strong id="financeCommission">R$ 0,00</strong>
+</div>
+
+<div class="stat">
+Sua loja — 95%
+<strong id="financeNet">R$ 0,00</strong>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- CONTA BANCÁRIA -->
+<section id="bankScreen" class="screen hidden">
+
+<div class="card">
+
+<h2>🏦 Minha conta</h2>
+
+<p>
+Cadastre os dados da conta que será utilizada para receber
+os valores das vendas da sua loja.
+</p>
+
+<br>
+
+<label>Nome do titular</label>
+
+<input
+id="bankHolder"
+type="text"
+placeholder="Nome do titular"
+>
+
+<label>Banco</label>
+
+<input
+id="bankName"
+type="text"
+placeholder="Nome do banco"
+>
+
+<label>Agência</label>
+
+<input
+id="bankAgency"
+type="text"
+placeholder="Agência"
+>
+
+<label>Conta</label>
+
+<input
+id="bankAccount"
+type="text"
+placeholder="Número da conta"
+>
+
+<label>Tipo de conta</label>
+
+<select id="bankType">
+
+<option value="corrente">
+Conta corrente
+</option>
+
+<option value="poupanca">
+Conta poupança
+</option>
+
+<option value="pagamento">
+Conta de pagamento
+</option>
+
+</select>
+
+<label>
+ID da conta no gateway
+</label>
+
+<input
+id="gatewayAccountId"
+type="text"
+placeholder="Opcional"
+>
+
+<button
+class="btn"
+onclick="salvarContaBancaria()"
+>
+💾 Salvar conta
+</button>
+
+<div id="bankMessage"></div>
+
+</div>
+
+</section>
+
+
+<!-- PERFIL DA LOJA -->
+<section id="storeProfileScreen" class="screen hidden">
+
+<div class="card">
+
+<h2>🏪 Perfil da Loja</h2>
+
+<div class="center">
+
+<div id="logoPreviewContainer">
+<div class="logo-placeholder">🏪</div>
+</div>
+
+<h3 id="profileStoreName">
+Minha Loja
+</h3>
+
+<p id="profileStoreCategory">
+Categoria
+</p>
+
+<p id="profileStoreCity">
+Cidade
+</p>
+
+</div>
+
+<br>
+
+<label>Logo da loja</label>
+
+<p style="font-size:13px;color:#666;margin-bottom:8px;">
+Escolha uma foto da galeria ou tire uma foto para usar como logo da sua loja.
+</p>
+
+<input
+id="storeLogoImage"
+type="file"
+accept="image/*"
+>
+
+<button
+class="btn"
+onclick="salvarLogoLoja()"
+>
+💾 Salvar logo
+</button>
+
+<br><br>
+
+<button
+class="btn-danger"
+style="width:100%"
+onclick="removerLogoLoja()"
+>
+🗑️ Remover logo
+</button>
+
+<div id="logoMessage"></div>
+
+</div>
+
+
+<div class="card">
+
+<h2>🏪 Informações da loja</h2>
+
+<p>
+<strong>Nome:</strong>
+<span id="profileNameInfo">-</span>
+</p>
+
+<br>
+
+<p>
+<strong>Categoria:</strong>
+<span id="profileCategoryInfo">-</span>
+</p>
+
+<br>
+
+<p>
+<strong>Cidade:</strong>
+<span id="profileCityInfo">-</span>
+</p>
+
+<br>
+
+<p>
+<strong>Endereço:</strong>
+<span id="profileAddressInfo">-</span>
+</p>
+
+<br>
+
+<p>
+<strong>Telefone:</strong>
+<span id="profilePhoneInfo">-</span>
+</p>
+
+</div>
+
+</section>
+
+
+<!-- PROPRIETÁRIO -->
+<section id="ownerScreen" class="screen hidden">
+
+<div class="card">
+
+<h2>👑 Área do Proprietário</h2>
+
+<p>
+Painel financeiro do proprietário do GT Delivery.
+</p>
+
+<br>
+
+<div class="grid">
+
+<div class="stat">
+Vendas concluídas
+<strong id="ownerGross">
+R$ 0,00
+</strong>
+</div>
+
+<div class="stat">
+Comissão GT — 5%
+<strong id="ownerCommission">
+R$ 0,00
+</strong>
+</div>
+
+<div class="stat">
+Valor das lojas
+<strong id="ownerStores">
+R$ 0,00
+</strong>
+</div>
+
+</div>
+
+</div>
+
+
+<div class="card">
+
+<h2>🏦 Conta do Proprietário</h2>
+
+<label>Nome do titular</label>
+
+<input
+id="ownerBankHolder"
+type="text"
+placeholder="Nome do titular"
+>
+
+<label>Banco</label>
+
+<input
+id="ownerBankName"
+type="text"
+placeholder="Nome do banco"
+>
+
+<label>Agência</label>
+
+<input
+id="ownerBankAgency"
+type="text"
+placeholder="Agência"
+>
+
+<label>Conta</label>
+
+<input
+id="ownerBankAccount"
+type="text"
+placeholder="Conta"
+>
+
+<label>Tipo</label>
+
+<select id="ownerBankType">
+
+<option value="corrente">
+Conta corrente
+</option>
+
+<option value="poupanca">
+Conta poupança
+</option>
+
+<option value="pagamento">
+Conta de pagamento
+</option>
+
+</select>
+
+<label>ID da conta no gateway</label>
+
+<input
+id="ownerGatewayAccountId"
+type="text"
+placeholder="Opcional"
+>
+
+<button
+class="btn"
+onclick="salvarContaProprietario()"
+>
+💾 Salvar conta
+</button>
+
+<div id="ownerBankMessage"></div>
+
+</div>
+
+</section>
+
+</section>
+
+</div>
+
+
+<script>
+
+/* =========================
+   SUPABASE
+========================= */
+
+const SUPABASE_URL =
+'https://cgdvehummqfttsyfebfo.supabase.co';
+
+const SUPABASE_KEY =
+'sb_publishable_rzYfEMq3RKJwlVPOmMQaUA_AAxWN9nr';
+
+const sb =
+window.supabase.createClient(
+SUPABASE_URL,
+SUPABASE_KEY
+);
+
+
+/* =========================
+   VARIÁVEIS
+========================= */
+
+let currentUser = null;
+let currentStore = null;
+let currentRole = null;
+
+
+/* =========================
+   UTILIDADES
+========================= */
+
+function dinheiro(valor){
+
+  return Number(valor || 0).toLocaleString(
+    'pt-BR',
+    {
+      style:'currency',
+      currency:'BRL'
+    }
+  );
+
+}
+
+
+function mensagem(id,texto,tipo='success'){
+
+  const el =
+    document.getElementById(id);
+
+  if(!el) return;
+
+  el.className = tipo;
+  el.textContent = texto;
+
+}
+
+
+/* =========================
+   MOSTRAR TELA
+========================= */
+
+function mostrarTela(id){
+
+  document
+  .querySelectorAll('.screen')
+  .forEach(el=>{
+    el.classList.add('hidden');
+  });
+
+  const tela =
+    document.getElementById(id);
+
+  if(tela){
+    tela.classList.remove('hidden');
+  }
+
+}
+
+
+/* =========================
+   LOGIN
+========================= */
+
+async function entrar(){
+
+  const email =
+    document.getElementById('loginEmail').value.trim();
+
+  const password =
+    document.getElementById('loginPassword').value;
+
+  if(!email || !password){
+
+    mensagem(
+      'loginMessage',
+      'Informe seu e-mail e senha.',
+      'error'
+    );
+
+    return;
+  }
+
+  mensagem(
+    'loginMessage',
+    'Entrando...',
+    'alert'
+  );
+
+  const {data,error} =
+    await sb.auth.signInWithPassword({
+      email,
+      password
+    });
+
+  if(error){
+
+    mensagem(
+      'loginMessage',
+      error.message,
+      'error'
+    );
+
+    return;
+  }
+
+  currentUser =
+    data.user;
+
+  await iniciarPainel();
+
+}
+
+
+async function recuperarSenha(){
+
+  const email =
+    document.getElementById('loginEmail').value.trim();
+
+  if(!email){
+
+    mensagem(
+      'loginMessage',
+      'Digite seu e-mail primeiro.',
+      'error'
+    );
+
+    return;
+  }
+
+  const {error} =
+    await sb.auth.resetPasswordForEmail(
+      email,
+      {
+        redirectTo:
+        window.location.href
+      }
+    );
+
+  if(error){
+
+    mensagem(
+      'loginMessage',
+      error.message,
+      'error'
+    );
+
+    return;
+  }
+
+  mensagem(
+    'loginMessage',
+    'Link de recuperação enviado para seu e-mail.',
+    'success'
+  );
+
+}
+
+
+/* =========================
+   INICIAR PAINEL
+========================= */
+
+async function iniciarPainel(){
+
+  document
+  .getElementById('loginScreen')
+  .classList.add('hidden');
+
+  document
+  .getElementById('panelScreen')
+  .classList.remove('hidden');
+
+  await carregarUsuario();
+
+  await carregarLoja();
+
+  await carregarDashboard();
+
+}
+
+
+/* =========================
+   CARREGAR USUÁRIO
+========================= */
+
+async function carregarUsuario(){
+
+  if(!currentUser) return;
+
+  const {data,error} =
+    await sb
+    .from('profiles')
+    .select('*')
+    .eq('id',currentUser.id)
+    .maybeSingle();
+
+  if(error){
+
+    console.log(error);
+
+    return;
+  }
+
+  if(data){
+
+    currentRole =
+      data.role || null;
+
+  }
+
+  if(currentRole === 'owner' ||
+     currentRole === 'admin'){
+
+    document
+    .getElementById('ownerButton')
+    .classList.remove('hidden');
+
+  }
+
+}
+
+
+/* =========================
+   CARREGAR LOJA
+========================= */
+
+async function carregarLoja(){
+
+  if(!currentUser) return;
+
+  const {data:rel,error:relError} =
+    await sb
+    .from('store_users')
+    .select('*')
+    .eq('user_id',currentUser.id)
+    .maybeSingle();
+
+  if(relError){
+
+    console.log(relError);
+
+  }
+
+  if(rel){
+
+    const {data:store,error} =
+      await sb
+      .from('stores')
+      .select('*')
+      .eq('id',rel.store_id)
+      .maybeSingle();
+
+    if(error){
+
+      alert(
+        'Erro ao carregar a loja: ' +
+        error.message
+      );
+
+      return;
+    }
+
+    currentStore =
+      store;
+
+    currentRole =
+      rel.role || currentRole;
+
+  }
+
+
+  /* Proprietário pode acessar sem loja */
+  if(!currentStore &&
+     (currentRole === 'owner' ||
+      currentRole === 'admin')){
+
+    document
+    .getElementById('ownerButton')
+    .classList.remove('hidden');
+
+    return;
+  }
+
+
+  if(!currentStore){
+
+    alert(
+      'Este usuário ainda não está vinculado a uma loja.'
+    );
+
+    return;
+  }
+
+
+  atualizarInformacoesLoja();
+
+}
+
+
+/* =========================
+   ATUALIZAR INFORMAÇÕES
+========================= */
+
+function atualizarInformacoesLoja(){
+
+  if(!currentStore) return;
+
+  document
+  .getElementById('storeNameHeader')
+  .textContent =
+  currentStore.name || 'Minha Loja';
+
+  document
+  .getElementById('storeInfoHeader')
+  .textContent =
+  [
+    currentStore.category,
+    currentStore.city
+  ]
+  .filter(Boolean)
+  .join(' • ');
+
+  atualizarLogoHeader();
+
+}
+
+
+/* =========================
+   LOGO NO HEADER
+========================= */
+
+function atualizarLogoHeader(){
+
+  const container =
+    document.getElementById(
+      'headerLogoContainer'
+    );
+
+  if(!container) return;
+
+  if(currentStore &&
+     currentStore.logo_url){
+
+    container.innerHTML =
+    `
+      <img
+        src="${currentStore.logo_url}"
+        alt="Logo da loja"
+      >
+    `;
+
+  }else{
+
+    container.innerHTML =
+    `
+      <div class="sem-logo">
+        🏪
       </div>
+    `;
 
-      <div>
-        <h2 id="storeNameHeader">Minha Loja</h2>
-        <p id="storeInfoHeader">GT Delivery</p>
+  }
+
+}
+
+
+/* =========================
+   PERFIL DA LOJA
+========================= */
+
+function carregarPerfilLoja(){
+
+  if(!currentStore) return;
+
+  document
+  .getElementById('profileStoreName')
+  .textContent =
+  currentStore.name || 'Minha Loja';
+
+  document
+  .getElementById('profileStoreCategory')
+  .textContent =
+  currentStore.category || 'Sem categoria';
+
+  document
+  .getElementById('profileStoreCity')
+  .textContent =
+  currentStore.city || 'Sem cidade';
+
+  document
+  .getElementById('profileNameInfo')
+  .textContent =
+  currentStore.name || '-';
+
+  document
+  .getElementById('profileCategoryInfo')
+  .textContent =
+  currentStore.category || '-';
+
+  document
+  .getElementById('profileCityInfo')
+  .textContent =
+  currentStore.city || '-';
+
+  document
+  .getElementById('profileAddressInfo')
+  .textContent =
+  currentStore.address || '-';
+
+  document
+  .getElementById('profilePhoneInfo')
+  .textContent =
+  currentStore.phone || '-';
+
+  renderizarLogoPerfil();
+
+}
+
+
+function renderizarLogoPerfil(){
+
+  const container =
+    document.getElementById(
+      'logoPreviewContainer'
+    );
+
+  if(!container) return;
+
+  if(currentStore &&
+     currentStore.logo_url){
+
+    container.innerHTML =
+    `
+      <img
+        class="logo-preview"
+        src="${currentStore.logo_url}"
+        alt="Logo da loja"
+      >
+    `;
+
+  }else{
+
+    container.innerHTML =
+    `
+      <div class="logo-placeholder">
+        🏪
       </div>
+    `;
 
-    </div>
+  }
 
-  </div>
-
-
-  <!-- MENU -->
-  <div class="menu">
-
-    <button onclick="mostrarTela('dashboardScreen')">
-      📊<br>Dashboard
-    </button>
-
-    <button onclick="mostrarTela('ordersScreen'); carregarPedidos()">
-      📦<br>Pedidos
-    </button>
-
-    <button onclick="mostrarTela('productsScreen'); carregarProdutos()">
-      🛒<br>Produtos
-    </button>
-
-    <button onclick="mostrarTela('financeScreen'); carregarFinanceiro()">
-      💰<br>Financeiro
-    </button>
-
-    <button onclick="mostrarTela('bankScreen'); carregarContaBancaria()">
-      🏦<br>Minha conta
-    </button>
-
-    <button onclick="mostrarTela('storeProfileScreen'); carregarPerfilLoja()">
-      🏪<br>Perfil da Loja
-    </button>
-
-    <button
-      id="ownerButton"
-      class="hidden"
-      onclick="mostrarTela('ownerScreen'); carregarFinanceiroProprietario()"
-    >
-      👑<br>Proprietário
-    </button>
-
-    <button onclick="sair()">
-      🚪<br>Sair
-    </button>
-
-  </div>
+}
 
 
-  <!-- DASHBOARD -->
-  <section id="dashboardScreen" class="screen">
+/* =========================
+   SALVAR LOGO
+========================= */
 
-    <div class="card">
+async function salvarLogoLoja(){
 
-      <h2>📊 Dashboard</h2>
+  if(!currentStore){
 
-      <p>
-        Olá! Seja bem-vindo ao painel da sua loja no
-        <strong>GT Delivery</strong>.
-      </p>
+    mensagem(
+      'logoMessage',
+      'Nenhuma loja encontrada.',
+      'error'
+    );
 
-      <br>
+    return;
+  }
 
-      <div class="grid">
+  const input =
+    document.getElementById(
+      'storeLogoImage'
+    );
 
-        <div class="stat">
-          Pedidos entregues
-          <strong id="dashboardDelivered">0</strong>
-        </div>
+  const file =
+    input.files[0];
 
-        <div class="stat">
-          Vendas
-          <strong id="dashboardSales">R$ 0,00</strong>
-        </div>
+  if(!file){
+
+    mensagem(
+      'logoMessage',
+      'Escolha uma imagem primeiro.',
+      'error'
+    );
+
+    return;
+  }
+
+  mensagem(
+    'logoMessage',
+    'Enviando logo...',
+    'alert'
+  );
+
+
+  try{
+
+    const extensao =
+      file.name
+      .split('.')
+      .pop()
+      .toLowerCase();
+
+    const caminho =
+      'store-logos/' +
+      currentStore.id +
+      '/' +
+      Date.now() +
+      '.' +
+      extensao;
+
+
+    const upload =
+      await sb.storage
+      .from('product-images')
+      .upload(
+        caminho,
+        file,
+        {
+          upsert:false,
+          contentType:file.type
+        }
+      );
+
+
+    if(upload.error){
+
+      mensagem(
+        'logoMessage',
+        'Erro ao enviar a imagem: ' +
+        upload.error.message,
+        'error'
+      );
+
+      return;
+    }
+
+
+    const publicData =
+      sb.storage
+      .from('product-images')
+      .getPublicUrl(caminho);
+
+
+    const logoUrl =
+      publicData.data.publicUrl;
+
+
+    const update =
+      await sb
+      .from('stores')
+      .update({
+        logo_url:logoUrl
+      })
+      .eq('id',currentStore.id);
+
+
+    if(update.error){
+
+      mensagem(
+        'logoMessage',
+        'A imagem foi enviada, mas não foi possível salvar no cadastro da loja: ' +
+        update.error.message,
+        'error'
+      );
+
+      return;
+    }
+
+
+    currentStore.logo_url =
+      logoUrl;
+
+    atualizarInformacoesLoja();
+
+    renderizarLogoPerfil();
+
+    input.value = '';
+
+    mensagem(
+      'logoMessage',
+      'Logo salva com sucesso! ✅',
+      'success'
+    );
+
+  }catch(error){
+
+    mensagem(
+      'logoMessage',
+      error.message,
+      'error'
+    );
+
+  }
+
+}
+
+
+/* =========================
+   REMOVER LOGO
+========================= */
+
+async function removerLogoLoja(){
+
+  if(!currentStore) return;
+
+  if(!currentStore.logo_url){
+
+    mensagem(
+      'logoMessage',
+      'A loja não possui uma logo cadastrada.',
+      'alert'
+    );
+
+    return;
+  }
+
+
+  const confirmar =
+    confirm(
+      'Deseja realmente remover a logo da loja?'
+    );
+
+  if(!confirmar) return;
+
+
+  const {error} =
+    await sb
+    .from('stores')
+    .update({
+      logo_url:null
+    })
+    .eq('id',currentStore.id);
+
+
+  if(error){
+
+    mensagem(
+      'logoMessage',
+      'Erro ao remover: ' +
+      error.message,
+      'error'
+    );
+
+    return;
+  }
+
+
+  currentStore.logo_url =
+    null;
+
+  atualizarInformacoesLoja();
+
+  renderizarLogoPerfil();
+
+
+  mensagem(
+    'logoMessage',
+    'Logo removida com sucesso.',
+    'success'
+  );
+
+}
+
+
+/* =========================
+   DASHBOARD
+========================= */
+
+async function carregarDashboard(){
+
+  if(!currentStore) return;
+
+  const {data,error} =
+    await sb
+    .from('orders')
+    .select('total,status')
+    .eq('store_id',currentStore.id);
+
+  if(error){
+
+    console.log(error);
+
+    return;
+  }
+
+  const pedidos =
+    data || [];
+
+  const entregues =
+    pedidos.filter(
+      p => p.status === 'delivered'
+    );
+
+  const vendas =
+    entregues.reduce(
+      (total,p) =>
+      total + Number(p.total || 0),
+      0
+    );
+
+  document
+  .getElementById('dashboardDelivered')
+  .textContent =
+  entregues.length;
+
+  document
+  .getElementById('dashboardSales')
+  .textContent =
+  dinheiro(vendas);
+
+}
+
+
+/* =========================
+   PEDIDOS
+========================= */
+
+async function carregarPedidos(){
+
+  const lista =
+    document.getElementById(
+      'ordersList'
+    );
+
+  if(!currentStore){
+
+    lista.textContent =
+    'Nenhuma loja encontrada.';
+
+    return;
+  }
+
+  lista.textContent =
+  'Carregando...';
+
+
+  const {data,error} =
+    await sb
+    .from('orders')
+    .select('*')
+    .eq('store_id',currentStore.id)
+    .order('created_at',{
+      ascending:false
+    });
+
+
+  if(error){
+
+    lista.innerHTML =
+    `
+      <div class="error">
+        ${error.message}
+      </div>
+    `;
+
+    return;
+  }
+
+
+  if(!data || !data.length){
+
+    lista.innerHTML =
+    `
+      <div class="alert">
+        Nenhum pedido encontrado.
+      </div>
+    `;
+
+    return;
+  }
+
+
+  lista.innerHTML =
+  data.map(pedido => {
+
+    const status =
+      pedido.status || 'received';
+
+    return `
+      <div class="item">
+
+        <strong>
+          Pedido #${pedido.id}
+        </strong>
+
+        <p>
+          Cliente:
+          ${pedido.customer_name || '-'}
+        </p>
+
+        <p>
+          Telefone:
+          ${pedido.phone || pedido.customer_phone || '-'}
+        </p>
+
+        <p>
+          Endereço:
+          ${pedido.address || '-'}
+        </p>
+
+        <br>
+
+        <p>
+          Total:
+          <span class="price">
+            ${dinheiro(pedido.total)}
+          </span>
+        </p>
+
+        <br>
+
+        <span class="status ${status}">
+          ${statusTexto(status)}
+        </span>
+
+        <br><br>
+
+        <select
+          onchange="alterarStatusPedido(${pedido.id},this.value)"
+        >
+
+          <option
+            value="received"
+            ${status==='received'?'selected':''}
+          >
+            Recebido
+          </option>
+
+          <option
+            value="preparing"
+            ${status==='preparing'?'selected':''}
+          >
+            Preparando
+          </option>
+
+          <option
+            value="out_for_delivery"
+            ${status==='out_for_delivery'?'selected':''}
+          >
+            Saiu para entrega
+          </option>
+
+          <option
+            value="delivered"
+            ${status==='delivered'?'selected':''}
+          >
+            Entregue
+          </option>
+
+          <option
+            value="cancelled"
+            ${status==='cancelled'?'selected':''}
+          >
+            Cancelado
+          </option>
+
+        </select>
 
       </div>
+    `;
 
-    </div>
+  }).join('');
 
-  </section>
+}
 
 
-  <!-- PEDIDOS -->
-  <section id="ordersScreen" class="screen hidden">
+function statusTexto(status){
 
-    <div class="card">
+  const nomes = {
 
-      <h2>📦 Pedidos</h2>
+    received:'Recebido',
 
-      <div id="ordersList">
-        Carregando pedidos...
+    preparing:'Preparando',
+
+    out_for_delivery:
+    'Saiu para entrega',
+
+    delivered:'Entregue',
+
+    cancelled:'Cancelado'
+
+  };
+
+  return nomes[status] || status;
+
+}
+
+
+async function alterarStatusPedido(
+  id,
+  status
+){
+
+  const {error} =
+    await sb
+    .from('orders')
+    .update({
+      status,
+      updated_at:
+      new Date().toISOString()
+    })
+    .eq('id',id);
+
+
+  if(error){
+
+    alert(
+      'Erro ao atualizar pedido: ' +
+      error.message
+    );
+
+    return;
+  }
+
+
+  carregarPedidos();
+  carregarDashboard();
+
+}
+
+
+/* =========================
+   PRODUTOS
+========================= */
+
+async function carregarProdutos(){
+
+  if(!currentStore) return;
+
+  const lista =
+    document.getElementById(
+      'productsList'
+    );
+
+  lista.textContent =
+  'Carregando...';
+
+
+  const {data,error} =
+    await sb
+    .from('products')
+    .select('*')
+    .eq('store_id',currentStore.id)
+    .order('name');
+
+
+  if(error){
+
+    lista.innerHTML =
+    `
+      <div class="error">
+        ${error.message}
       </div>
+    `;
 
-    </div>
-
-  </section>
-
-
-  <!-- PRODUTOS -->
-  <section id="productsScreen" class="screen hidden">
-
-    <div class="card">
-
-      <h2>🛒 Cadastrar produto</h2>
-
-      <input type="hidden" id="productId">
-
-      <label>Nome do produto</label>
-      <input
-        type="text"
-        id="productName"
-        placeholder="Ex.: Café 500g"
-      >
-
-      <label>Descrição</label>
-      <textarea
-        id="productDescription"
-        placeholder="Descrição do produto"
-      ></textarea>
-
-      <label>Preço</label>
-      <input
-        type="number"
-        id="productPrice"
-        step="0.01"
-        min="0"
-        placeholder="0,00"
-      >
-
-      <label>Categoria</label>
-      <select id="productCategory">
-        <option value="Mercado">Mercado</option>
-        <option value="Comida">Comida</option>
-        <option value="Bebidas">Bebidas</option>
-        <option value="Farmácia">Farmácia</option>
-        <option value="Padaria">Padaria</option>
-        <option value="Açougue">Açougue</option>
-        <option value="Hortifruti">Hortifruti</option>
-        <option value="Outros">Outros</option>
-      </select>
-
-      <label>Imagem do produto</label>
-      <input
-        type="file"
-        id="productImage"
-        accept="image/*"
-      >
-
-      <button class="btn" onclick="salvarProduto()">
-        💾 Salvar produto
-      </button>
-
-      <br><br>
-
-      <button
-        class="btn-secondary"
-        style="width:100%;"
-        onclick="limparProduto()"
-      >
-        Limpar
-      </button>
-
-      <div id="productMessage" style="margin-top:12px;"></div>
-
-    </div>
+    return;
+  }
 
 
-    <div class="card">
+  if(!data || !data.length){
 
-      <h2>📋 Meus produtos</h2>
-
-      <div id="productsList">
-        Carregando produtos...
+    lista.innerHTML =
+    `
+      <div class="alert">
+        Nenhum produto cadastrado.
       </div>
+    `;
 
-    </div>
+    return;
+  }
 
-  </section>
 
+  lista.innerHTML =
+  data.map(produto => {
 
-  <!-- FINANCEIRO -->
-  <section id="financeScreen" class="screen hidden">
+    return `
+      <div class="item">
 
-    <div class="card">
+        ${
+          produto.image_url
+          ?
+          `<img
+            class="product-image"
+            src="${produto.image_url}"
+            alt="${produto.name}"
+          >`
+          :
+          ''
+        }
 
-      <h2>💰 Financeiro</h2>
+        <strong>
+          ${produto.name}
+        </strong>
 
-      <p>
-        A comissão do GT Delivery é de
-        <strong>5%</strong> sobre as vendas concluídas.
-      </p>
+        <p>
+          ${produto.description || ''}
+        </p>
 
-      <br>
+        <p class="price">
+          ${dinheiro(produto.price)}
+        </p>
 
-      <div class="grid">
+        <p>
+          Categoria:
+          ${produto.category || 'Outros'}
+        </p>
 
-        <div class="stat">
-          Vendas brutas
-          <strong id="financeGross">R$ 0,00</strong>
-        </div>
+        <p>
+          Disponível:
+          ${produto.available ? 'Sim' : 'Não'}
+        </p>
 
-        <div class="stat">
-          GT Delivery — 5%
-          <strong id="financeCommission">R$ 0,00</strong>
-        </div>
+        <br>
 
-        <div class="stat">
-          Sua loja — 95%
-          <strong id="financeNet">R$ 0,00</strong>
-        </div>
+        <button
+          class="btn-secondary"
+          onclick='editarProduto(${JSON.stringify(produto)})'
+        >
+          ✏️ Editar
+        </button>
+
+        <button
+          class="btn-green"
+          onclick="alternarProduto(${produto.id},${produto.available})"
+        >
+          ${produto.available ? 'Desativar' : 'Ativar'}
+        </button>
+
+        <button
+          class="btn-danger"
+          onclick="excluirProduto(${produto.id})"
+        >
+          🗑️ Excluir
+        </button>
 
       </div>
+    `;
 
-    </div>
+  }).join('');
 
-  </section>
+}
 
 
-  <!-- CONTA BANCÁRIA -->
-  <section id="bankScreen" class="screen hidden">
+async function salvarProduto(){
 
-    <div class="card">
+  if(!currentStore){
 
-      <h2>🏦 Minha conta</h2>
+    mensagem(
+      'productMessage',
+      'Nenhuma loja encontrada.',
+      'error'
+    );
 
-      <p>
-        Cadastre os dados da conta que será utilizada para receber
-        os valores das vendas da sua loja.
-      </p>
+    return;
+  }
 
-      <br>
 
-      <label>Nome do titular</label>
-      <input
-        type="text"
-        id="bankHolder"
-        placeholder="Nome do titular"
-      >
+  const id =
+    document.getElementById(
+      'productId'
+    ).value;
 
-      <label>Banco</label>
-      <input
-        type="text"
-        id="bankName"
-        placeholder="Nome do banco"
-      >
+  const nome =
+    document.getElementById(
+      'productName'
+    ).value.trim();
 
-      <label>Agência</label>
-      <input
-        type="text"
-        id="bankAgency"
-        placeholder="Agência"
-      >
+  const descricao =
+    document.getElementById(
+      'productDescription'
+    ).value.trim();
 
-      <label>Conta</label>
-      <input
-        type="text"
-        id="bankAccount"
-        placeholder="Número da conta"
-      >
+  const preco =
+    Number(
+      document.getElementById(
+        'productPrice'
+      ).value
+    );
 
-      <label>Tipo de conta</label>
-      <select id="bankType">
-        <option value="corrente">Conta corrente</option>
-        <option value="poupanca">Conta poupança</option>
-        <option value="pagamento">Conta de pagamento</option>
-      </select>
+  const categoria =
+    document.getElementById(
+      'productCategory'
+    ).value;
 
-      <label>ID da conta no gateway (se houver)</label>
-      <input
-        type="text"
-        id="gatewayAccountId"
-        placeholder="Será usado
+  const arquivo =
+    document.getElementById(
+      'productImage'
+    ).files[0];
+
+
+  if(!nome){
+
+    mensagem(
+      'productMessage',
+      'Digite o nome do produto.',
+      'error'
+    );
+
+    return;
+  }
+
+  if(isNaN(preco)){
+
+    mensagem(
+      'productMessage',
+      'Digite um preço válido.',
+      'error'
+    );
+
+    return;
+  }
+
+
+  mensagem(
+    'productMessage',
+    'Salvando...',
+    'alert'
+  );
+
+
+  let imageUrl = null;
+
+
+  if(arquivo){
+
+    const extensao =
+      arquivo.name
+      .split('.')
+      .pop()
+      .toLowerCase();
+
+    const caminho =
+      'products/' +
+      currentStore.id +
+      '/' +
+      Date.now() +
+      '.' +
+      extensao;
+
+
+    const upload =
+      await sb.storage
+      .from('product-images')
+      .upload(
+        caminho,
+        arquivo,
+        {
+          upsert:false,
+          contentType:arquivo.type
+        }
+      );
+
+
+    if(upload.error){
+
+      mensagem(
+        'productMessage',
+        'Erro ao enviar imagem: ' +
+        upload.error.message,
+        'error'
+      );
+
+      return;
+    }
+
+
+    imageUrl =
+      sb.storage
+      .from('product-images')
+      .getPublicUrl(caminho)
+      .data
+      .publicUrl;
+
+  }
+
+
+  const dados = {
+
+    store_id:
+    currentStore.id,
+
+    name:nome,
+
+    description:
+    descricao || null,
+
+    price:preco,
+
+    category:
+    categoria,
+
+    available:true
+
+  };
+
+
+  if(imageUrl){
+
+    dados.image_url =
+    imageUrl;
+
+  }
+
+
+  let resultado;
+
+
+  if(id){
+
+    resultado =
+      await sb
+      .from('products')
+      .update(dados)
+      .eq('id',id);
+
+  }else{
+
+    resultado =
+      await sb
+      .from('products')
+      .insert(dados);
+
+  }
+
+
+  if(resultado.error){
+
+    mensagem(
+      'productMessage',
+      resultado.error.message,
+      'error'
+    );
+
+    return;
+  }
+
+
+  mensagem(
+    'productMessage',
+    'Produto salvo com sucesso! ✅',
+    'success'
+  );
+
+
+  limparProduto();
+
+  carregarProdutos();
+
+}
+
+
+function editarProduto(produto){
+
+  document
+  .getElementById('productId')
+  .value =
+  produto.id || '';
+
+  document
+  .getElementById('productName')
+  .value =
+  produto.name || '';
+
+  document
+  .getElementById('productDescription')
+  .value =
+  produto.description || '';
+
+  document
+  .getElementById('productPrice')
+  .value =
+  produto.price || '';
+
+  document
+  .getElementById('productCategory')
+  .value =
+  produto.category || 'Outros';
+
+}
+
+
+function limparProduto(){
+
+  document
+  .getElementById('productId')
+  .value='';
+
+  document
+  .getElementById('productName')
+  .value='';
+
+  document
+  .getElementById('productDescription')
+  .value='';
+
+  document
+  .getElementById('productPrice')
+  .value='';
+
+  document
+  .getElementById('productImage')
+  .value='';
+
+}
+
+
+async function alternarProduto(
+  id,
+  atual
+){
+
+  const {error} =
+    await sb
+    .from('products')
+    .update({
+      available:!atual
+    })
+    .eq('id',id);
+
+
+  if(error){
+
+    alert(error.message);
+
+    return;
+  }
+
+
+  carregarProdutos();
+
+}
+
+
+async function excluirProduto(id){
+
+  if(!confirm(
+    'Deseja excluir este produto?'
+  )) return;
+
+
+  const {error} =
+    await sb
+    .from('products')
+    .delete()
+    .eq('id',id);
+
+
+  if(error){
+
+    alert(error.message);
+
+    return;
+  }
+
+
+  carregarProdutos();
+
+}
+
+
+/* =========================
+   FINANCEIRO
+========================= */
+
+async function carregarFinanceiro(){
+
+  if(!currentStore) return;
+
+
+  const {data,error} =
+    await sb
+    .from('orders')
+    .select('total,status')
+    .eq('store_id',currentStore.id);
+
+
+  if(error){
+
+    console.log(error);
+
+    return;
+  }
+
+
+  const entregues =
+    (data || [])
+    .filter(
+      p => p.status === 'delivered'
+    );
+
+
+  const bruto =
+    entregues.reduce(
+      (s,p)=>
+      s + Number(p.total || 0),
+      0
+    );
+
+
+  const comissao =
+    bruto * 0.05;
+
+  const liquido =
+    bruto - comissao;
+
+
+  document
+  .getElementById('financeGross')
+  .textContent =
+  dinheiro(bruto);
+
+  document
+  .getElementById('financeCommission')
+  .textContent =
+  dinheiro(comissao);
+
+  document
+  .getElementById('financeNet')
+  .textContent =
+  dinheiro(liquido);
+
+}
+
+
+/* =========================
+   CONTA BANCÁRIA
+========================= */
+
+async function carregarContaBancaria(){
+
+  if(!currentStore) return;
+
+
+  try{
+
+    const {data,error} =
+      await sb
+      .from('payout_accounts')
+      .select('*')
+      .eq('store_id',currentStore.id)
+      .maybeSingle();
+
+
+    if(error){
+
+      console.log(
+        'payout_accounts:',
+        error.message
+      );
+
+      return;
+    }
+
+
+    if(data){
+
+      document
+      .getElementById('bankHolder')
+      .value =
+      data.holder_name || '';
+
+      document
+      .getElementById('bankName')
+      .value =
+      data.bank_name || '';
+
+      document
+      .getElementById('bankAgency')
+      .value =
+      data.agency || '';
+
+      document
+      .getElementById('bankAccount')
+      .value =
+      data.account || '';
+
+      document
+      .getElementById('bankType')
+      .value =
+      data.account_type || 'corrente';
+
+      document
+      .getElementById('gatewayAccountId')
+      .value =
+      data.gateway_account_id || '';
+
+    }
+
+  }catch(e){
+
+    console.log(e);
+
+  }
+
+}
+
+
+async function salvarContaBancaria(){
+
+  if(!currentStore) return;
+
+
+  const dados = {
+
+    store_id:
+    currentStore.id,
+
+    holder_name:
+    document
+    .getElementById('bankHolder')
+    .value
+    .trim(),
+
+    bank_name:
+    document
+    .getElementById('bankName')
+    .value
+    .trim(),
+
+    agency:
+    document
+    .getElementById('bankAgency')
+    .value
+    .trim(),
+
+    account:
+    document
+    .getElementById('bankAccount')
+    .value
+    .trim(),
+
+    account_type:
+    document
+    .getElementById('bankType')
+    .value,
+
+    gateway_account_id:
+    document
+    .getElementById('gatewayAccountId')
+    .value
+    .trim()
+
+  };
+
+
+  const {error} =
+    await sb
+    .from('payout_accounts')
+    .upsert(
+      dados,
+      {
+        onConflict:'store_id'
+      }
+    );
+
+
+  if(error){
+
+    mensagem(
+      'bankMessage',
+      'Não foi possível salvar. ' +
+      error.message,
+      'error'
+    );
+
+    return;
+  }
+
+
+  mensagem(
+    'bankMessage',
+    'Conta salva com sucesso! ✅',
+    'success'
+  );
+
+}
+
+
+/* =========================
+   PROPRIETÁRIO
+========================= */
+
+async function carregarFinanceiroProprietario(){
+
+  if(
+    currentRole !== 'owner' &&
+    currentRole !== 'admin'
+  ){
+
+    return;
+  }
+
+
+  const {data,error} =
+    await sb
+    .from('orders')
+    .select('total,status');
+
+
+  if(error){
+
+    console.log(error);
+
+    return;
+  }
+
+
+  const entregues =
+    (data || [])
+    .filter(
+      p=>p.status === 'delivered'
+    );
+
+
+  const bruto =
+    entregues.reduce(
+      (s,p)=>
+      s + Number(p.total || 0),
+      0
+    );
+
+
+  const comissao =
+    bruto * 0.05;
+
+
+  const lojas =
+    bruto - comissao;
+
+
+  document
+  .getElementById('ownerGross')
+  .textContent =
+  dinheiro(bruto);
+
+  document
+  .getElementById('ownerCommission')
+  .textContent =
+  dinheiro(comissao);
+
+  document
+  .getElementById('ownerStores')
+  .textContent =
+  dinheiro(lojas);
+
+}
+
+
+function salvarContaProprietario(){
+
+  mensagem(
+    'ownerBankMessage',
+    'Dados da conta do proprietário preenchidos. O repasse automático depende da integração com um gateway de pagamento.',
+    'success'
+  );
+
+}
+
+
+/* =========================
+   SAIR
+========================= */
+
+async function sair(){
+
+  await sb.auth.signOut();
+
+  currentUser=null;
+  currentStore=null;
+  currentRole=null;
+
+  document
+  .getElementById('panelScreen')
+  .classList.add('hidden');
+
+  document
+  .getElementById('loginScreen')
+  .classList.remove('hidden');
+
+}
+
+
+/* =========================
+   VERIFICAR SESSÃO
+========================= */
+
+async function verificarSessao(){
+
+  const {data} =
+    await sb.auth.getSession();
+
+  if(data.session){
+
+    currentUser =
+    data.session.user;
+
+    await iniciarPainel();
+
+  }
+
+}
+
+
+verificarSessao();
+
+</script>
+
+</body>
+</html>
