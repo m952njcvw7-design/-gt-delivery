@@ -61,6 +61,12 @@ h3{
   margin-bottom:10px;
 }
 
+label{
+  display:block;
+  font-weight:bold;
+  margin-top:5px;
+}
+
 input,
 select,
 textarea{
@@ -77,6 +83,11 @@ textarea{
 textarea{
   min-height:90px;
   resize:vertical;
+}
+
+input[type="file"]{
+  padding:10px;
+  background:#fafafa;
 }
 
 button{
@@ -191,12 +202,23 @@ button{
 }
 
 .product-image{
-  width:90px;
-  height:90px;
+  width:110px;
+  height:110px;
   object-fit:cover;
   border-radius:10px;
   background:#eee;
   margin-bottom:10px;
+  display:block;
+}
+
+.cover-preview{
+  width:100%;
+  height:180px;
+  object-fit:cover;
+  border-radius:14px;
+  background:#eee;
+  display:block;
+  margin:10px 0 15px;
 }
 
 .logo-preview{
@@ -223,8 +245,26 @@ button{
   font-size:55px;
 }
 
+.cover-placeholder{
+  width:100%;
+  height:180px;
+  border-radius:14px;
+  background:#eee;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin:10px 0 15px;
+  font-size:45px;
+}
+
 .center{
   text-align:center;
+}
+
+.help{
+  font-size:13px;
+  color:#666;
+  margin:5px 0 10px;
 }
 
 .alert,
@@ -284,9 +324,27 @@ button{
   color:#842029;
 }
 
+.preview-box{
+  margin:10px 0 15px;
+}
+
+.small-btn{
+  padding:9px 12px;
+  font-size:13px;
+  margin-top:5px;
+}
+
 @media(max-width:600px){
   .grid{
     grid-template-columns:1fr;
+  }
+
+  .menu{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .store-header{
+    align-items:flex-start;
   }
 }
 </style>
@@ -465,10 +523,19 @@ Carregando pedidos...
 <input type="hidden" id="productId">
 
 <label>Nome do produto</label>
+
 <input
 id="productName"
 type="text"
 placeholder="Ex.: Café 500g"
+>
+
+<label>Marca</label>
+
+<input
+id="productBrand"
+type="text"
+placeholder="Ex.: Pilão, Coca-Cola, Nestlé"
 >
 
 <label>Descrição</label>
@@ -503,13 +570,32 @@ placeholder="0,00"
 
 </select>
 
-<label>Imagem do produto</label>
+<label>📷 Tirar foto do produto</label>
+
+<p class="help">
+Use a câmera para fotografar o produto na hora.
+</p>
+
+<input
+id="productCamera"
+type="file"
+accept="image/*"
+capture="environment"
+>
+
+<label>📁 Escolher imagem/arquivo</label>
+
+<p class="help">
+Você também pode escolher uma imagem salva no celular ou computador.
+</p>
 
 <input
 id="productImage"
 type="file"
 accept="image/*"
 >
+
+<div id="productImagePreview" class="preview-box"></div>
 
 <button
 class="btn"
@@ -648,9 +734,7 @@ Conta de pagamento
 
 </select>
 
-<label>
-ID da conta no gateway
-</label>
+<label>ID da conta no gateway</label>
 
 <input
 id="gatewayAccountId"
@@ -677,7 +761,7 @@ onclick="salvarContaBancaria()"
 
 <div class="card">
 
-<h2>🏪 Perfil da Loja</h2>
+<h2>🏪 Minha Loja</h2>
 
 <div class="center">
 
@@ -701,17 +785,28 @@ Cidade
 
 <br>
 
-<label>Logo da loja</label>
+<label>🏪 Logo da loja</label>
 
-<p style="font-size:13px;color:#666;margin-bottom:8px;">
-Escolha uma foto da galeria ou tire uma foto para usar como logo da sua loja.
+<p class="help">
+Você pode tirar uma foto ou escolher um arquivo salvo no aparelho.
 </p>
+
+<input
+id="storeLogoCamera"
+type="file"
+accept="image/*"
+capture="environment"
+>
+
+<label>📁 Escolher arquivo da logo</label>
 
 <input
 id="storeLogoImage"
 type="file"
 accept="image/*"
 >
+
+<br>
 
 <button
 class="btn"
@@ -737,40 +832,247 @@ onclick="removerLogoLoja()"
 
 <div class="card">
 
+<h2>🖼️ Capa da loja</h2>
+
+<div id="coverPreviewContainer">
+
+<div class="cover-placeholder">
+🖼️
+</div>
+
+</div>
+
+<p class="help">
+A capa aparecerá como imagem de destaque da sua loja no GT Delivery.
+</p>
+
+<label>📷 Tirar foto da capa</label>
+
+<input
+id="storeCoverCamera"
+type="file"
+accept="image/*"
+capture="environment"
+>
+
+<label>📁 Escolher arquivo da capa</label>
+
+<input
+id="storeCoverImage"
+type="file"
+accept="image/*"
+>
+
+<button
+class="btn"
+onclick="salvarCapaLoja()"
+>
+💾 Salvar capa
+</button>
+
+<br><br>
+
+<button
+class="btn-danger"
+style="width:100%"
+onclick="removerCapaLoja()"
+>
+🗑️ Remover capa
+</button>
+
+<div id="coverMessage"></div>
+
+</div>
+
+
+<div class="card">
+
 <h2>🏪 Informações da loja</h2>
 
+<label>Nome da loja</label>
+
+<input
+id="editStoreName"
+type="text"
+placeholder="Nome da loja"
+>
+
+<label>Categoria</label>
+
+<select id="editStoreCategory">
+
+<option value="Mercado">Mercado</option>
+<option value="Lanches">Lanches</option>
+<option value="Restaurante">Restaurante</option>
+<option value="Pizza">Pizza</option>
+<option value="Bebidas">Bebidas</option>
+<option value="Farmácia">Farmácia</option>
+<option value="Açougue">Açougue</option>
+<option value="Doces">Doces</option>
+<option value="Padaria">Padaria</option>
+<option value="Hortifruti">Hortifruti</option>
+<option value="Outros">Outros</option>
+
+</select>
+
+<label>Cidade</label>
+
+<input
+id="editStoreCity"
+type="text"
+placeholder="Cidade"
+>
+
+<label>Endereço</label>
+
+<input
+id="editStoreAddress"
+type="text"
+placeholder="Rua, número, bairro"
+>
+
+<label>Telefone / WhatsApp</label>
+
+<input
+id="editStorePhone"
+type="text"
+placeholder="(79) 99999-9999"
+>
+
+<label>Descrição</label>
+
+<textarea
+id="editStoreDescription"
+placeholder="Fale um pouco sobre sua loja"
+></textarea>
+
+<button
+class="btn"
+onclick="salvarPerfilLoja()"
+>
+💾 Salvar informações
+</button>
+
+<div id="storeProfileMessage"></div>
+
+</div>
+
+</section>
+
+
+<!-- CADASTRO DE LOJA -->
+<section id="createStoreScreen" class="screen hidden">
+
+<div class="card">
+
+<h2>🏪 Cadastrar minha loja</h2>
+
 <p>
-<strong>Nome:</strong>
-<span id="profileNameInfo">-</span>
+Preencha os dados abaixo para criar sua loja no
+<strong>GT Delivery</strong>.
 </p>
 
 <br>
 
-<p>
-<strong>Categoria:</strong>
-<span id="profileCategoryInfo">-</span>
-</p>
+<label>Nome da loja</label>
 
-<br>
+<input
+id="newStoreName"
+type="text"
+placeholder="Ex.: GT Supermercado"
+>
 
-<p>
-<strong>Cidade:</strong>
-<span id="profileCityInfo">-</span>
-</p>
+<label>Categoria</label>
 
-<br>
+<select id="newStoreCategory">
 
-<p>
-<strong>Endereço:</strong>
-<span id="profileAddressInfo">-</span>
-</p>
+<option value="Mercado">Mercado</option>
+<option value="Lanches">Lanches</option>
+<option value="Restaurante">Restaurante</option>
+<option value="Pizza">Pizza</option>
+<option value="Bebidas">Bebidas</option>
+<option value="Farmácia">Farmácia</option>
+<option value="Açougue">Açougue</option>
+<option value="Doces">Doces</option>
+<option value="Padaria">Padaria</option>
+<option value="Hortifruti">Hortifruti</option>
+<option value="Outros">Outros</option>
 
-<br>
+</select>
 
-<p>
-<strong>Telefone:</strong>
-<span id="profilePhoneInfo">-</span>
-</p>
+<label>Cidade</label>
+
+<input
+id="newStoreCity"
+type="text"
+placeholder="Ex.: Tobias Barreto"
+>
+
+<label>Endereço</label>
+
+<input
+id="newStoreAddress"
+type="text"
+placeholder="Rua, número, bairro"
+>
+
+<label>Telefone / WhatsApp</label>
+
+<input
+id="newStorePhone"
+type="text"
+placeholder="(79) 99999-9999"
+>
+
+<label>Descrição</label>
+
+<textarea
+id="newStoreDescription"
+placeholder="Descreva sua loja"
+></textarea>
+
+<label>📷 Logo — tirar foto</label>
+
+<input
+id="newStoreLogoCamera"
+type="file"
+accept="image/*"
+capture="environment"
+>
+
+<label>📁 Logo — escolher arquivo</label>
+
+<input
+id="newStoreLogo"
+type="file"
+accept="image/*"
+>
+
+<label>📷 Capa — tirar foto</label>
+
+<input
+id="newStoreCoverCamera"
+type="file"
+accept="image/*"
+capture="environment"
+>
+
+<label>📁 Capa — escolher arquivo</label>
+
+<input
+id="newStoreCover"
+type="file"
+accept="image/*"
+>
+
+<button
+class="btn"
+onclick="cadastrarLoja()"
+>
+🏪 Cadastrar loja
+</button>
+
+<div id="createStoreMessage"></div>
 
 </div>
 
@@ -794,23 +1096,17 @@ Painel financeiro do proprietário do GT Delivery.
 
 <div class="stat">
 Vendas concluídas
-<strong id="ownerGross">
-R$ 0,00
-</strong>
+<strong id="ownerGross">R$ 0,00</strong>
 </div>
 
 <div class="stat">
 Comissão GT — 5%
-<strong id="ownerCommission">
-R$ 0,00
-</strong>
+<strong id="ownerCommission">R$ 0,00</strong>
 </div>
 
 <div class="stat">
 Valor das lojas
-<strong id="ownerStores">
-R$ 0,00
-</strong>
+<strong id="ownerStores">R$ 0,00</strong>
 </div>
 
 </div>
@@ -952,6 +1248,22 @@ function mensagem(id,texto,tipo='success'){
 
   el.className = tipo;
   el.textContent = texto;
+
+}
+
+
+/* =========================
+   ESCAPAR HTML
+========================= */
+
+function escapar(valor){
+
+  return String(valor ?? '')
+    .replace(/&/g,'&amp;')
+    .replace(/</g,'&lt;')
+    .replace(/>/g,'&gt;')
+    .replace(/"/g,'&quot;')
+    .replace(/'/g,'&#039;');
 
 }
 
@@ -1164,18 +1476,18 @@ async function carregarLoja(){
 
   if(rel){
 
-    const {data:store,error} =
+    const {data:store,error:storeError} =
       await sb
       .from('stores')
       .select('*')
       .eq('id',rel.store_id)
       .maybeSingle();
 
-    if(error){
+    if(storeError){
 
       alert(
         'Erro ao carregar a loja: ' +
-        error.message
+        storeError.message
       );
 
       return;
@@ -1190,7 +1502,7 @@ async function carregarLoja(){
   }
 
 
-  /* Proprietário pode acessar sem loja */
+  /* Proprietário sem loja */
   if(!currentStore &&
      (currentRole === 'owner' ||
       currentRole === 'admin')){
@@ -1203,11 +1515,10 @@ async function carregarLoja(){
   }
 
 
+  /* Usuário sem loja */
   if(!currentStore){
 
-    alert(
-      'Este usuário ainda não está vinculado a uma loja.'
-    );
+    mostrarTela('createStoreScreen');
 
     return;
   }
@@ -1265,7 +1576,7 @@ function atualizarLogoHeader(){
     container.innerHTML =
     `
       <img
-        src="${currentStore.logo_url}"
+        src="${escapar(currentStore.logo_url)}"
         alt="Logo da loja"
       >
     `;
@@ -1332,7 +1643,48 @@ function carregarPerfilLoja(){
   .textContent =
   currentStore.phone || '-';
 
+  preencherFormularioLoja();
+
   renderizarLogoPerfil();
+
+  renderizarCapaPerfil();
+
+}
+
+
+function preencherFormularioLoja(){
+
+  if(!currentStore) return;
+
+  document
+  .getElementById('editStoreName')
+  .value =
+  currentStore.name || '';
+
+  document
+  .getElementById('editStoreCategory')
+  .value =
+  currentStore.category || 'Outros';
+
+  document
+  .getElementById('editStoreCity')
+  .value =
+  currentStore.city || '';
+
+  document
+  .getElementById('editStoreAddress')
+  .value =
+  currentStore.address || '';
+
+  document
+  .getElementById('editStorePhone')
+  .value =
+  currentStore.phone || '';
+
+  document
+  .getElementById('editStoreDescription')
+  .value =
+  currentStore.description || '';
 
 }
 
@@ -1353,7 +1705,7 @@ function renderizarLogoPerfil(){
     `
       <img
         class="logo-preview"
-        src="${currentStore.logo_url}"
+        src="${escapar(currentStore.logo_url)}"
         alt="Logo da loja"
       >
     `;
@@ -1368,6 +1720,92 @@ function renderizarLogoPerfil(){
     `;
 
   }
+
+}
+
+
+function renderizarCapaPerfil(){
+
+  const container =
+    document.getElementById(
+      'coverPreviewContainer'
+    );
+
+  if(!container) return;
+
+  if(currentStore &&
+     currentStore.cover_url){
+
+    container.innerHTML =
+    `
+      <img
+        class="cover-preview"
+        src="${escapar(currentStore.cover_url)}"
+        alt="Capa da loja"
+      >
+    `;
+
+  }else{
+
+    container.innerHTML =
+    `
+      <div class="cover-placeholder">
+        🖼️
+      </div>
+    `;
+
+  }
+
+}
+
+
+/* =========================
+   UPLOAD DE IMAGEM
+========================= */
+
+async function enviarImagem(file,pasta){
+
+  if(!file){
+    return null;
+  }
+
+  const extensao =
+    file.name
+    .split('.')
+    .pop()
+    .toLowerCase();
+
+  const caminho =
+    pasta +
+    '/' +
+    Date.now() +
+    '-' +
+    Math.random().toString(36).substring(2) +
+    '.' +
+    extensao;
+
+  const upload =
+    await sb.storage
+    .from('product-images')
+    .upload(
+      caminho,
+      file,
+      {
+        upsert:false,
+        contentType:file.type
+      }
+    );
+
+  if(upload.error){
+    throw upload.error;
+  }
+
+  const publicData =
+    sb.storage
+    .from('product-images')
+    .getPublicUrl(caminho);
+
+  return publicData.data.publicUrl;
 
 }
 
@@ -1389,19 +1827,24 @@ async function salvarLogoLoja(){
     return;
   }
 
-  const input =
-    document.getElementById(
-      'storeLogoImage'
-    );
+  const camera =
+    document
+    .getElementById('storeLogoCamera')
+    .files[0];
+
+  const arquivo =
+    document
+    .getElementById('storeLogoImage')
+    .files[0];
 
   const file =
-    input.files[0];
+    camera || arquivo;
 
   if(!file){
 
     mensagem(
       'logoMessage',
-      'Escolha uma imagem primeiro.',
+      'Escolha uma imagem ou tire uma foto primeiro.',
       'error'
     );
 
@@ -1414,59 +1857,13 @@ async function salvarLogoLoja(){
     'alert'
   );
 
-
   try{
 
-    const extensao =
-      file.name
-      .split('.')
-      .pop()
-      .toLowerCase();
-
-    const caminho =
-      'store-logos/' +
-      currentStore.id +
-      '/' +
-      Date.now() +
-      '.' +
-      extensao;
-
-
-    const upload =
-      await sb.storage
-      .from('product-images')
-      .upload(
-        caminho,
-        file,
-        {
-          upsert:false,
-          contentType:file.type
-        }
-      );
-
-
-    if(upload.error){
-
-      mensagem(
-        'logoMessage',
-        'Erro ao enviar a imagem: ' +
-        upload.error.message,
-        'error'
-      );
-
-      return;
-    }
-
-
-    const publicData =
-      sb.storage
-      .from('product-images')
-      .getPublicUrl(caminho);
-
-
     const logoUrl =
-      publicData.data.publicUrl;
-
+      await enviarImagem(
+        file,
+        'store-logos/' + currentStore.id
+      );
 
     const update =
       await sb
@@ -1476,19 +1873,9 @@ async function salvarLogoLoja(){
       })
       .eq('id',currentStore.id);
 
-
     if(update.error){
-
-      mensagem(
-        'logoMessage',
-        'A imagem foi enviada, mas não foi possível salvar no cadastro da loja: ' +
-        update.error.message,
-        'error'
-      );
-
-      return;
+      throw update.error;
     }
-
 
     currentStore.logo_url =
       logoUrl;
@@ -1497,7 +1884,13 @@ async function salvarLogoLoja(){
 
     renderizarLogoPerfil();
 
-    input.value = '';
+    document
+    .getElementById('storeLogoCamera')
+    .value='';
+
+    document
+    .getElementById('storeLogoImage')
+    .value='';
 
     mensagem(
       'logoMessage',
@@ -1509,6 +1902,7 @@ async function salvarLogoLoja(){
 
     mensagem(
       'logoMessage',
+      'Erro ao salvar logo: ' +
       error.message,
       'error'
     );
@@ -1537,14 +1931,9 @@ async function removerLogoLoja(){
     return;
   }
 
-
-  const confirmar =
-    confirm(
-      'Deseja realmente remover a logo da loja?'
-    );
-
-  if(!confirmar) return;
-
+  if(!confirm(
+    'Deseja realmente remover a logo da loja?'
+  )) return;
 
   const {error} =
     await sb
@@ -1553,7 +1942,6 @@ async function removerLogoLoja(){
       logo_url:null
     })
     .eq('id',currentStore.id);
-
 
   if(error){
 
@@ -1567,7 +1955,6 @@ async function removerLogoLoja(){
     return;
   }
 
-
   currentStore.logo_url =
     null;
 
@@ -1575,12 +1962,560 @@ async function removerLogoLoja(){
 
   renderizarLogoPerfil();
 
-
   mensagem(
     'logoMessage',
     'Logo removida com sucesso.',
     'success'
   );
+
+}
+
+
+/* =========================
+   SALVAR CAPA
+========================= */
+
+async function salvarCapaLoja(){
+
+  if(!currentStore){
+
+    mensagem(
+      'coverMessage',
+      'Nenhuma loja encontrada.',
+      'error'
+    );
+
+    return;
+  }
+
+  const camera =
+    document
+    .getElementById('storeCoverCamera')
+    .files[0];
+
+  const arquivo =
+    document
+    .getElementById('storeCoverImage')
+    .files[0];
+
+  const file =
+    camera || arquivo;
+
+  if(!file){
+
+    mensagem(
+      'coverMessage',
+      'Escolha uma imagem ou tire uma foto primeiro.',
+      'error'
+    );
+
+    return;
+  }
+
+  mensagem(
+    'coverMessage',
+    'Enviando capa...',
+    'alert'
+  );
+
+  try{
+
+    const coverUrl =
+      await enviarImagem(
+        file,
+        'store-covers/' + currentStore.id
+      );
+
+    const update =
+      await sb
+      .from('stores')
+      .update({
+        cover_url:coverUrl
+      })
+      .eq('id',currentStore.id);
+
+    if(update.error){
+      throw update.error;
+    }
+
+    currentStore.cover_url =
+      coverUrl;
+
+    renderizarCapaPerfil();
+
+    document
+    .getElementById('storeCoverCamera')
+    .value='';
+
+    document
+    .getElementById('storeCoverImage')
+    .value='';
+
+    mensagem(
+      'coverMessage',
+      'Capa salva com sucesso! ✅',
+      'success'
+    );
+
+  }catch(error){
+
+    mensagem(
+      'coverMessage',
+      'Erro ao salvar capa: ' +
+      error.message,
+      'error'
+    );
+
+  }
+
+}
+
+
+/* =========================
+   REMOVER CAPA
+========================= */
+
+async function removerCapaLoja(){
+
+  if(!currentStore) return;
+
+  if(!currentStore.cover_url){
+
+    mensagem(
+      'coverMessage',
+      'A loja não possui uma capa cadastrada.',
+      'alert'
+    );
+
+    return;
+  }
+
+  if(!confirm(
+    'Deseja realmente remover a capa da loja?'
+  )) return;
+
+  const {error} =
+    await sb
+    .from('stores')
+    .update({
+      cover_url:null
+    })
+    .eq('id',currentStore.id);
+
+  if(error){
+
+    mensagem(
+      'coverMessage',
+      'Erro ao remover: ' +
+      error.message,
+      'error'
+    );
+
+    return;
+  }
+
+  currentStore.cover_url =
+    null;
+
+  renderizarCapaPerfil();
+
+  mensagem(
+    'coverMessage',
+    'Capa removida com sucesso.',
+    'success'
+  );
+
+}
+
+
+/* =========================
+   SALVAR PERFIL
+========================= */
+
+async function salvarPerfilLoja(){
+
+  if(!currentStore){
+
+    mensagem(
+      'storeProfileMessage',
+      'Nenhuma loja encontrada.',
+      'error'
+    );
+
+    return;
+  }
+
+  const dados = {
+
+    name:
+    document
+    .getElementById('editStoreName')
+    .value
+    .trim(),
+
+    category:
+    document
+    .getElementById('editStoreCategory')
+    .value,
+
+    city:
+    document
+    .getElementById('editStoreCity')
+    .value
+    .trim(),
+
+    address:
+    document
+    .getElementById('editStoreAddress')
+    .value
+    .trim(),
+
+    phone:
+    document
+    .getElementById('editStorePhone')
+    .value
+    .trim(),
+
+    description:
+    document
+    .getElementById('editStoreDescription')
+    .value
+    .trim() || null
+
+  };
+
+  if(!dados.name){
+
+    mensagem(
+      'storeProfileMessage',
+      'Digite o nome da loja.',
+      'error'
+    );
+
+    return;
+  }
+
+  mensagem(
+    'storeProfileMessage',
+    'Salvando informações...',
+    'alert'
+  );
+
+  const {data,error} =
+    await sb
+    .from('stores')
+    .update(dados)
+    .eq('id',currentStore.id)
+    .select()
+    .maybeSingle();
+
+  if(error){
+
+    mensagem(
+      'storeProfileMessage',
+      error.message,
+      'error'
+    );
+
+    return;
+  }
+
+  if(data){
+    currentStore = data;
+  }else{
+    currentStore = {
+      ...currentStore,
+      ...dados
+    };
+  }
+
+  atualizarInformacoesLoja();
+
+  carregarPerfilLoja();
+
+  mensagem(
+    'storeProfileMessage',
+    'Informações da loja salvas! ✅',
+    'success'
+  );
+
+}
+
+
+/* =========================
+   CADASTRAR NOVA LOJA
+========================= */
+
+async function cadastrarLoja(){
+
+  if(!currentUser){
+
+    mensagem(
+      'createStoreMessage',
+      'Usuário não encontrado. Faça login novamente.',
+      'error'
+    );
+
+    return;
+  }
+
+  const nome =
+    document
+    .getElementById('newStoreName')
+    .value
+    .trim();
+
+  const categoria =
+    document
+    .getElementById('newStoreCategory')
+    .value;
+
+  const cidade =
+    document
+    .getElementById('newStoreCity')
+    .value
+    .trim();
+
+  const endereco =
+    document
+    .getElementById('newStoreAddress')
+    .value
+    .trim();
+
+  const telefone =
+    document
+    .getElementById('newStorePhone')
+    .value
+    .trim();
+
+  const descricao =
+    document
+    .getElementById('newStoreDescription')
+    .value
+    .trim();
+
+  const logoCamera =
+    document
+    .getElementById('newStoreLogoCamera')
+    .files[0];
+
+  const logoArquivo =
+    document
+    .getElementById('newStoreLogo')
+    .files[0];
+
+  const capaCamera =
+    document
+    .getElementById('newStoreCoverCamera')
+    .files[0];
+
+  const capaArquivo =
+    document
+    .getElementById('newStoreCover')
+    .files[0];
+
+  if(!nome){
+
+    mensagem(
+      'createStoreMessage',
+      'Digite o nome da loja.',
+      'error'
+    );
+
+    return;
+  }
+
+  if(!cidade){
+
+    mensagem(
+      'createStoreMessage',
+      'Digite a cidade da loja.',
+      'error'
+    );
+
+    return;
+  }
+
+  mensagem(
+    'createStoreMessage',
+    'Criando loja...',
+    'alert'
+  );
+
+  try{
+
+    const dados = {
+
+      name:nome,
+
+      category:categoria,
+
+      city:cidade,
+
+      address:
+      endereco || null,
+
+      phone:
+      telefone || null,
+
+      description:
+      descricao || null
+
+    };
+
+
+    const {data:store,error:storeError} =
+      await sb
+      .from('stores')
+      .insert(dados)
+      .select()
+      .single();
+
+    if(storeError){
+      throw storeError;
+    }
+
+    if(!store){
+      throw new Error(
+        'A loja não foi retornada pelo banco.'
+      );
+    }
+
+
+    /* Vincular usuário à loja */
+
+    const {error:relationError} =
+      await sb
+      .from('store_users')
+      .insert({
+
+        store_id:
+        store.id,
+
+        user_id:
+        currentUser.id,
+
+        role:'store'
+
+      });
+
+    if(relationError){
+
+      /* Tenta remover a loja criada para não deixar loja órfã */
+
+      await sb
+      .from('stores')
+      .delete()
+      .eq('id',store.id);
+
+      throw relationError;
+    }
+
+
+    let logoUrl = null;
+    let coverUrl = null;
+
+
+    /* Logo */
+
+    const logoFile =
+      logoCamera || logoArquivo;
+
+    if(logoFile){
+
+      logoUrl =
+        await enviarImagem(
+          logoFile,
+          'store-logos/' + store.id
+        );
+
+    }
+
+
+    /* Capa */
+
+    const coverFile =
+      capaCamera || capaArquivo;
+
+    if(coverFile){
+
+      coverUrl =
+        await enviarImagem(
+          coverFile,
+          'store-covers/' + store.id
+        );
+
+    }
+
+
+    if(logoUrl || coverUrl){
+
+      const atualizacao = {};
+
+      if(logoUrl){
+        atualizacao.logo_url =
+          logoUrl;
+      }
+
+      if(coverUrl){
+        atualizacao.cover_url =
+          coverUrl;
+      }
+
+      const {data:updateData,error:updateError} =
+        await sb
+        .from('stores')
+        .update(atualizacao)
+        .eq('id',store.id)
+        .select()
+        .single();
+
+      if(updateError){
+        throw updateError;
+      }
+
+      currentStore =
+        updateData || {
+          ...store,
+          ...atualizacao
+        };
+
+    }else{
+
+      currentStore =
+        store;
+
+    }
+
+
+    currentRole =
+      'store';
+
+
+    atualizarInformacoesLoja();
+
+    mensagem(
+      'createStoreMessage',
+      'Loja cadastrada com sucesso! 🎉',
+      'success'
+    );
+
+
+    setTimeout(()=>{
+      mostrarTela('dashboardScreen');
+    },800);
+
+
+  }catch(error){
+
+    mensagem(
+      'createStoreMessage',
+      'Não foi possível cadastrar a loja: ' +
+      error.message,
+      'error'
+    );
+
+  }
 
 }
 
@@ -1672,7 +2607,7 @@ async function carregarPedidos(){
     lista.innerHTML =
     `
       <div class="error">
-        ${error.message}
+        ${escapar(error.message)}
       </div>
     `;
 
@@ -1703,22 +2638,22 @@ async function carregarPedidos(){
       <div class="item">
 
         <strong>
-          Pedido #${pedido.id}
+          Pedido #${escapar(pedido.id)}
         </strong>
 
         <p>
           Cliente:
-          ${pedido.customer_name || '-'}
+          ${escapar(pedido.customer_name || '-')}
         </p>
 
         <p>
           Telefone:
-          ${pedido.phone || pedido.customer_phone || '-'}
+          ${escapar(pedido.phone || pedido.customer_phone || '-')}
         </p>
 
         <p>
           Endereço:
-          ${pedido.address || '-'}
+          ${escapar(pedido.address || '-')}
         </p>
 
         <br>
@@ -1732,14 +2667,14 @@ async function carregarPedidos(){
 
         <br>
 
-        <span class="status ${status}">
-          ${statusTexto(status)}
+        <span class="status ${escapar(status)}">
+          ${escapar(statusTexto(status))}
         </span>
 
         <br><br>
 
         <select
-          onchange="alterarStatusPedido(${pedido.id},this.value)"
+          onchange="alterarStatusPedido('${String(pedido.id).replace(/'/g,"\\'")}',this.value)"
         >
 
           <option
@@ -1843,6 +2778,53 @@ async function alterarStatusPedido(
 
 
 /* =========================
+   PREVIEW DO PRODUTO
+========================= */
+
+function mostrarPreviewProduto(){
+
+  const camera =
+    document
+    .getElementById('productCamera')
+    .files[0];
+
+  const arquivo =
+    document
+    .getElementById('productImage')
+    .files[0];
+
+  const file =
+    camera || arquivo;
+
+  const preview =
+    document
+    .getElementById('productImagePreview');
+
+  if(!preview) return;
+
+  if(!file){
+
+    preview.innerHTML='';
+    return;
+
+  }
+
+  const url =
+    URL.createObjectURL(file);
+
+  preview.innerHTML =
+  `
+    <img
+      class="product-image"
+      src="${url}"
+      alt="Prévia do produto"
+    >
+  `;
+
+}
+
+
+/* =========================
    PRODUTOS
 ========================= */
 
@@ -1872,7 +2854,7 @@ async function carregarProdutos(){
     lista.innerHTML =
     `
       <div class="error">
-        ${error.message}
+        ${escapar(error.message)}
       </div>
     `;
 
@@ -1904,19 +2886,24 @@ async function carregarProdutos(){
           ?
           `<img
             class="product-image"
-            src="${produto.image_url}"
-            alt="${produto.name}"
+            src="${escapar(produto.image_url)}"
+            alt="${escapar(produto.name)}"
           >`
           :
           ''
         }
 
         <strong>
-          ${produto.name}
+          ${escapar(produto.name)}
         </strong>
 
         <p>
-          ${produto.description || ''}
+          <strong>Marca:</strong>
+          ${escapar(produto.brand || 'Não informada')}
+        </p>
+
+        <p>
+          ${escapar(produto.description || '')}
         </p>
 
         <p class="price">
@@ -1925,7 +2912,7 @@ async function carregarProdutos(){
 
         <p>
           Categoria:
-          ${produto.category || 'Outros'}
+          ${escapar(produto.category || 'Outros')}
         </p>
 
         <p>
@@ -1937,21 +2924,21 @@ async function carregarProdutos(){
 
         <button
           class="btn-secondary"
-          onclick='editarProduto(${JSON.stringify(produto)})'
+          onclick='editarProduto(${JSON.stringify(produto).replace(/'/g,"&#39;")})'
         >
           ✏️ Editar
         </button>
 
         <button
           class="btn-green"
-          onclick="alternarProduto(${produto.id},${produto.available})"
+          onclick="alternarProduto('${String(produto.id).replace(/'/g,"\\'")}',${produto.available})"
         >
           ${produto.available ? 'Desativar' : 'Ativar'}
         </button>
 
         <button
           class="btn-danger"
-          onclick="excluirProduto(${produto.id})"
+          onclick="excluirProduto('${String(produto.id).replace(/'/g,"\\'")}')"
         >
           🗑️ Excluir
         </button>
@@ -1988,6 +2975,11 @@ async function salvarProduto(){
       'productName'
     ).value.trim();
 
+  const marca =
+    document.getElementById(
+      'productBrand'
+    ).value.trim();
+
   const descricao =
     document.getElementById(
       'productDescription'
@@ -2005,10 +2997,18 @@ async function salvarProduto(){
       'productCategory'
     ).value;
 
+  const arquivoCamera =
+    document
+    .getElementById('productCamera')
+    .files[0];
+
+  const arquivoArquivo =
+    document
+    .getElementById('productImage')
+    .files[0];
+
   const arquivo =
-    document.getElementById(
-      'productImage'
-    ).files[0];
+    arquivoCamera || arquivoArquivo;
 
 
   if(!nome){
@@ -2022,7 +3022,7 @@ async function salvarProduto(){
     return;
   }
 
-  if(isNaN(preco)){
+  if(isNaN(preco) || preco < 0){
 
     mensagem(
       'productMessage',
@@ -2036,138 +3036,115 @@ async function salvarProduto(){
 
   mensagem(
     'productMessage',
-    'Salvando...',
+    'Salvando produto...',
     'alert'
   );
 
 
-  let imageUrl = null;
+  try{
+
+    let imageUrl = null;
 
 
-  if(arquivo){
+    if(arquivo){
 
-    const extensao =
-      arquivo.name
-      .split('.')
-      .pop()
-      .toLowerCase();
+      imageUrl =
+        await enviarImagem(
+          arquivo,
+          'products/' +
+          currentStore.id
+        );
 
-    const caminho =
-      'products/' +
-      currentStore.id +
-      '/' +
-      Date.now() +
-      '.' +
-      extensao;
-
-
-    const upload =
-      await sb.storage
-      .from('product-images')
-      .upload(
-        caminho,
-        arquivo,
-        {
-          upsert:false,
-          contentType:arquivo.type
-        }
-      );
-
-
-    if(upload.error){
-
-      mensagem(
-        'productMessage',
-        'Erro ao enviar imagem: ' +
-        upload.error.message,
-        'error'
-      );
-
-      return;
     }
 
 
-    imageUrl =
-      sb.storage
-      .from('product-images')
-      .getPublicUrl(caminho)
-      .data
-      .publicUrl;
+    const dados = {
 
-  }
+      store_id:
+      currentStore.id,
 
+      name:
+      nome,
 
-  const dados = {
+      description:
+      descricao || null,
 
-    store_id:
-    currentStore.id,
+      brand:
+      marca || null,
 
-    name:nome,
+      price:
+      preco,
 
-    description:
-    descricao || null,
+      category:
+      categoria
 
-    price:preco,
-
-    category:
-    categoria,
-
-    available:true
-
-  };
+    };
 
 
-  if(imageUrl){
+    if(!id){
 
-    dados.image_url =
-    imageUrl;
+      dados.available =
+      true;
 
-  }
-
-
-  let resultado;
+    }
 
 
-  if(id){
+    if(imageUrl){
 
-    resultado =
-      await sb
-      .from('products')
-      .update(dados)
-      .eq('id',id);
+      dados.image_url =
+      imageUrl;
 
-  }else{
-
-    resultado =
-      await sb
-      .from('products')
-      .insert(dados);
-
-  }
+    }
 
 
-  if(resultado.error){
+    let resultado;
+
+
+    if(id){
+
+      resultado =
+        await sb
+        .from('products')
+        .update(dados)
+        .eq('id',id);
+
+    }else{
+
+      resultado =
+        await sb
+        .from('products')
+        .insert(dados);
+
+    }
+
+
+    if(resultado.error){
+
+      throw resultado.error;
+    }
+
 
     mensagem(
       'productMessage',
-      resultado.error.message,
+      'Produto salvo com sucesso! ✅',
+      'success'
+    );
+
+
+    limparProduto();
+
+    carregarProdutos();
+
+  }catch(error){
+
+    mensagem(
+      'productMessage',
+      'Erro ao salvar produto: ' +
+      error.message,
       'error'
     );
 
-    return;
   }
-
-
-  mensagem(
-    'productMessage',
-    'Produto salvo com sucesso! ✅',
-    'success'
-  );
-
-
-  limparProduto();
-
-  carregarProdutos();
 
 }
 
@@ -2185,6 +3162,11 @@ function editarProduto(produto){
   produto.name || '';
 
   document
+  .getElementById('productBrand')
+  .value =
+  produto.brand || '';
+
+  document
   .getElementById('productDescription')
   .value =
   produto.description || '';
@@ -2198,6 +3180,26 @@ function editarProduto(produto){
   .getElementById('productCategory')
   .value =
   produto.category || 'Outros';
+
+  document
+  .getElementById('productImagePreview')
+  .innerHTML =
+  produto.image_url
+  ?
+  `
+    <img
+      class="product-image"
+      src="${escapar(produto.image_url)}"
+      alt="Produto"
+    >
+  `
+  :
+  '';
+
+  window.scrollTo({
+    top:0,
+    behavior:'smooth'
+  });
 
 }
 
@@ -2213,6 +3215,10 @@ function limparProduto(){
   .value='';
 
   document
+  .getElementById('productBrand')
+  .value='';
+
+  document
   .getElementById('productDescription')
   .value='';
 
@@ -2221,8 +3227,16 @@ function limparProduto(){
   .value='';
 
   document
+  .getElementById('productCamera')
+  .value='';
+
+  document
   .getElementById('productImage')
   .value='';
+
+  document
+  .getElementById('productImagePreview')
+  .innerHTML='';
 
 }
 
@@ -2601,6 +3615,25 @@ async function sair(){
   .classList.remove('hidden');
 
 }
+
+
+/* =========================
+   PREVIEWS
+========================= */
+
+document
+.getElementById('productCamera')
+.addEventListener(
+  'change',
+  mostrarPreviewProduto
+);
+
+document
+.getElementById('productImage')
+.addEventListener(
+  'change',
+  mostrarPreviewProduto
+);
 
 
 /* =========================
